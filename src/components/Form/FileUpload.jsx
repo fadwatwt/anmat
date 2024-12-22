@@ -17,17 +17,17 @@ const FileUpload = () => {
     return (
         <div
             {...getRootProps()}
-            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer ${
+            className={`border-2 border-dashed dark:border-gray-500 rounded-lg p-6 text-center cursor-pointer ${
                 isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
             }`}
         >
             <input {...getInputProps()} />
             <div className="flex flex-col items-center">
                 <VscCloudUpload size={35} />
-                <p className="text-gray-800">
+                <p className="text-gray-800 dark:text-gray-400">
                     Choose a file or drag & drop it here.
                 </p>
-                <p className="text-gray-700 text-sm">.txt format, up to 50 MB.</p>
+                <p className="text-gray-700 text-sm dark:text-gray-400">.txt format, up to 50 MB.</p>
                 <button className="mt-4 px-8 py-2 bg-white border-2 rounded-xl text-gray-900 hover:bg-gray-200">
                     Browse File
                 </button>

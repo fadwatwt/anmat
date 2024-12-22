@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 function WordTheMiddleAndLine({word}) {
     return (
         <div className="flex items-center my-4">
-            <div className="flex-grow border-t border-gray-300"></div>
+            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
             {
                 word ?
-                    <span className="mx-4 text-gray-500">{word}</span>
+                    <span className="mx-4 text-gray-500 dark:border-gray-400">{word}</span>
                     :null
             }
-            <div className="flex-grow border-t border-gray-300"></div>
+            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
         </div>
     );
 }

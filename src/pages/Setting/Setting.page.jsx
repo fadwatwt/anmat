@@ -1,0 +1,70 @@
+import Tabs from "../../components/Tabs.jsx";
+import GeneralSettingsTab from "./Tabs/GeneralSettings.tab.jsx";
+import {IoSettingsOutline} from "react-icons/io5";
+import {FiPlus} from "react-icons/fi";
+
+
+function SettingPage() {
+    const tabsData = [
+        {
+            title: "General Settings",
+            content: <GeneralSettingsTab/>,
+        },
+        {
+            title: "Notifications",
+            content: <div>Twitter content goes here</div>,
+        },
+        {
+            title: "Rotation",
+            content: <div>Instagram content goes here</div>,
+        },
+        {
+            title: "Attendance",
+            content: <div>Gmail content goes here</div>,
+        },
+        {
+            title: "Tasks",
+            content: <div>Youtube content goes here</div>,
+        },
+        {
+            title: "Privacy & Security",
+            content: <div>Youtube content goes here</div>,
+        },
+    ];
+    return (
+        <div className={"flex flex-col gap-2 justify-start dark:bg-gray-900 h-full"}>
+            <div className={"flex justify-between bg-white flex-wrap dark:bg-gray-800"}>
+                <div
+                    className="title-page flex items-center gap-2 px-10 bg-none text-start w-full py-6 text-base sm:text-lg md:text-xl text-gray-600">
+                    <div className={"p-2 rounded-full bg-gray-100"}>
+                        <IoSettingsOutline className={"group-hover:text-primary-500"} size={25}/>
+                    </div>
+                    <div>
+                        <h3 className={"text-black dark:text-gray-200"}>Social Media</h3>
+                        <p className={"text-sm dark:text-gray-400"}>Manage your preferences and configure various options</p>
+                    </div>
+
+                </div>
+                <div className={"w-full flex justify-end items-center bg-none px-2"}>
+                    <div className={"flex flex-wrap gap-2"}>
+                        <button
+                            className={"bg-none p-2 flex gap-1 items-center  border border-primary-500 text-primary-500 rounded-xl"}>
+                            <FiPlus size={20}/>
+                            <span >Add Department </span>
+                        </button>
+                        <button className={"bg-none p-2 flex gap-1 items-center border border-primary-500 text-primary-500 rounded-xl"}>
+                            <FiPlus size={20}/>
+                            <span >Add Employee </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="max-h-screen px-10 box-border flex flex-col gap-4">
+                <Tabs tabs={tabsData}/>
+            </div>
+        </div>
+    )
+        ;
+}
+
+export default SettingPage;

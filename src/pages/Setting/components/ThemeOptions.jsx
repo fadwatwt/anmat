@@ -1,0 +1,96 @@
+import { useState } from "react";
+import ThemeOptionItem from "./ThemeOptionItem.jsx";
+import { IoOptionsOutline, IoSunnyOutline } from "react-icons/io5";
+import { MdOutlineDarkMode } from "react-icons/md";
+import DefaultButton from "../../../components/Form/DefaultButton.jsx";
+import useDarkMode from "../../../Hooks/useDarkMode.js";
+
+function ThemeOptions() {
+    const [theme, setTheme] = useDarkMode();
+    const [tempTheme, setTempTheme] = useState(theme);
+
+    const themeOptions = [
+        {
+            title: "Light Mode",
+            value: "light",
+            icon: <IoSunnyOutline />,
+            description: "Pick a clean and classic light theme",
+        },
+        {
+            title: "Dark Mode",
+            value: "dark",
+            icon: <MdOutlineDarkMode />,
+            description: "Pick a clean and classic dark theme",
+        },
+        {
+            title: "System Mode",
+            value: "system",
+            icon: <IoOptionsOutline />,
+            description: "Pick a clean and classic system theme",
+        },
+    ];
+
+    const handleTempThemeChange = (value) => {
+        setTempTheme(value);
+        const root = window.document.documentElement;
+
+        if (value === "dark") {
+            root.classList.add("dark");
+            root.classList.remove("light");
+        } else if (value === "light") {
+            root.classList.add("light");
+            root.classList.remove("dark");
+        } else {
+            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            if (systemTheme === "dark") {
+                root.classList.add("dark");
+                root.classList.remove("light");
+            } else {
+                root.classList.add("light");
+                root.classList.remove("dark");
+            }
+        }
+    };
+
+    const handleApplyChanges = () => {
+        setTheme(tempTheme);
+    };
+
+    return (
+        <div className={"flex flex-col gap-5 lg:w-4/12 py-2"}>
+            <div className={"flex flex-col text-start gap-1"}>
+                <p className={"dark:text-gray-200"}>Theme Options</p>
+                <p className={"text-sm dark:text-gray-200"}>Select your preferences for your region</p>
+            </div>
+            <div className={"flex flex-col gap-3"}>
+                <div className={"flex flex-col gap-3 py-2"}>
+                    {themeOptions.map((option) => (
+                        <ThemeOptionItem
+                            key={option.value}
+                            title={option.title}
+                            icon={option.icon}
+                            description={option.description}
+                            isActive={tempTheme === option.value} // تحقق إذا كان الخيار المختار مؤقتًا
+                            onClick={() => handleTempThemeChange(option.value)} // تحديث الوضع المؤقت عند الضغط
+                        />
+                    ))}
+                </div>
+                <div className={"flex gap-3"}>
+                    <DefaultButton
+                        type={"button"}
+                        title={"Cancel"}
+                        onClick={() => setTempTheme(theme)} // استرجاع الوضع السابق عند الإلغاء
+                    />
+                    <DefaultButton
+                        type={"button"}
+                        title={"Apply Changes"}
+                        className={"bg-primary-500 text-white"}
+                        onClick={handleApplyChanges} // حفظ التغييرات
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ThemeOptions;

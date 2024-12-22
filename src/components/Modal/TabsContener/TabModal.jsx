@@ -10,13 +10,13 @@ function TabModal({tabs}) {
                 {tabs.map(({ title, icon: Icon }) => (
                     <div
                         key={title}
-                        className={`flex py-2 w-6/12 md:gap-2 justify-center gap-1 items-center cursor-pointer ${
+                        className={`flex py-2 w-6/12 md:gap-2  justify-center gap-1 items-center cursor-pointer ${
                             activeTab === title ? "border-b-2  border-primary-500" : ""
                         }`}
                         onClick={() => setActiveTab(title)}
                     >
                         {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600"} />}
-                        <p>{title}</p>
+                        <p className={"dark:text-gray-400"}>{title}</p>
                     </div>
                 ))}
             </div>

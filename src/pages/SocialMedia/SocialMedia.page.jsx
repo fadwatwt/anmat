@@ -36,8 +36,8 @@ function SocialMediaPage() {
     ];
 
     return (
-        <div className="max-h-screen px-10  box-border mx-auto p-5 flex flex-col gap-4">
-            <div className="title-page text-start w-full py-3 text-base sm:text-lg md:text-xl text-gray-600">
+        <div className="max-h-screen md:px-10 px-3 dark:bg-gray-900 box-border  mx-auto py-5 flex flex-col gap-4">
+            <div className="title-page dark:text-white text-start w-full py-3 text-base sm:text-lg md:text-xl text-gray-600">
                 Social Media
             </div>
             <Tabs tabs={tabsData}/>

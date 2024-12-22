@@ -42,11 +42,11 @@ function PostManuallyMethod() {
 
     return (
         <div className={"flex flex-col items-start gap-4"}>
-            <div className={"bg-gray-100 w-full flex justify-start p-2 text-sm"}>
-                <p>Account Name 1</p>
+            <div className={"bg-gray-100 w-full flex justify-start p-2 dark:bg-gray-700 text-sm rounded-md"}>
+                <p className={"dark:text-gray-200"}>Account Name 1</p>
             </div>
             <div className={"flex flex-col gap-2 items-start w-full"}>
-                <label className={"text-black"}>Post description</label>
+                <label className={"text-black dark:text-gray-300"}>Post description</label>
                 <textarea
                     placeholder={"Placeholder text.."}
                     className={"rounded-xl p-2 border-2 w-full focus:outline-none focus:border-blue-500"}
@@ -121,7 +121,7 @@ function PostManuallyMethod() {
                 </div>
             </div>
             <div className={"flex flex-col gap-2 items-start w-full"}>
-                <label className={"text-black"}>Tag people</label>
+                <label className={"text-black dark:text-gray-300"}>Tag people</label>
                 <TagInput placeholder={"Yara@.."} suggestions={suggestions} />
             </div>
             <div className={"flex gap-2 w-full"}>

@@ -37,11 +37,11 @@ const TagInput = ({ suggestions, placeholder }) => {
 
     return (
         <div className="w-full max-w-lg">
-            <div className="flex flex-wrap items-center border p-2 rounded-lg w-full">
+            <div className="flex flex-wrap items-center border dark:border-none  py-2 rounded-lg w-full">
                 {tags.map((tag) => (
                     <div
                         key={tag.id}
-                        className="flex items-center space-x-2 bg-gray-100 border rounded-full px-3 py-1"
+                        className="flex items-center space-x-2 bg-gray-100 dark:border-gray-800 border rounded-full px-3 py-1"
                     >
                         <img
                             src={tag.image}
@@ -68,7 +68,7 @@ const TagInput = ({ suggestions, placeholder }) => {
                 />
             </div>
             {(inputValue || isFocused) && filteredSuggestions().length > 0 && (
-                <div className="mt-2 border rounded-lg shadow bg-white">
+                <div className="mt-2 border dark:bg-gary-400 rounded-lg shadow bg-white">
                     {filteredSuggestions().map((person) => (
                         <div
                             key={person.id}
@@ -80,7 +80,7 @@ const TagInput = ({ suggestions, placeholder }) => {
                                 alt={person.name}
                                 className="w-6 h-6 rounded-full mr-2"
                             />
-                            <span className="text-sm text-gray-700">{person.name}</span>
+                            <span className="text-sm text-gray-700 dark:text-gray-400">{person.name}</span>
                         </div>
                     ))}
                 </div>

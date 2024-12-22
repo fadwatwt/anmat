@@ -6,6 +6,7 @@ import HRManagementPage from "../pages/HRManagement.page.jsx";
 import ProjectsPage from "../pages/Projects.page.jsx";
 import TasksPage from "../pages/Tasks.page.jsx";
 import SocialMediaPage from "../pages/SocialMedia/SocialMedia.page.jsx";
+import SettingPage from "../pages/Setting/Setting.page.jsx";
 
 function AppRoute() {
     return (
@@ -17,6 +18,7 @@ function AppRoute() {
             <Route path={"/projects"} element={<ProjectsPage/>}></Route>
             <Route path={"/tasks"} element={<TasksPage/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
+            <Route path={"/settings"} element={<SettingPage/>}></Route>
         </Routes>
     );
 }
