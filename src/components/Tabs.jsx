@@ -7,7 +7,7 @@ function Tabs({ tabs }) {
     return (
         <div className="max-w-screen-sm xl:max-w-full md:max-w-3xl flex flex-col gap-4">
             {/* Tabs navigation */}
-            <div className="tabs-nav flex flex-wrap lg:gap-6  md:gap-4 gap-1 border-b border-gray-200 dark:border-gray-700">
+            <div className="tabs-nav flex flex-wrap lg:gap-6  md:gap-4 gap-3 border-b border-gray-200 dark:border-gray-700">
                 {tabs.map(({ title, icon: Icon }) => (
                     <div
                         key={title}

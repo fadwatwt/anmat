@@ -8,9 +8,8 @@ import {HiOutlineMenuAlt2} from "react-icons/hi";
 function Header({taggleSlidebarOpen}) {
     return (
         <div className="header dark:bg-gray-800 max-w-full bg-white h-20 flex p-5 items-center justify-between">
-            <button className="inline-flex items-center p-2 text-sm h-8 text-gray-500
-                rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    onClick={taggleSlidebarOpen}>
+            <button onClick={taggleSlidebarOpen} className="inline-flex items-center p-2 text-sm h-8 text-gray-500
+                rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                 <HiOutlineMenuAlt2/>
             </button>
             <div className="hidden md:block">
@@ -42,5 +41,4 @@ function Header({taggleSlidebarOpen}) {
 Header.propTypes = {
     taggleSlidebarOpen: PropTypes.func,
 };
-
 export default Header;
