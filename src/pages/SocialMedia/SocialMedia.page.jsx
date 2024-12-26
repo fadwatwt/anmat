@@ -5,8 +5,10 @@ import { CgMail } from "react-icons/cg";
 import { AiOutlineYoutube } from "react-icons/ai";
 import Tabs from "../../components/Tabs.jsx";
 import FacebookTab from "./Tabs/Facebook.tab.jsx";
+import {useTranslation} from "react-i18next";
 
 function SocialMediaPage() {
+    const {t} = useTranslation()
     const tabsData = [
         {
             title: "Facebook",
@@ -38,7 +40,7 @@ function SocialMediaPage() {
     return (
         <div className="max-h-screen md:px-10 px-3 dark:bg-gray-900 box-border  mx-auto py-5 flex flex-col gap-4">
             <div className="title-page dark:text-white text-start w-full py-3 text-base sm:text-lg md:text-xl text-gray-600">
-                Social Media
+                {t('Social Media')}
             </div>
             <Tabs tabs={tabsData}/>
         </div>

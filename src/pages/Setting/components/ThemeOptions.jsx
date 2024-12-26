@@ -4,8 +4,10 @@ import { IoOptionsOutline, IoSunnyOutline } from "react-icons/io5";
 import { MdOutlineDarkMode } from "react-icons/md";
 import DefaultButton from "../../../components/Form/DefaultButton.jsx";
 import useDarkMode from "../../../Hooks/useDarkMode.js";
+import {useTranslation} from "react-i18next";
 
 function ThemeOptions() {
+    const {t} = useTranslation()
     const [theme, setTheme] = useDarkMode();
     const [tempTheme, setTempTheme] = useState(theme);
 
@@ -57,10 +59,10 @@ function ThemeOptions() {
     };
 
     return (
-        <div className={"flex flex-col gap-5 lg:w-4/12 py-2"}>
+        <div className={"flex flex-col gap-5 w-full py-2"}>
             <div className={"flex flex-col text-start gap-1"}>
-                <p className={"dark:text-gray-200"}>Theme Options</p>
-                <p className={"text-sm dark:text-gray-200"}>Select your preferences for your region</p>
+                <p className={"dark:text-gray-200"}>{t("Theme Options")}</p>
+                <p className={"text-sm dark:text-gray-200"}>{t("Select your preferences for your region")}</p>
             </div>
             <div className={"flex flex-col gap-3"}>
                 <div className={"flex flex-col gap-3 py-2"}>
@@ -70,8 +72,8 @@ function ThemeOptions() {
                             title={option.title}
                             icon={option.icon}
                             description={option.description}
-                            isActive={tempTheme === option.value} // تحقق إذا كان الخيار المختار مؤقتًا
-                            onClick={() => handleTempThemeChange(option.value)} // تحديث الوضع المؤقت عند الضغط
+                            isActive={tempTheme === option.value}
+                            onClick={() => handleTempThemeChange(option.value)}
                         />
                     ))}
                 </div>

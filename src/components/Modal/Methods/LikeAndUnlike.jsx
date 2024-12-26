@@ -18,7 +18,7 @@ function LikeAndUnLike({isOpen, onClose,className}) {
 
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={"LikeMethod/Unlike"} className={className}>
+        <Modal isOpen={isOpen} onClose={onClose} title={"Like/Unlike"} className={className}>
             <TabMethod tabs={tabsData}/>
         </Modal>
     );

@@ -1,8 +1,10 @@
 import {useState} from "react";
 import PropTypes from "prop-types";
+import {useTranslation} from "react-i18next";
 
 function TabModal({tabs}) {
     const [activeTab, setActiveTab] = useState(tabs[0]?.title || "");
+    const {t} = useTranslation()
     return (
         <div className="w-full flex flex-col gap-4">
             {/* Tabs navigation */}
@@ -10,13 +12,13 @@ function TabModal({tabs}) {
                 {tabs.map(({ title, icon: Icon }) => (
                     <div
                         key={title}
-                        className={`flex py-2 w-6/12 md:gap-2  justify-center gap-1 items-center cursor-pointer ${
+                        className={`flex py-2 w-6/12 md:gap-2 text-sm  justify-center gap-1 items-center cursor-pointer ${
                             activeTab === title ? "border-b-2  border-primary-500" : ""
                         }`}
                         onClick={() => setActiveTab(title)}
                     >
                         {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600"} />}
-                        <p className={"dark:text-gray-400"}>{title}</p>
+                        <p className={"dark:text-gray-400"}>{t(title)}</p>
                     </div>
                 ))}
             </div>

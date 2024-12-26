@@ -2,9 +2,11 @@ import './App.css'
 import Menu from "./components/Menu.jsx";
 import Header from "./components/Header.jsx";
 import AppRoute from "./Routes/AppRoute.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useLocation} from "react-router";
 import useDarkMode from "./Hooks/useDarkMode.js";
+import "/i18n.js"
+import i18n from "i18next";
 
 function App() {
     const [isSlidebarOpen, setSlidebarOpen] = useState(false);
@@ -15,11 +17,34 @@ function App() {
         console.log("bilal")
     }
 
+    useEffect(() => {
+        const updateDirectionAndFont = () => {
+            const root = document.documentElement;
+            window.document.dir = i18n.dir();
+
+            if (i18n.language === "ar") {
+                root.classList.add("font-ar");
+                root.classList.remove("font-default");
+            } else {
+                root.classList.add("font-default");
+                root.classList.remove("font-ar");
+            }
+        };
+
+        updateDirectionAndFont();
+
+        i18n.on('languageChanged', updateDirectionAndFont);
+
+        return () => {
+            i18n.off('languageChanged', updateDirectionAndFont);
+        };
+    }, []);
+
     useDarkMode();
     return (
-        <div className={`flex max-w-full max-h-screen overflow-hidden`}>
+        <div className={`flex max-w-full w-screen max-h-screen overflow-hidden`}>
             <Menu isSlidebarOpen={ isSlidebarOpen } taggleSlidebarOpen={ taggleSlidebarOpen} />
-            <div className={"flex-1 flex-col"}>
+            <div className={"md:w-[calc(100vw-16rem)] w-screen  flex-col"}>
                 {!isSettingsPage && (
                     <Header taggleSlidebarOpen={taggleSlidebarOpen} />
                 )}
@@ -29,4 +54,4 @@ function App() {
     )
 }
 
-export default App
+export default App;

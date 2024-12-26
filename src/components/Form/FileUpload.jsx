@@ -2,8 +2,10 @@
 import { useDropzone } from "react-dropzone";
 import {useCallback} from "react";
 import {VscCloudUpload} from "react-icons/vsc";
+import {useTranslation} from "react-i18next";
 
 const FileUpload = () => {
+    const {t} = useTranslation()
     const onDrop = useCallback((acceptedFiles) => {
         console.log(acceptedFiles); // معالجة الملفات المرفوعة
     }, []);
@@ -22,14 +24,14 @@ const FileUpload = () => {
             }`}
         >
             <input {...getInputProps()} />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col gap-2 items-center">
                 <VscCloudUpload size={35} />
-                <p className="text-gray-800 dark:text-gray-400">
-                    Choose a file or drag & drop it here.
+                <p className="text-gray-800 dark:text-gray-400 text-sm">
+                    {t("Choose a file or drag & drop it here.")}
                 </p>
-                <p className="text-gray-700 text-sm dark:text-gray-400">.txt format, up to 50 MB.</p>
-                <button className="mt-4 px-8 py-2 bg-white border-2 rounded-xl text-gray-900 hover:bg-gray-200">
-                    Browse File
+                <p className="text-gray-700 text-xs dark:text-gray-400">{t(".txt format, up to 50 MB.")}</p>
+                <button className="mt-4 text-sm px-8 py-2 bg-white border-2 rounded-xl text-gray-900 hover:bg-gray-200">
+                    {t("Browse File")}
                 </button>
             </div>
         </div>

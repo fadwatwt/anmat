@@ -1,7 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import {useTranslation} from "react-i18next";
 
 function Tabs({ tabs }) {
+    const {t} = useTranslation()
     const [activeTab, setActiveTab] = useState(tabs[0]?.title || ""); // Default to the first tab
 
     return (
@@ -17,7 +19,7 @@ function Tabs({ tabs }) {
                         onClick={() => setActiveTab(title)}
                     >
                         {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600 dark:dark:text-gray-400"} />}
-                        <p className={"dark:text-gray-400"}>{title}</p>
+                        <p className={"dark:text-gray-400 text-sm"}>{t(title)}</p>
                     </div>
                 ))}
             </div>

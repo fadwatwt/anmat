@@ -20,7 +20,7 @@ function FollowAndUnfollow({isOpen, onClose,className}) {
 
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={"FollowMethod/Unfollow"} className={className}>
+        <Modal isOpen={isOpen} onClose={onClose} title={"Follow/Unfollow"} className={className}>
             <TabMethod tabs={tabsData}/>
         </Modal>
     );

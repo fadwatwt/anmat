@@ -2,8 +2,10 @@ import {MdArrowForwardIos} from "react-icons/md";
 import PropTypes from "prop-types";
 import React from "react";
 import * as propTypes from "prop-types";
+import {useTranslation} from "react-i18next";
 
 function Sidebar({list, onClick,activeItem}) {
+    const {t} = useTranslation()
     return (
         <div className={"flex flex-col gap-2"}>
             {
@@ -15,7 +17,7 @@ function Sidebar({list, onClick,activeItem}) {
                                 size: 15,
                                 className: activeItem === item.id ? "text-primary-500" : "text-gray-600"
                             })}
-                            <p className={`text-sm ${activeItem === item.id ? "text-black dark:text-gray-200" :"dark:text-gray-400"}`}>{item.title}</p>
+                            <p className={`text-sm ${activeItem === item.id ? "text-black dark:text-gray-200" :"dark:text-gray-400"}`}>{t(item.title)}</p>
                         </div>
                         {activeItem === item.id ?
                             <div className={"p-1 bg-white rounded-full"}>

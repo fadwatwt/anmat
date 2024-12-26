@@ -1,19 +1,13 @@
 import { useState } from "react";
-import TagInput from "../../../../Form/TagInput.jsx";
 import { BsImage } from "react-icons/bs";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { MdOutlineSell } from "react-icons/md";
 import DefaultButton from "../../../../Form/DefaultButton.jsx";
 import Status from "../../../../Subcomponents/Status.jsx";
+import {useTranslation} from "react-i18next";
 
 function PostManuallyMethod() {
-    const [suggestions] = useState([
-        { id: 1, name: "Yara", image: "https://via.placeholder.com/40" },
-        { id: 2, name: "Ahmed", image: "https://via.placeholder.com/40" },
-        { id: 3, name: "Ali", image: "https://via.placeholder.com/40" },
-        { id: 4, name: "Mohamed", image: "https://via.placeholder.com/40" },
-    ]);
-
+    const {t} = useTranslation()
     const [uploadedFile, setUploadedFile] = useState(null); // لتخزين الملف الذي تم رفعه
     const [uploadError, setUploadError] = useState(false); // لتحديد حالة نجاح أو فشل التحميل
 
@@ -41,23 +35,25 @@ function PostManuallyMethod() {
     };
 
     return (
-        <div className={"flex flex-col items-start gap-4"}>
-            <div className={"bg-gray-100 w-full flex justify-start p-2 dark:bg-gray-700 text-sm rounded-md"}>
-                <p className={"dark:text-gray-200"}>Account Name 1</p>
+        <div className={"flex flex-col items-start gap-3 "}>
+            <div className={"bg-gray-100 w-full flex justify-start p-2 dark:bg-gray-900 text-sm rounded-md"}>
+                <p className={"dark:text-gray-200 text-xs"}>Account Name 1</p>
             </div>
             <div className={"flex flex-col gap-2 items-start w-full"}>
-                <label className={"text-black dark:text-gray-300"}>Post description</label>
+                <div className={"flex flex-col gap-1 w-full items-start"}>
+                <label className={"text-black dark:text-gray-300 text-sm"}>{t("Post description")}</label>
                 <textarea
-                    placeholder={"Placeholder text.."}
-                    className={"rounded-xl p-2 border-2 w-full focus:outline-none focus:border-blue-500"}
+                    placeholder={t("Placeholder text..")}
+                    className={"rounded-xl p-2 text-xs border-2 w-full focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-primary-150  focus:border-blue-500"}
                     rows={5}
                 ></textarea>
+                </div>
                 <div className={"flex flex-col gap-3 items-start w-full pl-2"}>
                     <div className={"icons-post flex justify-start gap-3"}>
                         {/* أيقونات تحميل الملفات */}
                         <label>
                             <BsImage
-                                className={"text-primary-500 rounded-md cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-400 rounded-md cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -69,7 +65,7 @@ function PostManuallyMethod() {
                         </label>
                         <label>
                             <TfiVideoClapper
-                                className={"text-primary-500 rounded-md cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-400 rounded-md cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -81,7 +77,7 @@ function PostManuallyMethod() {
                         </label>
                         <label>
                             <MdOutlineSell
-                                className={"text-primary-500 cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-400 cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -96,17 +92,17 @@ function PostManuallyMethod() {
                         {uploadError ? (
                             <div className="flex flex-col w-full items-start gap-1">
                                 <Status status={false} titleFalse={"Failed to upload to the file"} />
-                                <span className="text-sm text-red-500 cursor-pointer">Try Again</span>
+                                <span className="text-sm text-red-500 cursor-pointer">{t("Try Again")}</span>
                             </div>
                         ) : uploadedFile ? (
                             <div className="w-full flex items-center justify-between">
-                                <Status status={true} titleTrue={"Uploaded"} />
+                                <Status status={true} titleTrue={t("Uploaded")} />
                                 <div className={"flex gap-2 items-center border-2 rounded-lg px-2 py-1"}>
                                     {uploadedFile.type.startsWith("image/") && (
                                         <img
                                             src={URL.createObjectURL(uploadedFile)}
                                             alt="Uploaded"
-                                            className="w-8 h-8 rounded-lg object-cover"
+                                            className="w-5 h-5 rounded-lg object-cover"
                                         />
                                     )}
                                     <span className="text-sm text-gray-700">
@@ -115,20 +111,16 @@ function PostManuallyMethod() {
                                 </div>
                             </div>
                         ) : (
-                            <Status status={false} titleFalse={"No file uploaded"} />
+                            <Status status={false} titleFalse={t("No file uploaded")} />
                         )}
                     </div>
                 </div>
             </div>
-            <div className={"flex flex-col gap-2 items-start w-full"}>
-                <label className={"text-black dark:text-gray-300"}>Tag people</label>
-                <TagInput placeholder={"Yara@.."} suggestions={suggestions} />
-            </div>
             <div className={"flex gap-2 w-full"}>
-                <DefaultButton type={"button"} title={"Cancel"} />
+                <DefaultButton type={"button"} title={t("Cancel")} />
                 <DefaultButton
                     type={"button"}
-                    title={"Apply"}
+                    title={t("Apply")}
                     className={"bg-primary-500 text-white"}
                 />
             </div>

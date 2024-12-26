@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import {IoClose} from "react-icons/io5";
+import {useTranslation} from "react-i18next";
 
 const Modal = ({ isOpen, onClose, children,title,className }) => {
+    const {t} = useTranslation()
     if (!isOpen) return null;
-
     return (
         <div
-            className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-gray-900  bg-opacity-50 flex items-center justify-center z-50"
             onClick={onClose}
         >
             <div
@@ -14,10 +15,10 @@ const Modal = ({ isOpen, onClose, children,title,className }) => {
                 onClick={(e) => e.stopPropagation()} // منع إغلاق عند النقر داخل المودال
             >
                 <div className="flex justify-between items-center mb-4 border-b-2 dark:border-gray-700 pb-3">
-                    <h2 className="text-xl font-semibold dark:text-gray-200">{title}</h2>
+                    <h2 className="dark:text-gray-200 text-base">{t(title)}</h2>
                     <button
                         onClick={onClose}
-                        className="text-gray-500 hover:text-gray-800"
+                        className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 "
                     >
                         <IoClose size={18} />
                     </button>

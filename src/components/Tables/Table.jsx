@@ -8,8 +8,10 @@ import {
 } from "react-icons/md";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import ActionsBtns from "../ActionsBtns.jsx";
+import {useTranslation} from "react-i18next";
 
 function Table({ className, headers, rows, isActions, handelEdit, handelDelete }) {
+    const {t} = useTranslation()
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [selectedRows, setSelectedRows] = useState(rows.map(() => false));
     const [currentPage, setCurrentPage] = useState(1); // الصفحة الحالية
@@ -92,7 +94,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                     {headers.map((header, index) => (
                         <th
                             key={index}
-                            className="p-2 font-normal text-left dark:bg-gray-900"
+                            className="p-2 font-normal text-start dark:bg-gray-900"
                             style={{
                                 width: header.width || "auto",
                                 borderTopRightRadius: index === headers.length - 1 ? "8px" : "0px",
@@ -145,7 +147,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                 </tbody>
             </table>
             <div className={"pagination flex items-center justify-between"}>
-                <p className={"dark:text-gray-400"}>Page {currentPage} of {totalPages}</p>
+                <p className={"dark:text-gray-400"}>{t("Page")} {currentPage} {t("of")} {totalPages}</p>
                 <div className={"flex gap-5 items-center"}>
                     <MdOutlineKeyboardDoubleArrowLeft
                         onClick={() => handlePageChange(1)}
@@ -185,7 +187,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                     >
                         {[5, 10, 15, 20].map((value) => (
                             <option className={"dark:bg-gray-800 dark:text-gray-400"} key={value} value={value}>
-                                {value}/page
+                                {value}/{t("page")}
                             </option>
                         ))}
                     </select>

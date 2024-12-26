@@ -1,11 +1,16 @@
 
 import DefaultSelect from "../../../components/Form/DefaultSelect.jsx";
 import DefaultButton from "../../../components/Form/DefaultButton.jsx";
+import i18n from "i18next";
+import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 function RegionalPreferences() {
+    const {t} = useTranslation()
+    const [selectedLanguage, setSelectedLanguage] = useState("en");
     const langugeOptions = [
-        {id:"english",value:"English"},
-        {id:"arabic",value:"Arabic"},
+        {id:"en",value:"English"},
+        {id:"ar",value:"Arabic"},
     ]
     const timeFormatOptions = [
         { id: "12hr", value: "12-hour format (AM/PM)" },
@@ -25,21 +30,32 @@ function RegionalPreferences() {
         { id: "dd-month-yyyy", value: "DD Month YYYY" }, // مثال: 31 December 2024
         { id: "month-dd-yyyy", value: "Month DD, YYYY" }, // مثال: December 31, 2024
     ];
+
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+        console.log("Language changed to:", language);
+    };
+
+    const handleApplyChanges = () => {
+        changeLanguage(selectedLanguage);
+    };
     return (
-        <div className={"flex flex-col gap-8 lg:w-4/12 py-2"}>
+        <div className={"flex flex-col gap-8 w-full py-2"}>
             <div className={"flex flex-col text-start gap-1"}>
-                <p className={"dark:text-gray-200"}>Regional Preferences</p>
-                <p className={"text-sm dark:text-gray-200"}>Select your preferences for your region</p>
+                <p className={"dark:text-gray-200"}>{t("Regional Preferences")}</p>
+                <p className={"text-sm dark:text-gray-200"}>{t("Select your preferences for your region")}</p>
             </div>
             <div className={"flex flex-col gap-2"}>
-                <DefaultSelect title={"Language"} options={langugeOptions}/>
+                <DefaultSelect title={"Language"} options={langugeOptions}
+                               onChange={(e) => setSelectedLanguage(e.target.value)}
+                />
                 <DefaultSelect title={"Timezone"} options={timezoneOptions}/>
                 <DefaultSelect title={"Time Format"} options={timeFormatOptions}/>
                 <DefaultSelect title={"Date Format"} options={dateFormatOptions}/>
             </div>
             <div className={"flex gap-2"}>
                 <DefaultButton type={'button'} title={"Cancel"}/>
-                <DefaultButton type={'button'} title={"Apply Changes "} className={"bg-primary-500 text-white"}/>
+                <DefaultButton  onClick={handleApplyChanges} type={'button'} title={"Apply Changes"} className={"bg-primary-500 text-white"}/>
             </div>
         </div>
     );

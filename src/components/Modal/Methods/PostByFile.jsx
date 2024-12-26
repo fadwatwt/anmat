@@ -2,15 +2,17 @@
 import TabMethod from "../TabsContener/TabMethod.jsx";
 import PostByFileMethod from "./Tabs/Post/PostByFile.method.jsx";
 import DeletePostByFileMethod from "./Tabs/Post/DeletePostByFile.method.jsx";
+import {useTranslation} from "react-i18next";
 
 function PostByFile() {
+    const {t} = useTranslation()
     const tabsData = [
         {
-            title: "Post",
+            title: t("Post"),
             content: <PostByFileMethod />,
         },
         {
-            title: "Delete Post",
+            title: t("Delete Post"),
             content:<DeletePostByFileMethod />,
         },
     ];
