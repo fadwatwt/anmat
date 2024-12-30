@@ -8,7 +8,7 @@ function TabMethod({tabs}) {
     return (
         <div className="w-full flex flex-col gap-4">
             {/* Tabs navigation */}
-            <div className="tabs-nav flex gap-2 p-1 bg-gray-200 dark:bg-gray-700 rounded-[10px] p-1">
+            <div className="tabs-nav flex gap-2 bg-gray-200 dark:bg-gray-900 rounded-[10px] p-1">
                 {tabs.map(({ title, icon: Icon }) => (
                     <div
                         key={title}
@@ -19,7 +19,7 @@ function TabMethod({tabs}) {
                     >
                         {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600"} />}
                         <p  className={`${
-                            activeTab === title ? "text-gray-800 dark:text-gray-400 text-sm" : "dark:text-gray-200 text-sm"
+                            activeTab === title ? "text-gray-800 dark:text-gray-200 text-sm" : "dark:text-gray-200 text-sm"
                         }`} >{t(title)}</p>
                     </div>
                 ))}

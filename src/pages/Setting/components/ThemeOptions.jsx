@@ -78,17 +78,8 @@ function ThemeOptions() {
                     ))}
                 </div>
                 <div className={"flex gap-3"}>
-                    <DefaultButton
-                        type={"button"}
-                        title={"Cancel"}
-                        onClick={() => setTempTheme(theme)} // استرجاع الوضع السابق عند الإلغاء
-                    />
-                    <DefaultButton
-                        type={"button"}
-                        title={"Apply Changes"}
-                        className={"bg-primary-500 text-white"}
-                        onClick={handleApplyChanges} // حفظ التغييرات
-                    />
+                    <DefaultButton type={'button'}  onClick={() => setTempTheme(theme)} title={"Cancel"} className={"font-medium"} />
+                    <DefaultButton type={'button'} onClick={handleApplyChanges} title={"Apply Changes"} className={"bg-primary-500 font-medium dark:bg-primary-200 dark:text-black text-white"} />
                 </div>
             </div>
         </div>

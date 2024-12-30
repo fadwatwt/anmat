@@ -6,6 +6,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import Tabs from "../../components/Tabs.jsx";
 import FacebookTab from "./Tabs/Facebook.tab.jsx";
 import {useTranslation} from "react-i18next";
+import TweeterTab from "./Tabs/Tweeter.tab.jsx";
 
 function SocialMediaPage() {
     const {t} = useTranslation()
@@ -18,7 +19,7 @@ function SocialMediaPage() {
         {
             title: "Twitter",
             icon: FaXTwitter,
-            content: <div>Twitter content goes here</div>,
+            content: <TweeterTab />,
         },
         {
             title: "Instagram",
@@ -39,7 +40,7 @@ function SocialMediaPage() {
 
     return (
         <div className="max-h-screen md:px-10 px-3 dark:bg-gray-900 box-border  mx-auto py-5 flex flex-col gap-4">
-            <div className="title-page dark:text-white text-start w-full py-3 text-base sm:text-lg md:text-xl text-gray-600">
+            <div className="title-page dark:text-white text-start w-full h-[7.8%] py-4 text-base sm:text-lg md:text-xl text-gray-600">
                 {t('Social Media')}
             </div>
             <Tabs tabs={tabsData}/>

@@ -1,5 +1,5 @@
 {
-  "Dashboard": "لوحة القيادة",
+  "Dashboard": "الرئيسية",
   "Social Media": "وسائل التواصل الاجتماعي",
   "Facebook": "فيسبوك",
   "Twitter": "تويتر",
@@ -93,5 +93,12 @@
   "Add Department": "إضافة قسم",
   "Add Employee": "إضافة موظف",
   "Employees Management": "إدارة الموظفين",
-  "Employees & HR Management": "إدارة الموظفين والموارد البشرية"
+  "Employees & HR Management": "إدارة الموظفين والموارد البشرية",
+  "Edit": "تعديل",
+  "Delete": "حذف",
+  "OR": "او",
+  "Insert Post Link": "ادخل رابط المنشور",
+  "Delete Replay": "حذف التعليق",
+  "Replay": "تعليق",
+  "Replay/Delete Replay": "تعليق/حذف التعليق"
 }

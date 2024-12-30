@@ -85,36 +85,36 @@ function FacebookTab() {
     return (
         <>
         <div className="w-full flex gap-8 flex-wrap dark:bg-gray-900 flex-row">
-            <div className="bg-white dark:bg-gray-900 xl:w-8/12 w-full rounded-2xl md:order-1 order-2 py-5 md:px-4 px-0 flex flex-col gap-4 items-start overflow-hidden overflow-x-auto tab-content">
+            <div className="bg-white dark:bg-gray-800 xl:w-8/12 w-full rounded-2xl md:order-1 order-2 py-5 md:px-4 px-0 flex flex-col gap-4 items-start overflow-hidden overflow-x-auto tab-content">
                 <p className={"dark:text-gray-400"}>{t("Select accounts from the table to take action")}</p>
                 <div className={"bts-proses flex gap-3 "}>
                     <button onClick={handlePostModal}
-                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-md"}>
+                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-sm"}>
                         <FiPlus/>
                         {t('Post')}
                     </button>
                     <button onClick={handleFollowModal}
-                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-md"}>
+                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-sm"}>
                         <FiPlus/>
                         {t('Follow')}
                     </button>
                     <button onClick={handleLikeModal}
-                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-md"}>
+                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-sm"}>
                         <FiPlus/>
                         {t("Link")}
                     </button>
                     <button onClick={handleReplayModal}
-                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-md"}>
+                        className={" flex gap-1 items-center bg-primary-100 dark:text-primary-200 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 text-sm"}>
                         <FiPlus/>
                         {t("Reply")}
                     </button>
                 </div>
-                <div className={"rounded-lg md:w-full w-[48rem] pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-600 p-3 flex flex-col gap-4"}>
+                <div className={"rounded-lg md:w-full w-[48rem] pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-700 p-3 flex flex-col gap-4"}>
                     <div className={"flex justify-start items-baseline"}>
-                        <p className={"text-gray-800 text-start dark:text-gray-400 w-7/12"}>Category 3</p>
+                        <p className={"text-gray-800 text-start text-sm dark:text-gray-400 w-7/12"}>Category 3</p>
                         <div className={"flex gap-2"}>
                             <SearchInput/>
-                            <button className={"flex dark:text-gray-400 items-baseline px-2 py-1 gap-1 rounded-lg border border-gray-200 dark:border-gray-600"}>
+                            <button className={"flex dark:text-gray-400 text-sm items-baseline p-2  gap-2 rounded-lg border border-gray-200 dark:border-gray-600"}>
                                 <TfiImport size={15}/>
                                 {t("Export")}
                             </button>
@@ -126,14 +126,14 @@ function FacebookTab() {
             <div className={"sm:flex-1 md:order-2 w-[calc(100vw)] order-1 relative"}>
                 <div className={"bg-white dark:bg-gray-800  h-auto rounded-2xl p-4 flex flex-col gap-3 w-full max-h-80 overflow-y-auto none-scroll"}>
                     <div className={"flex justify-between"}>
-                        <p className={"text-start text-gray-800 dark:text-gray-400"}>{t("Facebook Categories")}</p>
+                        <p className={"text-start text-md text-gray-800 dark:text-gray-400"}>{t("Facebook Categories")}</p>
                         <div className={"flex gap-2 items-center text-primary-500"}>
-                            <FiPlus size={20}/>
-                            <p className={"text-md text-primary-500"}>{t("Import")}</p>
+                            <FiPlus className={"w-[8.4px] h-[8.4px] dark:text-primary-200"} size={20}/>
+                            <p className={"text-xs text-primary-500 dark:text-primary-200"}>{t("Import")}</p>
                         </div>
                     </div>
                     <div className={"flex flex-col gap-2 "}>
-                        <p className={"text-start text-sm text-gray-400 "}>{t("Select a Category")}</p>
+                        <p className={"text-start text-xs text-gray-400 "}>{t("Select a Category")}</p>
                         <div className={"flex flex-col"} style={{flexShrink: 0, flexGrow: 0}}>
                             {categories.map((category, index) => (
                                 <div

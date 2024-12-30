@@ -52,3 +52,9 @@ p,div{
 
 }
 
+.custom-dashed-border {
+  border: 2px dashed transparent;
+  border-image: linear-gradient(to right, black 50%, transparent 50%) 1;
+  border-image-slice: 1;
+}
+

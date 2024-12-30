@@ -78,7 +78,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
     return (
         <div className={"flex flex-col gap-5 justify-center dark:bg-gray-800 w-full dark:text-gray-400"}>
             <table
-                className={"table-auto w-full" + className}
+                className={" relative table-auto w-full" + className}
                 style={{ borderSpacing: "0 1px" }}
             >
                 <thead>
@@ -94,7 +94,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                     {headers.map((header, index) => (
                         <th
                             key={index}
-                            className="p-2 font-normal text-start dark:bg-gray-900"
+                            className="p-2 font-normal text-start text-sm dark:bg-gray-900"
                             style={{
                                 width: header.width || "auto",
                                 borderTopRightRadius: index === headers.length - 1 ? "8px" : "0px",
@@ -112,7 +112,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                         key={rowIndex + startIndex}
                         className="hover:bg-gray-100 dark:hover:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
                     >
-                        <td className="px-1 py-6 w-2" style={{ borderBottomLeftRadius: "8px" }}>
+                        <td className="px-1 py-6 w-2 " style={{ borderBottomLeftRadius: "8px" }}>
                             <input
                                 className={"checkbox-custom"}
                                 type="checkbox"
@@ -123,7 +123,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                         {row.map((cell, cellIndex) => (
                             <td
                                 key={cellIndex}
-                                className="px-2 py-6 text-start max-w-10 sm:max-w-24 text-nowrap truncate overflow-hidden"
+                                className="px-2 text-sm py-6 text-start max-w-10 sm:max-w-24 text-nowrap truncate overflow-hidden"
                                 style={{
                                     borderBottomRightRadius: cellIndex === row.length - 1 ? "8px" : "",
                                 }}
@@ -132,7 +132,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                             </td>
                         ))}
                         {isActions && (
-                            <td className={"relative dropdown-container"}>
+                            <td className={"dropdown-container"}>
                                 <PiDotsThreeVerticalBold
                                     className="cursor-pointer"
                                     onClick={() => handleDropdownToggle(rowIndex)}
@@ -147,7 +147,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                 </tbody>
             </table>
             <div className={"pagination flex items-center justify-between"}>
-                <p className={"dark:text-gray-400"}>{t("Page")} {currentPage} {t("of")} {totalPages}</p>
+                <p className={"dark:text-gray-400 text-sm"}>{t("Page")} {currentPage} {t("of")} {totalPages}</p>
                 <div className={"flex gap-5 items-center"}>
                     <MdOutlineKeyboardDoubleArrowLeft
                         onClick={() => handlePageChange(1)}
@@ -157,7 +157,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                         onClick={() => handlePageChange(currentPage - 1)}
                         className="cursor-pointer dark:text-gray-400"
                     />
-                    <div className={"flex pages-numbers gap-1"}>
+                    <div className={"flex pages-numbers gap-1 text-sm"}>
                         {Array.from({ length: totalPages }).map((_, index) => (
                             <button
                                 key={index}
@@ -186,7 +186,7 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                         className="bg-transparent outline-none cursor-pointer"
                     >
                         {[5, 10, 15, 20].map((value) => (
-                            <option className={"dark:bg-gray-800 dark:text-gray-400"} key={value} value={value}>
+                            <option className={"dark:bg-gray-800 dark:text-gray-400 text-sm"} key={value} value={value}>
                                 {value}/{t("page")}
                             </option>
                         ))}

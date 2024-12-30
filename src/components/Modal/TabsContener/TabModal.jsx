@@ -1,23 +1,26 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function TabModal({tabs}) {
+function TabModal({tabs,classNameItem}) {
     const [activeTab, setActiveTab] = useState(tabs[0]?.title || "");
     const {t} = useTranslation()
     return (
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col md:gap-4">
             {/* Tabs navigation */}
-            <div className="tabs-nav flex gap-2">
+            <div className="tabs-nav flex gap-2 px-2">
                 {tabs.map(({ title, icon: Icon }) => (
                     <div
                         key={title}
-                        className={`flex py-2 w-6/12 md:gap-2 text-sm  justify-center gap-1 items-center cursor-pointer ${
-                            activeTab === title ? "border-b-2  border-primary-500" : ""
+                        className={`flex py-2 w-6/12 text-sm  gap-2 items-center ${classNameItem ? classNameItem :"justify-center"} cursor-pointer ${
+                            activeTab === title ? "border-b-2  border-primary-500 dark:border-primary-200" : ""
                         }`}
                         onClick={() => setActiveTab(title)}
                     >
-                        {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600"} />}
+                        {Icon && React.cloneElement(Icon, {
+                            size: 15,
+                            className: activeTab === title ? "text-primary-500 dark:text-primary-200" : "text-gray-600"
+                        })}
                         <p className={"dark:text-gray-400"}>{t(title)}</p>
                     </div>
                 ))}
@@ -43,6 +46,7 @@ TabModal.propTypes = {
             content: PropTypes.node.isRequired, // Content must be a valid React node
         })
     ).isRequired,
+    classNameItem: PropTypes.string,
 };
 
 export default TabModal;

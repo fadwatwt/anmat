@@ -53,7 +53,7 @@ function PostManuallyMethod() {
                         {/* أيقونات تحميل الملفات */}
                         <label>
                             <BsImage
-                                className={"dark:text-primary-200 text-primary-400 rounded-md cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-500 rounded-md cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -65,7 +65,7 @@ function PostManuallyMethod() {
                         </label>
                         <label>
                             <TfiVideoClapper
-                                className={"dark:text-primary-200 text-primary-400 rounded-md cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-500 rounded-md cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -77,7 +77,7 @@ function PostManuallyMethod() {
                         </label>
                         <label>
                             <MdOutlineSell
-                                className={"dark:text-primary-200 text-primary-400 cursor-pointer"}
+                                className={"dark:text-primary-200 text-primary-500 cursor-pointer"}
                                 size={20}
                             />
                             <input
@@ -117,12 +117,8 @@ function PostManuallyMethod() {
                 </div>
             </div>
             <div className={"flex gap-2 w-full"}>
-                <DefaultButton type={"button"} title={t("Cancel")} />
-                <DefaultButton
-                    type={"button"}
-                    title={t("Apply")}
-                    className={"bg-primary-500 text-white"}
-                />
+                <DefaultButton type={'button'} title={"Cancel"} className={"font-medium"} />
+                <DefaultButton type={'button'} title={"Apply"} className={"bg-primary-500 font-medium dark:bg-primary-200 dark:text-black text-white"} />
             </div>
         </div>
     );

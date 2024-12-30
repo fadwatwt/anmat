@@ -9,14 +9,18 @@ import MenuItem from "./Menu/MenuItem.jsx";
 import {useTranslation} from "react-i18next";
 
 function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
-    const {t} = useTranslation()
+    const {t,i18n} = useTranslation()
     return (
-        <div className={`md:relative md:translate-x-0 bg-white  dark:bg-gray-800 min-w-64 w-64
-        h-screen fixed top-0 left-0 z-40 transition-transform ${isSlidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div
+            className={`md:relative md:translate-x-0 bg-white dark:bg-gray-800 w-[272px] max-w-[272px] 
+        h-screen fixed top-0 z-40 transition-transform 
+        ${i18n.language === "ar" ? "right-0" : "left-0"} 
+        ${isSlidebarOpen ? "translate-x-0" : (i18n.language === "ar" ? "translate-x-full" : "-translate-x-full")}`}
+        >
             <div className={" flex p-5 gap-2 border-b-2 dark:border-gray-600 items-center overflow-hidden"}>
                 <div className={"profile-image"}>
                     <img src={"https://placehold.co/600x600/F3B653/FFFFFF/png"} alt={"img"}
-                         className={" w-12 h-12 rounded-full m-0 p-0"}/>
+                         className={" w-10 h-10 rounded-full m-0 p-0"}/>
                 </div>
                 <div className={"flex flex-col  gap-2 justify-center  "}>
                     <p className={"text-sm dark:text-white text-start truncate w-28 md:w-full"}>{t("Employees Management")}</p>
@@ -27,7 +31,7 @@ function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
                         <button className="inline-flex h-8 w-8 items-center p-2 text-sm text-gray-500
                 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                                 onClick={taggleSlidebarOpen}>
-                            <MdOutlineArrowBackIosNew />
+                            <MdOutlineArrowBackIosNew/>
                         </button>
                     )
                 }
