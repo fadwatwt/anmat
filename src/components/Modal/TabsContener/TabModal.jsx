@@ -27,7 +27,7 @@ function TabModal({tabs,classNameItem}) {
             </div>
 
             {/* Active tab content */}
-            <div className="tab-content w-full text-nowrap overflow-hidden mt-4 bar overflow-y-auto max-h-[62vh] ">
+            <div className="tab-content w-full text-nowrap overflow-hidden mt-4 bar overflow-y-auto h-[calc(100svh-16rem)] ">
                 {tabs.map(({ title, content }) => (
                     <div key={title} className={activeTab === title ? "block" : "hidden"}>
                         {content}

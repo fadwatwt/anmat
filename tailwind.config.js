@@ -20,10 +20,32 @@ export default {
           700: "#253EA7",
           800: "#1B2B91",
           900: "#101A66",
+          lighter:"#EBF1FF",
+          base:"#375DFB"
         },
         gray:{
           800:"#20232D",
           900:"#161922"
+        },
+        soft:{
+          200:"#E2E4E9",
+          400:"#757C8A"
+        },
+        sub:{
+          300:"#CDD0D5"
+        },
+        white:{
+          DEFAULT: "#fff",
+          0:"#20232D",
+        },
+        veryWeak:{
+          50:"#31353F"
+        },
+        main:{
+          900:"#F6F8FA",
+        },
+        black:{
+          DEFAULT: "#000",
         }
       },
       fontFamily: {

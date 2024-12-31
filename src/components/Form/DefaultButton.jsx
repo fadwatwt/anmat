@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 function DefaultButton({title, onClick,className,type}) {
     const {t} = useTranslation()
     return (
-        <button onClick={onClick} type={type} className={`flex-1 border-2 dark:border-gray-700 text-sm dark:text-gray-200 rounded-xl p-2 text-center ${className}`}>{t(title)}</button>
+        <button onClick={onClick} type={type} className={`flex-1 border-2 dark:border-gray-700 text-sm rounded-xl p-2 text-center ${className}`}>{t(title)}</button>
     );
 }
 
