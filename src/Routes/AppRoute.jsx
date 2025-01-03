@@ -3,7 +3,7 @@ import DashboardPage from "../pages/Dashboard.page.jsx";
 import ConversationsPage from "../pages/Conversations.page.jsx";
 import AnalyticsPage from "../pages/Analytics.page.jsx";
 import HRManagementPage from "../pages/HRManagement.page.jsx";
-import ProjectsPage from "../pages/Projects.page.jsx";
+import ProjectsPage from "../pages/Projects/Projects.page.jsx";
 import TasksPage from "../pages/Tasks.page.jsx";
 import SocialMediaPage from "../pages/SocialMedia/SocialMedia.page.jsx";
 import SettingPage from "../pages/Setting/Setting.page.jsx";

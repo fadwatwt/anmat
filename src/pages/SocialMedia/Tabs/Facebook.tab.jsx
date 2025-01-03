@@ -1,6 +1,4 @@
 import {FiPlus} from "react-icons/fi";
-import SearchInput from "../../../components/Form/SearchInput.jsx";
-import {TfiImport} from "react-icons/tfi";
 import Table from "../../../components/Tables/Table.jsx";
 import {PiDotsThreeVerticalBold} from "react-icons/pi";
 import {IoMdCheckmark} from "react-icons/io";
@@ -109,19 +107,8 @@ function FacebookTab() {
                         {t("Reply")}
                     </button>
                 </div>
-                <div className={"rounded-lg md:w-full w-[48rem] pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-700 p-3 flex flex-col gap-4"}>
-                    <div className={"flex justify-start items-baseline"}>
-                        <p className={"text-gray-800 text-start text-sm dark:text-gray-400 w-7/12"}>Category 3</p>
-                        <div className={"flex gap-2"}>
-                            <SearchInput/>
-                            <button className={"flex dark:text-gray-400 text-sm items-baseline p-2  gap-2 rounded-lg border border-gray-200 dark:border-gray-600"}>
-                                <TfiImport size={15}/>
-                                {t("Export")}
-                            </button>
-                        </div>
-                    </div>
-                    <Table className="custom-class" headers={headers} isActions={true} rows={rows}/>
-                </div>
+                    <Table className="custom-class" title={"Category 3"} headers={headers} isActions={true} rows={rows}/>
+
             </div>
             <div className={"sm:flex-1 md:order-2 w-[calc(100vw)] order-1 relative"}>
                 <div className={"bg-white dark:bg-gray-800  h-auto rounded-2xl p-4 flex flex-col gap-3 w-full max-h-80 overflow-y-auto none-scroll"}>

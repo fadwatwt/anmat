@@ -9,8 +9,11 @@ import {
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import ActionsBtns from "../ActionsBtns.jsx";
 import {useTranslation} from "react-i18next";
+import SearchInput from "../Form/SearchInput.jsx";
+import {TfiImport} from "react-icons/tfi";
+import SelectWithoutLabel from "../Form/SelectWithoutLabel.jsx";
 
-function Table({ className, headers, rows, isActions, handelEdit, handelDelete }) {
+function Table({ title,className, headers, rows, isActions, handelEdit, handelDelete,isFilter }) {
     const {t} = useTranslation()
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [selectedRows, setSelectedRows] = useState(rows.map(() => false));
@@ -76,13 +79,33 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
     const currentRows = rows.slice(startIndex, startIndex + rowsPerPage); // صفوف الصفحة الحالية
 
     return (
+        <div
+            className={"rounded-lg md:w-full w-[48rem]  pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-700 p-3 flex flex-col gap-4 bg-white"}>
+            <div className={"flex justify-between items-baseline"}>
+                <p className={"text-gray-800 text-start text-sm dark:text-gray-400 w-7/12"}>{t(title)}</p>
+                <div className={"flex gap-2 w-full justify-end "}>
+                    <SearchInput/>
+                    <div className={"flex gap-2"}>
+                        {
+                            isFilter && (
+                                <SelectWithoutLabel title={"Filter by"} className={"w-[94px] h-[36px]"}/>
+                            )
+                        }
+                        <button
+                            className={"flex dark:text-gray-400 text-sm items-baseline p-2  gap-2 rounded-lg border border-gray-200 dark:border-gray-600"}>
+                            <TfiImport size={15}/>
+                            {t("Export")}
+                        </button>
+                    </div>
+                </div>
+            </div>
         <div className={"flex flex-col gap-5 justify-center dark:bg-gray-800 w-full dark:text-gray-400"}>
             <table
                 className={" relative table-auto w-full" + className}
                 style={{ borderSpacing: "0 1px" }}
             >
                 <thead>
-                <tr className="bg-gray-50 dark:bg-gray-800">
+                <tr className="bg-weak-100 dark:bg-gray-800">
                     <th className="px-1 pt-1 w-5 rounded-tl-lg rounded-bl-lg dark:bg-gray-900">
                         <input
                             className={"checkbox-custom"}
@@ -194,11 +217,13 @@ function Table({ className, headers, rows, isActions, handelEdit, handelDelete }
                 </div>
             </div>
         </div>
+        </div>
     );
 }
 
 Table.propTypes = {
     className: PropTypes.string,
+    title: PropTypes.string,
     isActions: PropTypes.bool,
     handelEdit: PropTypes.func,
     handelDelete: PropTypes.func,
@@ -209,6 +234,7 @@ Table.propTypes = {
         })
     ).isRequired,
     rows: PropTypes.arrayOf(PropTypes.array).isRequired,
+    isFilter:PropTypes.bool
 };
 
 export default Table;

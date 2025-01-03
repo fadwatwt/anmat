@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import SearchInput from "./Form/SearchInput.jsx";
 import MenuItem from "./Menu/MenuItem.jsx";
 import {useTranslation} from "react-i18next";
-import TimeLine from "./TimeLine.jsx";
+import BriefTimeLine from "./TimeLine/BriefTimeLine.jsx";
 
 function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
     const {t,i18n} = useTranslation()
@@ -54,7 +54,7 @@ function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
                         <MenuItem path={"/settings"} icon={<IoSettingsOutline/>} title={"Settings"}/>
                     </div>
                 </div>
-                <TimeLine/>
+                <BriefTimeLine/>
             </div>
         </div>
     );

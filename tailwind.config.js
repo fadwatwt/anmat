@@ -29,10 +29,13 @@ export default {
         },
         soft:{
           200:"#E2E4E9",
-          400:"#757C8A"
+          400:"#757C8A",
+          500:"#31353F"
         },
         sub:{
-          300:"#CDD0D5"
+          300:"#CDD0D5",
+          500:"#525866"
+
         },
         white:{
           DEFAULT: "#fff",
@@ -43,9 +46,13 @@ export default {
         },
         main:{
           900:"#F6F8FA",
+          100:"#0A0D14"
         },
         black:{
           DEFAULT: "#000",
+        },
+        weak:{
+          100:"#F6F8FA",
         }
       },
       fontFamily: {

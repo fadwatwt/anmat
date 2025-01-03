@@ -107,5 +107,17 @@
   "Like": "إعجاب",
   "Write A Comment..": "اكتب تعليق...",
   "Dec":"ديسمبر",
-  "PM": "مساءً"
+  "PM": "مساءً",
+  "Active": "نشط",
+  "Inactive": "غير نشط",
+  "Delayed": "متأخر",
+  "Scheduled": "مجدول",
+  "Urgent": "عاجل",
+  "High": "مرتفع",
+  "Low": "منخفض",
+  "Medium": "متوسط",
+  "Filter by": "تصفية حسب",
+  "Project": "المشاريع",
+  "All projects": "جميع المشاريع",
+  "Create a Project": "انشاء مشروع"
 }
