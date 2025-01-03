@@ -11,6 +11,21 @@ import BriefTimeLine from "./TimeLine/BriefTimeLine.jsx";
 
 function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
     const {t,i18n} = useTranslation()
+
+    const tweet = {
+        images: [
+            "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Heydar-Aliyev-Center-Baku-Azerbaijan-ar02072020-1024x640.jpg",
+            "https://www.alquds.co.uk/wp-content/uploads/2024/02/07-11.jpg",
+            "https://i.cdn.turner.com/dr/cnnarabic/cnnarabic/release/sites/default/files/styles/landscape_780x440/public/image/1_6.JPG?itok=pmNMX7TP",
+            "https://cdn.cgway.net/wp-content/uploads/2023/12/the-most-famous-arab-architects-01.jpg"
+        ],
+        text: "We&apos;re excited to welcome <span class={'text-primary-base'}>@Ahemd</span> toour team! Next month, we&apos;ll be unveiling a rangeof new features designed to elevate your experience with our software. Keep an eyeout for more updates!",
+        accountName:"Ahmed Mohammed",
+        date:` 25  ${t("Dec")}  - 1:30  ${t("PM")}`,
+    }
+    const myAccount = {
+        imageProfile:"https://sowarprofil.com/wp-content/uploads/2024/04/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%81-%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D9%8A%D8%B3%D8%A8%D9%88%D9%83-1-1024x1024.png.webp"
+    }
     return (
         <div
             className={`md:relative md:translate-x-0 bg-white dark:bg-gray-800 w-[272px] max-w-[272px] 
@@ -54,7 +69,7 @@ function Menu({isSlidebarOpen,taggleSlidebarOpen}) {
                         <MenuItem path={"/settings"} icon={<IoSettingsOutline/>} title={"Settings"}/>
                     </div>
                 </div>
-                <BriefTimeLine/>
+                <BriefTimeLine tweet={tweet} myAccount={myAccount}/>
             </div>
         </div>
     );

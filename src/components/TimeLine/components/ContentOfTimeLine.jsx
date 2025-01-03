@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
 
-function ContentOfTimeLine({text, images, account, date,myAccount}) {
+function ContentOfTimeLine({text, images , account, date,myAccount}) {
     const {t, i18n} = useTranslation()
     return (
         <div
@@ -23,9 +23,8 @@ function ContentOfTimeLine({text, images, account, date,myAccount}) {
                     </div>
                 </div>
                 <div className={"description text-start"}>
-                    <p className={"text-sm dark:text-main-900"}>
-                        {text}
-                    </p>
+                    <div className={"text-sm dark:text-main-900"} dangerouslySetInnerHTML={{__html: text}} />
+
                 </div>
                 {
                     images && images.length > 0 ? (

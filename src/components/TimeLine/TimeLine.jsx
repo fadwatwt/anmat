@@ -1,5 +1,6 @@
 import {useTranslation} from "react-i18next";
 
+
 import ContentOfTimeLine from "./components/ContentOfTimeLine.jsx";
 
 function TimeLine() {
@@ -26,7 +27,7 @@ function TimeLine() {
                         {/*<p className={"text-xs text-primary-500 dark:text-primary-200 cursor-pointer"}>{t("View all")}</p>*/}
                     </div>
                 </div>
-                <div className={"max-h-[75vh] overflow-hidden overflow-y-auto tab-content"}>
+                <div className={"max-h-[75vh] flex flex-col gap-2 overflow-hidden overflow-y-auto tab-content"}>
                     <ContentOfTimeLine account={account} date={` 25  ${t("Dec")}  - 1:30  ${t("PM")}`} text={
                         `
                      We&apos;re excited to welcome {(<span className={"text-primary-base"}>@Ahemd</span>)} to
