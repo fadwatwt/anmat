@@ -5,10 +5,11 @@ import AccountDetails from "./Components/TableInfo/AccountDetails.jsx";
 import NameAndDescription from "./Components/TableInfo/NameAndDescription.jsx";
 import Priority from "./Components/TableInfo/Priority.jsx";
 import Status from "./Components/TableInfo/Status.jsx";
-import TimeLine from "../../components/TimeLine/TimeLine.jsx";
+import {useNavigate} from "react-router";
 
 function ProjectsPage() {
     const {t} = useTranslation()
+    const navigate = useNavigate()
     const headers = [
         {label: t("Projects"), width: "200px"},
         {label: t("Manager"), width: "150px"},
@@ -78,17 +79,20 @@ function ProjectsPage() {
         row3,
         row4,
     ];
+    const handelCreateProjectBtn = () => {
+        navigate("/projects/create");
+    }
     return (
-        <Page title={"Project"} isBtn={true} btnTitle={"Create a Project"}>
+        <Page title={"Project"} isBtn={true} btnOnClick={handelCreateProjectBtn} btnTitle={"Create a Project"}>
             <div className={"flex flex-col gap-6"}>
                 <div className="flex flex-col gap-2 h-full">
                     <Table className="custom-class" title={"All projects"} headers={headers} isActions={true}
                            rows={rows}
                            isFilter={true}/>
                 </div>
-                <div className={"flex md:w-[37.5%] w-screen"}>
-                    <TimeLine/>
-                </div>
+                {/*<div className={"flex md:w-[37.5%] w-screen"}>*/}
+                {/*    <TimeLine/>*/}
+                {/*</div>*/}
             </div>
         </Page>
     );

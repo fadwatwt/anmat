@@ -7,6 +7,7 @@ import ProjectsPage from "../pages/Projects/Projects.page.jsx";
 import TasksPage from "../pages/Tasks.page.jsx";
 import SocialMediaPage from "../pages/SocialMedia/SocialMedia.page.jsx";
 import SettingPage from "../pages/Setting/Setting.page.jsx";
+import CreateProjectForm from "../pages/Projects/Components/CreateProjectForm/CreateProjectForm.jsx";
 
 function AppRoute() {
     return (
@@ -16,6 +17,7 @@ function AppRoute() {
             <Route path={"/analytics"} element={<AnalyticsPage/>}></Route>
             <Route path={"/hr-management"} element={<HRManagementPage/>}></Route>
             <Route path={"/projects"} element={<ProjectsPage/>}></Route>
+            <Route path={"projects/create"} element={<CreateProjectForm/>}></Route>
             <Route path={"/tasks"} element={<TasksPage/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>

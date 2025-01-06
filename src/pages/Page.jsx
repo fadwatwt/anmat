@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 import {FiPlus} from "react-icons/fi";
+import Breadcrumbs from "../components/Breadcrumbs.jsx";
 
 
-function Page({children,title,isBtn,btnOnClick,btnTitle}) {
+function Page({children,title,isBtn,btnOnClick,btnTitle,isBreadcrumbs,breadcrumbs}) {
     const {t} = useTranslation()
     return (
-        <div className="max-h-full h-[calc(100vh-72px)] overflow-hidden overflow-y-auto overflow-x-auto tab-content md:px-10 px-3 dark:bg-gray-900 box-border  mx-auto py-5 flex flex-col gap-4">
-            <div className={"flex justify-between"}>
+        <div className="max-h-full h-[calc(100vh-72px)] overflow-hidden  overflow-x-auto tab-content md:px-10 px-3 dark:bg-gray-900 box-border  mx-auto py-5 flex flex-col gap-4">
+            <div className={"flex justify-between items-center"}>
                 <div
-                    className="title-page dark:text-white text-start w-full h-[7.8%] py-4 text-base sm:text-lg md:text-xl text-gray-600">
+                    className="title-page dark:text-white text-start w-full py-4 text-base sm:text-lg md:text-xl text-gray-600">
                     {t(title)}
                 </div>
                 {
@@ -24,6 +25,12 @@ function Page({children,title,isBtn,btnOnClick,btnTitle}) {
                     )
                 }
 
+                {
+                    isBreadcrumbs && (
+                        <Breadcrumbs breadcrumbs={breadcrumbs}/>
+                    )
+                }
+
             </div>
             {children}
         </div>
@@ -34,6 +41,14 @@ Page.propTypes = {
     children: PropTypes.node.isRequired,
     title: PropTypes.string.isRequired,
     isBtn: PropTypes.bool,
+    isBreadcrumbs: PropTypes.bool,
+    breadcrumbs: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            icon: PropTypes.elementType,
+            path:PropTypes.string,
+        })
+    ),
     btnTitle: PropTypes.string,
     btnOnClick: PropTypes.func,
 }

@@ -5,6 +5,12 @@
 
 body{
   background-color: #F6F8FA ;
+
+}
+html,body{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 p,div{
@@ -56,5 +62,15 @@ p,div{
   border: 2px dashed transparent;
   border-image: linear-gradient(to right, black 50%, transparent 50%) 1;
   border-image-slice: 1;
+}
+
+.custom-date-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.custom-date-input::-webkit-calendar-picker-indicator {
+  display: none;
 }
 

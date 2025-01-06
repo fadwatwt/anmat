@@ -42,7 +42,7 @@ function App() {
 
     useDarkMode();
     return (
-        <div className={`flex max-w-full w-screen max-h-screen overflow-hidden`}>
+        <div className={`flex max-w-full w-screen max-h-screen`}>
             <Menu isSlidebarOpen={ isSlidebarOpen } taggleSlidebarOpen={ taggleSlidebarOpen} />
             <div className={"md:w-[calc(100vw-16rem)] w-screen  flex-col"}>
                 {!isSettingsPage ? (

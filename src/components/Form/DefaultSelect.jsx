@@ -1,19 +1,24 @@
 import PropTypes from "prop-types";
 import {IoIosArrowDown} from "react-icons/io";
 import {useTranslation} from "react-i18next";
+import {FaCircleInfo} from "react-icons/fa6";
 
-function DefaultSelect({title,options,onChange}) {
+function DefaultSelect({title,options,onChange,classNameContainer,isOption = false}) {
     const {t} = useTranslation()
     return (
-        <div className="w-full">
-            <label htmlFor="select-input" className="block text-sm text-start text-gray-700 mb-2 dark:text-gray-200">
-                {t(title)}
+        <div className={classNameContainer}>
+            <label htmlFor="select-input" className="text-sm text-start text-gray-700 flex items-center gap-1 mb-2 dark:text-gray-200">
+               <span> {t(title)} </span>
+                {
+                    isOption &&
+                    <span className={"text-sm text-gray-500 flex items-center gap-1"}>(Option) <FaCircleInfo className={"text-gray-400"} size={15}/></span>
+                }
             </label>
             <div className="relative">
                 <select
                     onChange={onChange}
                     id="select-input"
-                    className="appearance-none dark:bg-gray-900 dark:text-primary-150 w-full px-4 py-1 border border-gray-300 dark:border-gray-700 rounded-xl bg-white text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="appearance-none dark:bg-gray-900  dark:text-primary-150 w-full border border-gray-300 dark:border-gray-500 text-xs rounded-[10px] py-[10px] pl-3 bg-white text-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                     {
                         options.map((option) => (
@@ -32,8 +37,10 @@ function DefaultSelect({title,options,onChange}) {
 
 DefaultSelect.propTypes = {
     title: PropTypes.string,
-    options: PropTypes.array,
+    isOption: PropTypes.bool,
+    options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
+    classNameContainer:PropTypes.string
 }
 
 export default DefaultSelect;
