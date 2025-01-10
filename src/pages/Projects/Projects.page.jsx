@@ -20,7 +20,7 @@ function ProjectsPage() {
         {label: "", width: "50px"},
     ];
     const row1 =  [
-        <><NameAndDescription name={"Pulse Dashboard"}
+        <><NameAndDescription id={"1"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -33,7 +33,7 @@ function ProjectsPage() {
         <><Status type={"Active"} title={"Active"}/></>
     ]
     const row2 =  [
-        <><NameAndDescription name={"Pulse Dashboard"}
+        <><NameAndDescription id={"2"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -46,7 +46,7 @@ function ProjectsPage() {
         <><Status type={"Inactive"} title={"Inactive"}/></>
     ]
     const row3 =  [
-        <><NameAndDescription name={"Pulse Dashboard"}
+        <><NameAndDescription id={"3"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -59,7 +59,7 @@ function ProjectsPage() {
         <><Status type={"Delayed"} title={"Delayed"}/></>
     ]
     const row4 =  [
-        <><NameAndDescription name={"Pulse Dashboard"}
+        <><NameAndDescription id={"4"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{

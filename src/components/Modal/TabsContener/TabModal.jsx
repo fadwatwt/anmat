@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function TabModal({tabs,classNameItem}) {
+function TabModal({tabs,classNameItem,classNameContent}) {
     const [activeTab, setActiveTab] = useState(tabs[0]?.title || "");
     const {t} = useTranslation()
     return (
@@ -27,7 +27,7 @@ function TabModal({tabs,classNameItem}) {
             </div>
 
             {/* Active tab content */}
-            <div className="tab-content w-full text-nowrap overflow-hidden mt-4 bar overflow-y-auto h-[calc(100svh-16rem)] ">
+            <div className={"tab-content w-full text-nowrap overflow-hidden mt-4 bar overflow-y-auto " + classNameContent}>
                 {tabs.map(({ title, content }) => (
                     <div key={title} className={activeTab === title ? "block" : "hidden"}>
                         {content}
@@ -47,6 +47,7 @@ TabModal.propTypes = {
         })
     ).isRequired,
     classNameItem: PropTypes.string,
+    classNameContent: PropTypes.string
 };
 
 export default TabModal;

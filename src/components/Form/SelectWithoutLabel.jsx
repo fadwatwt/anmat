@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 function SelectWithoutLabel({className,title,options,onChange}) {
     const {t} = useTranslation()
     return (
-        <div className={"relative w-full flex items-baseline " + className}>
+        <div className={"relative flex items-baseline " + className}>
             <select
                 onChange={onChange}
                 className="w-full h-full p-2 text-sub-500 dark:text-gray-400 text-sm bg-transparent border border-soft-200 dark:border-gray-600 rounded-lg appearance-none"

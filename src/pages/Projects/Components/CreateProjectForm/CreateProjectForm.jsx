@@ -19,6 +19,11 @@ function CreateProjectForm() {
             title: 'Task (1)',
             content: <CreateTaskForm />,
         },
+
+        {
+            title: 'Task (2)',
+            content: <CreateTaskForm />,
+        },
     ];
 
     const [steps, setSteps] = useState(initialSteps);

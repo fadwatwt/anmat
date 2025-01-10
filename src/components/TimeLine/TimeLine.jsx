@@ -22,7 +22,7 @@ function TimeLine() {
         <div className={"p-3 w-full bg-white rounded-2xl dark:bg-gray-800"}>
             <div className={"p-2 flex w-full flex-col gap-5 dark:bg-white-0 h-full rounded-2xl"}>
                 <div className={"flex justify-between items-center w-full py-1"}>
-                    <p className={"text-sm dark:text-main-900"}>{t("Timeline")}</p>
+                    <p className={"text-lg dark:text-main-900"}>{t("Timeline")}</p>
                     <div className={"px-1 py-0.5"}>
                         {/*<p className={"text-xs text-primary-500 dark:text-primary-200 cursor-pointer"}>{t("View all")}</p>*/}
                     </div>

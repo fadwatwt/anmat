@@ -9,7 +9,7 @@ function ContentOfTimeLine({text, images , account, date,myAccount}) {
     const {t, i18n} = useTranslation()
     return (
         <div
-            className={"p-2 flex  gap-2 w-full border-[0.5px] border-soft-200 dark:border-gray-700 items-center flex-col bg-gray-50 dark:bg-veryWeak-50 rounded-xl"}>
+            className={"p-2 flex  gap-2 w-full border-[0.5px] border-soft-200 dark:border-gray-700 items-center flex-col bg-gray-50 dark:bg-veryWeak-500 rounded-xl"}>
             <div className={"flex flex-col gap-2 w-full items-start"}>
                 <div className={"flex gap-2 w-full"}>
                     <div className={""}>
@@ -81,7 +81,7 @@ function ContentOfTimeLine({text, images , account, date,myAccount}) {
                     </div>
                     <div className={"flex-1"}>
                         <input type={"text"}
-                               className={" flex-2 rounded-xl w-[98%] p-2 box-border border-[0.5px] border-sub-300 placeholder:text-soft-400 dark:bg-white-0 dark:placeholder:text-soft-200 dark:border-veryWeak-50  text-xs"}
+                               className={" flex-2 rounded-xl w-[98%] p-2 box-border border-[0.5px] border-sub-300 placeholder:text-soft-400 dark:bg-white-0 dark:placeholder:text-soft-200 dark:border-veryWeak-500  text-xs"}
                                placeholder={t("Write A Comment..")}/>
                     </div>
                     <div className={"w-[17.12px] cursor-pointer"}>

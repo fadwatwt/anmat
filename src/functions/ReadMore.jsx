@@ -12,7 +12,7 @@ function ReadMore({ maxLength, htmlContent }) {
     const truncatedContent = htmlContent.slice(0, MAX_LENGTH);
 
     return (
-        <div>
+        <>
             <div
                 dangerouslySetInnerHTML={{
                     __html: isExpanded
@@ -28,7 +28,7 @@ function ReadMore({ maxLength, htmlContent }) {
                     {isExpanded ? "عرض أقل" : "عرض المزيد"}
                 </span>
             )}
-        </div>
+        </>
     );
 }
 

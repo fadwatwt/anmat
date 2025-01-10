@@ -42,7 +42,8 @@ export default {
           0:"#20232D",
         },
         veryWeak:{
-          50:"#31353F"
+          50:"#FBFCFD",
+          500:"#31353F",
         },
         main:{
           900:"#F6F8FA",
@@ -53,7 +54,7 @@ export default {
         },
         weak:{
           100:"#F6F8FA",
-        }
+        },
       },
       fontFamily: {
         ar: ['"Almarai"', 'sans-serif'], // الخط المستخدم للغة العربية
