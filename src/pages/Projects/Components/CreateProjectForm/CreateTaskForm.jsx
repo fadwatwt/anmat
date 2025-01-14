@@ -1,9 +1,11 @@
 import {useState} from "react";
 import TaskMainInfo from "./SubComponents/TaskMainInfo.jsx";
 import TaskStage from "./SubComponents/TaskStage.jsx";
+import {useTranslation} from "react-i18next";
 
 function CreateTaskForm() {
     const [taskStageNumber, setTaskStageNumber] = useState([1]);
+    const {t} = useTranslation()
 
     const incrementTaskStage = () => {
         const nextStage = Math.max(...taskStageNumber) + 1;
@@ -25,7 +27,7 @@ function CreateTaskForm() {
                 ))
             }
 
-            <button className={"w-full bg-none text-primary-base text-sm"} onClick={incrementTaskStage}>Add Task Stage
+            <button className={"w-full bg-none text-primary-base text-sm dark:text-primary-200"} onClick={incrementTaskStage}>{t("Add Task Stage")}
             </button>
             </div>
         </div>

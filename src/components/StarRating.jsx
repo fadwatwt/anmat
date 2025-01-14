@@ -2,20 +2,21 @@
 import PropTypes from "prop-types";
 import {IoMdStarOutline} from "react-icons/io";
 import {IoStar, IoStarHalf, IoStarOutline} from "react-icons/io5";
+import {useTranslation} from "react-i18next";
 
 const StarRating = ({ rating,onClickRate }) => {
     const totalStars = 5;
+    const {t} = useTranslation()
 
     if (rating === null || rating === undefined) {
         return (
-            <button onClick={onClickRate} className="p-1.5 flex items-center gap-0.5 border rounded-lg border-soft-200">
+            <button onClick={onClickRate} className="p-1.5 flex items-center gap-0.5 border rounded-lg border-soft-200 dark:border-gray-700">
                 <IoMdStarOutline className="text-yellow-400" size={20} />
-                <span className="text-sm text-sub-500 px-1">Rate</span>
+                <span className="text-sm text-sub-500 px-1 dark:text-sub-300">{t("Rate")}</span>
             </button>
         );
     }
 
-    // دالة لتوليد النجوم بناءً على القيمة
     const renderStars = () => {
         const stars = [];
         for (let i = 1; i <= totalStars; i++) {
@@ -31,9 +32,9 @@ const StarRating = ({ rating,onClickRate }) => {
     };
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center gap-1.5">
             {renderStars()}
-            <span className="ml-2 text-gray-600 text-sm">{rating?.toFixed(1)}</span>
+            <span className="ml-2 text-gray-600 dark:text-gray-300 text-sm">{rating?.toFixed(1)}</span>
         </div>
     );
 };

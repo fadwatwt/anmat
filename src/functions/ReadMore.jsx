@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import {useTranslation} from "react-i18next";
 
 function ReadMore({ maxLength, htmlContent }) {
+    const {t} = useTranslation()
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleReadMore = () => setIsExpanded(!isExpanded);
@@ -22,10 +24,10 @@ function ReadMore({ maxLength, htmlContent }) {
             />
             {htmlContent.length > MAX_LENGTH && (
                 <span
-                    className={"text-primary-base text-sm dark:text-primary-lighter cursor-pointer"}
+                    className={"text-primary-base text-sm dark:text-primary-200 cursor-pointer"}
                     onClick={toggleReadMore}
                 >
-                    {isExpanded ? "عرض أقل" : "عرض المزيد"}
+                    {isExpanded ? t("Read Less") :t( "Read More")}
                 </span>
             )}
         </>

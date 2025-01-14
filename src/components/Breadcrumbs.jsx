@@ -12,14 +12,14 @@ const Breadcrumbs = ({ breadcrumbs }) => {
                     <React.Fragment key={index}>
                         <li>
                             {breadcrumb.path ? (
-                                <Link to={breadcrumb.path} className="text-blue-500 hover:underline">
+                                <Link to={breadcrumb.path} className="text-blue-500 dark:text-primary-200 hover:underline">
                                     {t(breadcrumb.title)}
                                 </Link>
                             ) : (
-                                <span className={"text-nowrap"}>{t(breadcrumb.title)}</span>
+                                <span className={"text-nowrap dark:text-gray-200"}>{t(breadcrumb.title)}</span>
                             )}
                         </li>
-                        {index < breadcrumbs.length - 1 && <li><span className="mx-2">/</span></li>}
+                        {index < breadcrumbs.length - 1 && <li><span className="mx-2 dark:text-gray-200">/</span></li>}
                     </React.Fragment>
                 ))}
             </ol>

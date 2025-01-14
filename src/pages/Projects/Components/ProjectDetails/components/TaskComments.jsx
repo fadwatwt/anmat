@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import 'dayjs/locale/ar';
+import {translateTime} from "../../../../../functions/Days.js";
 
 function TaskComments({comments}) {
     return (
@@ -16,15 +18,15 @@ function TaskComments({comments}) {
                                 />
                             </div>
                             {index < comments.length - 1 && (
-                                <div className={"w-[1px] bg-gray-200 h-full"}></div>
+                                <div className={"w-[1px] bg-gray-200 dark:bg-soft-500 h-full"}></div>
                             )}
                         </div>
                         <div className={"flex flex-col items-start gap-2 pb-4"}>
-                            <div className={"flex gap-1 justify-start"}>
-                                <p className={"text-sm"}>{comment.account?.name}</p>
-                                <span className={"text-[11px] text-soft-400"}>{comment.timeAgo}</span>
+                            <div className={"flex gap-1 justify-start items-baseline"}>
+                                <p className={"text-sm dark:text-gray-200"}>{comment.account?.name}</p>
+                                <span className={"text-[11px] text-soft-400 dark:text-soft-200"}>{translateTime(comment.timeAgo)}</span>
                             </div>
-                            <p className={"max-w-full text-wrap text-start text-xs text-sub-500"}>
+                            <p className={"max-w-full text-wrap text-start text-xs text-sub-500 dark:text-sub-300"}>
                                 {comment.text}
                             </p>
                             <div className={"images flex gap-1 justify-start"}>

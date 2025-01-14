@@ -3,10 +3,12 @@ import { FiPaperclip } from "react-icons/fi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { MdMic } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
+import {useTranslation} from "react-i18next";
 
 function CommentInput() {
     const [message, setMessage] = useState("");
     const [showEmojis, setShowEmojis] = useState(false);
+    const {t} = useTranslation()
 
     const emojiList = ["😊", "😂", "😍", "👍", "🙏"]; // قائمة الإيموجيات
 
@@ -23,15 +25,15 @@ function CommentInput() {
     };
 
     return (
-        <div className="w-full flex items-center gap-2">
+        <div className="w-full flex items-center gap-2 dark:bg-veryWeak-500 p-4 pt-3">
             {/* الحقل النصي مع الأيقونات */}
-            <div className="relative flex items-center py-1 border rounded-xl bg-white shadow-sm flex-1">
+            <div className="relative flex items-center py-1 border rounded-xl bg-white dark:bg-gray-900 dark:border-gray-700 shadow-sm flex-1">
                 {/* أيقونة الإيموجي */}
                 <button
                     className="absolute left-4 text-gray-500 hover:text-blue-500"
                     onClick={() => setShowEmojis(!showEmojis)}
                 >
-                    <BsEmojiSmile size={20} />
+                    <BsEmojiSmile className={"dark:text-gray-200"} size={20} />
                 </button>
 
                 {/* قائمة الإيموجيات */}
@@ -51,18 +53,16 @@ function CommentInput() {
                     </div>
                 )}
 
-                {/* حقل الإدخال */}
                 <input
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Type a message..."
-                    className="flex-1 px-10 py-2 text-sm border-none outline-none rounded-xl focus:ring focus:ring-blue-200"
+                    placeholder={t("Type a message...")}
+                    className="max-w-full w-full pl-10 pr-20 py-2 box-border   text-sm dark:bg-gray-900 dark:text-gray-400 border-none outline-none rounded-xl"
                 />
 
-                {/* أيقونة مشبك الورق */}
                 <label className="absolute right-12 text-gray-500 hover:text-blue-500 cursor-pointer">
-                    <FiPaperclip size={20} />
+                    <FiPaperclip className={"dark:text-gray-300"} size={20} />
                     <input
                         type="file"
                         className="hidden"
@@ -72,7 +72,7 @@ function CommentInput() {
 
                 {/* أيقونة الميكروفون */}
                 <button className="absolute right-4 text-gray-500 hover:text-blue-500">
-                    <MdMic size={20} />
+                    <MdMic className={"dark:text-gray-300"} size={20} />
                 </button>
             </div>
 
@@ -81,7 +81,7 @@ function CommentInput() {
                 className="p-2 "
                 onClick={() => alert(`تم الإرسال: ${message}`)}
             >
-                <IoSendSharp className="text-primary-base" size={20} />
+                <IoSendSharp className="text-primary-base dark:text-primary-200" size={20} />
             </button>
         </div>
     );

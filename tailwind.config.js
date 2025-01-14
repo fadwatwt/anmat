@@ -32,6 +32,9 @@ export default {
           400:"#757C8A",
           500:"#31353F"
         },
+        green:{
+          success:"#38C793"
+        },
         sub:{
           300:"#CDD0D5",
           500:"#525866"
@@ -54,6 +57,7 @@ export default {
         },
         weak:{
           100:"#F6F8FA",
+          800:"#161922"
         },
       },
       fontFamily: {

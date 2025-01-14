@@ -2,9 +2,12 @@ import {FaCirclePlus} from "react-icons/fa6";
 import PropTypes from "prop-types";
 import {IoDocument, IoVideocam} from "react-icons/io5";
 import {FaCheckCircle} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
+import {translateTime} from "../../../../../functions/Days.js";
 
 
 function ActivityLogs({activityLogs}) {
+    const {t} = useTranslation()
     const getTypeActivityIcons = (type) => {
         switch (type) {
             case "add":
@@ -40,8 +43,8 @@ function ActivityLogs({activityLogs}) {
         }
     };
     return (
-        <div className={"flex flex-col w-full p-4 rounded-2xl items-start gap-3 bg-white"}>
-            <p className={"text-lg"}>Activity Logs</p>
+        <div className={"flex flex-col w-full p-4 rounded-2xl items-start gap-3 bg-white dark:bg-white-0"}>
+            <p className={"text-lg dark:text-gray-200"}>{t("Activity Logs")}</p>
             <div className={"max-h-64 h-auto flex flex-col w-full overflow-hidden overflow-y-auto tab-content"}>
                 {
                     activityLogs.map((activityLog, index) => (
@@ -53,17 +56,17 @@ function ActivityLogs({activityLogs}) {
 
                                     {
                                         index < activityLogs.length - 1 && (
-                                        <div className={"w-[1px] bg-gray-200 h-full"}></div>
+                                        <div className={"w-[1px] bg-gray-200 h-full dark:bg-soft-500"}></div>
                                     )}
                                 </div>
                                 <div className={"flex flex-col items-start gap-2 pb-4"}>
                                     <div className={"flex gap-1 justify-start"}>
-                                        <p className={"text-sm"}>{activityLog.title}</p>
+                                        <p className={"text-sm dark:text-gray-200"}>{t(activityLog.title)}</p>
                                     </div>
-                                    <p className={"max-w-full text-wrap text-start text-xs text-sub-500"}>
+                                    <p className={"max-w-full text-wrap text-start text-xs text-sub-500 dark:text-sub-300"}>
                                         {activityLog.description}
                                     </p>
-                                    <span className={"text-[11px] text-soft-400"}>{activityLog.timeAgo}</span>
+                                    <span className={"text-[11px] text-soft-400 dark:text-soft-200"}>{translateTime(activityLog.timeAgo)}</span>
                                 </div>
 
                             </div>

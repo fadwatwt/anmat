@@ -16,12 +16,12 @@ function CreateProjectForm() {
             content: <ProjectInfoForm />,
         },
         {
-            title: 'Task (1)',
+            title: 'Task',
             content: <CreateTaskForm />,
         },
 
         {
-            title: 'Task (2)',
+            title: 'Task',
             content: <CreateTaskForm />,
         },
     ];
@@ -29,9 +29,9 @@ function CreateProjectForm() {
     const [steps, setSteps] = useState(initialSteps);
 
     const handleAddTask = () => {
-        const newStepNumber = steps.filter(step => step.title.startsWith('Task')).length + 1;
+        // const newStepNumber = steps.filter(step => step.title.startsWith('Task')).length + 1;
         const newTaskStep = {
-            title: `Task (${newStepNumber})`,
+            title: `Task`,
             content: <CreateTaskForm />,
         };
         setSteps([...steps, newTaskStep]);
@@ -43,7 +43,7 @@ function CreateProjectForm() {
 
     return (
         <Page title={"Create a project"} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
-            <div className={"max-w-4xl w-full mx-auto bg-white p-5 rounded-2xl"}>
+            <div className={"max-w-4xl w-full mx-auto bg-white dark:bg-white-0 p-5 rounded-2xl"}>
                 <StepsComponent
                     steps={steps}
                     handelCreateProject={handleCreateProject}

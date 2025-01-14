@@ -6,6 +6,7 @@ import NameAndDescription from "./Components/TableInfo/NameAndDescription.jsx";
 import Priority from "./Components/TableInfo/Priority.jsx";
 import Status from "./Components/TableInfo/Status.jsx";
 import {useNavigate} from "react-router";
+import {translateDate} from "../../functions/Days.js";
 
 function ProjectsPage() {
     const {t} = useTranslation()
@@ -27,7 +28,7 @@ function ProjectsPage() {
                 name: "Fatma Ahmed Moh", rule: "Product Manager",
                 imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
             }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>16 Jan, 2025</p></>,
+        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
         <><p className={"text-sm dark:text-sub-300"}>5</p></>,
         <><Priority type={"Urgent"} title={"Urgent"} /></>,
         <><Status type={"Active"} title={"Active"}/></>
@@ -40,7 +41,7 @@ function ProjectsPage() {
                 name: "Fatma Ahmed Moh", rule: "Product Manager",
                 imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
             }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>16 Jan, 2025</p></>,
+        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
         <><p className={"text-sm dark:text-sub-300"}>5</p></>,
         <><Priority type={"High"} title={"High"} /></>,
         <><Status type={"Inactive"} title={"Inactive"}/></>
@@ -53,7 +54,7 @@ function ProjectsPage() {
                 name: "Fatma Ahmed Moh", rule: "Product Manager",
                 imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
             }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>16 Jan, 2025</p></>,
+        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
         <><p className={"text-sm dark:text-sub-300"}>5</p></>,
         <><Priority type={"Low"} title={"Low"} /></>,
         <><Status type={"Delayed"} title={"Delayed"}/></>
@@ -66,7 +67,7 @@ function ProjectsPage() {
                 name: "Fatma Ahmed Moh", rule: "Product Manager",
                 imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
             }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>16 Jan, 2025</p></>,
+        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
         <><p className={"text-sm dark:text-sub-300"}>5</p></>,
         <><Priority type={"Medium"} title={"Medium"} /></>,
         <><Status type={"Scheduled"} title={"Scheduled"}/></>

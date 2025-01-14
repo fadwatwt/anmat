@@ -1,14 +1,16 @@
 import {MdCheckCircle} from "react-icons/md";
 import PropTypes from "prop-types";
 import {FiClock} from "react-icons/fi";
+import {useTranslation} from "react-i18next";
 
 function StateOfTask({type,timeLate}) {
+    const {t} = useTranslation()
     switch (type){
         case "Delayed":
             return (
                 <div className={"flex items-center rounded-full py-0.5 px-1 gap-0.5 bg-green-50"}>
                     <MdCheckCircle className={"text-green-700"} size={12} />
-                    <p className={"text-green-700 text-[11px]"}>Ahead Of deadline</p>
+                    <p className={"text-green-700 text-[11px]"}>{t("Ahead Of deadline")}</p>
                 </div>
             );
         case "late":

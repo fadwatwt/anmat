@@ -10,13 +10,19 @@ import CommentInput from "../../../../components/CommentInput.jsx";
 import AttachmentsList from "./components/AttachmentsList.jsx";
 import ActivityLogs from "./components/ActivityLogs.jsx";
 import TimeLine from "../../../../components/TimeLine/TimeLine.jsx";
+import {useTranslation} from "react-i18next";
+import {getTimeDifference} from "../../../../functions/Days.js";
 
 function ProjectDetails() {
-    const { id } = useParams();
+    const {id} = useParams();
+    const {t} = useTranslation()
     const breadcrumbItems = [
-        { title: 'Projects', path: '/projects' },
-        { title: 'Project Details', path: '' }
+        {title: 'Projects', path: '/projects'},
+        {title: 'Project Details', path: ''}
     ];
+
+    const date1 = "2025-01-15T14:30:00";
+    const date2 = "2025-01-13T13:40:00";
 
     const members = [
         {
@@ -63,7 +69,7 @@ function ProjectDetails() {
                 },
             ],
             delivery: "Delayed",
-            rate:null
+            rate: null
         },
         {
             name: "Implement Backend APIs",
@@ -86,8 +92,8 @@ function ProjectDetails() {
                 },
             ],
             delivery: "late",
-            timeLate:"2 days, 0:50 hours late",
-            rate:2
+            timeLate:getTimeDifference(date1,date2),
+            rate: 2
         },
         {
             name: "Perform QA Testing",
@@ -102,14 +108,14 @@ function ProjectDetails() {
                 },
             ],
             delivery: "Delayed",
-            rate:4.5
+            rate: 4.5
         },
     ];
 
     const comments = [
         {
             account: members[0], // أول عضو
-            timeAgo: "2 hours ago",
+            timeAgo: '2025-01-12T08:00:00', // تاريخ محدد
             text: "Great progress on the project so far!",
             images: [
                 "https://i.cdn.turner.com/dr/cnnarabic/cnnarabic/release/sites/default/files/styles/landscape_780x440/public/image/1_6.JPG?itok=pmNMX7TP", // رابط صورة للتعليق
@@ -117,7 +123,7 @@ function ProjectDetails() {
         },
         {
             account: members[1], // ثاني عضو
-            timeAgo: "1 day ago",
+            timeAgo: '2025-01-11T10:00:00', // تاريخ محدد
             text: "We need to discuss the timeline adjustments.",
             images: [
                 "https://res.cloudinary.com/dw4e01qx8/f_auto,q_auto/images/gogxbp2tjsjvbnas7ygk", // رابط صورة للتعليق
@@ -126,19 +132,20 @@ function ProjectDetails() {
         },
         {
             account: members[2], // ثالث عضو
-            timeAgo: "3 days ago",
+            timeAgo: '2025-01-10T09:30:00', // تاريخ محدد
             text: "Please review the design drafts I shared.",
             images: [],
         },
         {
             account: members[3], // رابع عضو
-            timeAgo: "5 hours ago",
+            timeAgo: '2025-01-12T15:00:00', // تاريخ محدد
             text: "Testing has uncovered some critical issues.",
             images: [
                 "https://images.adsttc.com/media/images/5c6e/5b10/284d/d151/2900/06ab/medium_jpg/L4979_N41_hd.jpg?1550736130",
             ],
         },
     ];
+
 
     const attachments = [
         {
@@ -166,61 +173,63 @@ function ProjectDetails() {
     const activityLogs = [
         {
             type: "add",
-            title: "Added a new task",
+            title: "New task added",
             description: "John Doe added a new task: Design website layout.",
-            timeAgo: "2 hours ago"
+            timeAgo: "2025-01-13T14:00:00.000Z",
         },
         {
             type: "video",
-            title: "Added a new comment",
+            title: "Meeting scheduled",
             description: "Bob Brown added a comment to the task: Perform QA Testing.",
-            timeAgo: "5 hours ago"
+            timeAgo: "2025-01-13T11:00:00.000Z",
         },
         {
             type: "uploaded",
-            title: "Uploaded a file",
+            title: "File uploaded",
             description: "Jane Smith uploaded 'UI_Design.png' to the project.",
-            timeAgo: "1 day ago"
+            timeAgo: "2025-01-12T16:00:00.000Z",
         },
         {
             type: "check",
-            title: "Marked task as complete",
+            title: "Task completed",
             description: "Alice Johnson marked the task 'Implement Backend APIs' as complete.",
-            timeAgo: "3 days ago"
+            timeAgo: "2025-01-10T16:00:00.000Z",
         },
         {
             type: "add",
-            title: "Added a new comment",
+            title: "New task added",
             description: "Bob Brown added a comment to the task: Perform QA Testing.",
-            timeAgo: "5 hours ago"
-        }
+            timeAgo: "2025-01-13T11:00:00.000Z",
+        },
     ];
 
 
     return (
         <Page title={"Project Details"} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
             <div className={"w-full flex items-start  gap-8 flex-col md:flex-row"}>
-                <div className={"flex flex-col gap-6 md:w-7/12 flex-1"}>
+                <div className={"flex flex-col gap-6 md:w-[60%] w-full "}>
                     <ProjectInfoCard/>
-                    <div className={"p-4 bg-white rounded-2xl w-full"}>
+                    <div className={"p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
                         <div className={"title-header w-full flex items-center justify-between "}>
-                            <p className={"text-lg"}>Project Tasks </p>
+                            <p className={"text-lg dark:text-gray-200"}>{t("Project Tasks")} </p>
                             <SelectWithoutLabel title={"Filter by"} className={"w-[94px] h-[36px]"}/>
                         </div>
                         <TasksList tasks={tasks}/>
                     </div>
-                    <div className={"p-4 bg-white rounded-2xl w-full flex flex-col gap-3"}>
-                        <div className={"title-header w-full flex items-center justify-between "}>
-                            <p className={"text-lg"}>Comments</p>
+                    <div className={"bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
+                        <div className={"p-4 flex flex-col gap-3"}>
+                            <div className={"title-header w-full flex items-center justify-between"}>
+                                <p className={"text-lg dark:text-gray-200 "}>{t("Comments")}</p>
+                            </div>
+                            <TaskComments comments={comments}/>
                         </div>
-                        <TaskComments comments={comments}/>
-                        <CommentInput />
+                        <CommentInput/>
                     </div>
                 </div>
                 <div className={"flex-1 flex flex-col gap-6"}>
                     <ProjectMembers members={members}/>
                     <AttachmentsList attachments={attachments}/>
-                    <ActivityLogs activityLogs={activityLogs} />
+                    <ActivityLogs activityLogs={activityLogs}/>
                     <TimeLine/>
                 </div>
 

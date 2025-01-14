@@ -7,6 +7,7 @@ import {useLocation} from "react-router";
 import useDarkMode from "./Hooks/useDarkMode.js";
 import "/i18n.js"
 import i18n from "i18next";
+import {setLanguage} from "./functions/Days.js";
 
 function App() {
     const [isSlidebarOpen, setSlidebarOpen] = useState(false);
@@ -21,6 +22,7 @@ function App() {
         const updateDirectionAndFont = () => {
             const root = document.documentElement;
             window.document.dir = i18n.dir();
+            const lang = localStorage.getItem("i18nextLng")
 
             if (i18n.language === "ar") {
                 root.classList.add("font-ar");
@@ -39,6 +41,7 @@ function App() {
             i18n.off('languageChanged', updateDirectionAndFont);
         };
     }, []);
+    setLanguage(i18n.language);
 
     useDarkMode();
     return (

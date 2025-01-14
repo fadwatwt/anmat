@@ -11,14 +11,14 @@ function DefaultSelect({title,options,onChange,classNameContainer,isOption = fal
                <span> {t(title)} </span>
                 {
                     isOption &&
-                    <span className={"text-sm text-gray-500 flex items-center gap-1"}>(Option) <FaCircleInfo className={"text-gray-400"} size={15}/></span>
+                    <span className={"text-sm text-gray-500 flex items-center gap-1"}>({t("Option")}) <FaCircleInfo className={"text-gray-400"} size={15}/></span>
                 }
             </label>
             <div className="relative">
                 <select
                     onChange={onChange}
                     id="select-input"
-                    className="appearance-none dark:bg-gray-900  dark:text-primary-150 w-full border border-gray-300 dark:border-gray-500 text-xs rounded-[10px] py-[10px] pl-3 bg-white text-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="appearance-none  box-border dark:bg-white-0  dark:text-primary-150 w-full border border-gray-300 dark:border-gray-500 text-xs rounded-[10px] py-[10px] p-3 bg-white text-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                     {
                         options.map((option) => (
