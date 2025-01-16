@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
     MdOutlineKeyboardArrowLeft,
     MdOutlineKeyboardArrowRight,
@@ -12,14 +12,15 @@ import {useTranslation} from "react-i18next";
 import SearchInput from "../Form/SearchInput.jsx";
 import {TfiImport} from "react-icons/tfi";
 import SelectWithoutLabel from "../Form/SelectWithoutLabel.jsx";
+import useDropdown from "../../Hooks/useDropdown.js";
 
 function Table({ title,className, headers, rows, isActions, handelEdit, handelDelete,isFilter }) {
-    const {t} = useTranslation()
+    const {t,i18n} = useTranslation()
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [selectedRows, setSelectedRows] = useState(rows.map(() => false));
     const [currentPage, setCurrentPage] = useState(1); // الصفحة الحالية
     const [rowsPerPage, setRowsPerPage] = useState(5); // عدد الصفوف لكل صفحة
-    const [dropdownOpen, setDropdownOpen] = useState(null);
+    const [dropdownOpen, setDropdownOpen] = useDropdown();
 
     const totalPages = Math.ceil(rows.length / rowsPerPage); // إجمالي عدد الصفحات
 
@@ -53,27 +54,8 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
 
     const handleRowsPerPageChange = (event) => {
         setRowsPerPage(Number(event.target.value));
-        setCurrentPage(1); // إعادة الصفحة الحالية إلى الأولى عند تغيير عدد الصفوف
+        setCurrentPage(1);
     };
-
-    const handleClickOutside = (event) => {
-        if (!event.target.closest(".dropdown-container")) {
-            setDropdownOpen(null);
-        }
-    };
-
-    useEffect(() => {
-        if (dropdownOpen !== null) {
-            document.addEventListener("click", handleClickOutside);
-        } else {
-            document.removeEventListener("click", handleClickOutside);
-        }
-
-        // تنظيف المستمع عند إزالة المكون
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, [dropdownOpen]);
 
     const startIndex = (currentPage - 1) * rowsPerPage;
     const currentRows = rows.slice(startIndex, startIndex + rowsPerPage); // صفوف الصفحة الحالية
@@ -133,7 +115,7 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
                 {currentRows.map((row, rowIndex) => (
                     <tr
                         key={rowIndex + startIndex}
-                        className="hover:bg-gray-100 dark:hover:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
+                        className="hover:bg-gray-100 w-full dark:hover:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
                     >
                         <td className="px-1 py-6 w-2 " style={{ borderBottomLeftRadius: "8px" }}>
                             <input
@@ -161,7 +143,7 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
                                     onClick={() => handleDropdownToggle(rowIndex)}
                                 />
                                 {dropdownOpen === rowIndex && (
-                                    <ActionsBtns handleEdit={handelEdit} handleDelete={handelDelete} />
+                                    <ActionsBtns handleEdit={handelEdit} handleDelete={handelDelete} className={`${i18n.language === "ar" ? "left-0" : "right-0"}`} />
                                 )}
                             </td>
                         )}

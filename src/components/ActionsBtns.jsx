@@ -2,11 +2,11 @@ import {RiDeleteBin7Line, RiEdit2Line} from "react-icons/ri";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function ActionsBtns({handleEdit,handleDelete}) {
-    const {t,i18n} = useTranslation()
+function ActionsBtns({handleEdit,handleDelete,className}) {
+    const {t} = useTranslation()
     return (
         <div
-            className={`absolute z-10 flex flex-col  mt-2 w-40 bg-white dark:bg-white-0 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 ${i18n.language === "ar" ? "left-0" : "right-0"}`}>
+            className={`absolute z-10 flex flex-col  mt-2 w-40 bg-white dark:bg-white-0 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 ${className}`}>
             <button
                 onClick={handleEdit}
                 className="w-full px-3 py-3 text-sm border-b dark:border-gray-700 dark:text-gray-200 flex gap-2 items-center text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
@@ -27,6 +27,7 @@ function ActionsBtns({handleEdit,handleDelete}) {
 ActionsBtns.propTypes = {
     handleEdit: PropTypes.func,
     handleDelete: PropTypes.func,
+    className:PropTypes.string
 }
 
 export default ActionsBtns;

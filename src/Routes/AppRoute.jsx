@@ -4,11 +4,12 @@ import ConversationsPage from "../pages/Conversations.page.jsx";
 import AnalyticsPage from "../pages/Analytics.page.jsx";
 import HRManagementPage from "../pages/HRManagement.page.jsx";
 import ProjectsPage from "../pages/Projects/Projects.page.jsx";
-import TasksPage from "../pages/Tasks.page.jsx";
+import TasksPage from "../pages/Tasks/Tasks.page.jsx";
 import SocialMediaPage from "../pages/SocialMedia/SocialMedia.page.jsx";
 import SettingPage from "../pages/Setting/Setting.page.jsx";
 import CreateProjectForm from "../pages/Projects/Components/CreateProjectForm/CreateProjectForm.jsx";
 import ProjectDetailes from "../pages/Projects/Components/ProjectDetails/ProjectDetailes.jsx";
+import TaskDetails from "../pages/Tasks/TaskDetailes/TaskDetails.jsx";
 
 function AppRoute() {
     return (
@@ -21,6 +22,7 @@ function AppRoute() {
             <Route path={"projects/create"} element={<CreateProjectForm/>}></Route>
             <Route path={"projects/:id"} element={<ProjectDetailes/>}></Route>
             <Route path={"/tasks"} element={<TasksPage/>}></Route>
+            <Route path={"/tasks/:id"} element={<TaskDetails/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>
         </Routes>

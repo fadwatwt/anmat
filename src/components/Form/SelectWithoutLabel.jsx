@@ -7,13 +7,13 @@ function SelectWithoutLabel({className,title,options,onChange}) {
     return (
         <div className={"relative flex items-baseline " + className}>
             <select
-                onChange={onChange}
+                onChange={(e) => onChange(e.target.value)}
                 className="w-full h-full p-2 text-sub-500 dark:text-gray-400 text-sm bg-transparent border border-soft-200 dark:border-gray-600 rounded-lg appearance-none"
             >
                 <option value="filter1 ">{t(title)}</option>
                 {
                     options && options.map(option => (
-                        <option key={option.id} value={option.value}>{option.name}</option>
+                        <option key={option.id} value={option.id}>{option.name}</option>
                     ))
                 }
             </select>

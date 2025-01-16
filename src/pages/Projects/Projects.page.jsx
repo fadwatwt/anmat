@@ -21,7 +21,7 @@ function ProjectsPage() {
         {label: "", width: "50px"},
     ];
     const row1 =  [
-        <><NameAndDescription id={"1"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/1"} id={"1"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -34,7 +34,7 @@ function ProjectsPage() {
         <><Status type={"Active"} title={"Active"}/></>
     ]
     const row2 =  [
-        <><NameAndDescription id={"2"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={`/projects/2`} id={"2"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -47,7 +47,7 @@ function ProjectsPage() {
         <><Status type={"Inactive"} title={"Inactive"}/></>
     ]
     const row3 =  [
-        <><NameAndDescription id={"3"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/3"} id={"3"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -60,7 +60,7 @@ function ProjectsPage() {
         <><Status type={"Delayed"} title={"Delayed"}/></>
     ]
     const row4 =  [
-        <><NameAndDescription id={"4"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/4"} id={"4"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -75,10 +75,11 @@ function ProjectsPage() {
 
 
     const rows = [
-        row1,
-        row2,
-        row3,
-        row4,
+        row1, row2, row3, row4,
+        row1, row2, row3, row4,
+        row1, row2, row3, row4,
+        row1, row2, row3, row4,
+        row1, row2, row3, row4,
     ];
     const handelCreateProjectBtn = () => {
         navigate("/projects/create");

@@ -1,26 +1,26 @@
-// import propTypes from "prop-types"
-import {useParams} from "react-router";
-import Page from "../../../Page.jsx";
-import ProjectMembers from "./components/ProjectMembers.jsx";
-import SelectWithoutLabel from "../../../../components/Form/SelectWithoutLabel.jsx";
-import TasksList from "./components/TasksList.jsx";
-import TaskComments from "./components/TaskComments.jsx";
-import CommentInput from "../../../../components/CommentInput.jsx";
-import AttachmentsList from "./components/AttachmentsList.jsx";
-import ActivityLogs from "./components/ActivityLogs.jsx";
-import TimeLine from "../../../../components/TimeLine/TimeLine.jsx";
-import {useTranslation} from "react-i18next";
-import {getTimeDifference} from "../../../../functions/Days.js";
-import InfoCard from "../../../components/InfoCard.jsx";
-import {useState} from "react";
-import {filterAndSortTasks} from "../../../../functions/functionsForTasks.js";
 
-function ProjectDetails() {
+import {useParams} from "react-router";
+import Page from "../../Page.jsx";
+import SelectWithoutLabel from "../../../components/Form/SelectWithoutLabel.jsx";
+import TasksList from "../../Projects/Components/ProjectDetails/components/TasksList.jsx";
+import TaskComments from "../../Projects/Components/ProjectDetails/components/TaskComments.jsx";
+import CommentInput from "../../../components/CommentInput.jsx";
+import ProjectMembers from "../../Projects/Components/ProjectDetails/components/ProjectMembers.jsx";
+import AttachmentsList from "../../Projects/Components/ProjectDetails/components/AttachmentsList.jsx";
+import ActivityLogs from "../../Projects/Components/ProjectDetails/components/ActivityLogs.jsx";
+import TimeLine from "../../../components/TimeLine/TimeLine.jsx";
+import {useTranslation} from "react-i18next";
+import {getTimeDifference} from "../../../functions/Days.js";
+import InfoCard from "../../components/InfoCard.jsx";
+import {useState} from "react";
+import {filterAndSortTasks} from "../../../functions/functionsForTasks.js";
+
+function TaskDetails() {
     const {id} = useParams();
     const {t} = useTranslation()
     const breadcrumbItems = [
-        {title: 'Projects', path: '/projects'},
-        {title: 'Project Details', path: ''}
+        {title: 'Tasks', path: '/projects'},
+        {title: 'Task Details', path: ''}
     ];
 
     const date1 = "2025-01-15T14:30:00";
@@ -71,12 +71,12 @@ function ProjectDetails() {
                 },
             ],
             delivery: "Delayed",
-            rate: null,
-            assignedDate: "2025-01-15T14:30:00", // جديد
-            dueDate: "2025-01-20T13:40:00", // جديد
+            assignedDate: "2025-01-15T14:30:00",
+            dueDate: "2025-01-20T13:40:00",
             deadLine: "2025-01-19T23:59:59", // جديد
             startDate: "2025-01-10T09:00:00", // جديد
             department: "Design", // جديد
+            rate: null,
         },
         {
             name: "Implement Backend APIs",
@@ -99,13 +99,13 @@ function ProjectDetails() {
                 },
             ],
             delivery: "late",
-            timeLate: getTimeDifference(date1, date2), // لا تغييرات
-            rate: 2,
-            assignedDate: "2025-01-14T10:00:00", // جديد
-            dueDate: "2025-01-18T16:00:00", // جديد
+            timeLate: getTimeDifference(date1, date2),
+            assignedDate: "2025-01-14T10:00:00",
+            dueDate: "2025-01-18T16:00:00",
             deadLine: "2025-01-17T23:59:59", // جديد
             startDate: "2025-01-12T08:30:00", // جديد
             department: "Backend Development", // جديد
+            rate: 2,
         },
         {
             name: "Perform QA Testing",
@@ -120,14 +120,15 @@ function ProjectDetails() {
                 },
             ],
             delivery: "Delayed",
-            rate: 4.5,
             assignedDate: "2025-01-16T14:00:00",
             dueDate: "2025-01-22T12:00:00",
-            deadLine: "2025-01-21T23:59:59",
-            startDate: "2025-01-15T11:00:00",
-            department: "QA",
+            deadLine: "2025-01-21T23:59:59", // جديد
+            startDate: "2025-01-15T11:00:00", // جديد
+            department: "QA", // جديد
+            rate: 4.5,
         },
     ];
+
 
 
 
@@ -166,26 +167,28 @@ function ProjectDetails() {
     ];
 
 
+
+
     const attachments = [
         {
             name: "Project_Plan.pdf",
             size: "2.4 MB",
-            type: "pdf"
+            type: "pdf" // نوع الملف لتحديد الأيقونة
         },
         {
             name: "UI_Design.png",
             size: "1.2 MB",
-            type: "image"
+            type: "image" // نوع الملف لتحديد الأيقونة
         },
         {
             name: "Team_Meeting.mp4",
             size: "15 MB",
-            type: "video"
+            type: "video" // نوع الملف لتحديد الأيقونة
         },
         {
             name: "Documentation.docx",
             size: "500 KB",
-            type: "document"
+            type: "document" // نوع الملف الافتراضي
         }
     ];
 
@@ -221,15 +224,18 @@ function ProjectDetails() {
             timeAgo: "2025-01-13T11:00:00.000Z",
         },
     ];
+
     const filterOptions = [
         {id:"deadLine",name:"dead line"},
         {id:"startDate",name:"start date"},
         {id:"department",name:"department"}
     ]
+
     const [filterTasks, setFilterTasks] = useState(tasks);
     const handelChangeFilterTask = (value) => {
         switch (value) {
             case "deadLine":
+                console.log("deadLine")
                 setFilterTasks(filterAndSortTasks(tasks, "deadLine", true));
                 break;
             case "startDate":
@@ -243,17 +249,18 @@ function ProjectDetails() {
         }
     };
 
+
     return (
-        <Page title={"Project Details"} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
+        <Page title={"Task Details"} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
             <div className={"w-full flex items-start  gap-8 flex-col md:flex-row"}>
                 <div className={"flex flex-col gap-6 md:w-[60%] w-full "}>
-                    <InfoCard type={"project"}/>
+                    <InfoCard type={"task"}/>
                     <div className={"p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
                         <div className={"title-header w-full flex items-center justify-between "}>
-                            <p className={"text-lg dark:text-gray-200"}>{t("Project Tasks")} </p>
-                            <SelectWithoutLabel onChange={handelChangeFilterTask} options={filterOptions} title={"Filter by"} className={"w-[120px] h-[36px]"}/>
+                            <p className={"text-lg dark:text-gray-200"}>{t("Task Stages")} </p>
+                            <SelectWithoutLabel title={"Filter by"} options={filterOptions} onChange={handelChangeFilterTask} className={"w-[120px] h-[36px]"}/>
                         </div>
-                        <TasksList tasks={filterTasks}/>
+                        <TasksList isAssignedDate={true} tasks={filterTasks}/>
                     </div>
                     <div className={"bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
                         <div className={"p-4 flex flex-col gap-3"}>
@@ -276,6 +283,5 @@ function ProjectDetails() {
         </Page>
     );
 }
-
-ProjectDetails.propTypes = {}
-export default ProjectDetails;
+TaskDetails.propTypes = {}
+export default TaskDetails;
