@@ -10,6 +10,7 @@ import SettingPage from "../pages/Setting/Setting.page.jsx";
 import CreateProjectForm from "../pages/Projects/Components/CreateProjectForm/CreateProjectForm.jsx";
 import ProjectDetailes from "../pages/Projects/Components/ProjectDetails/ProjectDetailes.jsx";
 import TaskDetails from "../pages/Tasks/TaskDetailes/TaskDetails.jsx";
+import CreateTask from "../pages/Tasks/CreateTask.jsx";
 
 function AppRoute() {
     return (
@@ -23,6 +24,7 @@ function AppRoute() {
             <Route path={"projects/:id"} element={<ProjectDetailes/>}></Route>
             <Route path={"/tasks"} element={<TasksPage/>}></Route>
             <Route path={"/tasks/:id"} element={<TaskDetails/>}></Route>
+            <Route path={"/tasks/create"} element={<CreateTask/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>
         </Routes>

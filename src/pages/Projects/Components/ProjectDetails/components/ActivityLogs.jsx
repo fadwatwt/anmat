@@ -45,7 +45,7 @@ function ActivityLogs({activityLogs}) {
     return (
         <div className={"flex flex-col w-full p-4 rounded-2xl items-start gap-3 bg-white dark:bg-white-0"}>
             <p className={"text-lg dark:text-gray-200"}>{t("Activity Logs")}</p>
-            <div className={"max-h-64 h-auto flex flex-col w-full overflow-hidden overflow-y-auto tab-content"}>
+            <div className={"max-h-64 h-auto flex flex-col w-full overflow-hidden overflow-y-auto custom-scroll"}>
                 {
                     activityLogs.map((activityLog, index) => (
                             <div key={index} className={"flex gap-2 justify-start items-start h-80"}>

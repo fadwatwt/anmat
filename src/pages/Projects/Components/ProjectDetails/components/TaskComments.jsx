@@ -5,7 +5,7 @@ import {translateTime} from "../../../../../functions/Days.js";
 function TaskComments({comments}) {
     return (
 
-        <div className={"max-h-64 h-auto flex flex-col w-full overflow-hidden overflow-y-auto tab-content"}>
+        <div className={"max-h-64 h-auto flex flex-col w-full overflow-hidden overflow-y-auto custom-scroll"}>
             {
                 comments.map(( comment ,index) => (
                     <div className={"flex gap-2 justify-start items-start h-80"} key={index}>

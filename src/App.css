@@ -88,3 +88,44 @@ p,div{
   display: none;
 }
 
+.custom-scroll {
+  /* دعم Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #E2E4E9 #F6F8FA;
+}
+
+.dark .custom-scroll {
+  /* دعم Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #31353F #161922;
+}
+
+/* دعم Chrome و Edge و Safari */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #4a90e2;
+  border-radius: 50px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* دعم Chrome و Edge و Safari */
+.dark .custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark .custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #31353F;
+  border-radius: 4px;
+}
+
+.dark .custom-scroll::-webkit-scrollbar-track {
+  background: #161922;
+}
+
+

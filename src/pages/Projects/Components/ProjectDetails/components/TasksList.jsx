@@ -13,7 +13,7 @@ function TasksList({tasks,isAssignedDate = false}) {
     const [isRateProjectOpen,setRateProjectOpen] = useState(false)
     const {t} = useTranslation()
     return (
-        <div className={"max-h-64 flex flex-col w-full overflow-hidden overflow-y-auto tab-content"}>
+        <div className={"max-h-64 flex flex-col w-full overflow-hidden overflow-y-auto custom-scroll"}>
             {
                 tasks.map((task,index) => (
                     <>

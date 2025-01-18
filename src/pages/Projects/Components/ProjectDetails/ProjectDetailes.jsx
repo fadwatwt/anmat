@@ -249,7 +249,7 @@ function ProjectDetails() {
                 <div className={"flex flex-col gap-6 md:w-[60%] w-full "}>
                     <InfoCard type={"project"}/>
                     <div className={"p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
-                        <div className={"title-header w-full flex items-center justify-between "}>
+                        <div className={"title-header pb-3 w-full flex items-center justify-between "}>
                             <p className={"text-lg dark:text-gray-200"}>{t("Project Tasks")} </p>
                             <SelectWithoutLabel onChange={handelChangeFilterTask} options={filterOptions} title={"Filter by"} className={"w-[120px] h-[36px]"}/>
                         </div>
