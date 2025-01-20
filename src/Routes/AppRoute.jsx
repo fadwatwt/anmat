@@ -21,9 +21,9 @@ function AppRoute() {
             <Route path={"/hr-management"} element={<HRManagementPage/>}></Route>
             <Route path={"/projects"} element={<ProjectsPage/>}></Route>
             <Route path={"projects/create"} element={<CreateProjectForm/>}></Route>
-            <Route path={"projects/:id"} element={<ProjectDetailes/>}></Route>
+            <Route path={"projects/:slug"} element={<ProjectDetailes/>}></Route>
             <Route path={"/tasks"} element={<TasksPage/>}></Route>
-            <Route path={"/tasks/:id"} element={<TaskDetails/>}></Route>
+            <Route path={"/tasks/:slug"} element={<TaskDetails/>}></Route>
             <Route path={"/tasks/create"} element={<CreateTask/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>

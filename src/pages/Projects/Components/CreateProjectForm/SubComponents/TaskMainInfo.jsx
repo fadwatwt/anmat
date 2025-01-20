@@ -67,7 +67,9 @@ function TaskMainInfo() {
             <DefaultSelect title={"Department"} options={optionsDepartment}/>
             <div className={"flex items-center justify-center gap-2"}>
                 <DefaultSelect title={"Manager"} options={optionsManager} classNameContainer={"flex-1"}/>
-                <UserSelect users={users} title={"Employees"} options={optionsEmployees} classNameContainer={"w-1/2"}/>
+                <div className={"relative w-1/2"}>
+                    <UserSelect users={users} title={"Employees"} options={optionsEmployees} classNameContainer={"h-16"}/>
+                </div>
             </div>
             <div className={"flex items-center justify-center gap-2"}>
                 <DateInput name={"assignedDate"} title={"Assigned Date"} className={"flex-1"}/>

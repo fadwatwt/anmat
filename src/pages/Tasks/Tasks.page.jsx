@@ -43,7 +43,7 @@ function TasksPage() {
     ]
 
     const row1 =  [
-        <><NameAndDescription path={"/tasks/1"} id={"1"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"1"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><MembersListXLine members={members} maxVisible={3}/></>,
         <><AccountDetails
@@ -56,7 +56,7 @@ function TasksPage() {
         <><Status type={"Active"} title={"Active"}/></>
     ]
     const row2 =  [
-        <><NameAndDescription path={"/tasks/2"} id={"2"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"2"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><MembersListXLine members={members} maxVisible={3}/></>,
         <><AccountDetails
@@ -69,7 +69,7 @@ function TasksPage() {
         <><Status type={"Inactive"} title={"Inactive"}/></>
     ]
     const row3 =  [
-        <><NameAndDescription path={"/tasks/3"} id={"3"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"3"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><MembersListXLine members={members} maxVisible={3}/></>,
         <><AccountDetails
@@ -82,7 +82,7 @@ function TasksPage() {
         <><Status type={"Delayed"} title={"Delayed"}/></>
     ]
     const row4 =  [
-        <><NameAndDescription path={"/tasks/4"} id={"4"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"4"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><MembersListXLine members={members} maxVisible={3}/></>,
         <><AccountDetails

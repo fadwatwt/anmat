@@ -44,14 +44,14 @@ function InfoCard({ type }) {
 
     return (
         <div className={"flex flex-col p-4 w-full bg-white dark:bg-white-0 rounded-2xl gap-3"}>
-            <div className={"title-header w-full flex justify-between items-center"}>
+            <div className={"title-header re w-full flex justify-between items-center"}>
                 <div className={"flex gap-2"}>
                     <p className={"text-xl dark:text-gray-200"}>{name}</p>
                     <Status type={"Active"} title={"Active"} />
                 </div>
-                <div className="cursor-pointer dropdown-container" onClick={handleDropdownToggle}>
+                <div className="relative cursor-pointer flex-1 flex justify-end dropdown-container" onClick={handleDropdownToggle}>
                     <PiDotsThreeVerticalBold />
-                    {dropdownOpen && <ActionsBtns handleEdit={() => {}} handleDelete={() => {}} />}
+                    {dropdownOpen && <ActionsBtns className={"mt-5"} isDeleteBtn={false} handleEdit={() => {}} />}
                 </div>
             </div>
 

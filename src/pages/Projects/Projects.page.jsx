@@ -21,7 +21,7 @@ function ProjectsPage() {
         {label: "", width: "50px"},
     ];
     const row1 =  [
-        <><NameAndDescription path={"/projects/1"} id={"1"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"1"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -34,7 +34,7 @@ function ProjectsPage() {
         <><Status type={"Active"} title={"Active"}/></>
     ]
     const row2 =  [
-        <><NameAndDescription path={`/projects/2`} id={"2"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={`/projects/pulse_dashboard_project`} id={"2"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -47,7 +47,7 @@ function ProjectsPage() {
         <><Status type={"Inactive"} title={"Inactive"}/></>
     ]
     const row3 =  [
-        <><NameAndDescription path={"/projects/3"} id={"3"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"3"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{
@@ -60,7 +60,7 @@ function ProjectsPage() {
         <><Status type={"Delayed"} title={"Delayed"}/></>
     ]
     const row4 =  [
-        <><NameAndDescription path={"/projects/4"} id={"4"} name={"Pulse Dashboard"}
+        <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"4"} name={"Pulse Dashboard"}
                               description={"Developing a dashboard for real-time performance."}/></>,
         <><AccountDetails
             account={{

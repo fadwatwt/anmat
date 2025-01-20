@@ -45,6 +45,10 @@ function TasksList({tasks,isAssignedDate = false}) {
 
                     </div>
 
+                        <ProjectRatingModal project={task}
+                                            isOpen={isRateProjectOpen}
+                                            onClose={() => setRateProjectOpen(!isRateProjectOpen)} />
+
                     </>
                 ))
 

@@ -22,7 +22,7 @@ function ProjectRatingModal({isOpen, onClose, project}) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} isBtns={true} title={project.name + " " + t("Rating")}
                classNameOpacity={"bg-opacity-20"}>
-            <div className="w-full flex flex-col items-start gap-5 px-1">
+            <div className="w-full flex flex-col items-start gap-5 px-1 mb-2">
                 <div className="flex flex-col w-full gap-1 items-start">
                     <p className="text-md dark:text-gray-200"><span className={"dark:text-sub-300 text-md"}>{t("Department")}:</span>Publishing</p>
                     <div className="text-sm flex gap-1 items-center">
