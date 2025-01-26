@@ -12,7 +12,7 @@ import { translateDate } from "../../functions/Days.js";
 import ActionsBtns from "../../components/ActionsBtns.jsx";
 import useDropdown from "../../Hooks/useDropdown.js";
 
-function InfoCard({ type }) {
+function InfoCard({ type,handelEditAction }) {
     const { t } = useTranslation();
     const [dropdownOpen, setDropdownOpen] = useDropdown();
 
@@ -51,7 +51,7 @@ function InfoCard({ type }) {
                 </div>
                 <div className="relative cursor-pointer flex-1 flex justify-end dropdown-container" onClick={handleDropdownToggle}>
                     <PiDotsThreeVerticalBold />
-                    {dropdownOpen && <ActionsBtns className={"mt-5"} isDeleteBtn={false} handleEdit={() => {}} />}
+                    {dropdownOpen && <ActionsBtns className={"mt-5"} isDeleteBtn={false} handleEdit={handelEditAction} />}
                 </div>
             </div>
 
@@ -116,6 +116,7 @@ TaskOrStage.propTypes = {
 
 InfoCard.propTypes = {
     type: PropTypes.oneOf(["project", "task"]).isRequired,
+    handelEditAction:PropTypes.func
 };
 
 IconWithTitleAndNumber.propTypes = {

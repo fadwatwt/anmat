@@ -1,18 +1,19 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
-import NameAndDescription from "../Projects/Components/TableInfo/NameAndDescription.jsx";
-import AccountDetails from "../Projects/Components/TableInfo/AccountDetails.jsx";
-import Priority from "../Projects/Components/TableInfo/Priority.jsx";
-import Status from "../Projects/Components/TableInfo/Status.jsx";
-import {translateDate} from "../../functions/Days.js";
 import Page from "../Page.jsx";
 import Table from "../../components/Tables/Table.jsx";
 import TimeLine from "../../components/TimeLine/TimeLine.jsx";
-import MembersListXLine from "../Projects/Components/ProjectDetails/components/MembersListXLine.jsx";
+import {useState} from "react";
+import {rowsTask, tasks} from "../../functions/FactoryData.jsx";
+import EditTaskModal from "./modal/EditTaskModal.jsx";
+import Alert from "../../components/Alert.jsx";
 
 function TasksPage() {
     const {t} = useTranslation()
     const navigate = useNavigate()
+    const [isOpenEditModal,setIsOpenEditModal] = useState(false)
+    const [taskEdit,setTaskEdit] = useState(null)
+    const [isOpenDeleteAlert,setIsOpenDeleteAlert] = useState(false)
     const headers = [
         {label: t("Tasks"), width: "200px"},
         {label: t("Assigned to"), width: "150px"},
@@ -23,94 +24,26 @@ function TasksPage() {
         {label: "", width: "50px"},
     ];
 
-    const members = [
-        {
-            name: "Bob Brown",
-            imageProfile: "https://assets.entrepreneur.com/content/3x2/2000/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg?format=pjeg&auto=webp&crop=1:1",
-        },
-        {
-            name: "Alice Johnson",
-            imageProfile: "https://media.istockphoto.com/id/1199100409/photo/portrait-of-successful-businessman.jpg?s=612x612&w=0&k=20&c=U7fzV2RqONjttzqr4r_cGHWueUN3SP8BOH4mn0hiw4E=",
-        },
-        {
-            name: "Bob Brown",
-            imageProfile: "https://assets.entrepreneur.com/content/3x2/2000/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg?format=pjeg&auto=webp&crop=1:1",
-        },
-        {
-            name: "Alice Johnson",
-            imageProfile: "https://media.istockphoto.com/id/1199100409/photo/portrait-of-successful-businessman.jpg?s=612x612&w=0&k=20&c=U7fzV2RqONjttzqr4r_cGHWueUN3SP8BOH4mn0hiw4E=",
-        },
-    ]
 
-    const row1 =  [
-        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"1"} name={"Pulse Dashboard"}
-                              description={"Developing a dashboard for real-time performance."}/></>,
-        <><MembersListXLine members={members} maxVisible={3}/></>,
-        <><AccountDetails
-            account={{
-                name: "Fatma Ahmed Moh", rule: "Product Manager",
-                imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-            }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-        <><Priority type={"Urgent"} title={"Urgent"} /></>,
-        <><Status type={"Active"} title={"Active"}/></>
-    ]
-    const row2 =  [
-        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"2"} name={"Pulse Dashboard"}
-                              description={"Developing a dashboard for real-time performance."}/></>,
-        <><MembersListXLine members={members} maxVisible={3}/></>,
-        <><AccountDetails
-            account={{
-                name: "Fatma Ahmed Moh", rule: "Product Manager",
-                imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-            }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-        <><Priority type={"High"} title={"High"} /></>,
-        <><Status type={"Inactive"} title={"Inactive"}/></>
-    ]
-    const row3 =  [
-        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"3"} name={"Pulse Dashboard"}
-                              description={"Developing a dashboard for real-time performance."}/></>,
-        <><MembersListXLine members={members} maxVisible={3}/></>,
-        <><AccountDetails
-            account={{
-                name: "Fatma Ahmed Moh", rule: "Product Manager",
-                imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-            }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-        <><Priority type={"Low"} title={"Low"} /></>,
-        <><Status type={"Delayed"} title={"Delayed"}/></>
-    ]
-    const row4 =  [
-        <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"4"} name={"Pulse Dashboard"}
-                              description={"Developing a dashboard for real-time performance."}/></>,
-        <><MembersListXLine members={members} maxVisible={3}/></>,
-        <><AccountDetails
-            account={{
-                name: "Fatma Ahmed Moh", rule: "Product Manager",
-                imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-            }}/></>,
-        <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-        <><Priority type={"Medium"} title={"Medium"} /></>,
-        <><Status type={"Scheduled"} title={"Scheduled"}/></>
-    ]
-
-
-    const rows = [
-        row1,
-        row2,
-        row3,
-        row4,
-    ];
     const handelCreateProjectBtn = () => {
         navigate("/tasks/create");
     }
+    const handelEditModal = (index) => {
+        console.log(index)
+        setTaskEdit({tasks:tasks})
+        setIsOpenEditModal(!isOpenEditModal)
+    }
+    const handelDeleteTask = (index) => {
+        console.log(index)
+        setIsOpenDeleteAlert(!isOpenDeleteAlert)
+    }
     return (
+        <>
         <Page title={"Tasks"} isBtn={true} btnOnClick={handelCreateProjectBtn} btnTitle={"Create a Task"}>
             <div className={"flex flex-col gap-6"}>
                 <div className="flex flex-col gap-2 h-full">
-                    <Table className="custom-class" title={"All tasks"} headers={headers} isActions={true}
-                           rows={rows}
+                    <Table className="custom-class" title={"All tasks"} handelDelete={handelDeleteTask} headers={headers}  handelEdit={handelEditModal} isActions={true}
+                           rows={rowsTask}
                            isFilter={true}/>
                 </div>
                 <div className={"flex md:w-[37.5%] w-screen"}>
@@ -118,6 +51,12 @@ function TasksPage() {
                 </div>
             </div>
         </Page>
+            <EditTaskModal task={taskEdit} isOpen={isOpenEditModal} onClose={handelEditModal} />
+            <Alert type={"warning"} title={"Delete Task?"}
+                   message={"Are you sure you want to delete this task."}
+                   titleCancelBtn={"Cancel"}
+                   titleSubmitBtn={"Delete"} isOpen={isOpenDeleteAlert} onClose={() => setIsOpenDeleteAlert(!isOpenDeleteAlert)} />
+        </>
     );
 }
 

@@ -143,7 +143,7 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
                                     onClick={() => handleDropdownToggle(rowIndex)}
                                 />
                                 {dropdownOpen === rowIndex && (
-                                    <ActionsBtns handleEdit={handelEdit} handleDelete={handelDelete} className={`${i18n.language === "ar" ? "left-0" : "right-0"}`} />
+                                    <ActionsBtns handleEdit={() => handelEdit(rowIndex)} handleDelete={() => handelDelete(rowIndex)} className={`${i18n.language === "ar" ? "left-0" : "right-0"}`} />
                                 )}
                             </td>
                         )}

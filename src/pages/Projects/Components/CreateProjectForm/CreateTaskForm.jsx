@@ -2,8 +2,9 @@ import {useState} from "react";
 import TaskMainInfo from "./SubComponents/TaskMainInfo.jsx";
 import TaskStage from "./SubComponents/TaskStage.jsx";
 import {useTranslation} from "react-i18next";
+import PropTypes from "prop-types";
 
-function CreateTaskForm() {
+function CreateTaskForm(task) {
     const [taskStageNumber, setTaskStageNumber] = useState([1]);
     const {t} = useTranslation()
 
@@ -19,7 +20,7 @@ function CreateTaskForm() {
     };
     return (
         <div className={"flex flex-col gap-1"}>
-            <TaskMainInfo/>
+            <TaskMainInfo task={task}  />
             <div className={"flex flex-col gap-4"}>
             {
                 taskStageNumber.map(taskStageNumber => (
@@ -32,6 +33,10 @@ function CreateTaskForm() {
             </div>
         </div>
     );
+}
+
+CreateTaskForm.propTypes = {
+    task:PropTypes.object,
 }
 
 export default CreateTaskForm;

@@ -3,13 +3,22 @@ import { FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
-function ElementsSelect({ title, options, onChange, isOption = false,placeholder, classNameContainer, isMultiple = false }) {
-    const [selectedOptions, setSelectedOptions] = useState([]);
+function ElementsSelect({
+                            title,
+                            options,
+                            onChange,
+                            isOption = false,
+                            placeholder,
+                            classNameContainer,
+                            isMultiple = false,
+                            defaultValue = []
+                        }) {
+    const [selectedOptions, setSelectedOptions] = useState(defaultValue);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const {t} = useTranslation()
-    const dropdownRef = useRef(null); // Ref to track the dropdown container
+    const { t } = useTranslation();
+    const dropdownRef = useRef(null);
 
     const toggleOptions = (option) => {
         const alreadySelected = selectedOptions.find((u) => u.id === option.id);
@@ -17,7 +26,8 @@ function ElementsSelect({ title, options, onChange, isOption = false,placeholder
             ? selectedOptions.filter((u) => u.id !== option.id)
             : isMultiple
                 ? [...selectedOptions, option]
-                : [option]; setIsDropdownOpen(false);
+                : [option];
+        setIsDropdownOpen(false);
 
         setSelectedOptions(updatedSelection);
         if (onChange) {
@@ -28,7 +38,7 @@ function ElementsSelect({ title, options, onChange, isOption = false,placeholder
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsDropdownOpen(false); // Close the dropdown
+                setIsDropdownOpen(false);
             }
         };
 
@@ -55,12 +65,12 @@ function ElementsSelect({ title, options, onChange, isOption = false,placeholder
 
             {/* Custom Select */}
             <div className="relative max-w-full w-full">
-                {/* Selected Users */}
+                {/* Selected Options */}
                 <div
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="flex items-center gap-2 h-10 dark:bg-white-0 border border-gray-300 dark:border-gray-500 rounded-[10px] p-[10px] box-border text-xs cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
                 >
-                    {/* Selected Users Content */}
+                    {/* Selected Options Content */}
                     <div className="flex-1 flex gap-1 tab-content overflow-x-auto max-h-10">
                         {selectedOptions.length > 0 ? (
                             selectedOptions.map((option) => (
@@ -125,6 +135,7 @@ ElementsSelect.propTypes = {
     classNameContainer: PropTypes.string,
     placeholder: PropTypes.string,
     isMultiple: PropTypes.bool,
+    defaultValue: PropTypes.array, // Added defaultValue prop validation
 };
 
 export default ElementsSelect;

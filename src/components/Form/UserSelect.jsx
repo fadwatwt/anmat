@@ -6,8 +6,17 @@ import { FaTimes } from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 import {IoGlobeOutline} from "react-icons/io5";
 
-const UserSelect = ({ title, users, onChange, isOption = false, classNameContainer, isMultiSelect = true ,isViewIcon = false}) => {
-    const [selectedUsers, setSelectedUsers] = useState([]);
+const UserSelect = ({
+                        title,
+                        users,
+                        onChange,
+                        isOption = false,
+                        classNameContainer,
+                        isMultiSelect = true,
+                        isViewIcon = false,
+                        defaultSelectedUsers = []
+                    }) => {
+    const [selectedUsers, setSelectedUsers] = useState(defaultSelectedUsers); // تعيين القيمة الافتراضية
     const { t } = useTranslation();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -28,6 +37,10 @@ const UserSelect = ({ title, users, onChange, isOption = false, classNameContain
             onChange(updatedSelection);
         }
     };
+
+    useEffect(() => {
+        setSelectedUsers(defaultSelectedUsers); // تحديث القيم الافتراضية عند تغيير الخاصية
+    }, [defaultSelectedUsers]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -58,7 +71,7 @@ const UserSelect = ({ title, users, onChange, isOption = false, classNameContain
             </label>
 
             {/* Custom Select */}
-            <div className="absolute  max-w-full w-full">
+            <div className="absolute max-w-full w-full">
                 <div
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="flex items-center gap-2 h-10 dark:bg-white-0 border border-gray-300 dark:border-gray-500 rounded-[10px] p-[10px] box-border text-xs cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
@@ -145,6 +158,7 @@ const UserSelect = ({ title, users, onChange, isOption = false, classNameContain
     );
 };
 
+
 UserSelect.propTypes = {
     title: PropTypes.string.isRequired,
     users: PropTypes.array.isRequired,
@@ -152,7 +166,8 @@ UserSelect.propTypes = {
     isOption: PropTypes.bool,
     isViewIcon: PropTypes.bool,
     classNameContainer: PropTypes.string,
-    isMultiSelect: PropTypes.bool, // New prop for single/multi-select mode
+    isMultiSelect: PropTypes.bool,
+    defaultSelectedUsers:PropTypes.array
 };
 
 export default UserSelect;

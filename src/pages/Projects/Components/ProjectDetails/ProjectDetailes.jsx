@@ -14,10 +14,12 @@ import {getTimeDifference} from "../../../../functions/Days.js";
 import InfoCard from "../../../components/InfoCard.jsx";
 import {useState} from "react";
 import {filterAndSortTasks} from "../../../../functions/functionsForTasks.js";
+import EditProjectModal from "../../modal/EditProjectModal.jsx";
 
 function ProjectDetails() {
     const {id} = useParams();
     const {t} = useTranslation()
+    const [isOpenEditModal,setIsOpenEditModal] = useState(false)
     const breadcrumbItems = [
         {title: 'Projects', path: '/projects'},
         {title: 'Project Details', path: ''}
@@ -243,11 +245,15 @@ function ProjectDetails() {
         }
     };
 
+    const handelEditModal = () => {
+        setIsOpenEditModal(!isOpenEditModal)
+    }
+
     return (
         <Page title={"Project Details"} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
             <div className={"w-full flex items-start  gap-8 flex-col md:flex-row"}>
                 <div className={"flex flex-col gap-6 md:w-[60%] w-full "}>
-                    <InfoCard type={"project"}/>
+                    <InfoCard type={"project"} handelEditAction={handelEditModal}/>
                     <div className={"p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
                         <div className={"title-header pb-3 w-full flex items-center justify-between "}>
                             <p className={"text-lg dark:text-gray-200"}>{t("Project Tasks")} </p>
@@ -273,6 +279,7 @@ function ProjectDetails() {
                 </div>
 
             </div>
+            <EditProjectModal project={{tasks:tasks}} isOpen={isOpenEditModal} onClose={handelEditModal} />
         </Page>
     );
 }
