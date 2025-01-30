@@ -2,7 +2,7 @@ import {Route, Routes} from "react-router";
 import DashboardPage from "../pages/Dashboard.page.jsx";
 import ConversationsPage from "../pages/Conversations.page.jsx";
 import AnalyticsPage from "../pages/Analytics.page.jsx";
-import HRManagementPage from "../pages/HRManagement.page.jsx";
+import HRManagementPage from "../pages/HR/HRManagement.page.jsx";
 import ProjectsPage from "../pages/Projects/Projects.page.jsx";
 import TasksPage from "../pages/Tasks/Tasks.page.jsx";
 import SocialMediaPage from "../pages/SocialMedia/SocialMedia.page.jsx";
@@ -18,7 +18,6 @@ function AppRoute() {
             <Route path={"/"} element={<DashboardPage/>}></Route>
             <Route path={"/conversations"} element={<ConversationsPage/>}></Route>
             <Route path={"/analytics"} element={<AnalyticsPage/>}></Route>
-            <Route path={"/hr-management"} element={<HRManagementPage/>}></Route>
             <Route path={"/projects"} element={<ProjectsPage/>}></Route>
             <Route path={"projects/create"} element={<CreateProjectForm/>}></Route>
             <Route path={"projects/:slug"} element={<ProjectDetailes/>}></Route>
@@ -27,6 +26,7 @@ function AppRoute() {
             <Route path={"/tasks/create"} element={<CreateTask/>}></Route>
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>
+            <Route path={"/hr-management"} element={<HRManagementPage/>}></Route>
         </Routes>
     );
 }

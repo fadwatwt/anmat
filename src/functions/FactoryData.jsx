@@ -4,6 +4,7 @@ import {getTimeDifference, translateDate} from "./Days.js";
 import Priority from "../pages/Projects/Components/TableInfo/Priority.jsx";
 import Status from "../pages/Projects/Components/TableInfo/Status.jsx";
 import MembersListXLine from "../pages/Projects/Components/ProjectDetails/components/MembersListXLine.jsx";
+import Rating from "../pages/HR/Rating.jsx";
 
 const members = [
     {
@@ -323,6 +324,58 @@ const rowsProject = [
     rowProject1, rowProject2, rowProject3, rowProject4,
     rowProject1, rowProject2, rowProject3, rowProject4,
 ];
+const rowEmployee1 =  [
+    <><AccountDetails
+        account={{
+            name: "Fatma Ahmed Moh", rule: "Product Manager",
+            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+        }}/></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
+    <><Rating value={"90"} /></>
+]
+
+const rowEmployee2 =  [
+    <><AccountDetails
+        account={{
+            name: "Fatma Ahmed Moh", rule: "Product Manager",
+            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+        }}/></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
+    <><Rating value={"90"} /></>
+]
+
+const rowEmployee3 =  [
+    <><AccountDetails
+        account={{
+            name: "Fatma Ahmed Moh", rule: "Product Manager",
+            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+        }}/></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
+    <><Rating value={"90"} /></>
+]
+const rowEmployee4 =  [
+    <><AccountDetails
+        account={{
+            name: "Fatma Ahmed Moh", rule: "Product Manager",
+            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+        }}/></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
+    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
+    <><Rating value={"90"} /></>
+]
+const rowsEmployees = [
+    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
+    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
+    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
+    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
+];
 
 
-export {tasks,date1,date2,members,rowsTask,rowsProject,activityLogs,comments,attachments,filterOptions}
+export {tasks,date1,date2,members,rowsTask,rowsProject,activityLogs,comments,attachments,filterOptions,rowsEmployees}
