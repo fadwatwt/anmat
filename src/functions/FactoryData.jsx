@@ -1,11 +1,4 @@
-import NameAndDescription from "../pages/Projects/Components/TableInfo/NameAndDescription.jsx";
-import AccountDetails from "../pages/Projects/Components/TableInfo/AccountDetails.jsx";
-import {getTimeDifference, translateDate} from "./Days.js";
-import Priority from "../pages/Projects/Components/TableInfo/Priority.jsx";
-import Status from "../pages/Projects/Components/TableInfo/Status.jsx";
-import MembersListXLine from "../pages/Projects/Components/ProjectDetails/components/MembersListXLine.jsx";
-import Rating from "../pages/HR/Rating.jsx";
-
+import {getTimeDifference} from "./Days.js";
 const members = [
     {
         name: "Bob Brown",
@@ -25,65 +18,75 @@ const members = [
     },
 ]
 
-const rowTask1 =  [
-    <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"1"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><MembersListXLine members={members} maxVisible={3}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+const tasksRows = [
+    {
+        id: "1",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/tasks/pulse_dashboard",
+        members: members,
+        maxVisibleMembers: 3,
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-    <><Priority type={"Urgent"} title={"Urgent"} /></>,
-    <><Status type={"Active"} title={"Active"}/></>
-]
-const rowTask2 =  [
-    <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"2"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><MembersListXLine members={members} maxVisible={3}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        dateStart: "2025-01-16T10:00:00",
+        dateEnd: "2025-01-16T10:00:00",
+        priority: { type: "Urgent", title: "Urgent" },
+        status: { type: "Active", title: "Active" }
+    },
+    {
+        id: "2",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/tasks/pulse_dashboard",
+        members: members,
+        maxVisibleMembers: 3,
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-    <><Priority type={"High"} title={"High"} /></>,
-    <><Status type={"Inactive"} title={"Inactive"}/></>
-]
-const rowTask3 =  [
-    <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"3"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><MembersListXLine members={members} maxVisible={3}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        dateStart: "2025-01-16T10:00:00",
+        dateEnd: "2025-01-16T10:00:00",
+        priority: { type: "High", title: "High" },
+        status: { type: "Inactive", title: "Inactive" }
+    },
+    {
+        id: "3",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/tasks/pulse_dashboard",
+        members: members,
+        maxVisibleMembers: 3,
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-    <><Priority type={"Low"} title={"Low"} /></>,
-    <><Status type={"Delayed"} title={"Delayed"}/></>
-]
-const rowTask4 =  [
-    <><NameAndDescription path={"/tasks/pulse_dashboard"} id={"4"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><MembersListXLine members={members} maxVisible={3}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        dateStart: "2025-01-16T10:00:00",
+        dateEnd: "2025-01-16T10:00:00",
+        priority: { type: "Low", title: "Low" },
+        status: { type: "Delayed", title: "Delayed" }
+    },
+    {
+        id: "4",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/tasks/pulse_dashboard",
+        members: members,
+        maxVisibleMembers: 3,
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")} - {translateDate("2025-01-16T10:00:00")}</p></>,
-    <><Priority type={"Medium"} title={"Medium"} /></>,
-    <><Status type={"Scheduled"} title={"Scheduled"}/></>
-]
-
-
-const rowsTask = [
-    rowTask1,
-    rowTask2,
-    rowTask3,
-    rowTask4,
+        },
+        dateStart: "2025-01-16T10:00:00",
+        dateEnd: "2025-01-16T10:00:00",
+        priority: { type: "Medium", title: "Medium" },
+        status: { type: "Scheduled", title: "Scheduled" }
+    }
 ];
 const date1 = "2025-01-15T14:30:00";
 const date2 = "2025-01-13T13:40:00";
@@ -263,119 +266,69 @@ const filterOptions = [
 ]
 
 
-const rowProject1 =  [
-    <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"1"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+const projects = [
+    {
+        id: "1",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/projects/pulse_dashboard_project",
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>5</p></>,
-    <><Priority type={"Urgent"} title={"Urgent"} /></>,
-    <><Status type={"Active"} title={"Active"}/></>
-]
-const rowProject2 =  [
-    <><NameAndDescription path={`/projects/pulse_dashboard_project`} id={"2"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        date: "2025-01-16T10:00:00",
+        priority: { type: "Urgent", title: "Urgent" },
+        status: { type: "Active", title: "Active" },
+        count: 5
+    },
+    {
+        id: "2",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/projects/pulse_dashboard_project",
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>5</p></>,
-    <><Priority type={"High"} title={"High"} /></>,
-    <><Status type={"Inactive"} title={"Inactive"}/></>
-]
-const rowProject3 =  [
-    <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"3"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        date: "2025-01-16T10:00:00",
+        priority: { type: "High", title: "High" },
+        status: { type: "Inactive", title: "Inactive" },
+        count: 5
+    },
+    {
+        id: "3",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/projects/pulse_dashboard_project",
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>5</p></>,
-    <><Priority type={"Low"} title={"Low"} /></>,
-    <><Status type={"Delayed"} title={"Delayed"}/></>
-]
-const rowProject4 =  [
-    <><NameAndDescription path={"/projects/pulse_dashboard_project"} id={"4"} name={"Pulse Dashboard"}
-                          description={"Developing a dashboard for real-time performance."}/></>,
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
+        },
+        date: "2025-01-16T10:00:00",
+        priority: { type: "Low", title: "Low" },
+        status: { type: "Delayed", title: "Delayed" },
+        count: 5
+    },
+    {
+        id: "4",
+        name: "Pulse Dashboard",
+        description: "Developing a dashboard for real-time performance.",
+        path: "/projects/pulse_dashboard_project",
+        account: {
+            name: "Fatma Ahmed Moh",
+            rule: "Product Manager",
             imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{translateDate("2025-01-16T10:00:00")}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>5</p></>,
-    <><Priority type={"Medium"} title={"Medium"} /></>,
-    <><Status type={"Scheduled"} title={"Scheduled"}/></>
-]
-
-
-const rowsProject = [
-    rowProject1, rowProject2, rowProject3, rowProject4,
-    rowProject1, rowProject2, rowProject3, rowProject4,
-    rowProject1, rowProject2, rowProject3, rowProject4,
-    rowProject1, rowProject2, rowProject3, rowProject4,
-    rowProject1, rowProject2, rowProject3, rowProject4,
+        },
+        date: "2025-01-16T10:00:00",
+        priority: { type: "Medium", title: "Medium" },
+        status: { type: "Scheduled", title: "Scheduled" },
+        count: 5
+    }
 ];
-const rowEmployee1 =  [
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
-            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
-    <><Rating value={"90"} /></>
-]
 
-const rowEmployee2 =  [
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
-            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
-    <><Rating value={"90"} /></>
-]
-
-const rowEmployee3 =  [
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
-            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
-    <><Rating value={"90"} /></>
-]
-const rowEmployee4 =  [
-    <><AccountDetails
-        account={{
-            name: "Fatma Ahmed Moh", rule: "Product Manager",
-            imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
-        }}/></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Publishing"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"Full - time"}</p></>,
-    <><p className={"text-sm dark:text-sub-300"}>{"1500$"}</p></>,
-    <><Rating value={"90"} /></>
-]
-const rowsEmployees = [
-    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
-    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
-    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
-    rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
-];
 
 const employees = [
     {
@@ -442,6 +395,6 @@ const employees = [
 
 
 export {tasks,date1,date2,
-    members,rowsTask,rowsProject,
+    members,
     activityLogs,comments,attachments,
-    filterOptions,rowsEmployees,employees}
+    filterOptions,employees,projects,tasksRows}

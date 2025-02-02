@@ -2,7 +2,7 @@ import {FaCircleCheck} from "react-icons/fa6";
 import PropTypes from "prop-types";
 import {MdError} from "react-icons/md";
 
-function Status({status,titleTrue,titleFalse}) {
+function StatusBool({status,titleTrue,titleFalse}) {
     return (
         <>
         {
@@ -21,11 +21,11 @@ function Status({status,titleTrue,titleFalse}) {
     );
 }
 
-Status.propTypes = {
+StatusBool.propTypes = {
     status: PropTypes.bool.isRequired,
     titleTrue: PropTypes.string,
     titleFalse: PropTypes.string,
 
 }
 
-export default Status;
+export default StatusBool;

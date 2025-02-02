@@ -4,8 +4,14 @@ import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router";
 import {useState} from "react";
 import EditProjectModal from "./modal/EditProjectModal.jsx";
-import {rowsProject, tasks} from "../../functions/FactoryData.jsx";
+import {projects, tasks} from "../../functions/FactoryData.jsx";
 import Alert from "../../components/Alert.jsx";
+import NameAndDescription from "./Components/TableInfo/NameAndDescription.jsx";
+import AccountDetails from "./Components/TableInfo/AccountDetails.jsx";
+import {translateDate} from "../../functions/Days.js";
+import Priority from "./Components/TableInfo/Priority.jsx";
+import Status from "./Components/TableInfo/Status.jsx";
+import {convertToSlug} from "../../functions/AnotherFunctions.js";
 
 function ProjectsPage() {
     const {t} = useTranslation()
@@ -35,13 +41,29 @@ function ProjectsPage() {
         console.log(index)
         setIsOpenDeleteAlert(!isOpenDeleteAlert)
     }
+    const ProjectRowTable = () => {
+        return projects.map((project) => [
+            <><NameAndDescription path={`/projects/${project.id}-${convertToSlug(project.name)}`} id={"4"} name={project.name}
+                                  description={project.description}/></>,
+            <><AccountDetails
+                account={{
+                    name: project.account?.name, rule: project.account?.rule,
+                    imageProfile:project.account?.imageProfile,
+                }}/></>,
+            <><p className={"text-sm dark:text-sub-300"}>{translateDate(project.date)}</p></>,
+            <><p className={"text-sm dark:text-sub-300"}>{project.count}</p></>,
+            <><Priority type={project.priority?.type} title={project.priority?.title} /></>,
+            <><Status type={project.status?.type} title={project.status?.title}/></>
+        ]);
+    };
+    const rows = ProjectRowTable()
     return (
         <>
         <Page title={"Project"} isBtn={true} btnOnClick={handelCreateProjectBtn} btnTitle={"Create a Project"}>
             <div className={"flex flex-col gap-6"}>
                 <div className="flex flex-col gap-2 h-full">
                     <Table className="custom-class" title={"All projects"} headers={headers} handelDelete={handelDeleteProject} handelEdit={handelEditModal} isActions={true}
-                           rows={rowsProject}
+                           rows={rows}
                            isFilter={true}/>
                 </div>
                 {/*<div className={"flex md:w-[37.5%] w-screen"}>*/}

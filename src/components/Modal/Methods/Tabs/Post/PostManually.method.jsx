@@ -3,7 +3,7 @@ import { BsImage } from "react-icons/bs";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { MdOutlineSell } from "react-icons/md";
 import DefaultButton from "../../../../Form/DefaultButton.jsx";
-import Status from "../../../../Subcomponents/Status.jsx";
+import StatusBool from "../../../../Subcomponents/StatusBool.jsx";
 import {useTranslation} from "react-i18next";
 
 function PostManuallyMethod() {
@@ -91,12 +91,12 @@ function PostManuallyMethod() {
                         {/* عرض حالة التحميل */}
                         {uploadError ? (
                             <div className="flex flex-col w-full items-start gap-1">
-                                <Status status={false} titleFalse={"Failed to upload to the file"} />
+                                <StatusBool status={false} titleFalse={"Failed to upload to the file"} />
                                 <span className="text-sm text-red-500 cursor-pointer">{t("Try Again")}</span>
                             </div>
                         ) : uploadedFile ? (
                             <div className="w-full flex items-center justify-between">
-                                <Status status={true} titleTrue={t("Uploaded")} />
+                                <StatusBool status={true} titleTrue={t("Uploaded")} />
                                 <div className={"flex gap-2 items-center border-2 rounded-lg px-2 py-1"}>
                                     {uploadedFile.type.startsWith("image/") && (
                                         <img
@@ -111,7 +111,7 @@ function PostManuallyMethod() {
                                 </div>
                             </div>
                         ) : (
-                            <Status status={false} titleFalse={t("No file uploaded")} />
+                            <StatusBool status={false} titleFalse={t("No file uploaded")} />
                         )}
                     </div>
                 </div>
