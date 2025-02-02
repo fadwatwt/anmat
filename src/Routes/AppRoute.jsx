@@ -11,6 +11,7 @@ import CreateProjectForm from "../pages/Projects/Components/CreateProjectForm/Cr
 import ProjectDetailes from "../pages/Projects/Components/ProjectDetails/ProjectDetailes.jsx";
 import TaskDetails from "../pages/Tasks/TaskDetailes/TaskDetails.jsx";
 import CreateTask from "../pages/Tasks/CreateTask.jsx";
+import EmployeeProfilePage from "../pages/HR/pages/EmployeeProfile.page.jsx";
 
 function AppRoute() {
     return (
@@ -27,6 +28,7 @@ function AppRoute() {
             <Route path={"/social-media"} element={<SocialMediaPage/>}></Route>
             <Route path={"/settings"} element={<SettingPage/>}></Route>
             <Route path={"/hr-management"} element={<HRManagementPage/>}></Route>
+            <Route path={"/employee-profile/:slug"} element={<EmployeeProfilePage />}></Route>
         </Routes>
     );
 }

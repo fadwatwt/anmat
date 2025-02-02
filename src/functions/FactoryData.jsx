@@ -377,5 +377,71 @@ const rowsEmployees = [
     rowEmployee1, rowEmployee2, rowEmployee3, rowEmployee4,
 ];
 
+const employees = [
+    {
+        id:"1",
+        name: "Fatma Ahmed Moh",
+        role: "Product Manager",
+        department: "Publishing",
+        jobType: "Full-time",
+        salary: "1500$",
+        rating: 90,
+        imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+    },
+    {
+        id:"2",
+        name: "Ali Hassan",
+        role: "Software Engineer",
+        department: "Development",
+        jobType: "Full-time",
+        salary: "2500$",
+        rating: 80,
+        imageProfile: "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        id:"3",
+        name: "Sara Khaled",
+        role: "UX Designer",
+        department: "Design",
+        jobType: "Part-time",
+        salary: "1800$",
+        rating: 85,
+        imageProfile: "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+        id:"5",
+        name: "Fatma Ahmed Moh",
+        role: "Product Manager",
+        department: "Publishing",
+        jobType: "Full-time",
+        salary: "1500$",
+        rating: 90,
+        imageProfile: "https://images.squarespace-cdn.com/content/v1/58865912a5790a87a29447e5/1501777422700-0WW6HYF16XLP8ZTJ0PMU/Image+Profile+Photography2.jpg"
+    },
+    {
+        id:"6",
+        name: "Ali Hassan",
+        role: "Software Engineer",
+        department: "Development",
+        jobType: "Full-time",
+        salary: "2500$",
+        rating: 80,
+        imageProfile: "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        id:"7",
+        name: "Sara Khaled",
+        role: "UX Designer",
+        department: "Design",
+        jobType: "Part-time",
+        salary: "1800$",
+        rating: 85,
+        imageProfile: "https://randomuser.me/api/portraits/women/2.jpg"
+    }
+];
 
-export {tasks,date1,date2,members,rowsTask,rowsProject,activityLogs,comments,attachments,filterOptions,rowsEmployees}
+
+export {tasks,date1,date2,
+    members,rowsTask,rowsProject,
+    activityLogs,comments,attachments,
+    filterOptions,rowsEmployees,employees}

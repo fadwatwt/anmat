@@ -2,8 +2,8 @@
 import Page from "../Page.jsx";
 import Tabs from "../../components/Tabs.jsx";
 import EmployeesTap from "./Tabs/Employees.tap.jsx";
-import AddingAnEmployeeModal from "./modals/AddingAnEmployeeModal.jsx";
 import {useState} from "react";
+import AddingAnEmployeeModal from "./modals/AddingAnEmployeeModal.jsx";
 
 function HrManagementPage() {
     const [isAddEmployeeModal,setIsAddEmployeeModal] = useState(false)
@@ -37,11 +37,13 @@ function HrManagementPage() {
     const handelAddEmployeeModal = () => {
         setIsAddEmployeeModal(!isAddEmployeeModal)
     }
+
     return (
         <>
         <Page title={"HR Management"} isBtn={true} btnOnClick={handelAddEmployeeModal} btnTitle={"Add an Employee"}>
             <Tabs tabs={tabsData}/>
         </Page>
+
             <AddingAnEmployeeModal isOpen={isAddEmployeeModal} onClose={handelAddEmployeeModal}  />
         </>
     );

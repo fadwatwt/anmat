@@ -14,7 +14,7 @@ import {TfiImport} from "react-icons/tfi";
 import SelectWithoutLabel from "../Form/SelectWithoutLabel.jsx";
 import useDropdown from "../../Hooks/useDropdown.js";
 
-function Table({ title,className, headers, rows, isActions, handelEdit, handelDelete,isFilter }) {
+function Table({ title,classContainer,className, headers, rows,isTitle=true, isActions,isCheckInput=true, handelEdit, handelDelete,isFilter }) {
     const {t,i18n} = useTranslation()
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [selectedRows, setSelectedRows] = useState(rows.map(() => false));
@@ -62,43 +62,50 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
 
     return (
         <div
-            className={"rounded-lg md:w-full w-[48rem]  pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-700 p-3 flex flex-col gap-4 bg-white"}>
-            <div className={"flex justify-between items-baseline"}>
-                <p className={"text-gray-800 text-start text-sm dark:text-gray-400 w-7/12"}>{t(title)}</p>
-                <div className={"flex gap-2 w-full justify-end "}>
-                    <SearchInput/>
-                    <div className={"flex gap-2"}>
-                        {
-                            isFilter && (
-                                <SelectWithoutLabel title={"Filter by"} className={"w-[94px] h-[36px]"}/>
-                            )
-                        }
-                        <button
-                            className={"flex dark:text-gray-400 text-sm items-baseline p-2  gap-2 rounded-lg border border-gray-200 dark:border-gray-600"}>
-                            <TfiImport size={15}/>
-                            {t("Export")}
-                        </button>
+            className={"rounded-lg md:w-full pb-10 dark:bg-gray-800 border border-gary-200 dark:border-gray-700 p-3 flex flex-col gap-4 bg-white " +(classContainer ?classContainer :"w-[48rem]")}>
+            {
+                isTitle &&
+                <div className={"flex justify-between items-baseline"}>
+                    <p className={"text-gray-800 text-start text-sm dark:text-gray-400 w-7/12"}>{t(title)}</p>
+                    <div className={"flex gap-2 w-full justify-end "}>
+                        <SearchInput/>
+                        <div className={"flex gap-2"}>
+                            {
+                                isFilter && (
+                                    <SelectWithoutLabel title={"Filter by"} className={"w-[94px] h-[36px]"}/>
+                                )
+                            }
+                            <button
+                                className={"flex dark:text-gray-400 text-sm items-baseline p-2  gap-2 rounded-lg border border-gray-200 dark:border-gray-600"}>
+                                <TfiImport size={15}/>
+                                {t("Export")}
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <div className={"flex flex-col gap-5 justify-center dark:bg-gray-800 w-full dark:text-gray-400"}>
-            <table
-                className={" relative table-auto w-full" + className}
-                style={{ borderSpacing: "0 1px" }}
-            >
-                <thead>
-                <tr className="bg-weak-100 dark:bg-gray-800">
-                    <th className="px-1 pt-1 w-5 rounded-tl-lg rounded-bl-lg dark:bg-gray-900">
-                        <input
-                            className={"checkbox-custom"}
-                            type="checkbox"
-                            checked={isAllSelected}
-                            onChange={handleHeaderCheckboxChange}
-                        />
-                    </th>
-                    {headers.map((header, index) => (
-                        <th
-                            key={index}
+            }
+
+            <div className={"flex flex-col gap-5 justify-center dark:bg-gray-800 w-full dark:text-gray-400"}>
+                <table
+                    className={" relative table-auto w-full" + className}
+                    style={{borderSpacing: "0 1px"}}
+                >
+                    <thead>
+                    <tr className="bg-weak-100 dark:bg-gray-800">
+                        {
+                            isCheckInput &&
+                            <th className="px-1 pt-1 w-5 rounded-tl-lg rounded-bl-lg dark:bg-gray-900">
+                                <input
+                                    className={"checkbox-custom"}
+                                    type="checkbox"
+                                    checked={isAllSelected}
+                                    onChange={handleHeaderCheckboxChange}
+                                />
+                            </th>
+                        }
+                        {headers.map((header, index) => (
+                            <th
+                                key={index}
                             className="p-2 font-normal text-start text-sm dark:bg-gray-900"
                             style={{
                                 width: header.width || "auto",
@@ -106,7 +113,7 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
                                 borderBottomRightRadius: index === headers.length - 1 ? "8px" : "0px",
                             }}
                         >
-                            {header.label}
+                            {t(header.label)}
                         </th>
                     ))}
                 </tr>
@@ -117,14 +124,18 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
                         key={rowIndex + startIndex}
                         className="hover:bg-gray-100 w-full dark:hover:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
                     >
-                        <td className="px-1 py-6 w-2 " style={{ borderBottomLeftRadius: "8px" }}>
-                            <input
-                                className={"checkbox-custom"}
-                                type="checkbox"
-                                checked={selectedRows[rowIndex + startIndex]}
-                                onChange={() => handleRowCheckboxChange(rowIndex + startIndex)}
-                            />
-                        </td>
+                        {
+                            isCheckInput &&
+                            <td className="px-1 py-6 w-2 " style={{borderBottomLeftRadius: "8px"}}>
+                                <input
+                                    className={"checkbox-custom"}
+                                    type="checkbox"
+                                    checked={selectedRows[rowIndex + startIndex]}
+                                    onChange={() => handleRowCheckboxChange(rowIndex + startIndex)}
+                                />
+                            </td>
+                        }
+
                         {row.map((cell, cellIndex) => (
                             <td
                                 key={cellIndex}
@@ -206,6 +217,7 @@ function Table({ title,className, headers, rows, isActions, handelEdit, handelDe
 Table.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
+    classContainer: PropTypes.string,
     isActions: PropTypes.bool,
     handelEdit: PropTypes.func,
     handelDelete: PropTypes.func,
@@ -216,7 +228,9 @@ Table.propTypes = {
         })
     ).isRequired,
     rows: PropTypes.arrayOf(PropTypes.array).isRequired,
-    isFilter:PropTypes.bool
+    isFilter:PropTypes.bool,
+    isCheckInput:PropTypes.bool,
+    isTitle:PropTypes.bool
 };
 
 export default Table;

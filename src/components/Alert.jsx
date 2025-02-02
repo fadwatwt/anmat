@@ -3,8 +3,17 @@ import {IoCheckmarkCircle, IoWarning} from "react-icons/io5";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function Alert({type,title,message ,isOpen,onClose ,titleSubmitBtn,titleCancelBtn}) {
+function Alert({type,title,message ,isOpen,onClose ,isBtns = true,titleSubmitBtn,titleCancelBtn,onSubmit}) {
     const {t} = useTranslation()
+    const handleSubmit = () => {
+        onSubmit(true);
+        onClose();
+    };
+
+    const handleCancel = () => {
+        onSubmit(false);
+        onClose();
+    };
     switch (type) {
         case "success":
            return (
@@ -15,10 +24,14 @@ function Alert({type,title,message ,isOpen,onClose ,titleSubmitBtn,titleCancelBt
                        </div>
                        <div className={"flex flex-col justify-center items-center"}>
                            <p className={"text-center text-md dark:text-gray-200"}>{t(title)}</p>
-                           <p className={"text-center text-md dark:text-sub-300 text-sub-500 "}>{t(message)}</p>
+                           <p className={"text-center text-wrap text-md dark:text-sub-300 text-sub-500 "}>{t(message)}</p>
                        </div>
                    </div>
-                   <CustomBtns titleSubmitBtn={titleSubmitBtn} titleCancelBtn={titleCancelBtn} onClose={onClose} onSubmit={() => {}} />
+                   {
+                       isBtns &&
+                       <CustomBtns titleSubmitBtn={titleSubmitBtn} titleCancelBtn={titleCancelBtn}  onClose={handleCancel}
+                                   onSubmit={handleSubmit} />
+                   }
                </Modal>
            )
         case "warning":
@@ -30,11 +43,14 @@ function Alert({type,title,message ,isOpen,onClose ,titleSubmitBtn,titleCancelBt
                         </div>
                         <div className={"flex flex-col justify-center items-center"}>
                             <p className={"text-center text-md dark:text-gray-200"}>{t(title)}</p>
-                            <p className={"text-center text-md dark:text-sub-300 text-sub-500 "}>{t(message)}</p>
+                            <p className={"text-center text-wrap text-md dark:text-sub-300 text-sub-500 "}>{t(message)}</p>
                         </div>
                     </div>
-                    <CustomBtns titleSubmitBtn={titleSubmitBtn}
-                                titleCancelBtn={titleCancelBtn}  onClose={onClose} onSubmit={() => {}} />
+                    {
+                        isBtns &&
+                        <CustomBtns titleSubmitBtn={titleSubmitBtn} titleCancelBtn={titleCancelBtn}  onClose={handleCancel}
+                                    onSubmit={handleSubmit} />
+                    }
                 </Modal>
             )
     }
@@ -71,10 +87,12 @@ Alert.propTypes = {
     title: PropTypes.string,
     type: PropTypes.string,
     message: PropTypes.string,
+    isBtns:PropTypes.bool,
     isOpen: PropTypes.bool,
     onClose: PropTypes.func,
     titleSubmitBtn: PropTypes.string,
     titleCancelBtn: PropTypes.string,
+    onSubmit:PropTypes.func
 }
 
 export default Alert;
