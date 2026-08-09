@@ -136,18 +136,18 @@ export default function KnowledgeBasePage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                  <th className="text-start px-4 py-3 font-medium">{t("Title")}</th>
-                  <th className="text-start px-4 py-3 font-medium">{t("Category")}</th>
-                  <th className="text-start px-4 py-3 font-medium">{t("Tags")}</th>
-                  <th className="text-start px-4 py-3 font-medium">{t("Added")}</th>
-                  <th className="text-end px-4 py-3 font-medium">{t("Actions")}</th>
+                  <th className="text-start px-4 py-3 font-bold">{t("Title")}</th>
+                  <th className="text-start px-4 py-3 font-bold">{t("Category")}</th>
+                  <th className="text-start px-4 py-3 font-bold">{t("Tags")}</th>
+                  <th className="text-start px-4 py-3 font-bold">{t("Added")}</th>
+                  <th className="text-end px-4 py-3 font-bold">{t("Actions")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
                 {entries.map((entry) => (
                   <tr key={entry._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-gray-900 dark:text-white truncate max-w-xs">{entry.title}</p>
+                      <p className="text-gray-900 dark:text-white truncate max-w-xs">{entry.title}</p>
                       <p className="text-xs text-gray-400 mt-0.5 truncate max-w-xs">{entry.content?.slice(0, 80)}...</p>
                     </td>
                     <td className="px-4 py-3">

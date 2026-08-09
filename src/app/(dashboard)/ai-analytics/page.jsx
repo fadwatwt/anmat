@@ -220,19 +220,19 @@ const AnalyticsPage = () => {
                     <table className="min-w-full divide-y divide-gray-150 dark:divide-gray-800">
                       <thead className="bg-gray-50 dark:bg-gray-800/50">
                         <tr>
-                          <th className="px-6 py-4 text-left text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
                             {t("Transaction Type")}
                           </th>
-                          <th className="px-6 py-4 text-left text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
                             {t("Amount (Tokens)")}
                           </th>
-                          <th className="px-6 py-4 text-left text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
                             {t("Balance After")}
                           </th>
-                          <th className="px-6 py-4 text-left text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
                             {t("Date")}
                           </th>
-                          <th className="px-6 py-4 text-left text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
                             {t("Description")}
                           </th>
                         </tr>
@@ -240,19 +240,19 @@ const AnalyticsPage = () => {
                       <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-150 dark:divide-gray-800">
                         {historyData.transactions.map((tx) => (
                           <tr key={tx._id} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm">
                               {getTransactionTypeBadge(tx.type)}
                             </td>
                             <td className={`px-6 py-4 whitespace-nowrap text-sm font-bold ${getTransactionAmountClass(tx.type)}`}>
                               {getFormattedAmount(tx.amount, tx.type)}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                               {tx.balance_after?.toLocaleString()}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                               {format(new Date(tx.created_at || tx.date), "MMM dd, yyyy HH:mm", { locale: getDateLocale() })}
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300 font-medium">
+                            <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
                               {tx.description}
                             </td>
                           </tr>

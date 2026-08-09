@@ -24,6 +24,59 @@ export const dashboardSideMenuItems = [
     },
 
     // ═══════════════════════════════════════════
+    // Section: My Work (Employee only — يظهر أولاً للموظف)
+    // ═══════════════════════════════════════════
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Projects',
+        path: '/employee/projects',
+        icon: <NoteText />,
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Tasks',
+        path: '/employee/tasks',
+        icon: <TaskSquare />,
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Agenda',
+        path: '/appointments',
+        icon: <CalendarTick />,
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Attendance',
+        path: '/attendance',
+        icon: <Calendar />
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Salary',
+        path: '/salary',
+        icon: <EmptyWallet />
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Short Leaves',
+        path: '/leaves',
+        icon: <Stickynote size={20} />
+    },
+    {
+        section: 'My Work',
+        allowed_to: ['Employee'],
+        title: 'My Requests',
+        path: '/requests',
+        icon: <Stickynote />
+    },
+
+    // ═══════════════════════════════════════════
     // Section: Work Management (إدارة العمل)
     // ═══════════════════════════════════════════
     {
@@ -52,59 +105,6 @@ export const dashboardSideMenuItems = [
     },
 
     // ═══════════════════════════════════════════
-    // Section: My Work (Employee only)
-    // ═══════════════════════════════════════════
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'My Projects',
-        path: '/employee/projects',
-        icon: <NoteText />,
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'My Tasks',
-        path: '/employee/tasks',
-        icon: <TaskSquare />,
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'My Agenda',
-        path: '/appointments',
-        icon: <CalendarTick />,
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'Attendance',
-        path: '/attendance',
-        icon: <Calendar />
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'Salary',
-        path: '/salary',
-        icon: <EmptyWallet />
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'Short Leave Requests',
-        path: '/leaves',
-        icon: <Stickynote size={20} />
-    },
-    {
-        section: 'My Work',
-        allowed_to: ['Employee'],
-        title: 'Requests',
-        path: '/requests',
-        icon: <Stickynote />
-    },
-
-    // ═══════════════════════════════════════════
     // Section: Team Management (إدارة الفريق)
     // ═══════════════════════════════════════════
     {
@@ -116,15 +116,10 @@ export const dashboardSideMenuItems = [
         permission_any_of: [
             'employee_details.list',
             'departments.list',
+            'teams.list',
             'positions.list',
-            'attendances.track_all',
-            'attendances.track_department',
-            'leaves.track_all',
-            'leaves.track_department',
-            'salary_transactions.track_all',
-            'salary_transactions.track_department',
-            'employee_requests.track_all',
-            'employee_requests.track_department',
+            'meetings.list',
+            'holidays.list',
         ],
         children: [
             {
@@ -156,30 +151,6 @@ export const dashboardSideMenuItems = [
                 title: 'Holidays',
                 path: '/hr/holidays',
                 permission_any_of: ['holidays.list'],
-            },
-            {
-                allowed_to: ['Employee'],
-                title: 'Attendance',
-                path: '/hr/attendances',
-                permission_any_of: ['attendances.track_all', 'attendances.track_department'],
-            },
-            {
-                allowed_to: ['Employee'],
-                title: 'Leaves',
-                path: '/hr/leaves',
-                permission_any_of: ['leaves.track_all', 'leaves.track_department'],
-            },
-            {
-                allowed_to: ['Employee'],
-                title: 'Payroll',
-                path: '/hr/salary',
-                permission_any_of: ['salary_transactions.track_all', 'salary_transactions.track_department'],
-            },
-            {
-                allowed_to: ['Employee'],
-                title: 'Employee Requests',
-                path: '/hr/requests',
-                permission_any_of: ['employee_requests.track_all', 'employee_requests.track_department'],
             },
         ]
     },

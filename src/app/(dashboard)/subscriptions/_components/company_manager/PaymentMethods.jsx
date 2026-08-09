@@ -1,17 +1,22 @@
 "use client"
 import { useState } from "react";
 import DropdownMenu from "@/components/Dropdowns/DropdownMenu";
-import { useGetPaymentMethodsQuery, useSetDefaultPaymentMethodMutation } from "@/redux/payment-methods/paymentMethodsApi";
+import { useDeletePaymentMethodMutation, useGetPaymentMethodsQuery, useSetDefaultPaymentMethodMutation } from "@/redux/payment-methods/paymentMethodsApi";
 import { RiMastercardFill, RiVisaFill, RiBankCardFill } from "@remixicon/react";
 import { useTranslation } from "react-i18next";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
+import ApprovalAlert from "@/components/Alerts/ApprovalAlert";
+import EditPaymentMethodModal from "./partials/EditPaymentMethodModal.jsx";
 
 function PaymentMethods() {
     const { t } = useTranslation();
     const { data: cardData = [], isLoading } = useGetPaymentMethodsQuery();
     const [setDefaultPm] = useSetDefaultPaymentMethodMutation();
+    const [deletePaymentMethod, { isLoading: isDeleting }] = useDeletePaymentMethodMutation();
     const [apiResponse, setApiResponse] = useState({ isOpen: false, status: "", message: "" });
+    const [deleteAlert, setDeleteAlert] = useState({ isOpen: false, card: null });
+    const [editModal, setEditModal] = useState({ isOpen: false, card: null });
 
     const getAttr = (attributes, key) => attributes?.find(a => a.key === key)?.value || "";
 
@@ -26,6 +31,27 @@ function PaymentMethods() {
                 message: error?.data?.message || t("Failed to update default payment method"),
             });
         }
+    }
+
+    const handleDelete = async () => {
+        const card = deleteAlert.card;
+        if (!card) return;
+        try {
+            await deletePaymentMethod(card._id).unwrap();
+            setDeleteAlert({ isOpen: false, card: null });
+            setApiResponse({ isOpen: true, status: "success", message: t("Payment method deleted successfully") });
+        } catch (error) {
+            setDeleteAlert({ isOpen: false, card: null });
+            setApiResponse({
+                isOpen: true,
+                status: "error",
+                message: error?.data?.message || t("Failed to delete payment method"),
+            });
+        }
+    }
+
+    const handleEdit = (card) => {
+        setEditModal({ isOpen: true, card });
     }
 
     const handleResponseClose = () => {
@@ -89,7 +115,7 @@ function PaymentMethods() {
                                                             <div className="flex flex-col items-start justify-start gap-2 w-44">
                                                                 <button
                                                                     onClick={() => handleSetDefault(card._id)}
-                                                                    className="w-full px-3 py-3 text-sm border-b dark:border-gray-700 dark:text-gray-200 flex gap-2 items-center text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+                                                                    className="w-full px-3 py-3 text-sm border-b dark:border-gray-700 dark:text-gray-200 flex gap-2 items-center text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 select-none cursor-pointer whitespace-nowrap"
                                                                 >
                                                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path d="M7.5 14.25C3.77198 14.25 0.75 11.228 0.75 7.5C0.75 3.77198 3.77198 0.75 7.5 0.75C11.228 0.75 14.25 3.77198 14.25 7.5C14.25 11.228 11.228 14.25 7.5 14.25ZM6.82703 10.2L11.5993 5.42707L10.6448 4.47263L6.82703 8.2911L4.91745 6.38153L3.963 7.33598L6.82703 10.2Z" fill="#2D9F75" />
@@ -133,14 +159,18 @@ function PaymentMethods() {
 
                                         {/* actions */}
                                         <div className="flex items-start justify-center gap-4">
-                                            <button 
-                                                className="text-sm bg-white text-red-700 px-4 py-2 w-96 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200 disabled:opacity-50"
-                                                disabled
+                                            <button
+                                                onClick={() => setDeleteAlert({ isOpen: true, card })}
+                                                disabled={isDeleting}
+                                                className="text-sm bg-white text-red-700 px-4 py-2 w-96 rounded-lg hover:bg-red-50 transition-colors border border-red-200 disabled:opacity-50"
                                             >
                                                 {t("Delete Card")}
                                             </button>
-                                            <button className="text-sm bg-primary-100 text-primary-600 px-4 py-2 w-96 rounded-lg hover:bg-primary-600 hover:text-primary-100 transition-colors">
-                                                {t("Change")}
+                                            <button
+                                                onClick={() => handleEdit(card)}
+                                                className="text-sm bg-primary-100 text-primary-600 px-4 py-2 w-96 rounded-lg hover:bg-primary-600 hover:text-primary-100 transition-colors"
+                                            >
+                                                {t("Edit Payment Method")}
                                             </button>
                                         </div>
 
@@ -151,6 +181,23 @@ function PaymentMethods() {
                     )
                 }
             </div>
+
+            <EditPaymentMethodModal
+                isOpen={editModal.isOpen}
+                onClose={() => setEditModal({ isOpen: false, card: null })}
+                paymentMethod={editModal.card}
+            />
+
+            <ApprovalAlert
+                isOpen={deleteAlert.isOpen}
+                onClose={() => setDeleteAlert({ isOpen: false, card: null })}
+                onConfirm={handleDelete}
+                title={t("Delete Payment Method")}
+                message={t("Are you sure you want to delete this payment method?")}
+                confirmBtnText={t("Delete")}
+                cancelBtnText={t("Cancel")}
+                type="danger"
+            />
 
             <ApiResponseAlert
                 isOpen={apiResponse.isOpen}

@@ -76,7 +76,7 @@ export default function SalaryTab() {
         className="w-10 h-10 rounded-full object-cover"
       />
       <div className="flex flex-col">
-        <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{row.employee.name}</span>
+                <span className="text-sm text-gray-900 dark:text-gray-100">{row.employee.name}</span>
         <span className="text-xs text-gray-500 dark:text-gray-400">{row.employee.email}</span>
       </div>
     </div>,

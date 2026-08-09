@@ -8,7 +8,7 @@ import Modal from "@/components/Modal/Modal.jsx";
 import InputAndLabel from "@/components/Form/InputAndLabel.jsx";
 import MonthInput from "@/components/Form/MonthInput";
 import { useTranslation } from "react-i18next";
-import { useCreatePaymentMethodMutation } from "@/redux/payment-methods/paymentMethodsApi";
+import { useUpdatePaymentMethodMutation } from "@/redux/payment-methods/paymentMethodsApi";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 
 const detectCardBrand = (number) => {
@@ -20,58 +20,66 @@ const detectCardBrand = (number) => {
   return "Card";
 };
 
-function AddNewPaymentModal({ isOpen, onClose }) {
+const getAttr = (attributes, key) => attributes?.find(a => a.key === key)?.value || "";
+
+function EditPaymentMethodModal({ isOpen, onClose, paymentMethod }) {
   const { t } = useTranslation();
-  const [createPaymentMethod, { isLoading }] = useCreatePaymentMethodMutation();
+  const [updatePaymentMethod, { isLoading }] = useUpdatePaymentMethodMutation();
   const [apiResponse, setApiResponse] = useState({ isOpen: false, status: "", message: "" });
+
+  const existingName = getAttr(paymentMethod?.attributes, "name");
+  const existingExpMonth = getAttr(paymentMethod?.attributes, "exp_month");
+  const existingExpYear = getAttr(paymentMethod?.attributes, "exp_year");
+  const existingExpDate = existingExpMonth && existingExpYear
+    ? `${existingExpYear}-${String(existingExpMonth).padStart(2, "0")}`
+    : "";
 
   const formik = useFormik({
     initialValues: {
-      nameOnCard: "",
+      nameOnCard: existingName || "",
       cardNumber: "",
-      expirationDate: "",
+      expirationDate: existingExpDate || "",
       cvv: "",
-      isDefault: false,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       nameOnCard: Yup.string().required(t("Required")),
       cardNumber: Yup.string()
-        .required(t("Required"))
         .matches(/^\d{13,19}$/, t("Invalid card number")),
-      expirationDate: Yup.string()
-        .required(t("Required"))
-        .matches(/^\d{4}-\d{2}$/, t("Invalid expiration date")),
+      expirationDate: Yup.string().matches(/^\d{4}-\d{2}$/, t("Invalid expiration date")),
       cvv: Yup.string()
-        .required(t("Required"))
         .matches(/^\d{3,4}$/, t("Invalid CVV")),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const [expYear, expMonth] = values.expirationDate.split("-");
-        const last4 = values.cardNumber.slice(-4);
-        const brand = detectCardBrand(values.cardNumber);
+        const attributes = [
+          { key: "name", value: values.nameOnCard },
+        ];
 
-        const body = {
-          type: "CARD",
-          is_default: values.isDefault,
-          attributes: [
-            { key: "name", value: values.nameOnCard },
-            { key: "last4", value: last4 },
-            { key: "brand", value: brand },
+        if (values.cardNumber) {
+          attributes.push(
+            { key: "last4", value: values.cardNumber.slice(-4) },
+            { key: "brand", value: detectCardBrand(values.cardNumber) },
+          );
+        }
+
+        if (values.expirationDate) {
+          const [expYear, expMonth] = values.expirationDate.split("-");
+          attributes.push(
             { key: "exp_month", value: expMonth },
             { key: "exp_year", value: expYear },
-          ],
-        };
+          );
+        }
 
-        await createPaymentMethod(body).unwrap();
+        await updatePaymentMethod({ id: paymentMethod._id, attributes }).unwrap();
         resetForm();
-        setApiResponse({ isOpen: true, status: "success", message: t("Payment method added successfully") });
+        setApiResponse({ isOpen: true, status: "success", message: t("Payment method updated successfully") });
         onClose();
       } catch (error) {
         setApiResponse({
           isOpen: true,
           status: "error",
-          message: error?.data?.message || t("Failed to add payment method"),
+          message: error?.data?.message || t("Failed to update payment method"),
         });
       }
     },
@@ -86,7 +94,7 @@ function AddNewPaymentModal({ isOpen, onClose }) {
         btnApplyTitle={isLoading ? t("Saving...") : t("Save")}
         onClick={formik.handleSubmit}
         className={"lg:w-4/12 md:w-8/12 sm:w-6/12 w-11/12 p-4"}
-        title={t("Add New Payment Method")}
+        title={t("Edit Payment Method")}
       >
         <div className="px-1">
           <div className="flex flex-col gap-4">
@@ -117,7 +125,6 @@ function AddNewPaymentModal({ isOpen, onClose }) {
                   ? formik.errors.cardNumber
                   : ""
               }
-              isRequired={true}
             />
 
             <div className="flex items-start gap-4 justify-between">
@@ -134,7 +141,6 @@ function AddNewPaymentModal({ isOpen, onClose }) {
                       ? formik.errors.expirationDate
                       : ""
                   }
-                  isRequired={true}
                 />
               </div>
 
@@ -151,28 +157,9 @@ function AddNewPaymentModal({ isOpen, onClose }) {
                       ? formik.errors.cvv
                       : ""
                   }
-                  isRequired={true}
                 />
               </div>
             </div>
-
-            <div className="flex gap-2 items-start">
-              <input
-                type="checkbox"
-                className="mt-1"
-                checked={formik.values.isDefault}
-                onChange={(e) => formik.setFieldValue("isDefault", e.target.checked)}
-              />
-              <div className="flex flex-col gap-0">
-                <span className="text-sm text-gray-700 dark:text-gray-200">
-                  {t("Save this method as default")}
-                </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {t("It will save your payment method as the default option.")}
-                </span>
-              </div>
-            </div>
-
           </div>
         </div>
       </Modal>
@@ -187,9 +174,10 @@ function AddNewPaymentModal({ isOpen, onClose }) {
   );
 }
 
-AddNewPaymentModal.propTypes = {
+EditPaymentMethodModal.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
+  paymentMethod: PropTypes.object,
 };
 
-export default AddNewPaymentModal;
+export default EditPaymentMethodModal;

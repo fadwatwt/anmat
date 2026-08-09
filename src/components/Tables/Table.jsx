@@ -567,7 +567,7 @@ function Table({
                         <thead>
                             <tr className="bg-status-bg">
                                 {isCheckInput && (
-                                    <th className="px-1 pt-1 w-5 rounded-tl-lg rounded-bl-lg">
+                                    <th className="px-1 pt-1 w-5 text-sm rounded-tl-lg rounded-bl-lg">
                                         <input
                                             className="checkbox-custom"
                                             type="checkbox"
@@ -579,7 +579,7 @@ function Table({
                                 {headers?.map((header, index) => (
                                     header && <th
                                         key={index}
-                                        className="p-2 md:p-4 text-start text-sm font-semibold text-cell-primary whitespace-nowrap"
+                                        className="p-2 md:p-4 text-start text-sm font-bold text-cell-primary whitespace-nowrap"
                                         style={{
                                             width: header.width || "auto",
                                             borderTopRightRadius: index === headers.length - 1 ? "8px" : "0px",
@@ -610,7 +610,7 @@ function Table({
                                         }}
                                     >
                                         {isCheckInput && (
-                                            <td className="px- py-6 text-center" style={{ borderBottomLeftRadius: "8px" }}>
+                                            <td className="px- py-6 text-sm text-center" style={{ borderBottomLeftRadius: "8px" }}>
                                                 <input
                                                     className={"checkbox-custom"}
                                                     type="checkbox"
@@ -632,7 +632,7 @@ function Table({
                                             const rowActions = typeof customActions === "function" ? customActions(actualRowIndex) : customActions;
                                             if (!isActions && !rowActions) return null;
                                             return (
-                                                <td className={"dropdown-container px-2 py-4 md:py-6"}>
+                                                <td className={"dropdown-container px-2 py-4 text-sm md:py-6"}>
                                                     <PiDotsThreeVerticalBold
                                                         className="cursor-pointer"
                                                         onClick={(e) => handleDropdownToggle(actualRowIndex, e)}

@@ -1,3 +1,4 @@
+"use client";
 import Modal from "@/components/Modal/Modal.jsx";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";

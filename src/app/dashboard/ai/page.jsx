@@ -469,7 +469,7 @@ const AssistantPage = () => {
                                                 <thead className="bg-gray-50 dark:bg-gray-800">
                                                   <tr>
                                                     {msg.table.headers.map((header, i) => (
-                                                      <th key={i} className="px-6 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider">{header}</th>
+                                                      <th key={i} className="px-6 py-3 text-left text-sm font-bold text-gray-700 dark:text-gray-200">{header}</th>
                                                     ))}
                                                   </tr>
                                                 </thead>

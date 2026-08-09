@@ -134,7 +134,7 @@ export default function EmployeeRequests() {
             alt={request.employee?.name}
           />
           <div className="flex flex-col">
-            <span className="font-semibold text-sm text-table-title">{request.employee?.name || 'N/A'}</span>
+            <span className="text-sm text-table-title">{request.employee?.name || 'N/A'}</span>
             <span className="text-xs text-cell-secondary">{request.department?.name || ''}</span>
           </div>
         </div>

@@ -4,9 +4,9 @@
       "C:\\Program Files\\nodejs\\node.exe",
       "H:\\Company\\anmaat-system\\anmat_front-main\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "--config",
-      "playwright.subscriber.config.js",
-      "--project=subscriber-setup"
+      "--config=playwright.subscriber.config.js",
+      "--grep",
+      "modal on \\/hr\\/holidays|modal on \\/hr\\/teams|modal on \\/support-tickets|creates a support ticket from the UI"
     ],
     "configFile": "H:\\Company\\anmaat-system\\anmat_front-main\\playwright.subscriber.config.js",
     "rootDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
@@ -52,7 +52,7 @@
         "testDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
         "testIgnore": [],
         "testMatch": [
-          "/subscriber-check\\.spec\\.js/"
+          "/(subscriber-check|subscriber-operations)\\.spec\\.js/"
         ],
         "timeout": 240000
       }
@@ -105,12 +105,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2852,
+                  "duration": 2826,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-05T11:01:31.690Z",
+                  "startTime": "2026-08-09T11:31:01.046Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -124,13 +124,183 @@
           "column": 1
         }
       ]
+    },
+    {
+      "title": "subscriber-check.spec.js",
+      "file": "subscriber-check.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Subscriber dashboard check",
+          "file": "subscriber-check.spec.js",
+          "line": 149,
+          "column": 6,
+          "specs": [
+            {
+              "title": "modal on /hr/holidays opens and renders content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "subscriber-check",
+                  "projectName": "subscriber-check",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20048,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T11:31:05.214Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c1b6cb05af3080eddfb1-7058415c7bb3b8a96e4b",
+              "file": "subscriber-check.spec.js",
+              "line": 220,
+              "column": 5
+            },
+            {
+              "title": "modal on /hr/teams opens and renders content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "subscriber-check",
+                  "projectName": "subscriber-check",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19919,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T11:31:25.478Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c1b6cb05af3080eddfb1-95f6bb7c19dfb22fedd0",
+              "file": "subscriber-check.spec.js",
+              "line": 220,
+              "column": 5
+            },
+            {
+              "title": "modal on /support-tickets opens and renders content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "subscriber-check",
+                  "projectName": "subscriber-check",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18137,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T11:31:45.419Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c1b6cb05af3080eddfb1-11f5eb0321fb412b6438",
+              "file": "subscriber-check.spec.js",
+              "line": 220,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "subscriber-operations.spec.js",
+      "file": "subscriber-operations.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Subscriber operations",
+          "file": "subscriber-operations.spec.js",
+          "line": 36,
+          "column": 6,
+          "specs": [
+            {
+              "title": "creates a support ticket from the UI",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "subscriber-check",
+                  "projectName": "subscriber-check",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3273,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T11:32:03.603Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2002d62ab8205fcaf05c-ba81e49233dc312c5dd9",
+              "file": "subscriber-operations.spec.js",
+              "line": 91,
+              "column": 3
+            }
+          ]
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-05T11:01:30.796Z",
-    "duration": 4516.665000000001,
-    "expected": 1,
+    "startTime": "2026-08-09T11:31:00.062Z",
+    "duration": 69332.84599999999,
+    "expected": 5,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

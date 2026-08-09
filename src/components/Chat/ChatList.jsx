@@ -8,16 +8,25 @@ import { formatDistanceToNow } from "date-fns";
 import { getDateLocale } from "@/lib/dateLocale";
 import { Search, MessageSquare, SquarePen } from "lucide-react";
 import { useSelector } from "react-redux";
-import { selectUserId, selectUserType } from "@/redux/auth/authSlice";
+import { selectUserId, selectUserType, selectUser } from "@/redux/auth/authSlice";
 import { usePermission } from "@/Hooks/usePermission";
 import NewConversationModal from "./NewConversationModal";
 
 const ChatList = ({ activeChatId, onSelectChat }) => {
   const { t } = useTranslation();
   const userId = useSelector(selectUserId);
+  const user = useSelector(selectUser);
   const isAdmin = useSelector(selectUserType) === "Admin";
   const hasInitiatePermission = usePermission("chats.initiate");
-  const canInitiateChat = isAdmin || hasInitiatePermission;
+  const hasCrossDeptScope = usePermission("chats.cross_department_scope");
+  const hasDepartment = !!user?.employee_detail?.department_id;
+  // Employees need chats.initiate AND (a department OR the cross-department
+  // scope) to actually start a conversation; without both the backend rejects
+  // the create, so the button must not be shown.
+  const canInitiateChat =
+    isAdmin ||
+    (hasInitiatePermission &&
+      (user?.type !== "Employee" || hasCrossDeptScope || hasDepartment));
   const [searchQuery, setSearchQuery] = useState("");
   const [showArchived, setShowArchived] = useState(false);
   const [showNewChat, setShowNewChat] = useState(false);

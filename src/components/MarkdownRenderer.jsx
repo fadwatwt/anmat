@@ -76,11 +76,11 @@ export default function MarkdownRenderer({ content }) {
           table({ children }) {
             return (
               <div className="overflow-x-auto my-2">
-                <table className="w-full text-[13px] border-collapse border border-gray-200 dark:border-gray-700">{children}</table>
+                <table className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">{children}</table>
               </div>
             );
           },
-          th({ children }) { return <th className="border border-gray-200 dark:border-gray-700 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 font-medium text-left">{children}</th>; },
+          th({ children }) { return <th className="border border-gray-200 dark:border-gray-700 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 font-bold text-left">{children}</th>; },
           td({ children }) { return <td className="border border-gray-200 dark:border-gray-700 px-3 py-1.5 text-gray-900 dark:text-gray-100">{children}</td>; },
         }}
       >

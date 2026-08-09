@@ -95,8 +95,8 @@ function AttendanceTab() {
         className="w-10 h-10 rounded-full object-cover"
       />
       <div className="flex flex-col">
-        <span className="text-sm font-medium text-cell-primary whitespace-normal leading-tight">
-          {record.employee?.name || "N/A"}
+                <span className="text-sm text-cell-primary whitespace-normal leading-tight">
+                    {record.employee?.name || "N/A"}
         </span>
         <span className="text-cell-secondary text-[11px] whitespace-normal leading-tight mt-0.5">
           {record.employee?.email || "N/A"}

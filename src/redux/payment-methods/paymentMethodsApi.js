@@ -25,6 +25,21 @@ export const paymentMethodsApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["PaymentMethods"],
         }),
+        updatePaymentMethod: builder.mutation({
+            query: ({ id, ...body }) => ({
+                url: `api/subscriber/payment-methods/${id}`,
+                method: "PATCH",
+                body,
+            }),
+            invalidatesTags: ["PaymentMethods"],
+        }),
+        deletePaymentMethod: builder.mutation({
+            query: (id) => ({
+                url: `api/subscriber/payment-methods/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["PaymentMethods"],
+        }),
     }),
 });
 
@@ -32,4 +47,6 @@ export const {
     useGetPaymentMethodsQuery,
     useCreatePaymentMethodMutation,
     useSetDefaultPaymentMethodMutation,
+    useUpdatePaymentMethodMutation,
+    useDeletePaymentMethodMutation,
 } = paymentMethodsApi;

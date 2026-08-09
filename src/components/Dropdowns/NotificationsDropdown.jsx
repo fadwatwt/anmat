@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserId, selectUserType } from "@/redux/auth/authSlice";
 import { useMarkAllNotificationsAsReadMutation, useMarkNotificationAsReadMutation } from "@/redux/api/notificationsApi";
 import { markAllAsRead as markAllAsReadAction, markRead as markReadAction } from "@/redux/notifications/notificationsSlice";
+import { getNotificationRoute } from "@/functions/notificationRouting";
 
 const MODEL_TYPE_CONFIG = {
   Task: { icon: RiTaskLine, color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-100 dark:bg-violet-900/40" },
@@ -172,6 +173,21 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
     }
   };
 
+  const handleOpenNotification = async (notification) => {
+    setIsMenuOpen(false);
+    const route = getNotificationRoute(notification);
+    const nId = notification.id || notification._id;
+    if (!notification.isRead && nId) {
+      try {
+        await markAsReadApi(nId).unwrap();
+        dispatch(markReadAction(nId));
+      } catch (error) {
+        console.error("Failed to mark notification as read:", error);
+      }
+    }
+    router.push(route || "/notifications");
+  };
+
   return (
     <div className="w-10 relative" ref={notificationRef}>
       <div
@@ -228,6 +244,7 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
                   return (
                   <div
                     key={notification.id}
+                    onClick={() => handleOpenNotification(notification)}
                     className={`flex items-center gap-3 p-3 border-b dark:border-gray-700 last:border-0 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50 ${!notification.isRead ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''}`}
                   >
                     <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${modelConfig.bg}`}>

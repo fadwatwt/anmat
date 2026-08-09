@@ -2,8 +2,8 @@ const fs = require("path") && require("fs");
 const path = require("path");
 
 const root = path.join(__dirname, "..");
-const arPath = path.join(root, "public/locale/ar/translation.json");
-const enPath = path.join(root, "public/locale/en/translation.json");
+const arPath = path.join(root, "public/locales/ar/translation.json");
+const enPath = path.join(root, "public/locales/en/translation.json");
 
 const ar = JSON.parse(fs.readFileSync(arPath, "utf8"));
 const en = JSON.parse(fs.readFileSync(enPath, "utf8"));

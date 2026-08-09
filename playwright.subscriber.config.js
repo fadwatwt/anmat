@@ -33,7 +33,7 @@ module.exports = defineConfig({
     },
     {
       name: 'subscriber-check',
-      testMatch: /subscriber-check\.spec\.js/,
+      testMatch: /(subscriber-check|subscriber-operations)\.spec\.js/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'e2e/.auth/subscriber.json',

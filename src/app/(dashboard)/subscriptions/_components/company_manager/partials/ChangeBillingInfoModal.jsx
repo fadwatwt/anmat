@@ -169,7 +169,7 @@ function ChangeBillingInfoModal({ isOpen, onClose }) {
           />
 
           <SelectAndLabel
-            title={"State/Region"}
+            title={t("State/Region")}
             name="state"
             value={formik.values.state} // Ensure it’s controlled
             onChange={(val) => formik.setFieldValue("state", val)} // Send _id
@@ -180,7 +180,7 @@ function ChangeBillingInfoModal({ isOpen, onClose }) {
                 ? formik.errors.state
                 : ""
             }
-            placeholder={"Select State..."}
+            placeholder={t("Select State...")}
             isRequired={true}
           />
 

@@ -186,11 +186,11 @@ function EmployeesTap() {
           }}
         />,
         <div key={`contact-${index}`} className="flex flex-col gap-1">
-          <p className="text-sm font-medium dark:text-gray-200">{userData.email || "N/A"}</p>
+          <p className="text-sm dark:text-gray-200">{userData.email || "N/A"}</p>
           <p className="text-xs text-gray-500 dark:text-gray-400">{userData.phone || "N/A"}</p>
         </div>,
         <div key={`department-${index}`} className="flex flex-col">
-          <p className="text-sm dark:text-sub-300 font-semibold">
+          <p className="text-sm dark:text-sub-300">
             {employee.department?.name || employee.department_id?.name || t("N/A")}
           </p>
           <p className="text-xs text-gray-400 capitalize">{employee.country}, {employee.city}</p>

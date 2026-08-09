@@ -59,7 +59,7 @@ const DropdownMenu = ({button, content, removeDefaultButtonStyling=false}) => {
                 <div
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    className={`absolute right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-[1050]`}
+                    className={`absolute end-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-[1050] select-none`}
                 >
                     {content}
                 </div>

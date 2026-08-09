@@ -97,7 +97,7 @@ function AiMessageContent({ text, className = "" }) {
             </thead>
           ),
           th: ({ children, ...props }) => (
-            <th className="border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-start font-semibold text-gray-700 dark:text-gray-300" {...props}>
+            <th className="border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-start font-bold text-gray-700 dark:text-gray-300" {...props}>
               {children}
             </th>
           ),

@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 import Page from "@/components/Page.jsx";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { getNotificationRoute } from "@/functions/notificationRouting";
 import { useGetMyNotificationsQuery } from "@/redux/api/notificationsApi";
 import {
   useMarkNotificationAsReadMutation,
@@ -340,7 +342,7 @@ const FILTER_OPTIONS = [
   { value: "read", label: "Read" },
 ];
 
-function NotificationCard({ notification, onMarkAsRead, onViewDetails }) {
+function NotificationCard({ notification, onMarkAsRead, onOpen }) {
   const { t, i18n } = useTranslation();
   const priority = PRIORITY_CONFIG[notification.priority] || PRIORITY_CONFIG.normal;
   const status = STATUS_CONFIG[notification.status] || STATUS_CONFIG.pending;
@@ -379,7 +381,7 @@ function NotificationCard({ notification, onMarkAsRead, onViewDetails }) {
 
   return (
     <div
-      onClick={() => onViewDetails(notification)}
+      onClick={() => onOpen(notification)}
       className={`relative flex items-stretch rounded-2xl border transition-all cursor-pointer hover:shadow-md ${
         isUnread
           ? "border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-800"
@@ -456,6 +458,7 @@ function NotificationCard({ notification, onMarkAsRead, onViewDetails }) {
 const NotificationsPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const router = useRouter();
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
@@ -502,7 +505,15 @@ const NotificationsPage = () => {
     }
   };
 
-  const handleViewDetails = (notification) => {
+  const handleOpenNotification = async (notification) => {
+    const route = getNotificationRoute(notification);
+    if (route) {
+      if (notification.status !== "read") {
+        await handleMarkAsRead(notification.id || notification._id);
+      }
+      router.push(route);
+      return;
+    }
     setSelectedNotification(notification);
     setIsDetailsModalOpen(true);
   };
@@ -588,7 +599,7 @@ const NotificationsPage = () => {
                   key={notification.id || notification._id}
                   notification={notification}
                   onMarkAsRead={handleMarkAsRead}
-                  onViewDetails={handleViewDetails}
+                  onOpen={handleOpenNotification}
                 />
               ))}
             </div>

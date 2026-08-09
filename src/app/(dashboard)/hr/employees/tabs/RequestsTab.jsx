@@ -178,11 +178,11 @@ function RequestsTab() {
             <div key={req.id + "_name"} className="flex items-center gap-3">
                 <img src={`https://ui-avatars.com/api/?name=${req.employee?.name || "User"}`} className="w-8 h-8 rounded-full border border-status-border" alt="" />
                 <div className="flex flex-col text-left">
-                    <span className="text-sm font-semibold text-cell-primary">{req.employee?.name || "N/A"}</span>
-                    <span className="text-[10px] text-cell-secondary font-medium">{req.employee?.email || "N/A"}</span>
+                    <span className="text-sm text-cell-primary">{req.employee?.name || "N/A"}</span>
+                    <span className="text-[10px] text-cell-secondary">{req.employee?.email || "N/A"}</span>
                 </div>
             </div>,
-            <div key={req.id + "_created_at"} className="text-cell-secondary font-medium">
+            <div key={req.id + "_created_at"} className="text-cell-secondary">
                 {req.created_at ? format(new Date(req.created_at), "dd MMM yyyy", { locale: getDateLocale() }) : "N/A"}
             </div>
         ];
@@ -203,30 +203,30 @@ function RequestsTab() {
                         {!req.vacation_end_date && req.vacation_date && format(new Date(req.vacation_date), " yyyy", { locale: getDateLocale() })}
                     </div>
                 </div>,
-                <div key={req.id + "_reason"} className="text-cell-secondary font-medium truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
+                <div key={req.id + "_reason"} className="text-cell-secondary truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
             ];
         } else if (activeTab === "SALARY_ADVANCE") {
             specificCells = [
                 <div key={req.id + "_advance"} className="text-cell-primary font-bold text-sm">${req.advance_salary_by || "N/A"}</div>,
-                <div key={req.id + "_old_salary"} className="text-cell-secondary font-medium text-xs">${req.old_salary_amount || "N/A"}</div>,
-                <div key={req.id + "_reason"} className="text-cell-secondary font-medium truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
+                <div key={req.id + "_old_salary"} className="text-cell-secondary text-xs">${req.old_salary_amount || "N/A"}</div>,
+                <div key={req.id + "_reason"} className="text-cell-secondary truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
             ];
         } else if (activeTab === "SHORT_LEAVE") {
             specificCells = [
                 <div key={req.id + "_leave_date"} className="text-cell-primary font-bold text-xs">
                     {req.leave_date || "N/A"}
                 </div>,
-                <div key={req.id + "_leave_time"} className="text-cell-secondary font-medium text-xs">
+                <div key={req.id + "_leave_time"} className="text-cell-secondary text-xs">
                     {req.leave_start_time || ""} - {req.leave_end_time || ""}
                 </div>,
-                <div key={req.id + "_reason"} className="text-cell-secondary font-medium truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
+                <div key={req.id + "_reason"} className="text-cell-secondary truncate max-w-[200px]" title={req.reason}>{req.reason || "N/A"}</div>
             ];
         } else { // WORK_DELAY
             specificCells = [
                 <div key={req.id + "_due"} className="text-cell-primary font-bold text-xs">
                     {req.work_due_at ? format(new Date(req.work_due_at), "dd MMM yyyy HH:mm", { locale: getDateLocale() }) : "N/A"}
                 </div>,
-                <div key={req.id + "_reason"} className="text-cell-secondary font-medium truncate max-w-[250px]" title={req.reason}>{req.reason || "N/A"}</div>
+                <div key={req.id + "_reason"} className="text-cell-secondary truncate max-w-[250px]" title={req.reason}>{req.reason || "N/A"}</div>
             ];
         }
 
@@ -282,7 +282,7 @@ function RequestsTab() {
                 {showViewUpdate && (
                     <button
                         onClick={() => handleEdit(rowIndex)}
-                        className="w-full px-4 py-2 text-sm text-cell-primary flex gap-3 items-center text-left hover:bg-status-bg transition-colors font-medium"
+                        className="w-full px-4 py-2 text-sm text-cell-primary flex gap-3 items-center text-left hover:bg-status-bg transition-colors"
                     >
                         {isLocked || !canUpdate ? t("View Details") : t("Update Status")}
                     </button>
@@ -290,7 +290,7 @@ function RequestsTab() {
                 {canDelete && (
                     <button
                         onClick={() => handleDelete(rowIndex)}
-                        className="w-full px-4 py-2 text-sm text-left flex items-center text-red-500 gap-3 hover:bg-status-bg transition-colors font-medium"
+                        className="w-full px-4 py-2 text-sm text-left flex items-center text-red-500 gap-3 hover:bg-status-bg transition-colors"
                     >
                         {t("Delete")}
                     </button>
@@ -384,4 +384,3 @@ function RequestsTab() {
 }
 
 export default RequestsTab;
-
