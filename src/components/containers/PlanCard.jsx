@@ -21,7 +21,12 @@ function PlanCard({
     })).filter(p => p.is_active !== false);
 
     const { t } = useTranslation();
-    const [selectedLocalIndex, setSelectedLocalIndex] = useState(0);
+    const [selectedLocalIndex, setSelectedLocalIndex] = useState(() => {
+        const requestedIndex = pricingWithOptions.findIndex(
+            (p) => p.originalIndex === initialPricingIndex
+        );
+        return requestedIndex >= 0 ? requestedIndex : 0;
+    });
 
     const handlePriceChange = (localIndex) => {
         setSelectedLocalIndex(localIndex);

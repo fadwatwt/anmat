@@ -1,0 +1,339 @@
+{
+  "pages": [
+    {
+      "route": "/dashboard",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/projects",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/projects/create",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/tasks",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/tasks/create",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/appointments",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/appointments/create",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/employees",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/departments",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/teams",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/positions",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/meetings",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/holidays",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/attendances",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/leaves",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/requests",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/hr/salary",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/roles/employees",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/permissions",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/conversations",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/social-media",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/social-media/categories",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai-analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/notifications",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/support-tickets",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/subscriptions",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/setting",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/profile",
+      "ok": true,
+      "errors": []
+    }
+  ],
+  "apiOperations": [
+    {
+      "op": "projects.list",
+      "ok": true
+    },
+    {
+      "op": "projects.create",
+      "ok": true,
+      "id": "6a79c7aeb5fcb03e35dd2bcb"
+    },
+    {
+      "op": "projects.delete",
+      "ok": true
+    },
+    {
+      "op": "tasks.list",
+      "ok": true
+    },
+    {
+      "op": "tasks.create",
+      "ok": true,
+      "id": "6a79c7b8b5fcb03e35dd2c7f"
+    },
+    {
+      "op": "tasks.delete",
+      "ok": true
+    },
+    {
+      "op": "departments.list",
+      "ok": true
+    },
+    {
+      "op": "departments.create",
+      "ok": true,
+      "id": "6a79c7beb5fcb03e35dd2ce4"
+    },
+    {
+      "op": "departments.delete",
+      "ok": true
+    },
+    {
+      "op": "positions.list",
+      "ok": true
+    },
+    {
+      "op": "positions.create",
+      "ok": true,
+      "id": "6a79c7c3b5fcb03e35dd2d47"
+    },
+    {
+      "op": "positions.delete",
+      "ok": true
+    },
+    {
+      "op": "teams.list",
+      "ok": true
+    },
+    {
+      "op": "teams.create",
+      "ok": true,
+      "id": "6a79c7c9b5fcb03e35dd2dac"
+    },
+    {
+      "op": "teams.delete",
+      "ok": true
+    },
+    {
+      "op": "meetings.list",
+      "ok": true
+    },
+    {
+      "op": "meetings.create",
+      "ok": true,
+      "id": "6a79c7cdb5fcb03e35dd2dd8"
+    },
+    {
+      "op": "meetings.delete",
+      "ok": true
+    },
+    {
+      "op": "holidays.list",
+      "ok": true
+    },
+    {
+      "op": "holidays.create",
+      "ok": true,
+      "id": "6a79c7d0b5fcb03e35dd2def"
+    },
+    {
+      "op": "holidays.delete",
+      "ok": true
+    },
+    {
+      "op": "appointments.list",
+      "ok": true
+    },
+    {
+      "op": "appointments.create",
+      "ok": true,
+      "id": "6a79c7d4b5fcb03e35dd2e07"
+    },
+    {
+      "op": "appointments.delete",
+      "ok": true
+    },
+    {
+      "op": "employees.list",
+      "ok": true
+    },
+    {
+      "op": "subscriber.roles.list",
+      "ok": true
+    },
+    {
+      "op": "leaves.list",
+      "ok": true
+    },
+    {
+      "op": "leaves.create",
+      "ok": true
+    },
+    {
+      "op": "leaves.cleanup",
+      "ok": true
+    },
+    {
+      "op": "attendances.list",
+      "ok": true
+    },
+    {
+      "op": "salary-transactions.list",
+      "ok": true
+    },
+    {
+      "op": "employee-requests.list",
+      "ok": true
+    },
+    {
+      "op": "organization.get",
+      "ok": true
+    },
+    {
+      "op": "subscriptions.get",
+      "ok": true
+    },
+    {
+      "op": "notifications.list",
+      "ok": true
+    },
+    {
+      "op": "support-tickets.list",
+      "ok": true
+    }
+  ],
+  "uiOperations": [
+    {
+      "op": "support-ticket.create-ui",
+      "ok": true,
+      "title": "PW Full Ticket 1786365942139"
+    },
+    {
+      "op": "department.visible-in-ui",
+      "ok": true
+    },
+    {
+      "op": "department.cleanup",
+      "ok": true
+    }
+  ],
+  "summary": {
+    "pagesTotal": 31,
+    "pagesOk": 31,
+    "apiTotal": 36,
+    "apiOk": 36,
+    "uiTotal": 3,
+    "uiOk": 3,
+    "modalsTotal": 0,
+    "modalsOpened": 0,
+    "fatalErrors": 0
+  }
+}

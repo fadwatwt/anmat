@@ -1,0 +1,207 @@
+{
+  "pages": [
+    {
+      "route": "/dashboard",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/system-admins",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/roles/admins",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/permissions/admins",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/industries",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/subscribers",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/plans",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/plans/ai-plans",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/money-receiving",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/translations",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai-analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/notifications",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/support-tickets",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/setting",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/conversations",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/profile",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/subscriptions",
+      "ok": true,
+      "errors": []
+    }
+  ],
+  "apiOperations": [
+    {
+      "op": "admin.roles.create",
+      "ok": true,
+      "id": "6a79ca7ab5fcb03e35dd3574"
+    },
+    {
+      "op": "admin.roles.delete",
+      "ok": true
+    },
+    {
+      "op": "admin.industries.create",
+      "ok": true,
+      "id": "6a79ca7cb5fcb03e35dd3582"
+    },
+    {
+      "op": "admin.industries.delete",
+      "ok": true
+    },
+    {
+      "op": "admin.subscribers.list",
+      "ok": true,
+      "count": 18
+    },
+    {
+      "op": "admin.plans.list",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "op": "admin.money-receiving.list",
+      "ok": true,
+      "count": 2
+    },
+    {
+      "op": "admin.analytics",
+      "ok": true,
+      "hasData": true
+    },
+    {
+      "op": "admin.activity-logs",
+      "ok": true
+    },
+    {
+      "op": "admin.notifications",
+      "ok": true
+    },
+    {
+      "op": "admin.support-tickets",
+      "ok": true
+    },
+    {
+      "op": "admin.ai.token-packages",
+      "ok": true
+    },
+    {
+      "op": "admin.ai.balance",
+      "ok": true
+    }
+  ],
+  "modals": [
+    {
+      "route": "/industries",
+      "opened": true,
+      "note": ""
+    },
+    {
+      "route": "/system-admins",
+      "opened": true,
+      "note": ""
+    },
+    {
+      "route": "/roles/admins",
+      "opened": true,
+      "note": ""
+    },
+    {
+      "route": "/plans",
+      "opened": true,
+      "note": ""
+    },
+    {
+      "route": "/money-receiving",
+      "opened": true,
+      "note": ""
+    },
+    {
+      "route": "/support-tickets",
+      "opened": true,
+      "note": "no-create-action-on-page (by design)"
+    },
+    {
+      "route": "/subscribers",
+      "opened": true,
+      "note": "no-create-action-on-page (by design)"
+    }
+  ],
+  "summary": {
+    "pagesTotal": 19,
+    "pagesOk": 19,
+    "apiTotal": 13,
+    "apiOk": 13,
+    "uiTotal": 0,
+    "uiOk": 0,
+    "modalsTotal": 7,
+    "modalsOpened": 7,
+    "fatalErrors": 0
+  }
+}

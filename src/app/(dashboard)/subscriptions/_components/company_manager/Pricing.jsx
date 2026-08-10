@@ -51,7 +51,7 @@ function Pricing() {
         const nextPlanInfo = {
             plan,
             price: selectedPricing.price,
-            priceId: plan.stripe_price_ids?.[idx],
+            priceId: selectedPricing.stripe_price_id || plan.stripe_price_ids?.[idx],
             trialDays: plan.trial?.is_active ? plan.trial?.trial_days : 0,
         };
 

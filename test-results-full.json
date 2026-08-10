@@ -1,0 +1,1427 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "H:\\Company\\anmaat-system\\anmat_front-main\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config=playwright.full.config.js",
+      "--project=full-admin"
+    ],
+    "configFile": "H:\\Company\\anmaat-system\\anmat_front-main\\playwright.full.config.js",
+    "rootDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "H:/Company/anmaat-system/anmat_front-main/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "full-admin",
+        "name": "full-admin",
+        "testDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/admin-full\\.spec\\.js/"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "H:/Company/anmaat-system/anmat_front-main/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "full-subscriber",
+        "name": "full-subscriber",
+        "testDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/subscriber-full\\.spec\\.js/"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "H:/Company/anmaat-system/anmat_front-main/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "full-employee",
+        "name": "full-employee",
+        "testDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/employee-full\\.spec\\.js/"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results-full.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report-full"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "admin-full.spec.js",
+      "file": "admin-full.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin full test",
+          "file": "admin-full.spec.js",
+          "line": 55,
+          "column": 6,
+          "specs": [
+            {
+              "title": "login via API returns valid admin token",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1168,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:49:32.003Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-e07e91a15b871f545ef1",
+              "file": "admin-full.spec.js",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "admin session is stored for UI tests",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2741,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:49:33.386Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-62a18311ea396c096f5a",
+              "file": "admin-full.spec.js",
+              "line": 70,
+              "column": 3
+            },
+            {
+              "title": "admin page /dashboard renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19939,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:49:36.159Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-9645a9d3faeafe2646f3",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /system-admins renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19600,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:49:56.137Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-00f15719c02e125fce30",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /roles/admins renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18973,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:50:15.763Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-f580500f89f8ee7fa590",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /permissions/admins renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19885,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:50:34.761Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-b8785571c0dbbbfd9164",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /industries renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18956,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:50:54.668Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-2c74689eccaf34680fce",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /subscribers renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21590,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:51:13.648Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-e5ac2c9fa184b433e6a2",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /plans renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19627,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:51:35.263Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-81ba2f3ef02069e809e2",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /plans/ai-plans renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19518,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:51:54.921Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-8a1cae9ed406b41745e4",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /money-receiving renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19482,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:52:14.468Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-43f4cc04dfc53967f994",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /translations renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18920,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:52:33.976Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-d94d5e28988de0926bdf",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /analytics renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21435,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:52:52.919Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-7577f7c7cfac7fc5178a",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /ai renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18859,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:53:14.381Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-f787a0f6dca81a716187",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /ai-analytics renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19127,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:53:33.266Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-0100b65f3c03c0738d44",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /notifications renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19358,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:53:52.417Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-2885ce27a9855d547364",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /support-tickets renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18983,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:54:11.796Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-c19f4e2789e54f29825a",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /setting renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19852,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:54:30.801Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-a5dbc50b00d7be30a027",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /conversations renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 50555,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:54:50.673Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-f80300718f040f2bf0b1",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /profile renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23978,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:55:41.252Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-55bb879b01a7244991d4",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin page /subscriptions renders without fatal errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19544,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:05.257Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-42fb24f38b0cea29d63b",
+              "file": "admin-full.spec.js",
+              "line": 82,
+              "column": 5
+            },
+            {
+              "title": "admin API: roles CRUD (list/create/delete)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2525,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:24.825Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-65fb400b2e38b9aa3170",
+              "file": "admin-full.spec.js",
+              "line": 100,
+              "column": 3
+            },
+            {
+              "title": "admin API: industries CRUD (list/create/delete)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2173,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:27.377Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-b58aac19de0de726efc9",
+              "file": "admin-full.spec.js",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "admin API: subscribers list and detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1522,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:29.568Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-983574f40353bd023a05",
+              "file": "admin-full.spec.js",
+              "line": 152,
+              "column": 3
+            },
+            {
+              "title": "admin API: subscription plans list",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1378,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:31.109Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-3c00299b4b6cf8eaf9ba",
+              "file": "admin-full.spec.js",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "admin API: money receiving methods list",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1363,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:32.505Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-a6022b6fa0ad2677730f",
+              "file": "admin-full.spec.js",
+              "line": 173,
+              "column": 3
+            },
+            {
+              "title": "admin API: analytics data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2621,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:33.889Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-dff155a318e76b2b64a3",
+              "file": "admin-full.spec.js",
+              "line": 183,
+              "column": 3
+            },
+            {
+              "title": "admin API: activity logs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2124,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:36.527Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-14dd3f8d953fb0fedade",
+              "file": "admin-full.spec.js",
+              "line": 192,
+              "column": 3
+            },
+            {
+              "title": "admin API: notifications",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3043,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:38.669Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-8cb0c007c11d9b8e1125",
+              "file": "admin-full.spec.js",
+              "line": 200,
+              "column": 3
+            },
+            {
+              "title": "admin API: support tickets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3426,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:41.734Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-20750fbcc40468b150db",
+              "file": "admin-full.spec.js",
+              "line": 208,
+              "column": 3
+            },
+            {
+              "title": "admin API: AI token packages and balance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1867,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:45.182Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-4b43149f2e7c264e4d59",
+              "file": "admin-full.spec.js",
+              "line": 216,
+              "column": 3
+            },
+            {
+              "title": "admin modal on /industries opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20748,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:56:47.066Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-fdbc9d4bbc724f76ae89",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /system-admins opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20532,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:57:07.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-05c050d27c626b16b70a",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /roles/admins opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19899,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:57:28.409Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-b89500a46f199c768b25",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /plans opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21072,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:57:48.334Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-32a2e3a79e5251c367a0",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /money-receiving opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 27359,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:58:09.430Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-2fec49193666f26834de",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /support-tickets opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21628,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:58:36.831Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-62518591b4ef03490f30",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            },
+            {
+              "title": "admin modal on /subscribers opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "full-admin",
+                  "projectName": "full-admin",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19996,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T12:58:58.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af8f182afea1d1c99fdd-6be3285986bddab7bfb0",
+              "file": "admin-full.spec.js",
+              "line": 229,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-10T12:49:30.790Z",
+    "duration": 588783.267,
+    "expected": 38,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LiaUser } from "react-icons/lia";
 import { GoMail } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import { useRegisterSubscriberEmailMutation } from "@/redux/auth/authAPI";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+
+const PLAN_INTERVAL_KEY = "anmat_plan_interval";
 
 function RegisterForm() {
     const { t } = useTranslation();
@@ -15,6 +17,18 @@ function RegisterForm() {
     const [error, setError] = useState("");
     const [isRedirecting, setIsRedirecting] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const interval = urlParams.get("interval");
+            if (interval === "month" || interval === "year") {
+                window.sessionStorage.setItem(PLAN_INTERVAL_KEY, interval);
+            }
+        } catch (error) {
+            console.error("Failed to store plan interval:", error);
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

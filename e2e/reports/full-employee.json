@@ -1,0 +1,167 @@
+{
+  "pages": [
+    {
+      "route": "/dashboard",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/employee/projects",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/employee/tasks",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/appointments",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/attendance",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/salary",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/leaves",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/requests",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/conversations",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/ai-analytics",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/notifications",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/support-tickets",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/setting",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "route": "/profile",
+      "ok": true,
+      "errors": []
+    }
+  ],
+  "apiOperations": [
+    {
+      "op": "employee.projects.list",
+      "ok": true
+    },
+    {
+      "op": "employee.tasks.list",
+      "ok": true
+    },
+    {
+      "op": "employee.appointments.list",
+      "ok": true
+    },
+    {
+      "op": "employee.attendances.list",
+      "ok": true
+    },
+    {
+      "op": "employee.salary.list",
+      "ok": true
+    },
+    {
+      "op": "employee.leaves.list",
+      "ok": true
+    },
+    {
+      "op": "employee.leaves.create",
+      "ok": true,
+      "id": "6a79c4a2b5fcb03e35dce819"
+    },
+    {
+      "op": "employee.leaves.cancel",
+      "ok": true
+    },
+    {
+      "op": "employee.requests.list",
+      "ok": true
+    },
+    {
+      "op": "employee.requests.create",
+      "ok": true,
+      "id": "6a79c4b0b5fcb03e35dce8a1"
+    },
+    {
+      "op": "employee.requests.cancel",
+      "ok": true
+    },
+    {
+      "op": "employee.attendances.check-in",
+      "ok": true,
+      "note": 400
+    },
+    {
+      "op": "employee.notifications.list",
+      "ok": true
+    },
+    {
+      "op": "employee.support-tickets.list",
+      "ok": true,
+      "note": 403
+    }
+  ],
+  "uiOperations": [
+    {
+      "op": "leave.form.open",
+      "ok": true
+    },
+    {
+      "op": "request.form.open",
+      "ok": true
+    }
+  ],
+  "summary": {
+    "pagesTotal": 16,
+    "pagesOk": 16,
+    "apiTotal": 14,
+    "apiOk": 14,
+    "uiTotal": 2,
+    "uiOk": 2,
+    "modalsTotal": 0,
+    "modalsOpened": 0,
+    "fatalErrors": 0
+  }
+}

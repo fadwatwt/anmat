@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Switch2 from "@/components/Form/Switch2";
 import PlanCard from "@/components/containers/PlanCard";
 import Modal from "@/components/Modal/Modal";
@@ -11,6 +11,14 @@ import { selectUser } from "@/redux/auth/authSlice";
 import { useGetSubscriberSubscriptionPlansQuery } from "@/redux/plans/subscriptionPlansApi";
 import { RiLoader4Line } from "@remixicon/react";
 
+const PLAN_INTERVAL_KEY = "anmat_plan_interval";
+
+const getStripePriceId = (plan, pricingIndex) => {
+    const pricing = plan.pricing?.[pricingIndex];
+    if (pricing?.stripe_price_id) return pricing.stripe_price_id;
+    return plan.stripe_price_ids?.[pricingIndex];
+};
+
 function Page() {
     const { t, i18n } = useTranslation();
     const user = useSelector(selectUser);
@@ -18,12 +26,27 @@ function Page() {
 
     const [selectedPlanInfo, setSelectedPlanInfo] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedInterval, setSelectedInterval] = useState("month");
+
+    useEffect(() => {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlInterval = urlParams.get("interval");
+            const storedInterval = window.sessionStorage.getItem(PLAN_INTERVAL_KEY);
+            const interval = urlInterval || storedInterval;
+            if (interval === "month" || interval === "year") {
+                setSelectedInterval(interval);
+            }
+        } catch (error) {
+            console.error("Failed to read plan interval:", error);
+        }
+    }, []);
 
     const handlePlanSelect = (plan, pricingIndex) => {
         setSelectedPlanInfo({
             plan,
             price: plan.pricing[pricingIndex].price,
-            priceId: plan.stripe_price_ids[pricingIndex],
+            priceId: getStripePriceId(plan, pricingIndex),
             trialDays: plan.trial?.is_active ? plan.trial?.trial_days : 0,
         });
         setIsModalOpen(true);
@@ -68,6 +91,9 @@ function Page() {
 
             <div className={"w-full flex flex-wrap justify-center items-stretch gap-8 px-4"}>
                 {activePlans.map((plan) => {
+                    const intervalPricingIndex = plan.pricing?.findIndex(
+                        (p) => p.interval === selectedInterval && p.is_active !== false
+                    );
                     return (
                         <PlanCard
                             key={plan._id}
@@ -76,6 +102,7 @@ function Page() {
                             features={plan.features}
                             pricing={plan.pricing}
                             trial={plan.trial}
+                            initialPricingIndex={intervalPricingIndex >= 0 ? intervalPricingIndex : 0}
                             onSelectPlan={(pricingIndex) => handlePlanSelect(plan, pricingIndex)}
                         />
                     );
