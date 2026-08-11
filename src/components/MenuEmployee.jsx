@@ -34,24 +34,21 @@ const MenuEmployee = React.memo(({ isSlidebarOpen, taggleSlidebarOpen }) => {
     // }
     return (
         <div
-            className={`md:relative md:translate-x-0 bg-surface w-[272px] max-w-[272px] 
-        h-screen fixed flex flex-col gap-5 top-0 z-40 transition-transform 
-        ${i18n.language === "ar" ? "right-0" : "left-0"} 
+            className={`md:relative md:translate-x-0 bg-surface w-[272px] max-w-[272px] h-screen fixed flex flex-col gap-5 top-0 z-40 transition-transform ${i18n.language === "ar" ? "right-0" : "left-0"} 
         ${isSlidebarOpen ? "translate-x-0" : (i18n.language === "ar" ? "translate-x-full" : "-translate-x-full")}`}
         >
-            <div className={" h-32 flex p-5 gap-2 border-b-2 dark:border-gray-600 items-center"}>
+            <div className={" h-32 flex p-5 gap-2 border-b-2 items-center border-status-border"}>
                 <div className={"profile-image"}>
                     <img src="/images/logo.png" alt={t("img")}
                         className={" w-10 h-10 rounded-full m-0 p-0"} />
                 </div>
                 <div className={"flex flex-col  gap-2 justify-center  "}>
-                    <p className={"text-sm dark:text-white text-start truncate w-28 md:w-full"}>{t("Employees Management")}</p>
-                    <p className={"text-xs dark:text-white text-gray-500 truncate w-28 md:w-full"}>{t("Employees & HR Management")}</p>
+                    <p className={"text-sm text-start truncate w-28 md:w-full"}>{t("Employees Management")}</p>
+                    <p className={"text-xs text-cell-secondary truncate w-28 md:w-full"}>{t("Employees & HR Management")}</p>
                 </div>
                 {
                     isSlidebarOpen && (
-                        <button className="inline-flex h-8 w-8 items-center p-2 text-sm text-gray-500
-                rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        <button className="inline-flex h-8 w-8 items-center p-2 text-sm text-cell-secondary rounded-lg md:hidden hover:bg-status-bg focus:outline-none focus:ring-2 focus:ring-status-border"
                             onClick={taggleSlidebarOpen}>
                             <HambergerMenu />
                         </button>
@@ -64,7 +61,7 @@ const MenuEmployee = React.memo(({ isSlidebarOpen, taggleSlidebarOpen }) => {
                     <SearchInput />
                 </div>
                 <div className={"flex  flex-col gap-2"}>
-                    <div className={"py-5 menu-list sm:py-0 flex flex-col gap-2 text-gray-500"}>
+                    <div className={"py-5 menu-list sm:py-0 flex flex-col gap-2 text-cell-secondary"}>
                         <MenuItem path={"/employee/analytics"} icon={<Chart21 />} title={"Analytics"} />
                         <MenuItem path={"/employee/projects"} icon={<NoteText />} title={"Projects"} />
                         <MenuItem path={"/employee/tasks"} icon={<TaskSquare />} title={"Tasks"} />

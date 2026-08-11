@@ -61,7 +61,7 @@ const PRIORITY_CONFIG = {
 
 const STATUS_CONFIG = {
   pending: {
-    badge: "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400",
+    badge: "bg-status-bg text-cell-secondary",
     label: "Pending",
   },
   delivered: {
@@ -136,8 +136,8 @@ const MODEL_TYPE_CONFIG = {
   },
   User: {
     icon: RiUserLine,
-    color: "text-gray-600 dark:text-gray-400",
-    bg: "bg-gray-100 dark:bg-gray-700",
+    color: "text-cell-secondary",
+    bg: "bg-status-bg",
   },
   EmailVerification: {
     icon: RiMailLine,
@@ -171,8 +171,8 @@ const MODEL_TYPE_CONFIG = {
   },
   default: {
     icon: RiFolderLine,
-    color: "text-gray-500 dark:text-gray-400",
-    bg: "bg-gray-100 dark:bg-gray-700",
+    color: "text-cell-secondary",
+    bg: "bg-status-bg",
   },
 };
 
@@ -372,7 +372,7 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
     if (diffMin < 60) return `${diffMin} ${t("min ago")}`;
     if (diffHr < 24) return `${diffHr} ${t("h ago")}`;
     if (diffDay < 7) return `${diffDay} ${t("d ago")}`;
-    return created.toLocaleDateString(t("ar") === "ar" ? "ar-EG" : "en-US", {
+    return created.toLocaleDateString(i18n.language === "ar" ? "ar-EG" : "en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -384,8 +384,8 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
       onClick={() => onOpen(notification)}
       className={`relative flex items-stretch rounded-2xl border transition-all cursor-pointer hover:shadow-md ${
         isUnread
-          ? "border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-800"
-          : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#20232D]/60"
+          ? "border-blue-200 dark:border-blue-800 bg-surface"
+          : "border-status-border bg-surface dark:bg-[#20232D]/60"
       }`}
     >
       <div className={`w-1.5 shrink-0 rounded-l-2xl ${priority.bar}`} />
@@ -405,8 +405,8 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
             <h3
               className={`text-sm leading-5 truncate ${
                 isUnread
-                  ? "font-bold text-gray-900 dark:text-white"
-                  : "font-medium text-gray-700 dark:text-gray-300"
+                  ? "font-bold text-cell-primary"
+                  : "font-medium text-cell-secondary"
               }`}
             >
               {title}
@@ -415,7 +415,7 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shrink-0" />
             )}
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">
+          <p className="text-xs text-cell-secondary truncate mt-0.5">
             {content}
           </p>
           {notification.model_type && notification.model_type !== "Custom" && (
@@ -426,7 +426,7 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
           )}
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           <span
             className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium ${status.badge}`}
           >
@@ -434,7 +434,7 @@ function NotificationCard({ notification, onMarkAsRead, onOpen }) {
           </span>
         </div>
 
-        <span className="text-[11px] text-gray-400 dark:text-gray-500 whitespace-nowrap shrink-0">
+        <span className="text-[11px] text-cell-secondary whitespace-nowrap shrink-0">
           {timeAgo}
         </span>
 
@@ -525,15 +525,15 @@ const NotificationsPage = () => {
 
   const HeaderActions = (
     <div className="flex items-center gap-3">
-      <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
+      <div className="flex items-center bg-status-bg rounded-xl p-1">
         {FILTER_OPTIONS.map((filter) => (
           <button
             key={filter.value}
             onClick={() => setActiveFilter(filter.value)}
             className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeFilter === filter.value
-                ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm"
-                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                ? "bg-surface text-blue-600 dark:text-blue-400 shadow-sm"
+                : "text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
             }`}
           >
             {t(filter.label)}
@@ -572,22 +572,22 @@ const NotificationsPage = () => {
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <RiLoader4Line className="animate-spin text-blue-500" size={40} />
-            <span className="text-gray-500 dark:text-gray-400 text-sm">
+            <span className="text-cell-secondary text-sm">
               {t("Loading notifications...")}
             </span>
           </div>
         ) : filteredNotifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <div className="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-status-bg flex items-center justify-center">
               <RiNotificationOffLine
-                className="text-gray-300 dark:text-gray-600"
+                className="text-gray-300"
                 size={36}
               />
             </div>
-            <h3 className="text-gray-500 dark:text-gray-400 text-base font-medium">
+            <h3 className="text-cell-secondary text-base font-medium">
               {t("No notifications")}
             </h3>
-            <p className="text-gray-400 dark:text-gray-500 text-sm text-center max-w-xs">
+            <p className="text-cell-secondary text-sm text-center max-w-xs">
               {t("You're all caught up! Notifications will appear here when you receive them.")}
             </p>
           </div>
@@ -609,11 +609,11 @@ const NotificationsPage = () => {
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="px-3 py-1.5 rounded-lg text-sm border border-gray-200 dark:border-gray-700 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="px-3 py-1.5 rounded-lg text-sm border border-status-border disabled:opacity-40 hover:bg-status-bg transition-colors"
                 >
                   {t("Previous")}
                 </button>
-                <span className="text-sm text-gray-500 dark:text-gray-400 px-3">
+                <span className="text-sm text-cell-secondary px-3">
                   {t("Page")} {currentPage} {t("of")} {pagination.totalPages}
                 </span>
                 <button
@@ -621,7 +621,7 @@ const NotificationsPage = () => {
                     setCurrentPage((p) => Math.min(pagination.totalPages, p + 1))
                   }
                   disabled={currentPage === pagination.totalPages}
-                  className="px-3 py-1.5 rounded-lg text-sm border border-gray-200 dark:border-gray-700 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="px-3 py-1.5 rounded-lg text-sm border border-status-border disabled:opacity-40 hover:bg-status-bg transition-colors"
                 >
                   {t("Next")}
                 </button>
@@ -650,7 +650,7 @@ function TableHeader({ title, count, actions }) {
       <div className="flex items-center gap-3">
         <p className="text-table-title text-start text-lg">{title}</p>
         {count > 0 && (
-          <span className="bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-medium px-2.5 py-1 rounded-lg">
+          <span className="bg-status-bg text-cell-secondary text-xs font-medium px-2.5 py-1 rounded-lg">
             {count}
           </span>
         )}

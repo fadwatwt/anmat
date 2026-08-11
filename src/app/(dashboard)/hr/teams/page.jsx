@@ -187,11 +187,11 @@ function TeamsPage() {
                 />,
                 <div key={`members-${index}`} className="flex items-center">
                     {members.length === 0 ? (
-                        <span className="text-sm text-gray-400">-</span>
+                        <span className="text-sm text-cell-secondary">-</span>
                     ) : (
                         <div className="flex -space-x-3 rtl:space-x-reverse overflow-hidden p-1">
                             {members.slice(0, 4).map((member, i) => (
-                                <div key={i} className="relative z-10 w-8 h-8 rounded-full border-2 border-white dark:border-gray-800">
+                                <div key={i} className="relative z-10 w-8 h-8 rounded-full border-2 border-white">
                                     <img
                                         src={avatarUrl(member.name, member.image)}
                                         alt={member.name || ""}
@@ -200,18 +200,18 @@ function TeamsPage() {
                                 </div>
                             ))}
                             {extraMembers > 0 && (
-                                <div className="relative z-20 flex items-center justify-center w-8 h-8 rounded-full border-2 border-white bg-gray-100 text-[10px] font-medium text-gray-600 dark:border-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                                <div className="relative z-20 flex items-center justify-center w-8 h-8 rounded-full border-2 border-white bg-status-bg text-[10px] font-medium text-cell-secondary">
                                     +{extraMembers}
                                 </div>
                             )}
                         </div>
                     )}
                 </div>,
-                <div key={`stats-${index}`} className="flex items-center text-sm text-gray-500 py-2">
-                    <span className="font-medium text-gray-600">{team.active_tasks_count ?? 0}</span>
+                <div key={`stats-${index}`} className="flex items-center text-sm text-cell-secondary py-2">
+                    <span className="font-medium text-cell-secondary">{team.active_tasks_count ?? 0}</span>
                 </div>,
-                <div key={`employees-${index}`} className="flex items-center text-sm text-gray-500 py-2">
-                    <span className="font-medium text-gray-600 px-4">{team.employees_count ?? members.length}</span>
+                <div key={`employees-${index}`} className="flex items-center text-sm text-cell-secondary py-2">
+                    <span className="font-medium text-cell-secondary px-4">{team.employees_count ?? members.length}</span>
                 </div>,
                 <button
                     key={`score-${index}`}
@@ -219,7 +219,7 @@ function TeamsPage() {
                         setSelectedTeam(team);
                         setIsOpenEvaluationModal(true);
                     }}
-                    className="flex items-center gap-1 px-3 py-1 border border-gray-200 bg-gray-50 rounded-lg text-sm hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-1 px-3 py-1 border border-status-border bg-status-bg rounded-lg text-sm hover:bg-status-bg transition-colors"
                 >
                     <RiStarLine className="text-orange-400" size={16} />
                     {team.score > 0 ? team.score : t("Rate")}
@@ -249,7 +249,7 @@ function TeamsPage() {
                             <div className="flex gap-2 items-center">
                                 <button
                                     onClick={() => setIsOpenSendNotificationModal(true)}
-                                    className="bg-[#EEF2FF] text-[#375DFB] px-4 py-2 rounded-lg text-sm font-medium">
+                                    className="bg-badge-bg text-primary-base px-4 py-2 rounded-lg text-sm font-medium">
                                     {t("Send Notification")}
                                 </button>
                                 <button

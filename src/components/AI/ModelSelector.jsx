@@ -27,7 +27,7 @@ const ModelSelector = ({ selectedModel, onSelectModel }) => {
         className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
       >
         <span className="text-base">{currentModel.icon}</span>
-        <span className="text-gray-700 dark:text-gray-300 font-medium hidden sm:inline">{currentModel.name}</span>
+        <span className="text-gray-700 dark:text-gray-300 font-medium inline">{currentModel.name}</span>
         <ChevronDown size={14} className={`text-gray-400 dark:text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
 

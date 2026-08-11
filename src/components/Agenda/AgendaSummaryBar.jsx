@@ -77,7 +77,7 @@ function AgendaSummaryBar() {
               <span className={`text-sm font-semibold ${stat.color}`}>
                 {stat.count}
               </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
                 {stat.label}
               </span>
             </div>

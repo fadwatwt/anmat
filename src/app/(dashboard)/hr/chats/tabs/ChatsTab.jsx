@@ -88,7 +88,7 @@ function ChatsTab() {
         );
 
         if (adminUsers.length === 0) {
-            return <span className="text-gray-400 text-sm">—</span>;
+            return <span className="text-cell-secondary text-sm">—</span>;
         }
 
         const visible = adminUsers.slice(0, 4);
@@ -99,14 +99,14 @@ function ChatsTab() {
                 {visible.map((admin, idx) => (
                     <div
                         key={admin?._id || idx}
-                        className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs font-bold text-gray-700"
+                        className="w-8 h-8 rounded-full bg-status-bg border-2 border-white flex items-center justify-center text-xs font-bold text-cell-secondary"
                         title={admin?.name}
                     >
                         {(admin?.name || "?").charAt(0).toUpperCase()}
                     </div>
                 ))}
                 {extra > 0 && (
-                    <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-300">
+                    <div className="w-8 h-8 rounded-full bg-status-bg border-2 border-white flex items-center justify-center text-xs font-bold text-cell-secondary">
                         +{extra}
                     </div>
                 )}
@@ -115,8 +115,8 @@ function ChatsTab() {
     };
 
     const tableRows = rows.map((row) => [
-        <div key={row._id} className="flex items-center gap-2 font-medium text-gray-900 dark:text-gray-200">
-            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 overflow-hidden flex items-center justify-center text-blue-600">
+        <div key={row._id} className="flex items-center gap-2 font-medium text-cell-primary">
+            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 overflow-hidden flex items-center justify-center text-blue-600 dark:text-blue-400">
                 {row.image ? (
                     <img src={row.image} alt={row.title} className="w-full h-full object-cover" />
                 ) : (
@@ -131,14 +131,14 @@ function ChatsTab() {
     ]);
 
     const customActions = (index) => (
-        <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10 border border-gray-200 dark:border-gray-700 p-1 flex flex-col">
-            <button onClick={() => handleView(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+        <div className="absolute right-0 mt-2 w-32 bg-surface rounded-md shadow-lg z-10 border border-status-border p-1 flex flex-col">
+            <button onClick={() => handleView(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                 <RiEyeLine size={16} className="text-blue-500" /> {t("View")}
             </button>
-            <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+            <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                 <RiPencilLine size={16} className="text-blue-500" /> {t("Edit")}
             </button>
-            <button onClick={() => handleDeleteClick(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left rounded-md">
+            <button onClick={() => handleDeleteClick(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left rounded-md dark:text-red-400">
                 <RiDeleteBinLine size={16} className="text-red-500" /> {t("Delete")}
             </button>
         </div>
@@ -184,10 +184,10 @@ function ChatsTab() {
                 className="lg:w-[30%] md:w-1/2 w-11/12 p-6"
             >
                 <div className="flex flex-col items-center text-center gap-4">
-                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-2">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-2 dark:bg-red-900/30">
                         <RiDeleteBinLine size={32} />
                     </div>
-                    <p className="text-gray-800 dark:text-gray-200 text-lg font-medium">
+                    <p className="text-cell-primary text-lg font-medium">
                         {t("Are you sure you want to delete")} <span className="font-bold">&quot;{selectedChat?.title}&quot;</span> {t("Group Chat?")}
                     </p>
                 </div>

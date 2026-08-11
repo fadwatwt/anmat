@@ -7,6 +7,8 @@ import "./hide-scrollbar.css";
 import ChatInput from "./ChatInput";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/auth/authSlice";
 
 // Remove GeminiIcon if not used elsewhere
 
@@ -35,6 +37,8 @@ const isDocument = (type, name) => {
 
 const AssistantPage = () => {
   const { t } = useTranslation();
+  const user = useSelector(selectUser);
+  const userName = user?.name || user?.first_name || t("User");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]); // Chat messages state
   const [loading, setLoading] = useState(false); // Loading state for AI response
@@ -302,7 +306,7 @@ const AssistantPage = () => {
 
   return (
       <Page isTitle={false}>
-        <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-900">
+        <div className="flex flex-col items-center bg-status-bg">
           <div className="flex flex-col w-full max-w-3xl mx-auto h-[80vh] max-h-[700px]">
             <div className="flex-1 overflow-y-auto hide-scrollbar p-8 gap-8 flex flex-col" ref={chatContainerRef}>
               {/* Hide welcome and suggestions after chat starts */}
@@ -310,17 +314,17 @@ const AssistantPage = () => {
                   <>
                     <div className="flex flex-col items-center gap-4 mt-12">
                       <img src="/images/AiAssistant/file.svg" alt={t("Assistant Logo")} style={{ width: '96px', height: '96px' }} />
-                      <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white mt-2">
-                        {t("Welcome")} <span className="text-primary-500 font-bold">Mai Haggag</span>,<br/>
+                      <h2 className="text-2xl font-semibold text-center text-cell-primary mt-2">
+                        {t("Welcome")} <span className="text-primary-500 font-bold">{userName}</span>,<br/>
                         <span className="font-normal">{t("Start your journey with")} <span className="font-semibold">{t("AI Assistant")}</span></span>
                       </h2>
-                      <p className="text-gray-400 text-center text-base max-w-xl">{t("Lorem ipsum dummy text Lorem ipsum dummy text")}</p>
+                      <p className="text-cell-secondary text-center text-base max-w-xl">{t("Lorem ipsum dummy text Lorem ipsum dummy text")}</p>
                     </div>
                     <div className="flex flex-row gap-4 justify-center mt-8 mb-12 w-full">
                       {suggestions.map((s, i) => (
                         <button
                           key={i}
-                          className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-3 text-gray-900 dark:text-gray-200 shadow-sm hover:bg-primary-50 dark:hover:bg-primary-900 transition text-base font-medium"
+                          className="bg-surface border border-status-border rounded-xl px-6 py-3 text-cell-primary shadow-sm hover:bg-primary-50 dark:hover:bg-primary-900 transition text-base font-medium"
                           onClick={() => setInput(t(s))}
                         >
                           {t(s)}
@@ -340,13 +344,13 @@ const AssistantPage = () => {
                                 <img
                                     src={USER_AVATAR}
                                     alt={t("User")}
-                                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
+                                    className="w-10 h-10 rounded-full object-cover border border-status-border"
                                 />
                                 <div className="flex flex-col items-start w-full max-w-[70%]">
                                   {editingIdx === idx ? (
                                       <div className="flex flex-col w-full">
                               <textarea
-                                  className="text-base text-gray-900 w-full font-sans font-semibold leading-relaxed box-border text-left outline-none border-none mb-2 resize-none"
+                                  className="text-base text-cell-primary w-full font-sans font-semibold leading-relaxed box-border text-left outline-none border-none mb-2 resize-none"
                                   style={{
                                     wordBreak: 'break-word',
                                     width: editDims[idx]?.width ? editDims[idx].width + 'px' : '100%',
@@ -360,13 +364,13 @@ const AssistantPage = () => {
                                   rows={1}
                               />
                                         <div className="flex gap-2 mt-1">
-                                          <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-gray-400 hover:text-primary-500"><Copy size={18} /></button>
-                                          <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-gray-400 hover:text-primary-500"><Save size={18} /></button>
+                                          <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><Copy size={18} /></button>
+                                          <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-cell-secondary hover:text-primary-500"><Save size={18} /></button>
                                         </div>
                                       </div>
                                   ) : (
                                       <>
-                                        <div ref={el => userEditRefs.current[idx] = el} className="text-base text-gray-900 w-full font-sans font-semibold leading-relaxed box-border text-left" style={{wordBreak: 'break-word'}}>
+                                        <div ref={el => userEditRefs.current[idx] = el} className="text-base text-cell-primary w-full font-sans font-semibold leading-relaxed box-border text-left" style={{wordBreak: 'break-word'}}>
                                           {msg.text}
                                           {msg.audio && (
                                             <audio controls src={msg.audio} className="mt-2" />
@@ -379,12 +383,12 @@ const AssistantPage = () => {
                                                     key={fileIdx}
                                                     src={file.url}
                                                     alt={file.name}
-                                                    className="max-w-full rounded-xl shadow border border-gray-100 cursor-pointer"
+                                                    className="max-w-full rounded-xl shadow border border-status-border cursor-pointer"
                                                     style={{ maxHeight: '400px' }}
                                                     onClick={() => setOpenImageUrl(file.url)}
                                                   />
                                               ) : (
-                                                <div key={fileIdx} className="rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow flex items-center w-full sm:w-[492px] min-h-[68px] px-4 sm:px-5 py-4 gap-2.5">
+                                                <div key={fileIdx} className="rounded-xl bg-surface border border-status-border shadow flex items-center w-full sm:w-[492px] min-h-[68px] px-4 sm:px-5 py-4 gap-2.5">
                                                   {/* Left icon */}
                                                   {isDocument(file.type, file.name) ? (
                                                     <span className="inline-flex items-center justify-center w-8 h-8 bg-primary-50 rounded-lg shrink-0">
@@ -397,7 +401,7 @@ const AssistantPage = () => {
                                                   )}
                                                   {/* File name center */}
                                                   <div className="flex-1 min-w-0">
-                                                    <div className="font-semibold text-base sm:text-lg text-gray-900 dark:text-gray-100 truncate">{file.name}</div>
+                                                    <div className="font-semibold text-base sm:text-lg text-cell-primary truncate">{file.name}</div>
                                                   </div>
                                                   {/* Download icon right */}
                                                   <a href={file.url} download={file.name} className="flex items-center justify-center text-primary-500 hover:text-primary-700 shrink-0" title={t("Download")}>
@@ -417,12 +421,12 @@ const AssistantPage = () => {
                                                       key={fileIdx}
                                                       src={file.url}
                                                       alt={file.name}
-                                                      className="max-w-full rounded-xl shadow border border-gray-100 cursor-pointer"
+                                                      className="max-w-full rounded-xl shadow border border-status-border cursor-pointer"
                                                       style={{ maxHeight: '400px' }}
                                                       onClick={() => setOpenImageUrl(file.url)}
                                                     />
                                                 ) : (
-                                                  <div key={fileIdx} className="rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow flex items-center w-full sm:w-[492px] min-h-[68px] px-4 sm:px-5 py-4 gap-2.5">
+                                                  <div key={fileIdx} className="rounded-xl bg-surface border border-status-border shadow flex items-center w-full sm:w-[492px] min-h-[68px] px-4 sm:px-5 py-4 gap-2.5">
                                                     {/* Left icon */}
                                                     {isDocument(file.type, file.name) ? (
                                                       <span className="inline-flex items-center justify-center w-8 h-8 bg-primary-50 rounded-lg shrink-0">
@@ -435,7 +439,7 @@ const AssistantPage = () => {
                                                     )}
                                                     {/* File name center */}
                                                     <div className="flex-1 min-w-0">
-                                                      <div className="font-semibold text-lg text-gray-900 dark:text-gray-100 truncate">{file.name}</div>
+                                                      <div className="font-semibold text-lg text-cell-primary truncate">{file.name}</div>
                                                     </div>
                                                     {/* Download icon right */}
                                                     <a href={file.url} download={file.name} className="flex items-center justify-center text-primary-500 hover:text-primary-700" title={t("Download")}>
@@ -464,20 +468,20 @@ const AssistantPage = () => {
                                             </div>
                                           )}
                                           {msg.table && (
-                                            <div className="mt-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow overflow-x-auto">
-                                              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                                <thead className="bg-gray-50 dark:bg-gray-800">
+                                            <div className="mt-4 rounded-xl bg-surface border border-status-border shadow overflow-x-auto">
+                                              <table className="min-w-full divide-y divide-status-border">
+                                                <thead className="bg-status-bg">
                                                   <tr>
                                                     {msg.table.headers.map((header, i) => (
-                                                      <th key={i} className="px-6 py-3 text-left text-sm font-bold text-gray-700 dark:text-gray-200">{header}</th>
+                                                      <th key={i} className="px-6 py-3 text-left text-sm font-bold text-cell-secondary">{header}</th>
                                                     ))}
                                                   </tr>
                                                 </thead>
-                                                <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                                                <tbody className="bg-surface divide-y divide-status-border">
                                                   {msg.table.rows.map((row, i) => (
                                                     <tr key={i}>
                                                       {row.map((cell, j) => (
-                                                        <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">{cell}</td>
+                                                        <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-cell-primary">{cell}</td>
                                                       ))}
                                                     </tr>
                                                   ))}
@@ -488,8 +492,8 @@ const AssistantPage = () => {
                                         </div>
                                         {(!msg.file && !msg.files) && (
                                           <div className="flex gap-2 mt-1">
-                                            <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-gray-400 hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5" /></button>
-                                            <button onClick={() => handleCopy(msg.text)} title={t("Copy")} className="text-gray-400 hover:text-primary-500"><img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5" /></button>
+                                            <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5" /></button>
+                                            <button onClick={() => handleCopy(msg.text)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5" /></button>
                                           </div>
                                         )}
                                       </>
@@ -543,13 +547,13 @@ const AssistantPage = () => {
                                   {editingIdx === idx ? (
                                       <div className="flex flex-col w-full">
                                         {msg.thought && (
-                                            <div className="text-gray-400 text-sm mb-2 font-sans font-semibold text-left">
+                                            <div className="text-cell-secondary text-sm mb-2 font-sans font-semibold text-left">
                                               {msg.thought}
                                             </div>
                                         )}
-                                        {msg.thought && <hr className="my-2 border-gray-200" />}
+                                        {msg.thought && <hr className="my-2 border-status-border" />}
                                         <textarea
-                                            className="text-base text-gray-900 w-full font-sans font-semibold leading-relaxed box-border text-left outline-none border-none mb-2 resize-none"
+                                            className="text-base text-cell-primary w-full font-sans font-semibold leading-relaxed box-border text-left outline-none border-none mb-2 resize-none"
                                             style={{
                                               wordBreak: 'break-word',
                                               width: editDims[idx]?.width ? editDims[idx].width + 'px' : '100%',
@@ -563,19 +567,19 @@ const AssistantPage = () => {
                                             rows={1}
                                         />
                                         <div className="flex gap-2 mt-1">
-                                          <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-gray-400 hover:text-primary-500"><Copy size={18} /></button>
-                                          <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-gray-400 hover:text-primary-500"><Save size={18} /></button>
+                                          <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><Copy size={18} /></button>
+                                          <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-cell-secondary hover:text-primary-500"><Save size={18} /></button>
                                         </div>
                                       </div>
                                   ) : (
                                       <>
                                         {msg.thought && (
-                                            <div className="text-[#525866] text-[18px] mb-2 font-['Almarai'] font-[400] leading-[150%] tracking-[0%] text-left">
+                                            <div className="text-cell-primary text-[18px] mb-2 font-['Almarai'] font-[400] leading-[150%] tracking-[0%] text-left">
                                               {msg.thought}
                                             </div>
                                         )}
-                                        {msg.thought && <hr className="my-2 border-gray-200" />}
-                                        <div ref={el => aiEditRefs.current[idx] = el} className="text-[#525866] text-[18px] w-full font-['Almarai'] font-[400] leading-[150%] tracking-[0%] text-left" style={{wordBreak: 'break-word', gap: '12px'}}>
+                                        {msg.thought && <hr className="my-2 border-status-border" />}
+                                        <div ref={el => aiEditRefs.current[idx] = el} className="text-cell-primary text-[18px] w-full font-['Almarai'] font-[400] leading-[150%] tracking-[0%] text-left" style={{wordBreak: 'break-word', gap: '12px'}}>
                                           {msg.text}
                                           {msg.audio && (
                                             <audio controls src={msg.audio} className="mt-2" />
@@ -587,9 +591,9 @@ const AssistantPage = () => {
                                                   <img
                                                     src={assignee.avatar}
                                                     alt={assignee.name}
-                                                    className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                                                    className="w-8 h-8 rounded-full object-cover border border-status-border"
                                                   />
-                                                  <span className="text-gray-900 font-medium">{assignee.name}</span>
+                                                  <span className="text-cell-primary font-medium">{assignee.name}</span>
                                                   <a
                                                     href={assignee.profileUrl}
                                                     className="text-primary-500 hover:text-primary-700 underline text-sm"
@@ -612,8 +616,8 @@ const AssistantPage = () => {
                                           )}
                                         </div>
                                         <div className="flex gap-2 mt-1">
-                                          <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-gray-400 hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5" /></button>
-                                          <button onClick={() => handleCopy(msg.text)} title={t("Copy")} className="text-gray-400 hover:text-primary-500"><img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5" /></button>
+                                          <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5" /></button>
+                                          <button onClick={() => handleCopy(msg.text)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5" /></button>
                                         </div>
                                       </>
                                   )}
@@ -622,7 +626,7 @@ const AssistantPage = () => {
                           )}
                           {/* Add line between AI messages */}
                           {msg.sender === "ai" && idx < messages.length - 1 && messages[idx + 1]?.sender === "ai" && (
-                              <hr className="my-4 border-gray-200 dark:border-gray-700" />
+                              <hr className="my-4 border-status-border" />
                           )}
                         </React.Fragment>
                     ))}
@@ -674,16 +678,16 @@ const AssistantPage = () => {
                       </defs>
                     </svg>
                   </span>
-                      <div className="rounded-xl px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 shadow-lg">
+                      <div className="rounded-xl px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 shadow-lg dark:from-blue-900/20 dark:to-indigo-900/20 dark:border-blue-800">
                         <div className="flex items-center gap-3">
                           <div className="flex gap-1">
                             <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                             <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
                             <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                           </div>
-                          <span className="text-blue-700 font-medium">{t("Thinking...")}</span>
+                          <span className="text-blue-700 font-medium dark:text-blue-400">{t("Thinking...")}</span>
                         </div>
-                        <div className="mt-2 flex items-center gap-2 text-xs text-blue-600">
+                        <div className="mt-2 flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400">
                           <div className="w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
                           <span>{t("Processing your request")}</span>
                         </div>
@@ -716,10 +720,10 @@ const AssistantPage = () => {
               <img src={openImageUrl} alt={t("Preview")} className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-lg" />
               <button
                 onClick={() => setOpenImageUrl(null)}
-                className="absolute top-2 right-2 bg-white bg-opacity-80 rounded-full p-1 hover:bg-opacity-100 transition"
+                className="absolute top-2 right-2 bg-surface bg-opacity-80 rounded-full p-1 hover:bg-opacity-100 transition"
                 title={t("Close")}
               >
-                <X size={24} className="text-gray-700" />
+                <X size={24} className="text-cell-secondary" />
               </button>
             </div>
           </div>

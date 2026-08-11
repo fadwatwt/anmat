@@ -12,7 +12,7 @@ const AccessDenied = () => {
     const { t } = useTranslation();
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 text-center px-4">
-            <div className="p-6 rounded-full bg-red-50">
+            <div className="p-6 rounded-full bg-red-50 dark:bg-red-900/20">
                 <ShieldCross size={64} className="text-red-500" />
             </div>
             <h1 className="text-2xl font-bold text-cell-primary">

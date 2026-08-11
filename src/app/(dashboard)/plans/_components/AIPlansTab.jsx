@@ -157,7 +157,7 @@ export default function AIPlansTab({ canCreate, canUpdate, canDelete }) {
         // Price Cell
         <div key={`${pkg._id}_price`} className="flex flex-col">
             <span className="text-sm font-semibold text-cell-primary">{pkg.price_label}</span>
-            <span className="text-[10px] text-cell-secondary">{formatNumber(pkg.price_cents)} cents</span>
+            <span className="text-[10px] text-cell-secondary">{formatNumber(pkg.price_cents)} {t("cents")}</span>
         </div>,
 
         // Tokens Cell
@@ -175,7 +175,7 @@ export default function AIPlansTab({ canCreate, canUpdate, canDelete }) {
                 </div>
             ))}
             {pkg.features?.length > 3 && (
-                <span className="text-[10px] text-primary-500 font-medium">+{pkg.features.length - 3} more</span>
+                <span className="text-[10px] text-primary-500 font-medium">+{pkg.features.length - 3} {t("more")}</span>
             )}
         </div>,
 

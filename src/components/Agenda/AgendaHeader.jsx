@@ -46,7 +46,7 @@ function AgendaHeader({ view, setView, onAdd }) {
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors"
           >
             <RiAddLine size={16} />
-            <span className="hidden sm:inline">{t("Add")}</span>
+            <span>{t("Add")}</span>
           </button>
         )}
       </div>

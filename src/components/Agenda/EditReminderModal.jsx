@@ -13,9 +13,9 @@ const REMINDER_LABELS = {
 };
 
 const INPUT_CLASS =
-  "w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm";
+  "w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm";
 
-const LABEL_CLASS = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+const LABEL_CLASS = "block text-sm font-medium text-cell-secondary mb-1";
 
 function EditReminderModal({ isOpen, reminder, onClose, onSave }) {
   const { t, i18n } = useTranslation();
@@ -62,10 +62,10 @@ function EditReminderModal({ isOpen, reminder, onClose, onSave }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md mx-4">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t("Edit Reminder")}</h3>
-          <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 rounded-lg">
+      <div className="relative bg-surface rounded-xl shadow-2xl w-full max-w-md mx-4">
+        <div className="flex items-center justify-between p-4 border-b border-status-border">
+          <h3 className="text-lg font-semibold text-cell-primary">{t("Edit Reminder")}</h3>
+          <button onClick={onClose} className="p-1 text-cell-secondary hover:text-cell-secondary rounded-lg">
             <RiCloseLine size={24} />
           </button>
         </div>
@@ -105,8 +105,8 @@ function EditReminderModal({ isOpen, reminder, onClose, onSave }) {
                     }))}
                     className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
                       active
-                        ? "bg-amber-100 dark:bg-amber-900/40 border-amber-400 text-amber-700 dark:text-amber-300"
-                        : "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
+                        ? "bg-amber-100 dark:bg-amber-900/40 border-amber-400 text-amber-700 dark:text-amber-300 dark:border-amber-800"
+                        : "bg-status-bg border-status-border text-cell-secondary hover:bg-status-bg dark:hover:bg-gray-600"
                     }`}
                   >
                     {isArabic ? labels.ar : labels.en}
@@ -122,14 +122,14 @@ function EditReminderModal({ isOpen, reminder, onClose, onSave }) {
               rows={2} className={INPUT_CLASS} />
           </div>
         </div>
-        <div className="flex items-center justify-end gap-3 p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-end gap-3 p-4 border-t border-status-border">
           <button onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+            className="px-4 py-2 text-sm font-medium text-cell-secondary hover:bg-status-bg rounded-lg transition-colors">
             {t("Cancel")}
           </button>
           <button onClick={handleSave}
             disabled={!data.title.trim()}
-            className="px-4 py-2 text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 rounded-lg transition-colors disabled:bg-gray-300 disabled:dark:bg-gray-600">
+            className="px-4 py-2 text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 rounded-lg transition-colors disabled:bg-status-bg disabled:dark:bg-gray-600">
             {t("Save")}
           </button>
         </div>

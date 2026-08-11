@@ -64,18 +64,18 @@ const UserSelect = ({
 
   return (
     <div className={classNameContainer} ref={dropdownRef}>
-      <label className="text-sm text-start text-gray-700 flex items-center gap-1 mb-2 dark:text-gray-200">
+      <label className="text-sm text-start text-cell-secondary flex items-center gap-1 mb-2">
         <span>{t(title)}</span>
         {isOption && (
-          <span className="text-sm text-gray-500 flex items-center gap-1">
-            ({t("Option")}) <FaCircleInfo className="text-gray-400" size={15} />
+          <span className="text-sm text-cell-secondary flex items-center gap-1">
+            ({t("Option")}) <FaCircleInfo className="text-cell-secondary" size={15} />
           </span>
         )}
       </label>
 
       <div className="relative w-full">
         <div
-          className="flex items-center gap-2 h-10 dark:bg-white-0 border border-gray-300 dark:border-gray-500 rounded-[10px] p-[10px] box-border text-xs cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
+          className="flex items-center gap-2 h-10 border border-status-border rounded-[10px] p-[10px] box-border text-xs cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 dark:focus-within:border-blue-800"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           <div className="flex-1 flex gap-1 tab-content overflow-x-auto max-h-10">
@@ -83,7 +83,7 @@ const UserSelect = ({
               selectedUsers.map((user) => (
                 <div
                   key={user._id}
-                  className="flex items-center dark:text-gray-300 text-nowrap text-xs overflow-hidden w-16"
+                  className="flex items-center text-nowrap text-xs overflow-hidden w-16"
                 >
                   <img
                     src={
@@ -96,14 +96,14 @@ const UserSelect = ({
                   <span className="text-sm text-nowrap">{user.name}</span>
                   {isMultiSelect && (
                     <FaTimes
-                      className="text-gray-500 hover:text-red-500 cursor-pointer"
+                      className="text-cell-secondary hover:text-red-500 cursor-pointer"
                       onClick={(e) => removeUser(user, e)}
                     />
                   )}
                 </div>
               ))
             ) : (
-              <span className="text-gray-500 dark:text-gray-400">
+              <span className="text-cell-secondary">
                 {t("Select users")}
               </span>
             )}
@@ -113,14 +113,14 @@ const UserSelect = ({
             {isViewIcon && (
               <>
                 <IoGlobeOutline
-                  className="text-gray-500 dark:text-gray-400"
+                  className="text-cell-secondary"
                   size={16}
                 />
-                <p className="text-sm dark:text-gray-400">{t("can view")}</p>
+                <p className="text-sm">{t("can view")}</p>
               </>
             )}
             <IoIosArrowDown
-              className={`text-gray-500 dark:text-gray-400 transition-transform ${
+              className={`text-cell-secondary transition-transform ${
                 isDropdownOpen ? "rotate-180" : ""
               }`}
               size={16}
@@ -129,13 +129,13 @@ const UserSelect = ({
         </div>
 
         {isDropdownOpen && (
-          <div className="absolute z-30 mt-2 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-30 mt-2 w-full bg-surface border border-status-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
             {users.map((user) => (
               <div
                 key={user._id}
-                className={`flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer ${
+                className={`flex items-center p-2 hover:bg-status-bg cursor-pointer ${
                   selectedUsers.some((u) => u._id === user._id)
-                    ? "bg-gray-50 dark:bg-gray-600"
+                    ? "bg-status-bg dark:bg-gray-600"
                     : ""
                 }`}
                 onClick={() => toggleUser(user)}
@@ -145,7 +145,7 @@ const UserSelect = ({
                     type="checkbox"
                     checked={selectedUsers.some((u) => u._id === user._id)}
                     readOnly
-                    className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="mr-2 w-4 h-4 text-blue-600 bg-status-bg border-status-border rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:text-blue-400"
                   />
                 )}
                 <img
@@ -157,10 +157,10 @@ const UserSelect = ({
                   className="w-6 h-6 rounded-full mr-2"
                 />
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-gray-900 dark:text-gray-200">
+                  <span className="text-sm font-medium text-cell-primary">
                     {user.name}
                   </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                  <span className="text-xs text-cell-secondary">
                     {user.email}
                   </span>
                 </div>

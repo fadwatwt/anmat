@@ -154,9 +154,9 @@ function AssignDepartmentModal({ isOpen, onClose, initialSelectedEmployee }) {
                     {!initialSelectedEmployee && (
                         <div className="flex flex-col gap-2">
                             <div className="flex justify-between items-center">
-                                <label className="text-sm font-medium dark:text-gray-200">
+                                <label className="text-sm font-medium">
                                     {t("Select Employees")} <span className="text-red-500">*</span>
-                                    <span className="text-gray-400 text-xs ml-2">
+                                    <span className="text-cell-secondary text-xs ml-2">
                                         ({t("Only employees without department")})
                                     </span>
                                 </label>
@@ -173,22 +173,22 @@ function AssignDepartmentModal({ isOpen, onClose, initialSelectedEmployee }) {
                                 )}
                             </div>
 
-                            <div className="max-h-64 overflow-y-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <div className="max-h-64 overflow-y-auto border border-status-border rounded-lg">
                                 {employeesWithoutDepartment.length === 0 ? (
-                                    <div className="p-4 text-center text-gray-500 dark:text-gray-400 text-sm">
+                                    <div className="p-4 text-center text-cell-secondary text-sm">
                                         {t("No employees without department")}
                                     </div>
                                 ) : (
                                     employeesWithoutDepartment.map((employee) => (
                                         <label
                                             key={employee._id}
-                                            className="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer border-b border-gray-100 dark:border-gray-700 last:border-b-0"
+                                            className="flex items-center gap-3 p-3 hover:bg-status-bg cursor-pointer border-b border-status-border last:border-b-0"
                                         >
                                             <input
                                                 type="checkbox"
                                                 checked={selectedEmployees.includes(employee._id)}
                                                 onChange={() => handleEmployeeToggle(employee._id)}
-                                                className="w-4 h-4 text-primary-base rounded border-gray-300 focus:ring-primary-base"
+                                                className="w-4 h-4 text-primary-base rounded border-status-border focus:ring-primary-base"
                                             />
                                             <div className="flex items-center gap-3 flex-1">
                                                 <img
@@ -197,10 +197,10 @@ function AssignDepartmentModal({ isOpen, onClose, initialSelectedEmployee }) {
                                                     className="w-8 h-8 rounded-full"
                                                 />
                                                 <div className="flex flex-col">
-                                                    <span className="text-sm font-medium dark:text-gray-200">
+                                                    <span className="text-sm font-medium">
                                                         {employee.user?.name || t("Unknown")}
                                                     </span>
-                                                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                                                    <span className="text-xs text-cell-secondary">
                                                         {employee.user?.email || "N/A"}
                                                     </span>
                                                 </div>
@@ -211,7 +211,7 @@ function AssignDepartmentModal({ isOpen, onClose, initialSelectedEmployee }) {
                             </div>
 
                             {selectedEmployees.length > 0 && (
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                <p className="text-xs text-cell-secondary">
                                     {t("Selected")}: {selectedEmployees.length} {t("employee(s)")}
                                 </p>
                             )}

@@ -29,8 +29,8 @@ export const StatusBadge = ({ status }) => {
 
   switch (status) {
     case "On Time":
-      Icon = <GoCheckCircleFill size={14} className="text-green-600" />;
-      colors = "bg-green-50 text-green-700 border-green-200";
+      Icon = <GoCheckCircleFill size={14} className="text-green-600 dark:text-green-400" />;
+      colors = "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800";
       break;
     case "Late":
       Icon = <BsClockFill size={14} className="text-[#C2540A]" />;

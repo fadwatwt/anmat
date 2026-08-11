@@ -122,10 +122,10 @@ function CreateTeamModal({ isOpen, onClose }) {
                 />
 
                 <div className="flex flex-col gap-2">
-                    <label className="text-sm text-gray-700 dark:text-gray-300">
+                    <label className="text-sm text-cell-secondary">
                         {t("Avatar")}
                     </label>
-                    <div className="border border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-gray-50 dark:hover:bg-white-5">
+                    <div className="border border-dashed border-status-border rounded-lg p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-status-bg dark:hover:bg-white-5">
                         <FileUpload />
                     </div>
                 </div>
@@ -136,9 +136,9 @@ function CreateTeamModal({ isOpen, onClose }) {
                         id="createGroupChat"
                         checked={teamData.createGroupChat}
                         onChange={(e) => handleChange("createGroupChat", e.target.checked)}
-                        className="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                        className="w-5 h-5 rounded border-status-border text-primary-600 focus:ring-primary-500"
                     />
-                    <label htmlFor="createGroupChat" className="text-sm text-gray-700 dark:text-gray-300">
+                    <label htmlFor="createGroupChat" className="text-sm text-cell-secondary">
                         {t("Allow creating group chat for the team")}
                     </label>
                 </div>

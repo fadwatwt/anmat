@@ -64,7 +64,7 @@ function CreateTicketModal({ isOpen, onClose }) {
         >
             <div className="px-1 flex flex-col gap-4">
                 {apiError && (
-                    <div className="text-red-500 text-sm bg-red-50 p-3 rounded-lg">{apiError}</div>
+                    <div className="text-red-500 text-sm bg-red-50 p-3 rounded-lg dark:bg-red-900/20">{apiError}</div>
                 )}
 
                 <InputAndLabel

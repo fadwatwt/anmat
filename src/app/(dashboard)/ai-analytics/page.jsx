@@ -76,14 +76,14 @@ const AnalyticsPage = () => {
 
   return (
     <Page isTitle={false}>
-      <div className="flex flex-col gap-8 bg-gray-50 dark:bg-gray-950 p-6 sm:p-8 min-h-[calc(100vh-100px)]">
+      <div className="flex flex-col gap-8 bg-status-bg p-6 sm:p-8 min-h-[calc(100vh-100px)]">
         
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          <h1 className="text-2xl font-extrabold text-cell-primary tracking-tight">
             {t("AI Assistant Analytics")}
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-sm text-cell-secondary mt-1">
             {t("Monitor your token usage, daily consumption trends, and detailed transaction ledger.")}
           </p>
         </div>
@@ -91,22 +91,22 @@ const AnalyticsPage = () => {
         {loadingBalance ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
             <Loader2 className="w-10 h-10 text-primary-500 animate-spin" />
-            <span className="text-gray-500 dark:text-gray-400 font-medium">{t("Loading analytics dashboard...")}</span>
+            <span className="text-cell-secondary font-medium">{t("Loading analytics dashboard...")}</span>
           </div>
         ) : (
           <>
             {/* Stat Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Card 1: Balance */}
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 flex items-start justify-between shadow-sm">
+              <div className="bg-surface border border-status-border rounded-3xl p-6 flex items-start justify-between shadow-sm">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-cell-secondary uppercase tracking-wider">
                     {t("Tokens Balance")}
                   </span>
-                  <h3 className="text-3xl font-black text-gray-900 dark:text-white">
+                  <h3 className="text-3xl font-black text-cell-primary">
                     {balanceData?.balance?.toLocaleString() || 0}
                   </h3>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-cell-secondary">
                     {t("Limit:")} {balanceData?.free_limit?.toLocaleString() || "5,000"} {t("tokens")}
                   </p>
                 </div>
@@ -116,15 +116,15 @@ const AnalyticsPage = () => {
               </div>
 
               {/* Card 2: 30-Day Consumption */}
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 flex items-start justify-between shadow-sm">
+              <div className="bg-surface border border-status-border rounded-3xl p-6 flex items-start justify-between shadow-sm">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-cell-secondary uppercase tracking-wider">
                     {t("30-Day Consumption")}
                   </span>
-                  <h3 className="text-3xl font-black text-gray-900 dark:text-white">
+                  <h3 className="text-3xl font-black text-cell-primary">
                     {totalThirtyDayUsage.toLocaleString()}
                   </h3>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-cell-secondary">
                     {t("Cumulative tokens deducted in last 30 days")}
                   </p>
                 </div>
@@ -134,15 +134,15 @@ const AnalyticsPage = () => {
               </div>
 
               {/* Card 3: Next replenishment */}
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 flex items-start justify-between shadow-sm sm:col-span-2 lg:col-span-1">
+              <div className="bg-surface border border-status-border rounded-3xl p-6 flex items-start justify-between shadow-sm sm:col-span-2 lg:col-span-1">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-cell-secondary uppercase tracking-wider">
                     {t("Replenishment Cycle")}
                   </span>
-                  <h3 className="text-3xl font-black text-gray-900 dark:text-white">
+                  <h3 className="text-3xl font-black text-cell-primary">
                     {getNextRenewalDate()}
                   </h3>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-cell-secondary">
                     {t("Date of next monthly free token replenishment")}
                   </p>
                 </div>
@@ -153,13 +153,13 @@ const AnalyticsPage = () => {
             </div>
 
             {/* Consumption Trend Chart */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-6">
+            <div className="bg-surface border border-status-border rounded-3xl p-6 shadow-sm">
+              <h2 className="text-lg font-bold text-cell-primary mb-6">
                 {t("Daily Token Consumption (Last 30 Days)")}
               </h2>
               {chartData.length === 0 ? (
-                <div className="h-64 flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-800 rounded-2xl">
-                  <span className="text-gray-400 text-sm">{t("No recent consumption data to display")}</span>
+                <div className="h-64 flex items-center justify-center border border-dashed border-status-border rounded-2xl">
+                  <span className="text-cell-secondary text-sm">{t("No recent consumption data to display")}</span>
                 </div>
               ) : (
                 <div className="h-72 w-full">
@@ -198,10 +198,10 @@ const AnalyticsPage = () => {
             </div>
 
             {/* Transaction Ledger Table */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 shadow-sm overflow-hidden flex flex-col">
+            <div className="bg-surface border border-status-border rounded-3xl p-6 shadow-sm overflow-hidden flex flex-col">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                  <Receipt size={20} className="text-gray-400" />
+                <h2 className="text-lg font-bold text-cell-primary flex items-center gap-2">
+                  <Receipt size={20} className="text-cell-secondary" />
                   {t("Transaction History Log")}
                 </h2>
               </div>
@@ -211,48 +211,48 @@ const AnalyticsPage = () => {
                   <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
                 </div>
               ) : !historyData?.transactions || historyData.transactions.length === 0 ? (
-                <div className="text-center py-12 border border-dashed border-gray-200 dark:border-gray-800 rounded-2xl">
-                  <p className="text-gray-400 text-sm">{t("No transaction ledger history found.")}</p>
+                <div className="text-center py-12 border border-dashed border-status-border rounded-2xl">
+                  <p className="text-cell-secondary text-sm">{t("No transaction ledger history found.")}</p>
                 </div>
               ) : (
                 <div className="flex-1 flex flex-col justify-between">
-                  <div className="overflow-x-auto rounded-2xl border border-gray-100 dark:border-gray-800/80">
+                  <div className="overflow-x-auto rounded-2xl border border-status-border dark:border-gray-800/80">
                     <table className="min-w-full divide-y divide-gray-150 dark:divide-gray-800">
-                      <thead className="bg-gray-50 dark:bg-gray-800/50">
+                      <thead className="bg-status-bg">
                         <tr>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-cell-secondary">
                             {t("Transaction Type")}
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-cell-secondary">
                             {t("Amount (Tokens)")}
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-cell-secondary">
                             {t("Balance After")}
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-cell-secondary">
                             {t("Date")}
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-gray-400">
+                          <th className="px-6 py-4 text-left text-sm font-bold text-cell-secondary">
                             {t("Description")}
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-150 dark:divide-gray-800">
+                      <tbody className="bg-surface divide-y divide-gray-150 dark:divide-gray-800">
                         {historyData.transactions.map((tx) => (
-                          <tr key={tx._id} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
+                          <tr key={tx._id} className="hover:bg-status-bg transition-colors">
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                               {getTransactionTypeBadge(tx.type)}
                             </td>
                             <td className={`px-6 py-4 whitespace-nowrap text-sm font-bold ${getTransactionAmountClass(tx.type)}`}>
                               {getFormattedAmount(tx.amount, tx.type)}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-cell-secondary">
                               {tx.balance_after?.toLocaleString()}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-cell-secondary">
                               {format(new Date(tx.created_at || tx.date), "MMM dd, yyyy HH:mm", { locale: getDateLocale() })}
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                            <td className="px-6 py-4 text-sm text-cell-secondary">
                               {tx.description}
                             </td>
                           </tr>
@@ -263,22 +263,22 @@ const AnalyticsPage = () => {
 
                   {/* Pagination */}
                   {totalPages > 1 && (
-                    <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100 dark:border-gray-800/80">
-                      <span className="text-xs text-gray-500">
+                    <div className="flex items-center justify-between mt-6 pt-4 border-t border-status-border dark:border-gray-800/80">
+                      <span className="text-xs text-cell-secondary">
                         {t("Page")} {page} {t("of")} {totalPages}
                       </span>
                       <div className="flex items-center gap-2">
                         <button
                           disabled={page === 1}
                           onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                          className="p-1.5 rounded-lg border border-gray-250 dark:border-gray-700/60 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 transition-colors"
+                          className="p-1.5 rounded-lg border border-gray-250 dark:border-gray-700/60 hover:bg-status-bg disabled:opacity-50 transition-colors"
                         >
                           <ChevronLeft size={16} />
                         </button>
                         <button
                           disabled={page === totalPages}
                           onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-                          className="p-1.5 rounded-lg border border-gray-250 dark:border-gray-700/60 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 transition-colors"
+                          className="p-1.5 rounded-lg border border-gray-250 dark:border-gray-700/60 hover:bg-status-bg disabled:opacity-50 transition-colors"
                         >
                           <ChevronRight size={16} />
                         </button>

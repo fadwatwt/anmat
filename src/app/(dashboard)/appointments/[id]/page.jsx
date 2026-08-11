@@ -118,8 +118,8 @@ function AppointmentDetailPage() {
       <Page title={t("Appointment Details")}>
         <div className="max-w-2xl mx-auto">
           <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
-            <div className="h-64 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            <div className="h-8 bg-status-bg rounded w-1/3"></div>
+            <div className="h-64 bg-status-bg rounded"></div>
           </div>
         </div>
       </Page>
@@ -142,13 +142,13 @@ function AppointmentDetailPage() {
         <div className="max-w-2xl mx-auto">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white mb-4"
+            className="flex items-center gap-2 text-cell-secondary hover:text-cell-primary dark:hover:text-white mb-4"
           >
             <RiArrowLeftLine size={20} />
             {t("Back")}
           </button>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div className="bg-surface rounded-lg border border-status-border overflow-hidden">
             <div
               className="h-2"
               style={{ backgroundColor: appointment.color || "#3B82F6" }}
@@ -168,7 +168,7 @@ function AppointmentDetailPage() {
                         appointment.status === "completed"
                           ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                           : appointment.status === "cancelled"
-                          ? "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400"
+                          ? "bg-status-bg text-cell-primary"
                           : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
                       }`}
                     >
@@ -180,12 +180,12 @@ function AppointmentDetailPage() {
                     </span>
                   </div>
 
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h1 className="text-2xl font-bold text-cell-primary">
                     {appointment.title}
                   </h1>
 
                   {appointment.description && (
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">
+                    <p className="text-cell-secondary mt-2">
                       {appointment.description}
                     </p>
                   )}
@@ -194,21 +194,21 @@ function AppointmentDetailPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsEditModalOpen(true)}
-                    className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                    className="p-2 text-cell-secondary hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
                     title={t("Edit")}
                   >
                     <RiEditLine size={20} />
                   </button>
                   <button
                     onClick={() => setShareAppointment(appointment)}
-                    className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                    className="p-2 text-cell-secondary hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
                     title={t("Share")}
                   >
                     <RiShareLine size={20} />
                   </button>
                   <button
                     onClick={() => setIsDeleteAlertOpen(true)}
-                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                    className="p-2 text-cell-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                     title={t("Delete")}
                   >
                     <RiDeleteBinLine size={20} />
@@ -217,21 +217,21 @@ function AppointmentDetailPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                <div className="flex items-center gap-3 p-3 bg-status-bg rounded-lg">
                   <RiCalendarLine size={20} className="text-primary-500" />
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{t("Date")}</p>
-                    <p className="font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm text-cell-secondary">{t("Date")}</p>
+                    <p className="font-medium text-cell-primary">
                       {formatDate(appointment.date)}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                <div className="flex items-center gap-3 p-3 bg-status-bg rounded-lg">
                   <RiTimeLine size={20} className="text-primary-500" />
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{t("Time")}</p>
-                    <p className="font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm text-cell-secondary">{t("Time")}</p>
+                    <p className="font-medium text-cell-primary">
                       {formatTime(appointment.start_time)}
                       {appointment.end_time && ` - ${formatTime(appointment.end_time)}`}
                     </p>
@@ -239,11 +239,11 @@ function AppointmentDetailPage() {
                 </div>
 
                 {appointment.location && (
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-status-bg rounded-lg">
                     <RiMapPinLine size={20} className="text-primary-500" />
                     <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{t("Location")}</p>
-                      <p className="font-medium text-gray-900 dark:text-white">
+                      <p className="text-sm text-cell-secondary">{t("Location")}</p>
+                      <p className="font-medium text-cell-primary">
                         {appointment.location}
                       </p>
                     </div>
@@ -251,11 +251,11 @@ function AppointmentDetailPage() {
                 )}
 
                 {appointment.user && (
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-status-bg rounded-lg">
                     <RiUserLine size={20} className="text-primary-500" />
                     <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{t("Created by")}</p>
-                      <p className="font-medium text-gray-900 dark:text-white">
+                      <p className="text-sm text-cell-secondary">{t("Created by")}</p>
+                      <p className="font-medium text-cell-primary">
                         {appointment.user.name}
                       </p>
                     </div>
@@ -265,14 +265,14 @@ function AppointmentDetailPage() {
 
               {appointment.attendee_list?.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                  <h3 className="text-sm font-medium text-cell-secondary mb-2">
                     {t("Attendees")} ({appointment.attendee_list.length})
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {appointment.attendee_list.map((attendee) => (
                       <span
                         key={attendee._id}
-                        className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-full text-sm"
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-status-bg rounded-full text-sm"
                       >
                         {attendee.imageProfile ? (
                           <img
@@ -300,10 +300,10 @@ function AppointmentDetailPage() {
                       {t("Linked Task")}
                     </h3>
                   </div>
-                  <p className="font-medium text-gray-900 dark:text-white">
+                  <p className="font-medium text-cell-primary">
                     {appointment.task.title}
                   </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-cell-secondary mt-1">
                     {t("Status")}: {appointment.task.status} • {t("Priority")}: {appointment.task.priority}
                   </p>
                 </div>
@@ -315,7 +315,7 @@ function AppointmentDetailPage() {
               />
 
               {appointment.status === "upcoming" && (
-                <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-3 mt-6 pt-4 border-t border-status-border">
                   <button
                     onClick={() => setIsCompleteAlertOpen(true)}
                     className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-500 hover:bg-green-600 rounded-lg transition-colors"
@@ -325,7 +325,7 @@ function AppointmentDetailPage() {
                   </button>
                   <button
                     onClick={() => setIsCancelAlertOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg transition-colors dark:text-red-400"
                   >
                     <RiCloseLine size={16} />
                     {t("Cancel Appointment")}

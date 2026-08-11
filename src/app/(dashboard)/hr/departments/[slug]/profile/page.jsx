@@ -133,7 +133,7 @@ function DepartmentProfile() {
                                     <p className="text-[11px] font-semibold text-cell-secondary uppercase tracking-wider">{t("Success Rate")}</p>
                                     <div className="flex items-center gap-2 mt-0.5">
                                         <p className="text-2xl font-bold text-cell-primary">{stats.successRate || 0}%</p>
-                                        <div className="flex-1 h-1.5 w-12 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                                        <div className="flex-1 h-1.5 w-12 bg-status-bg rounded-full overflow-hidden">
                                             <div className="h-full bg-purple-500" style={{width: `${stats.successRate || 0}%`}}></div>
                                         </div>
                                     </div>

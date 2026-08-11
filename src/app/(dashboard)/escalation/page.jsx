@@ -57,7 +57,7 @@ function EscalationPage() {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 dark:border-primary-400"></div>
         </div>
       ) : !requests || requests.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-64 text-gray-500 dark:text-gray-400">
+        <div className="flex flex-col items-center justify-center h-64 text-cell-secondary">
           <Clock size={48} className="mb-4 opacity-50" />
           <p className="text-lg">{t("noPendingRequests") || "لا توجد طلبات معلقة"}</p>
         </div>
@@ -66,7 +66,7 @@ function EscalationPage() {
           {requests.map((request) => (
             <div
               key={request._id}
-              className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm"
+              className="rounded-xl border border-status-border bg-surface p-6 shadow-sm"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
@@ -74,13 +74,13 @@ function EscalationPage() {
                     <User size={20} className="text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <h3 className="text-lg font-semibold text-cell-primary">
                       {request.requester_name || request.requester?.name}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-cell-secondary">
                       {request.requester_email || request.requester?.email}
                     </p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                    <p className="text-xs text-cell-secondary mt-1">
                       {new Date(request.created_at).toLocaleString("ar-SA")}
                     </p>
                   </div>
@@ -97,7 +97,7 @@ function EscalationPage() {
                   <button
                     disabled={processingId === request._id}
                     onClick={() => handleReject(request._id)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-60 text-gray-700 dark:text-gray-200 text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-status-border hover:bg-status-bg dark:hover:bg-gray-600 disabled:opacity-60 text-cell-secondary text-sm font-medium transition-colors"
                   >
                     <X size={16} />
                     {t("Reject") || "رفض"}
@@ -105,13 +105,13 @@ function EscalationPage() {
                 </div>
               </div>
               {request.message && (
-                <div className="mt-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 border border-gray-100 dark:border-gray-600">
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                <div className="mt-4 p-3 rounded-lg bg-status-bg border border-status-border">
+                  <p className="text-sm text-cell-secondary">
                     {request.message}
                   </p>
                 </div>
               )}
-              <div className="mt-3 flex items-center gap-2 text-xs text-gray-400">
+              <div className="mt-3 flex items-center gap-2 text-xs text-cell-secondary">
                 <MessageCircle size={14} />
                 <span>
                   {t("requestTime") || "وقت الطلب"}:{" "}

@@ -345,7 +345,7 @@ function SupportTicketDetailsPage() {
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <p className="text-sm font-medium text-cell-primary truncate max-w-[120px]">{file.name}</p>
-                                            <p className="text-xs text-sub-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                            <p className="text-xs text-sub-500">{(file.size / 1024 / 1024).toFixed(2)} {t("MB")}</p>
                                         </div>
                                         <button
                                             type="button"

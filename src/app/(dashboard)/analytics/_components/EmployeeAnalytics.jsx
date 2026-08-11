@@ -128,10 +128,10 @@ const EmployeeAnalytics = () => {
                             {t("Export")}
                         </button>
                         {showExportMenu && (
-                            <div className="absolute right-0 mt-1.5 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[140px]">
-                                <button onClick={() => handleExport('csv')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">{t("CSV")}</button>
-                                <button onClick={() => handleExport('xlsx')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">{t("Excel (XLSX)")}</button>
-                                <button onClick={() => handleExport('pdf')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">{t("PDF")}</button>
+                            <div className="absolute right-0 mt-1.5 bg-surface border border-status-border rounded-lg shadow-lg z-50 min-w-[140px]">
+                                <button onClick={() => handleExport('csv')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-status-bg text-cell-secondary">{t("CSV")}</button>
+                                <button onClick={() => handleExport('xlsx')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-status-bg text-cell-secondary">{t("Excel (XLSX)")}</button>
+                                <button onClick={() => handleExport('pdf')} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-status-bg text-cell-secondary">{t("PDF")}</button>
                             </div>
                         )}
                     </div>
@@ -164,7 +164,7 @@ const EmployeeAnalytics = () => {
             {/* Tasks Analytics */}
             {showSection('tasks') && (
                 <div className="flex flex-col items-start justify-start gap-4">
-                    <span className="text-lg text-gray-500">
+                    <span className="text-lg text-cell-secondary">
                         {t("Tasks Analytics")}
                     </span>
                     <div className="flex flex-col md:flex-row items-stretch gap-4 justify-between w-full">
@@ -197,7 +197,7 @@ const EmployeeAnalytics = () => {
             {/* Projects Analytics */}
             {showSection('projects') && (
                 <div className="flex flex-col items-start justify-start gap-4">
-                    <span className="text-lg text-gray-500">
+                    <span className="text-lg text-cell-secondary">
                         {t("Projects Analysis")}
                     </span>
                     <div className="flex flex-col md:flex-row items-stretch gap-4 justify-between w-full">

@@ -11,6 +11,7 @@ import ChangeBillingInfoModal from "@/app/(dashboard)/subscriptions/_components/
 import PaymentMethods from "@/app/(dashboard)/subscriptions/_components/company_manager/PaymentMethods.jsx";
 import AddNewPaymentModal from "@/app/(dashboard)/subscriptions/_components/company_manager/partials/AddNewPaymentModal.jsx";
 import { Card, Coin1, Receipt, Receipt2 } from "iconsax-react";
+import TabModal from "@/components/Modal/TabsContener/TabModal.jsx";
 
 function CompanySubscriptions() {
     const { t } = useTranslation()
@@ -42,6 +43,12 @@ function CompanySubscriptions() {
         setPaymentModalOpen(!paymentModalOpen);
     }
 
+    const tabsData = listSideBar.map((item) => ({
+        title: item.title,
+        icon: item.icon,
+        content: item.content,
+    }));
+
     const buttons = {
         // "billing-history": {
         //     btnTitle: t("Change Billing Info"),
@@ -58,16 +65,16 @@ function CompanySubscriptions() {
     return (
         <>
             {/* <div className={"flex flex-col gap-6 justify-start dark:bg-gray-900 h-full overflow-auto pb-2"}> */}
-            <div className={"flex justify-between md:flex-row flex-col items-center bg-white dark:bg-gray-800 p-4"}>
+            <div className={"flex justify-between md:flex-row flex-col items-center bg-surface p-4"}>
                 <div
-                    className="title-page flex items-center gap-2 bg-none text-start w-full md:py-6 py-3 text-base sm:text-lg md:text-xl text-gray-600">
-                    <div className={"p-2 rounded-full bg-gray-100 dark:bg-gray-900"}>
+                    className="title-page flex items-center gap-2 bg-none text-start w-full md:py-6 py-3 text-base sm:text-lg md:text-xl text-cell-secondary">
+                    <div className={"p-2 rounded-full bg-status-bg"}>
                         <RiWalletLine size="25"
-                            className={"group-hover:text-primary-500  dark:text-gray-100"} />
+                            className={"group-hover:text-primary-500"} />
                     </div>
                     <div>
-                        <h3 className={"text-black dark:text-gray-200 text-lg"}>{t("Plans & Subscription")}</h3>
-                        <p className={"dark:text-gray-400 text-sm"}>{t("Manage your plans and subscriptions.")}</p>
+                        <h3 className={"text-cell-primary text-lg"}>{t("Plans & Subscription")}</h3>
+                        <p className={"text-sm"}>{t("Manage your plans and subscriptions.")}</p>
                     </div>
 
                 </div>
@@ -81,8 +88,8 @@ function CompanySubscriptions() {
                     <AddNewPaymentModal isOpen={paymentModalOpen} onClose={toggleNewPaymentModal} />
                     <div className={"flex flex-col gap-4 md:gap-8 md:flex-row w-full h-full"}>
                         <div className={"hidden md:block w-3/12"}>
-                            <div className={"bg-white dark:bg-gray-800 py-3 px-2 flex flex-col gap-2 rounded-2xl border border-gray-200"}>
-                                <p className={"uppercase text-sm px-3 text-start dark:text-gray-200"}>{t("select menu")}</p>
+                            <div className={"bg-surface py-3 px-2 flex flex-col gap-2 rounded-2xl border border-status-border"}>
+                                <p className={"uppercase text-sm px-3 text-start"}>{t("select menu")}</p>
                                 <Sidebar activeItem={activeTab} onClick={handelChangeActiveTab} list={listSideBar} />
                             </div>
                         </div>
@@ -95,7 +102,9 @@ function CompanySubscriptions() {
                                 ))
                             }
                         </div>
-
+                        <div className={"md:hidden block w-full"}>
+                            <TabModal tabs={tabsData} />
+                        </div>
                     </div>
                 </div>
             </Page>

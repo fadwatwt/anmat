@@ -26,23 +26,23 @@ const ProjectStatusBadge = ({ status }) => {
 
   switch (status?.toLowerCase()) {
     case "completed":
-      Icon = <GoCheckCircleFill size={14} className="text-green-600" />;
+      Icon = <GoCheckCircleFill size={14} className="text-green-600 dark:text-green-400" />;
       colors = "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800";
       break;
     case "in-progress":
-      Icon = <GoClockFill size={14} className="text-blue-600" />;
+      Icon = <GoClockFill size={14} className="text-blue-600 dark:text-blue-400" />;
       colors = "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800";
       break;
     case "pending":
-      Icon = <GoClockFill size={14} className="text-yellow-600" />;
+      Icon = <GoClockFill size={14} className="text-yellow-600 dark:text-yellow-400" />;
       colors = "bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800";
       break;
     case "on-hold":
-      Icon = <GoAlertFill size={14} className="text-gray-600" />;
-      colors = "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700";
+      Icon = <GoAlertFill size={14} className="text-cell-secondary" />;
+      colors = "bg-status-bg text-cell-secondary border-status-border";
       break;
     default:
-      Icon = <GoClockFill size={14} className="text-gray-600" />;
+      Icon = <GoClockFill size={14} className="text-cell-secondary" />;
       colors = "bg-status-bg text-cell-secondary border-status-border";
   }
 
@@ -76,7 +76,7 @@ const ProgressIndicator = ({ progress }) => {
       <div className="relative inline-flex items-center justify-center">
         <svg className="w-8 h-8 transform -rotate-90">
           <circle
-            className="text-gray-100 dark:text-gray-800"
+            className="text-gray-100"
             strokeWidth="3"
             stroke="currentColor"
             fill="transparent"

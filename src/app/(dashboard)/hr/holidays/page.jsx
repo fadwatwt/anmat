@@ -41,9 +41,9 @@ function HolidaysPage() {
     ];
 
     const rows = holidaysData.map((holiday) => [
-        <span key="name" className="font-medium text-gray-900 dark:text-gray-200">{holiday.name}</span>,
-        <span key="desc" className="text-gray-500">{holiday.description || "-"}</span>,
-        <span key="date" className="text-gray-500">{formatDate(holiday.date)}</span>,
+        <span key="name" className="font-medium text-cell-primary">{holiday.name}</span>,
+        <span key="desc" className="text-cell-secondary">{holiday.description || "-"}</span>,
+        <span key="date" className="text-cell-secondary">{formatDate(holiday.date)}</span>,
     ]);
 
     const viewModalList = [

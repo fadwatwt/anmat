@@ -242,7 +242,7 @@ function TaskDetailsPage({ params }) {
         return (
             <Page title={t("Task Details")} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
                 <div className="flex items-center justify-center h-64">
-                    <p className="text-gray-500">{t("Loading task details...")}</p>
+                    <p className="text-cell-secondary">{t("Loading task details...")}</p>
                 </div>
             </Page>
         );
@@ -271,9 +271,9 @@ function TaskDetailsPage({ params }) {
                 <div className={"w-full flex items-start gap-8 flex-col md:flex-row h-full"}>
                     <div className={"flex flex-col gap-6 md:w-[60%] w-full "}>
                         <InfoCard type={"task"} data={infoCardData} handelEditAction={handleEditPageNavigation} />
-                        <div className={"p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3 h-96"}>
+                        <div className={"p-4 bg-surface rounded-2xl w-full flex flex-col gap-3 h-96"}>
                             <div className={"title-header pb-3 w-full flex items-center justify-between "}>
-                                <p className={"text-lg dark:text-gray-200"}>{t("Task Stages")} </p>
+                                <p className={"text-lg"}>{t("Task Stages")} </p>
                                 <SelectWithoutLabel
                                     title={t("Filter by")}
                                     options={filterOptions}
@@ -284,15 +284,15 @@ function TaskDetailsPage({ params }) {
                             <TasksList isAssignedDate={true} tasks={mappedStages} onEvaluateStage={handleEvaluateStage} showStagesCount={false} />
                         </div>
                         {taskAvgRating > 0 && (
-                            <div className="p-4 bg-white dark:bg-white-0 rounded-2xl w-full flex items-center justify-between">
-                                <p className="text-lg dark:text-gray-200">{t("Evaluation")}</p>
+                            <div className="p-4 bg-surface rounded-2xl w-full flex items-center justify-between">
+                                <p className="text-lg">{t("Evaluation")}</p>
                                 <StarRating rating={taskAvgRating} onClickRate={() => setIsEvalDetailsOpen(true)} />
                             </div>
                         )}
-                        {canComment && <div className={"bg-white dark:bg-white-0 rounded-2xl w-full flex flex-col gap-3"}>
+                        {canComment && <div className={"bg-surface rounded-2xl w-full flex flex-col gap-3"}>
                             <div className={"p-4 flex flex-col gap-3"}>
                                 <div className={"title-header w-full flex items-center justify-between"}>
-                                    <p className={"text-lg dark:text-gray-200 "}>{t("Comments")}</p>
+                                    <p className={"text-lg "}>{t("Comments")}</p>
                                 </div>
                                 <TaskComments 
                                     comments={task.comments || []} 

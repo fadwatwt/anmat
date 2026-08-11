@@ -6,14 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "@/components/Tables/Table.jsx";
 import { fetchAllRotations } from "@/redux/rotation/rotationAPI";
 
-const OffBadge = () => (
+const OffBadge = () => {
+  const { t } = useTranslation();
+  return (
   <div className="w-full flex justify-center">
-    <div className="flex items-center justify-center gap-1 w-14 h-6 px-1 py-1 bg-weak-100 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-300 text-xs">
+    <div className="flex items-center justify-center gap-1 w-14 h-6 px-1 py-1 bg-weak-100 rounded text-cell-secondary text-xs">
       <div className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-      <span>OFF</span>
+      <span>{t("OFF")}</span>
     </div>
   </div>
-);
+  );
+};
 
 function RotationTable() {
   const { t } = useTranslation();
@@ -88,7 +91,7 @@ function RotationTable() {
       label: (
         <div className="flex flex-col items-center">
           <span className="dark:text-gray-400">{day}</span>
-          <span className="text-start text-sm dark:bg-gray-900 text-gray-400">
+          <span className="text-start text-sm text-cell-secondary">
             {number}
           </span>
         </div>
@@ -152,30 +155,30 @@ function RotationTable() {
             <span className="text-sm text-sub-500 dark:text-sub-300">
               {rotation.name}
             </span>
-            <span className="text-gray-500 text-sm">
+            <span className="text-cell-secondary text-sm">
               {rotation.department || "N/A"}
             </span>
           </div>
         </div>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.sun ? rotation.sun : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.mon ? rotation.mon : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.tue ? rotation.tue : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.wed ? rotation.wed : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.thu ? rotation.thu : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.fri ? rotation.fri : <OffBadge />}
         </span>,
-        <span className="text-gray-500 text-sm">
+        <span className="text-cell-secondary text-sm">
           {rotation.sat ? rotation.sat : <OffBadge />}
         </span>
       ];

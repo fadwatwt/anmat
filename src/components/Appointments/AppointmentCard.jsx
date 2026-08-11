@@ -22,7 +22,7 @@ import AppointmentCategoryBadge from "./AppointmentCategoryBadge";
 const PriorityBadge = ({ priority }) => {
   const { t } = useTranslation();
   const config = {
-    low: { bg: "bg-gray-100 dark:bg-gray-700", text: "text-gray-600 dark:text-gray-400", label: t("Low") },
+    low: { bg: "bg-status-bg", text: "text-cell-secondary", label: t("Low") },
     medium: { bg: "bg-blue-100 dark:bg-blue-900/30", text: "text-blue-600 dark:text-blue-400", label: t("Medium") },
     high: { bg: "bg-orange-100 dark:bg-orange-900/30", text: "text-orange-600 dark:text-orange-400", label: t("High") },
     urgent: { bg: "bg-red-100 dark:bg-red-900/30", text: "text-red-600 dark:text-red-400", label: t("Urgent") },
@@ -103,8 +103,8 @@ const StatusBadge = ({ status }) => {
       label: t("Completed"),
     },
     cancelled: {
-      bg: "bg-gray-100 dark:bg-gray-700",
-      text: "text-gray-800 dark:text-gray-400",
+      bg: "bg-status-bg",
+      text: "text-cell-primary",
       label: t("Cancelled"),
     },
   };
@@ -155,7 +155,7 @@ function AppointmentCard({
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 ${
+      className={`bg-surface rounded-lg border border-status-border ${
         isSmall ? "p-3" : "p-4"
       } hover:shadow-md transition-shadow`}
       style={{ borderRight: `4px solid ${appointment.color || "#3B82F6"}` }}
@@ -178,7 +178,7 @@ function AppointmentCard({
           </div>
 
           <h3
-            className={`font-semibold text-gray-900 dark:text-white truncate ${
+            className={`font-semibold text-cell-primary truncate ${
               isSmall ? "text-sm" : "text-base"
             }`}
           >
@@ -186,18 +186,18 @@ function AppointmentCard({
           </h3>
 
           {!isSmall && appointment.description && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+            <p className="text-sm text-cell-secondary mt-1 line-clamp-2">
               {appointment.description}
             </p>
           )}
 
           <div className={`flex flex-wrap gap-3 ${isSmall ? "mt-2" : "mt-3"}`}>
-            <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-1 text-sm text-cell-secondary">
               <RiCalendarLine size={14} />
               <span>{formatDate(appointment.date)}</span>
             </div>
 
-            <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-1 text-sm text-cell-secondary">
               <RiTimeLine size={14} />
               <span>
                 {formatTime(appointment.start_time)}
@@ -206,7 +206,7 @@ function AppointmentCard({
             </div>
 
             {appointment.location && !isSmall && (
-              <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-1 text-sm text-cell-secondary">
                 <RiMapPinLine size={14} />
                 <span className="truncate">{appointment.location}</span>
               </div>
@@ -214,7 +214,7 @@ function AppointmentCard({
           </div>
 
           {!isSmall && appointment.attendee_list?.length > 0 && (
-            <div className="flex items-center gap-1 mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-1 mt-2 text-sm text-cell-secondary">
               <RiUserLine size={14} />
               <span>
                 {appointment.attendee_list.length} {t("attendees")}
@@ -230,7 +230,7 @@ function AppointmentCard({
           )}
 
           {!isSmall && appointment.notes && (
-            <div className="flex items-start gap-1 mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-start gap-1 mt-2 text-sm text-cell-secondary">
               <RiStickyNoteLine size={14} className="mt-0.5 flex-shrink-0" />
               <span className="line-clamp-2">{appointment.notes}</span>
             </div>
@@ -243,11 +243,11 @@ function AppointmentCard({
       </div>
 
       {!isSmall && (
-        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-status-border">
           {appointment.status === "upcoming" && onComplete && (
             <button
               onClick={() => onComplete(appointment._id)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors dark:text-green-400 dark:hover:text-green-400"
             >
               <RiCheckLine size={16} />
               {t("Complete")}
@@ -257,7 +257,7 @@ function AppointmentCard({
           {appointment.status === "upcoming" && onCancel && (
             <button
               onClick={() => onCancel(appointment._id)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors dark:text-red-400 dark:hover:text-red-400"
             >
               <RiCloseLine size={16} />
               {t("Cancel")}
@@ -277,7 +277,7 @@ function AppointmentCard({
           {onDelete && (
             <button
               onClick={() => onDelete(appointment)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors dark:text-red-400 dark:hover:text-red-400"
             >
               <RiDeleteBinLine size={16} />
               {t("Delete")}
@@ -287,7 +287,7 @@ function AppointmentCard({
           {onShare && (
             <button
               onClick={() => onShare(appointment)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors dark:text-blue-400 dark:hover:text-blue-400"
             >
               <RiShareLine size={16} />
               {t("Share")}

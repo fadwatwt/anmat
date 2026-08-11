@@ -19,7 +19,7 @@ function TabModal({tabs,classNameItem,classNameContent}) {
                     >
                         {Icon && React.cloneElement(Icon, {
                             size: 15,
-                            className: activeTab === title ? "text-primary-500 dark:text-primary-200" : "text-gray-600"
+                            className: activeTab === title ? "text-primary-500 dark:text-primary-200" : "text-gray-600 dark:text-gray-400"
                         })}
                         <p className={"dark:text-gray-400"}>{t(title)}</p>
                     </div>

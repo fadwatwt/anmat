@@ -31,7 +31,7 @@ function DonutChart({ chart }) {
 
   return (
     <div className="flex flex-col items-center gap-2 w-full">
-      <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 self-start">
+      <span className="text-xs font-semibold text-cell-secondary self-start">
         {t(chart.titleAr || chart.title)}
       </span>
       <div className="flex items-center gap-4 w-full">
@@ -75,18 +75,18 @@ function DonutChart({ chart }) {
                     entry.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length],
                 }}
               />
-              <span className="text-gray-600 dark:text-gray-400 truncate">
+              <span className="text-cell-secondary truncate">
                 {t(entry.name)}
               </span>
-              <span className="ms-auto font-semibold text-gray-900 dark:text-gray-100">
+              <span className="ms-auto font-semibold text-cell-primary">
                 {entry.value}
               </span>
             </div>
           ))}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-1 mt-1">
-            <span className="text-xs text-gray-400">
+          <div className="border-t border-status-border pt-1 mt-1">
+            <span className="text-xs text-cell-secondary">
               {t("Total")}:{" "}
-              <span className="font-semibold text-gray-700 dark:text-gray-300">
+              <span className="font-semibold text-cell-secondary">
                 {total}
               </span>
             </span>
@@ -104,7 +104,7 @@ function BarChartSimple({ chart }) {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+      <span className="text-xs font-semibold text-cell-secondary">
         {t(chart.titleAr || chart.title)}
       </span>
       <div className="h-48 w-full">
@@ -168,7 +168,7 @@ function GroupedBarChart({ chart }) {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+      <span className="text-xs font-semibold text-cell-secondary">
         {t(chart.titleAr || chart.title)}
       </span>
       <div className="h-48 w-full">
@@ -235,7 +235,7 @@ function LineChartSimple({ chart }) {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+      <span className="text-xs font-semibold text-cell-secondary">
         {t(chart.titleAr || chart.title)}
       </span>
       <div className="h-48 w-full">
@@ -301,25 +301,25 @@ function ChartCard({ chart }) {
   switch (chart.type) {
     case "donut":
       return (
-        <div className="rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4">
+        <div className="rounded-xl bg-status-bg border border-status-border p-4">
           <DonutChart chart={chart} />
         </div>
       );
     case "bar":
       return (
-        <div className="rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4">
+        <div className="rounded-xl bg-status-bg border border-status-border p-4">
           <BarChartSimple chart={chart} />
         </div>
       );
     case "groupedBar":
       return (
-        <div className="rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4">
+        <div className="rounded-xl bg-status-bg border border-status-border p-4">
           <GroupedBarChart chart={chart} />
         </div>
       );
     case "line":
       return (
-        <div className="rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4">
+        <div className="rounded-xl bg-status-bg border border-status-border p-4">
           <LineChartSimple chart={chart} />
         </div>
       );

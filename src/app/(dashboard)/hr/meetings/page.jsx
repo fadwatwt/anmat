@@ -34,9 +34,9 @@ const formatDateTime = (value) => {
 // eslint-disable-next-line react/prop-types
 const DateTimeCell = ({ value }) => {
     const formatted = formatDateTime(value);
-    if (formatted === "-") return <span className="text-gray-600 dark:text-gray-400 text-xs">-</span>;
+    if (formatted === "-") return <span className="text-cell-secondary text-xs">-</span>;
     return (
-        <div className="text-gray-600 dark:text-gray-400 text-xs">
+        <div className="text-cell-secondary text-xs">
             <div>{formatted.date}</div>
             <div>{formatted.time}</div>
         </div>
@@ -218,13 +218,13 @@ function MeetingManagementPage() {
         const creatorName = creator.name || "-";
         const creatorAvatar = creator.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(creatorName)}`;
         return [
-            <div key={row._id} className="flex items-center gap-2 font-medium text-gray-900 dark:text-gray-200">
+            <div key={row._id} className="flex items-center gap-2 font-medium text-cell-primary">
                 {row.title}
             </div>,
-            <div key={row._id + "_dept"} className="text-gray-600 dark:text-gray-400">
+            <div key={row._id + "_dept"} className="text-cell-secondary">
                 {deptNames || "-"}
             </div>,
-            <div key={row._id + "_type"} className="text-gray-600 dark:text-gray-400">
+            <div key={row._id + "_type"} className="text-cell-secondary">
                 {row.type || "-"}
             </div>,
             <DateTimeCell key={row._id + "_sched"} value={row.scheduled_at} />,
@@ -233,7 +233,7 @@ function MeetingManagementPage() {
             <div key={row._id + "_creator"} className="flex items-center gap-2">
                 <img src={creatorAvatar} alt={creatorName} className="w-8 h-8 rounded-full" />
                 <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900 dark:text-gray-200">{creatorName}</span>
+                    <span className="text-sm font-medium text-cell-primary">{creatorName}</span>
                 </div>
             </div>,
             row.meeting_link ? (
@@ -241,7 +241,7 @@ function MeetingManagementPage() {
                     <button
                         onClick={() => openMeetingLink(row.meeting_link)}
                         title={row.meeting_link}
-                        className="flex items-center gap-1 text-blue-600 hover:underline max-w-[110px]"
+                        className="flex items-center gap-1 text-blue-600 hover:underline max-w-[110px] dark:text-blue-400"
                     >
                         <RiLink size={14} className="shrink-0" />
                         <span className="truncate text-xs">{row.meeting_link}</span>
@@ -249,20 +249,20 @@ function MeetingManagementPage() {
                     <button
                         onClick={() => copyMeetingLink(row)}
                         title={t("Copy Link")}
-                        className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
+                        className="p-1 rounded hover:bg-status-bg text-cell-secondary"
                     >
-                        <RiFileCopyLine size={14} className={copiedId === row._id ? "text-green-600" : ""} />
+                        <RiFileCopyLine size={14} className={copiedId === row._id ? "text-green-600 dark:text-green-400" : ""} />
                     </button>
                     <button
                         onClick={() => shareMeetingLink(row)}
                         title={t("Share")}
-                        className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
+                        className="p-1 rounded hover:bg-status-bg text-cell-secondary"
                     >
                         <RiShareForwardLine size={14} />
                     </button>
                 </div>
             ) : (
-                <span key={row._id + "_link"} className="text-gray-400 text-xs">-</span>
+                <span key={row._id + "_link"} className="text-cell-secondary text-xs">-</span>
             ),
             statusCell(row.status, row._id),
         ];
@@ -273,20 +273,20 @@ function MeetingManagementPage() {
         const hasLink = !!meeting?.meeting_link;
         const hasReminder = !!meeting?.reminder_appointment_id;
         return (
-            <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10 border border-gray-200 dark:border-gray-700 p-1 flex flex-col">
-                <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+            <div className="absolute right-0 mt-2 w-52 bg-surface rounded-md shadow-lg z-10 border border-status-border p-1 flex flex-col">
+                <button className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                     <RiEyeLine size={16} className="text-blue-500" /> {t("View")}
                 </button>
-                <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+                <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                     <RiPencilLine size={16} className="text-blue-500" /> {t("Edit")}
                 </button>
-                <button onClick={() => handleInvite(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+                <button onClick={() => handleInvite(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                     <RiUserAddLine size={16} className="text-blue-500" /> {t("Invite Employee")}
                 </button>
-                <button onClick={() => handleToggleReminder(meeting)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+                <button onClick={() => handleToggleReminder(meeting)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                     {hasReminder ? (
                         <>
-                            <RiCalendarCheckLine size={16} className="text-green-600" /> {t("Remove Reminder")}
+                            <RiCalendarCheckLine size={16} className="text-green-600 dark:text-green-400" /> {t("Remove Reminder")}
                         </>
                     ) : (
                         <>
@@ -294,7 +294,7 @@ function MeetingManagementPage() {
                         </>
                     )}
                 </button>
-                <button onClick={() => handleCancelClick(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left rounded-md">
+                <button onClick={() => handleCancelClick(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left rounded-md dark:text-red-400">
                     <RiDeleteBinLine size={16} className="text-red-500" /> {t("Cancel")}
                 </button>
                 <div className="px-2 py-1">
@@ -302,7 +302,7 @@ function MeetingManagementPage() {
                         onClick={() => openMeetingLink(meeting?.meeting_link)}
                         disabled={!hasLink}
                         title={hasLink ? meeting.meeting_link : t("No meeting link")}
-                        className="w-full bg-blue-50 text-blue-600 py-1.5 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-blue-50 text-blue-600 py-1.5 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/30"
                     >
                         {t("Join Meeting")}
                     </button>
@@ -374,7 +374,7 @@ function MeetingManagementPage() {
                 onSubmit={confirmCancel}
                 description={(
                     <div>
-                        <p className="text-gray-800 dark:text-gray-200 text-lg font-medium">
+                        <p className="text-cell-primary text-lg font-medium">
                             {t("Are you sure you want to cancel")} <span className="font-bold">&quot;{selectedMeeting?.title}&quot;</span>?
                         </p>
                     </div>

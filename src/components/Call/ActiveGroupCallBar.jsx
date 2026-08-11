@@ -97,7 +97,7 @@ const ActiveGroupCallBar = () => {
           <button
             onClick={toggleMute}
             className={`p-3 rounded-full transition-all ${
-              isMuted ? "bg-red-500 text-white" : "bg-white/10 text-white hover:bg-white/20"
+              isMuted ? "bg-red-500 text-white" : "bg-surface/10 text-white hover:bg-surface/20"
             }`}
             title={isMuted ? t("Unmute") : t("Mute")}
           >
@@ -107,7 +107,7 @@ const ActiveGroupCallBar = () => {
           <button
             onClick={toggleCamera}
             className={`p-3 rounded-full transition-all ${
-              !isCameraOn ? "bg-red-500 text-white" : "bg-white/10 text-white hover:bg-white/20"
+              !isCameraOn ? "bg-red-500 text-white" : "bg-surface/10 text-white hover:bg-surface/20"
             }`}
             title={isCameraOn ? t("Turn off camera") : t("Turn on camera")}
           >

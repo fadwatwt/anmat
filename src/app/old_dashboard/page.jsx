@@ -207,10 +207,10 @@ const TaskManagementDashboard = () => {
     request.daysLeft,
     <StatusBadge key={index} status={request.status} />,
     <div key={index} className="flex gap-2">
-      <button className="bg-red-100 text-red-600 px-3 py-1 rounded-md w-fit">{t("Reject")}</button>
+      <button className="bg-red-100 text-red-600 px-3 py-1 rounded-md w-fit dark:bg-red-900/30 dark:text-red-400">{t("Reject")}</button>
       <button
         onClick={handelConfirmApprovalAlert}
-        className="bg-green-100 text-green-600 px-3 py-1 rounded-md w-fit"
+        className="bg-green-100 text-green-600 px-3 py-1 rounded-md w-fit dark:bg-green-900/30 dark:text-green-400"
       >
         {t("Accept")}
       </button>
@@ -221,9 +221,9 @@ const TaskManagementDashboard = () => {
     <Page isTitle={false}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Task Summary Section */}
-        <div className="bg-white rounded-xl shadow-sm p-6 dark:bg-gray-800">
+        <div className="bg-surface rounded-xl shadow-sm p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
+            <h2 className="text-xl font-semibold text-cell-primary">
               {t("Tasks Summary")}
             </h2>
             <div className="flex gap-2">
@@ -251,10 +251,10 @@ const TaskManagementDashboard = () => {
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-sm text-gray-500 dark:text-gray-200">
+                  <div className="text-sm text-cell-secondary">
                     {t("TASKS")}
                   </div>
-                  <div className="text-3xl font-bold dark:text-white">
+                  <div className="text-3xl font-bold">
                     {taskSummaryData.total}
                   </div>
                 </div>
@@ -264,34 +264,34 @@ const TaskManagementDashboard = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-indigo-600 font-semibold">
+              <div className="text-indigo-600 font-semibold dark:text-indigo-400">
                 {taskSummaryData.active}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-200">
+              <div className="text-sm text-cell-secondary">
                 {t("Active")}
               </div>
             </div>
             <div>
-              <div className="text-green-600 text-sm ">
+              <div className="text-green-600 text-sm dark:text-green-400 ">
                 {taskSummaryData.completed}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-200">
+              <div className="text-sm text-cell-secondary">
                 {t("On - Time Completed")}
               </div>
             </div>
             <div>
-              <div className="text-yellow-600 font-semibold">
+              <div className="text-yellow-600 font-semibold dark:text-yellow-400">
                 {taskSummaryData.late}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-200">
+              <div className="text-sm text-cell-secondary">
                 {t("Late Completed")}
               </div>
             </div>
             <div>
-              <div className="text-red-600 font-semibold">
+              <div className="text-red-600 font-semibold dark:text-red-400">
                 {taskSummaryData.overdue}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-200">
+              <div className="text-sm text-cell-secondary">
                 {t("Overdue")}
               </div>
             </div>
@@ -299,9 +299,9 @@ const TaskManagementDashboard = () => {
         </div>
 
         {/* Department Analytics Section */}
-        <div className="bg-white rounded-xl shadow-sm p-6 dark:bg-gray-800">
+        <div className="bg-surface rounded-xl shadow-sm p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
+            <h2 className="text-xl font-semibold text-cell-primary">
               {t("Departments analytics")}
             </h2>
             <div className="flex gap-2">
@@ -322,7 +322,7 @@ const TaskManagementDashboard = () => {
                 {" "}
                 {/* Reduce barGap */}
                 <CartesianGrid
-                  className={"bg-gary-800 text-gray-800"}
+                  className={"bg-gary-800 text-cell-primary"}
                   stroke={
                     theme === "dark" ? "rgb(78,90,110)" : "rgb(166,167,169)"
                   }
@@ -331,7 +331,7 @@ const TaskManagementDashboard = () => {
                 />
                 <XAxis
                   dataKey="name"
-                  className={"text-gray-700 dark:text-gray-400"}
+                  className={"text-cell-secondary"}
                   axisLine={false}
                   tickLine={false}
                   tick={
@@ -382,7 +382,7 @@ const TaskManagementDashboard = () => {
       {/* Task/Project Evaluation & Activity Logs Section */}
       <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Task/Project Evaluation Section (2/3 of the width) */}
-        <div className="bg-white rounded-xl shadow-sm lg:col-span-2">
+        <div className="bg-surface rounded-xl shadow-sm lg:col-span-2">
           <Table
             title={t("Task/Project Evaluation")}
             headers={headers}
@@ -398,7 +398,7 @@ const TaskManagementDashboard = () => {
       </div>
 
       {/* Requests Section */}
-      <div className="mt-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+      <div className="mt-6 bg-surface p-6 rounded-lg shadow">
         <div className="flex justify-between items-center mb-6"></div>
 
         <Table

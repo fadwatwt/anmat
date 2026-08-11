@@ -32,7 +32,7 @@ function OrganizationCard({ organization, isLoading, onEdit }) {
         <div className="w-full bg-surface border border-status-border rounded-2xl p-6 flex flex-col gap-6 mt-12">
             <div className="flex justify-between items-start">
                 <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-primary-500 font-bold text-2xl overflow-hidden">
+                    <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-primary-500 font-bold text-2xl overflow-hidden dark:bg-blue-900/30">
                         {organization?.logo ? (
                             <img src={organization.logo} alt={t("Logo")} className="w-full h-full object-cover" />
                         ) : (
@@ -42,7 +42,7 @@ function OrganizationCard({ organization, isLoading, onEdit }) {
                 </div>
                 <button 
                   onClick={onEdit}
-                  className="px-4 py-2 text-sm border border-status-border rounded-lg text-cell-secondary hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  className="px-4 py-2 text-sm border border-status-border rounded-lg text-cell-secondary hover:bg-status-bg transition-colors">
                     {t("Edit Organization")}
                 </button>
             </div>

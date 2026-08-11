@@ -6,8 +6,8 @@ function ProjectProgress({ progress, lastUpdate }) {
     const {t} = useTranslation()
     return (
         <div className="flex flex-col items-start">
-            <h4 className="text-sm dark:text-gray-200">{t("Project Progress")}:</h4>
-            <div className="relative w-full h-2 bg-gray-300 rounded-full mt-2">
+            <h4 className="text-sm">{t("Project Progress")}:</h4>
+            <div className="relative w-full h-2 bg-status-bg rounded-full mt-2">
                 <div
                     className="absolute top-0 start-0 h-full bg-green-600 dark:bg-green-success rounded-full"
                     style={{ width: `${progress}%` }}

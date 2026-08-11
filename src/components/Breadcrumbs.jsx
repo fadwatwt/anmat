@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Breadcrumbs = ({ breadcrumbs }) => {
     const {t} = useTranslation("common")
     return (
-        <nav className="text-sm text-gray-500 flex items-end">
+        <nav className="text-sm text-cell-secondary flex items-end">
             <ol className="list-reset flex">
                 {breadcrumbs.map((breadcrumb, index) => (
                     <React.Fragment key={index}>
@@ -16,7 +16,7 @@ const Breadcrumbs = ({ breadcrumbs }) => {
                                     {t(breadcrumb.title)}
                                 </Link>
                             ) : (
-                                <span className={"text-nowrap dark:text-gray-200"}>{t(breadcrumb.title)}</span>
+                                <span className={"text-nowrap"}>{t(breadcrumb.title)}</span>
                             )}
                         </li>
                         {index < breadcrumbs.length - 1 && <span className="mx-2 dark:text-gray-200">/</span>}

@@ -94,7 +94,7 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
       <div
         key={day}
         onClick={() => handleDayClick(day)}
-        className={`h-24 p-1.5 border border-gray-100 dark:border-gray-700 rounded-lg cursor-pointer transition-all hover:bg-gray-50 dark:hover:bg-gray-700/50 ${
+        className={`h-24 p-1.5 border border-status-border rounded-lg cursor-pointer transition-all hover:bg-status-bg ${
           isToday ? "ring-2 ring-primary-500 bg-primary-50 dark:bg-primary-900/20" : ""
         } ${isSelected ? "ring-2 ring-primary-600 bg-primary-100 dark:bg-primary-900/30" : ""}`}
       >
@@ -103,7 +103,7 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
             className={`text-sm font-medium ${
               isToday
                 ? "text-primary-600 dark:text-primary-400"
-                : "text-gray-700 dark:text-gray-300"
+                : "text-cell-secondary"
             }`}
           >
             {day}
@@ -144,7 +144,7 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
             </div>
           ))}
           {totalItems > maxVisible && (
-            <div className="text-xs text-gray-500 dark:text-gray-400 px-1">
+            <div className="text-xs text-cell-secondary px-1">
               +{totalItems - maxVisible} {t("more")}
             </div>
           )}
@@ -154,20 +154,20 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-surface rounded-lg border border-status-border p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <RiCalendarLine size={20} className="text-primary-500" />
-          <h3 className="font-semibold text-gray-900 dark:text-white">
+          <h3 className="font-semibold text-cell-primary">
             {isArabic ? MONTHSAr[month - 1] : MONTHS[month - 1]} {year}
           </h3>
         </div>
         <div className="flex items-center gap-1">
           <button
             onClick={prevMonth}
-            className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-1.5 hover:bg-status-bg rounded-lg transition-colors"
           >
-            <RiArrowLeftLine size={18} className="text-gray-600 dark:text-gray-400" />
+            <RiArrowLeftLine size={18} className="text-cell-secondary" />
           </button>
           <button
             onClick={() => setCurrentDate(new Date())}
@@ -177,14 +177,14 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
           </button>
           <button
             onClick={nextMonth}
-            className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-1.5 hover:bg-status-bg rounded-lg transition-colors"
           >
-            <RiArrowRightLine size={18} className="text-gray-600 dark:text-gray-400" />
+            <RiArrowRightLine size={18} className="text-cell-secondary" />
           </button>
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mb-3 text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex items-center gap-4 mb-3 text-xs text-cell-secondary">
         <span className="flex items-center gap-1">
           <RiCalendarEventLine size={12} className="text-blue-500" />
           {t("Appointments")}
@@ -203,7 +203,7 @@ function MonthlyCalendar({ onDaySelect, selectedDate }) {
         {(isArabic ? DAYSOfWeekAr : DAYSOfWeek).map((day) => (
           <div
             key={day}
-            className="text-center text-xs font-medium text-gray-500 dark:text-gray-400 py-2"
+            className="text-center text-xs font-medium text-cell-secondary py-2"
           >
             {day}
           </div>

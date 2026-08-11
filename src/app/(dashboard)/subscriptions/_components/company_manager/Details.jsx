@@ -127,7 +127,7 @@ function Details({ onUpgradeClick }) {
                             type="button"
                             onClick={() => setShowReactivateAlert(true)}
                             disabled={isReactivating}
-                            className="text-sm bg-surface !text-green-600 px-4 py-2 w-96 rounded-lg hover:bg-green-50 transition-colors border border-green-200 disabled:opacity-50"
+                            className="text-sm bg-surface !text-green-600 px-4 py-2 w-96 rounded-lg hover:bg-green-50 transition-colors border border-green-200 disabled:opacity-50 dark:hover:bg-green-900/20 dark:border-green-800"
                         >
                             {isReactivating ? t("Reactivating...") : t("Reactivate subscription renewal")}
                         </button>
@@ -150,8 +150,8 @@ function Details({ onUpgradeClick }) {
                 confirmBtnText={t("Yes, Stop")}
                 description={
                     <p>
-                        {t("Are you sure you want to")} <span className="font-bold text-black dark:text-gray-100">{t("cancel renewal")}</span> {t("of the")}
-                        <span className="font-bold text-black dark:text-gray-100"> {plan.name}</span> {t("with")} <span className="font-bold text-black dark:text-gray-100">${price}/mth</span>?
+                        {t("Are you sure you want to")} <span className="font-bold text-cell-primary">{t("cancel renewal")}</span> {t("of the")}
+                        <span className="font-bold text-cell-primary"> {plan.name}</span> {t("with")} <span className="font-bold text-cell-primary">${price}{t("/mth")}</span>?
                     </p>
                 }
                 onSubmit={async () => {
@@ -173,8 +173,8 @@ function Details({ onUpgradeClick }) {
                 confirmBtnText={t("Yes, Reactivate")}
                 description={
                     <p>
-                        {t("Do you want to")} <span className="font-bold text-black dark:text-gray-100">{t("reactivate renewal")}</span> {t("for")}
-                        <span className="font-bold text-black dark:text-gray-100"> {plan.name}</span>?
+                        {t("Do you want to")} <span className="font-bold text-cell-primary">{t("reactivate renewal")}</span> {t("for")}
+                        <span className="font-bold text-cell-primary"> {plan.name}</span>?
                     </p>
                 }
                 onSubmit={async () => {

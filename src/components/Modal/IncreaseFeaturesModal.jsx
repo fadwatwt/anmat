@@ -74,7 +74,7 @@ const IncreaseFeaturesModal = ({ isOpen, onClose, onSubmit, isSubmitting = false
             className="lg:w-[600px] md:w-8/12 sm:w-10/12 w-11/12 p-6"
         >
             <div className="flex flex-col gap-6 py-2">
-                <div className="flex flex-col gap-4 p-4 bg-gray-50/50 dark:bg-white/5 rounded-xl border border-status-border">
+                <div className="flex flex-col gap-4 p-4 bg-status-bg rounded-xl border border-status-border">
                     <div className="flex flex-col gap-2">
                         <label className="text-sm font-medium text-cell-secondary">{t("Select Feature Type")}</label>
                         <DefaultSelect 
@@ -123,7 +123,7 @@ const IncreaseFeaturesModal = ({ isOpen, onClose, onSubmit, isSubmitting = false
                                     </div>
                                     <button 
                                         onClick={() => handleRemoveFeature(f.feature_type_id)}
-                                        className="text-red-500 hover:bg-red-50 p-1 rounded-md transition-colors"
+                                        className="text-red-500 hover:bg-red-50 p-1 rounded-md transition-colors dark:hover:bg-red-900/20"
                                     >
                                         {t("Remove")}
                                     </button>

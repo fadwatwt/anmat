@@ -39,23 +39,23 @@ function AiSettingsTab() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col gap-4">
-        <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+      <div className="p-6 bg-surface rounded-2xl border border-status-border shadow-sm flex flex-col gap-4">
+        <h3 className="text-lg font-bold text-cell-primary">
           {t("AI Assistant Settings")}
         </h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm text-cell-secondary">
           {t("Configure the global monthly free tokens limit for all users.")}
         </p>
 
         {isLoading ? (
-          <div className="flex items-center gap-2 mt-4 text-gray-500">
+          <div className="flex items-center gap-2 mt-4 text-cell-secondary">
             <Loader2 className="w-5 h-5 animate-spin" />
             <span className="text-sm">{t("Loading settings...")}</span>
           </div>
         ) : (
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 mt-4 max-w-lg">
             <div className="flex-1 flex flex-col gap-1.5">
-              <label htmlFor="freeTokensLimit" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <label htmlFor="freeTokensLimit" className="text-sm font-semibold text-cell-secondary">
                 {t("Free Tokens Limit")}
               </label>
               <input
@@ -65,7 +65,7 @@ function AiSettingsTab() {
                 step="1000"
                 value={limit}
                 onChange={(e) => setLimit(e.target.value)}
-                className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow"
+                className="w-full bg-status-bg border border-status-border text-cell-primary rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow"
                 placeholder="e.g. 5000"
               />
             </div>

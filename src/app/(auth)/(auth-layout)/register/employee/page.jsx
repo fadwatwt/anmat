@@ -227,8 +227,7 @@ const EmployeeRegistration = () => {
                         <button
                             type="submit"
                             disabled={isRegistering}
-                            className="bg-primary-500 dark:bg-primary-200 text-white dark:text-black font-medium text-md w-full py-3 rounded-xl cursor-pointer
-                            hover:bg-primary-600 transition-colors shadow-md disabled:bg-primary-300 flex items-center justify-center gap-2"
+                            className="bg-primary-500 dark:bg-primary-200 text-white dark:text-black font-medium text-md w-full py-3 rounded-xl cursor-pointer hover:bg-primary-600 transition-colors shadow-md disabled:bg-primary-300 flex items-center justify-center gap-2"
                         >
                             {isRegistering ? (
                                 <>

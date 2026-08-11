@@ -286,7 +286,7 @@ function TaskMainInfo({ task, type = "project", values, handleChange, setFieldVa
             name="is_template"
             checked={values?.is_template || false}
             onChange={(e) => setFieldValue("is_template", e.target.checked)}
-            className="w-4 h-4 text-primary-base border-gray-300 rounded focus:ring-primary-500"
+            className="w-4 h-4 text-primary-base border-status-border rounded focus:ring-primary-500"
           />
           <label htmlFor="is_template" className="text-sm font-medium text-cell-primary">
             {t("Is Template")}

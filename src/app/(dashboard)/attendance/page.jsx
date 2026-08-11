@@ -28,8 +28,8 @@ const StatusBadge = ({ status }) => {
 
     switch (status) {
         case "On Time":
-            Icon = <GoCheckCircleFill size={14} className="text-green-600" />;
-            colors = "bg-green-50 text-green-700 border-green-200";
+            Icon = <GoCheckCircleFill size={14} className="text-green-600 dark:text-green-400" />;
+            colors = "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800";
             break;
         case "Late":
             Icon = <BsClockFill size={14} className="text-[#C2540A]" />;
@@ -82,7 +82,7 @@ const AttendanceActionCard = ({ hasCheckedIn, checkOutDone, isCheckingIn, isChec
                 <div className="flex items-center gap-2 mt-2">
                     <span
                         className={`w-2.5 h-2.5 rounded-full ${
-                            hasCheckedIn ? "bg-green-500 animate-pulse" : "bg-gray-300 dark:bg-gray-600"
+                            hasCheckedIn ? "bg-green-500 animate-pulse" : "bg-status-bg dark:bg-gray-600"
                         }`}
                     />
                     <span className="text-xs font-medium text-cell-secondary">
@@ -101,7 +101,7 @@ const AttendanceActionCard = ({ hasCheckedIn, checkOutDone, isCheckingIn, isChec
                         disabled={isCheckingIn}
                         className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition-all duration-200 ${
                             isCheckingIn
-                                ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 dark:bg-gray-800 dark:text-gray-600 dark:border-gray-700"
+                                ? "bg-status-bg text-cell-secondary cursor-not-allowed border border-status-border"
                                 : "bg-primary-base hover:bg-primary-600 active:scale-95 text-white"
                         }`}
                     >
@@ -118,7 +118,7 @@ const AttendanceActionCard = ({ hasCheckedIn, checkOutDone, isCheckingIn, isChec
                         disabled={isCheckingOut}
                         className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition-all duration-200 ${
                             isCheckingOut
-                                ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 dark:bg-gray-800 dark:text-gray-600 dark:border-gray-700"
+                                ? "bg-status-bg text-cell-secondary cursor-not-allowed border border-status-border"
                                 : "bg-red-50 hover:bg-red-100 active:scale-95 text-red-600 border border-red-200 dark:bg-red-950 dark:hover:bg-red-900 dark:text-red-400 dark:border-red-800"
                         }`}
                     >

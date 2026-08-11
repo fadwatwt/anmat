@@ -121,7 +121,7 @@ function EmployeeProfile() {
                     <button
                         key={`del-${req._id}`}
                         onClick={() => handleDeleteRequest(req._id)}
-                        className="p-1 text-red-500 hover:bg-red-50 rounded"
+                        className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                     >
                         <RiDeleteBin7Line size={18} />
                     </button>
@@ -143,7 +143,7 @@ function EmployeeProfile() {
                     <button
                         key={`del-${req._id}`}
                         onClick={() => handleDeleteRequest(req._id)}
-                        className="p-1 text-red-500 hover:bg-red-50 rounded"
+                        className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                     >
                         <RiDeleteBin7Line size={18} />
                     </button>
@@ -165,7 +165,7 @@ function EmployeeProfile() {
                     <button
                         key={`del-${req._id}`}
                         onClick={() => handleDeleteRequest(req._id)}
-                        className="p-1 text-red-500 hover:bg-red-50 rounded"
+                        className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                     >
                         <RiDeleteBin7Line size={18} />
                     </button>
@@ -177,7 +177,7 @@ function EmployeeProfile() {
         return notifications.map(notif => {
             const type = notif.notification_type_id || {};
             const Icon = ICON_MAP[type.icon] || <RiInformationLine size={16} />;
-            const colorClass = COLOR_MAP[type.color] || "text-gray-500 bg-gray-50 dark:bg-gray-500/10";
+            const colorClass = COLOR_MAP[type.color] || "text-cell-secondary bg-status-bg dark:bg-gray-500/10";
 
             return [
                 notif.created_at ? translateDate(notif.created_at) : "-",

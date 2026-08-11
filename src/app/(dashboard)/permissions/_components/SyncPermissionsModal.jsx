@@ -171,11 +171,11 @@ function SyncPermissionsModal({ isOpen, onClose, roleId, roleName, currentPermis
         <div className="px-1">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Permissions</label>
+              <label className="text-sm font-semibold text-cell-secondary">{t("Permissions")}</label>
               {isLoadingPermissions ? (
-                <p className="text-sm text-gray-500"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </p>
+                <p className="text-sm text-cell-secondary"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </p>
               ) : (
-                <div className="flex flex-col gap-3 max-h-60 overflow-y-auto border border-gray-200 dark:border-gray-700 rounded-md p-3">
+                <div className="flex flex-col gap-3 max-h-60 overflow-y-auto border border-status-border rounded-md p-3">
                   {permissionsSuggestions.map((permission) => {
                     const isChecked = formik.values.admin_permissions_ids.some(
                       (p) => p.id === permission.id
@@ -194,16 +194,16 @@ function SyncPermissionsModal({ isOpen, onClose, roleId, roleName, currentPermis
                               handlePermissionsChange(newValues);
                             }
                           }}
-                          className="w-4 h-4 text-primary-base bg-gray-100 border-gray-300 rounded focus:ring-primary-base dark:focus:ring-primary-base focus:ring-2 dark:bg-gray-700 dark:border-gray-600 checkbox-custom"
+                          className="w-4 h-4 text-primary-base bg-status-bg border-status-border rounded focus:ring-primary-base dark:focus:ring-primary-base focus:ring-2 checkbox-custom"
                         />
-                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                        <span className="text-sm text-cell-secondary">
                           {getPermissionLabel(permission.name, permission)}
                         </span>
                       </label>
                     );
                   })}
                   {permissionsSuggestions.length === 0 && (
-                    <p className="text-sm text-gray-500 text-center">No permissions available.</p>
+                    <p className="text-sm text-cell-secondary text-center">{t("No permissions available.")}</p>
                   )}
                 </div>
               )}

@@ -107,7 +107,7 @@ function CompanyManagerProfile() {
                                             <div className="flex items-center gap-2">
                                                 <p className={"text-cell-primary text-sm font-medium"}>{user?.phone || user?.phoneNumber || "N/A"}</p>
                                                 {user?.is_verified && (
-                                                    <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                                                    <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full flex items-center gap-1 dark:bg-green-900/30 dark:text-green-400">
                                                         <RiCheckboxCircleFill size={10} /> {t("Verified")}
                                                     </span>
                                                 )}

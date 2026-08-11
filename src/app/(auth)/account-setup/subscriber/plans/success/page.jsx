@@ -66,20 +66,20 @@ const SuccessPage = () => {
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 gap-4">
                 <RiLoader4Line className="animate-spin text-primary-base" size={48} />
                 <div className="space-y-2">
-                    <p className="text-gray-700 dark:text-gray-200 font-bold text-lg italic">{t("Finalizing your subscription...")}</p>
-                    <p className="text-gray-400 text-sm">{t("We're verifying your payment with our secure servers.")}</p>
+                    <p className="text-cell-secondary font-bold text-lg italic">{t("Finalizing your subscription...")}</p>
+                    <p className="text-cell-secondary text-sm">{t("We're verifying your payment with our secure servers.")}</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 animate-fade-in text-gray-900 dark:text-gray-100">
-            <div className="bg-green-100 p-4 rounded-full mb-6 shadow-sm">
-                <RiCheckboxCircleFill className="text-green-600" size={64} />
+        <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 animate-fade-in text-cell-primary">
+            <div className="bg-green-100 p-4 rounded-full mb-6 shadow-sm dark:bg-green-900/30">
+                <RiCheckboxCircleFill className="text-green-600 dark:text-green-400" size={64} />
             </div>
             <h1 className="text-3xl font-bold mb-2">{t("Payment Successful!")}</h1>
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 max-w-md">
+            <p className="text-cell-secondary text-lg mb-8 max-w-md">
                 {t("Thank you for your subscription. Your account is now fully active, and you have complete access to all features.")}
             </p>
             <div className="flex flex-col gap-4">

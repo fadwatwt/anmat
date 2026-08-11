@@ -22,7 +22,7 @@ function TabMethod({ tabs, activeTab, onTabChange }) {
                             }`}
                         onClick={() => handleTabChange(title)}
                     >
-                        {Icon && <Icon size={18} className={activeTab === title ? "text-white" : "text-gray-500"} />}
+                        {Icon && <Icon size={18} className={activeTab === title ? "text-white" : "text-gray-500 dark:text-gray-400"} />}
                         <p className={`text-sm font-medium transition-colors ${activeTab === title ? "text-white" : "text-cell-secondary"
                             }`} >{t(title)}</p>
                     </div>

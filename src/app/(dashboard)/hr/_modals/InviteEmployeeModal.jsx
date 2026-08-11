@@ -90,7 +90,7 @@ function InviteEmployeeModal({ isOpen, onClose }) {
                     <div className="flex flex-col gap-2">
                         <div className="px-1">
                             {apiError && (
-                                <div className="mb-4 text-red-500 text-sm bg-red-50 p-3 rounded-lg">{apiError}</div>
+                                <div className="mb-4 text-red-500 text-sm bg-red-50 p-3 rounded-lg dark:bg-red-900/20">{apiError}</div>
                             )}
 
                             <div className="flex flex-col gap-4">
@@ -124,34 +124,34 @@ function InviteEmployeeModal({ isOpen, onClose }) {
                 <div className="flex flex-col gap-6 px-4 py-2">
                     {/* Success Icon */}
                     <div className="flex justify-center">
-                        <div className="rounded-full p-3 bg-green-100">
+                        <div className="rounded-full p-3 bg-green-100 dark:bg-green-900/30">
                             <IoCheckmarkCircle size={50} className="text-green-500" />
                         </div>
                     </div>
 
                     {/* Success Message */}
                     <div className="text-center">
-                        <p className="text-gray-700 dark:text-gray-300 text-lg">
+                        <p className="text-cell-secondary text-lg">
                             {t("Invitation email has been sent successfully to")}
                         </p>
                         <p className="text-primary-600 dark:text-primary-400 font-semibold text-lg mt-1">
                             {invitationData?.email}
                         </p>
                         {invitationData?.organization?.name && (
-                            <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+                            <p className="text-cell-secondary text-sm mt-2">
                                 {t("Organization")}: {invitationData.organization.name}
                             </p>
                         )}
                     </div>
 
                     {/* Registration Link Section */}
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                        <label className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2 block">
+                    <div className="bg-status-bg rounded-xl p-4">
+                        <label className="text-sm font-medium text-cell-secondary mb-2 block">
                             {t("Registration URL")}
                         </label>
                         <div className="flex items-center gap-2">
-                            <div className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-3 overflow-hidden">
-                                <p className="text-sm text-gray-700 dark:text-gray-300 truncate">
+                            <div className="flex-1 bg-surface border border-status-border rounded-lg p-3 overflow-hidden">
+                                <p className="text-sm text-cell-secondary truncate">
                                     {invitationData?.link}
                                 </p>
                             </div>

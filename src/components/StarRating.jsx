@@ -10,7 +10,7 @@ const StarRating = ({ rating, onClickRate }) => {
     if (rating === null || rating === undefined || rating === 0 || isNaN(rating)) {
         if (!onClickRate) return null;
         return (
-            <button onClick={onClickRate} className="p-1.5 flex items-center gap-0.5 border rounded-lg border-soft-200 dark:border-gray-700 hover:bg-gray-50 transition-colors">
+            <button onClick={onClickRate} className="p-1.5 flex items-center gap-0.5 border rounded-lg border-soft-200 hover:bg-status-bg transition-colors">
                 <IoMdStarOutline className="text-yellow-400" size={20} />
                 <span className="text-sm text-sub-500 px-1 dark:text-sub-300">{t("Rate")}</span>
             </button>
@@ -37,7 +37,7 @@ const StarRating = ({ rating, onClickRate }) => {
             onClick={onClickRate || undefined}
         >
             {renderStars()}
-            <span className="ml-2 text-gray-600 dark:text-gray-300 text-sm">{rating?.toFixed(1)}</span>
+            <span className="ml-2 text-cell-secondary text-sm">{rating?.toFixed(1)}</span>
         </div>
     );
 };

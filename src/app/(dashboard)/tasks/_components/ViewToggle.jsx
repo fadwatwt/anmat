@@ -19,7 +19,7 @@ function ViewToggle({ activeView, onChange }) {
         title={t("Table View")}
       >
         <RiTableLine size={14} />
-        <span className="hidden sm:inline">{t("Table")}</span>
+        <span>{t("Table")}</span>
       </button>
       <button
         onClick={() => onChange("kanban")}
@@ -31,7 +31,7 @@ function ViewToggle({ activeView, onChange }) {
         title={t("Kanban View")}
       >
         <RiLayoutColumnLine size={14} />
-        <span className="hidden sm:inline">{t("Kanban")}</span>
+        <span>{t("Kanban")}</span>
       </button>
     </div>
   );

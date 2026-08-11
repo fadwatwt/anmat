@@ -35,10 +35,10 @@ function CommentInput({ onSend, isLoading, initialValue = "", onCancel }) {
     return (
         <div className="w-full flex items-center gap-2 dark:bg-veryWeak-500 p-4 pt-3">
             {/* الحقل النصي مع الأيقونات */}
-            <div className="relative flex items-center py-1 border rounded-xl bg-white dark:bg-gray-900 dark:border-gray-700 shadow-sm flex-1">
+            <div className="relative flex items-center py-1 border rounded-xl bg-surface shadow-sm flex-1 border-status-border">
                 {/* أيقونة الإيموجي */}
                 <button
-                    className="absolute left-4 text-gray-500 hover:text-blue-500"
+                    className="absolute left-4 text-cell-secondary hover:text-blue-500"
                     onClick={() => setShowEmojis(!showEmojis)}
                 >
                     <BsEmojiSmile className={"dark:text-gray-200"} size={20} />
@@ -46,13 +46,13 @@ function CommentInput({ onSend, isLoading, initialValue = "", onCancel }) {
 
                 {/* قائمة الإيموجيات */}
                 {showEmojis && (
-                    <div className="absolute bottom-10 left-4 bg-white border rounded shadow p-2">
+                    <div className="absolute bottom-10 left-4 bg-surface border rounded shadow p-2">
                         <div className="flex gap-2">
                             {emojiList.map((emoji, index) => (
                                 <button
                                     key={index}
                                     onClick={() => handleEmojiClick(emoji)}
-                                    className="text-lg hover:bg-gray-100 p-1 rounded"
+                                    className="text-lg hover:bg-status-bg p-1 rounded"
                                 >
                                     {emoji}
                                 </button>
@@ -66,10 +66,10 @@ function CommentInput({ onSend, isLoading, initialValue = "", onCancel }) {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t("Type a message...")}
-                    className="max-w-full w-full pl-10 pr-20 py-2 box-border   text-sm dark:bg-gray-900 dark:text-gray-400 border-none outline-none rounded-xl"
+                    className="max-w-full w-full pl-10 pr-20 py-2 box-border text-sm border-none outline-none rounded-xl"
                 />
 
-                <label className="absolute right-12 text-gray-500 hover:text-blue-500 cursor-pointer">
+                <label className="absolute right-12 text-cell-secondary hover:text-blue-500 cursor-pointer">
                     <FiPaperclip className={"dark:text-gray-300"} size={20} />
                     <input
                         type="file"
@@ -79,7 +79,7 @@ function CommentInput({ onSend, isLoading, initialValue = "", onCancel }) {
                 </label>
 
                 {/* أيقونة الميكروفون */}
-                <button className="absolute right-4 text-gray-500 hover:text-blue-500">
+                <button className="absolute right-4 text-cell-secondary hover:text-blue-500">
                     <MdMic className={"dark:text-gray-300"} size={20} />
                 </button>
             </div>
@@ -98,7 +98,7 @@ function CommentInput({ onSend, isLoading, initialValue = "", onCancel }) {
             </button>
             {onCancel && (
                 <button
-                    className="p-2 text-gray-500 hover:text-red-500 transition-all font-bold"
+                    className="p-2 text-cell-secondary hover:text-red-500 transition-all font-bold"
                     onClick={onCancel}
                     disabled={isLoading}
                     title={t("Cancel edit")}

@@ -108,25 +108,25 @@ ${appointment.description ? `📝 ملاحظات: ${appointment.description}` : 
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-96 max-w-full mx-4">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
+        <div className="bg-surface rounded-lg shadow-xl w-96 max-w-full mx-4">
+          <div className="flex items-center justify-between p-4 border-b border-status-border">
+            <h3 className="font-semibold text-cell-primary">
               {t("Share Appointment")}
             </h3>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
             >
               <RiCloseLine size={20} />
             </button>
           </div>
 
           <div className="p-4">
-            <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 mb-4">
-              <p className="font-medium text-gray-900 dark:text-white">
+            <div className="bg-status-bg rounded-lg p-3 mb-4">
+              <p className="font-medium text-cell-primary">
                 {appointment.title}
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-sm text-cell-secondary mt-1">
                 📆 {formatDate(appointment.date)} • 🕐{" "}
                 {formatTime(appointment.start_time)}
               </p>
@@ -137,10 +137,10 @@ ${appointment.description ? `📝 ملاحظات: ${appointment.description}` : 
                 <button
                   key={option.name}
                   onClick={option.onClick}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-status-bg transition-colors"
                 >
                   <option.icon size={20} style={{ color: option.color }} />
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-cell-primary">
                     {option.name}
                   </span>
                 </button>
@@ -148,10 +148,10 @@ ${appointment.description ? `📝 ملاحظات: ${appointment.description}` : 
             </div>
           </div>
 
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="p-4 border-t border-status-border">
             <button
               onClick={onClose}
-              className="w-full px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="w-full px-4 py-2 text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
             >
               {t("Cancel")}
             </button>

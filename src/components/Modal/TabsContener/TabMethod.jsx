@@ -17,7 +17,7 @@ function TabMethod({tabs}) {
                         }`}
                         onClick={() => setActiveTab(title)}
                     >
-                        {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600"} />}
+                        {Icon && <Icon size={20} className={activeTab === title ? "text-primary-500" : "text-gray-600 dark:text-gray-300"} />}
                         <p  className={`${
                             activeTab === title ? "text-gray-800 dark:text-gray-200 text-sm" : "dark:text-gray-200 text-sm"
                         }`} >{t(title)}</p>

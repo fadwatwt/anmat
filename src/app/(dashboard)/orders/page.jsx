@@ -51,24 +51,24 @@ const ordersData = [
 
 const statusConfig = {
     Approved: {
-        bgColor: "bg-green-50",
-        icon: <RiCheckboxCircleFill size={15} className="text-green-700" />,
-        textColor: "text-green-700",
+        bgColor: "bg-green-50 dark:bg-green-900/20",
+        icon: <RiCheckboxCircleFill size={15} className="text-green-700 dark:text-green-400" />,
+        textColor: "text-green-700 dark:text-green-400",
     },
     Pending: {
-        bgColor: "bg-yellow-50",
-        icon: <RiTimeLine size={15} className="text-yellow-700" />,
-        textColor: "text-yellow-700",
+        bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
+        icon: <RiTimeLine size={15} className="text-yellow-700 dark:text-yellow-400" />,
+        textColor: "text-yellow-700 dark:text-yellow-400",
     },
     Rejected: {
-        bgColor: "bg-red-50",
-        icon: <RiCloseCircleFill size={15} className="text-red-700" />,
-        textColor: "text-red-700",
+        bgColor: "bg-red-50 dark:bg-red-900/20",
+        icon: <RiCloseCircleFill size={15} className="text-red-700 dark:text-red-400" />,
+        textColor: "text-red-700 dark:text-red-400",
     },
     Completed: {
-        bgColor: "bg-blue-50",
-        icon: <RiCheckDoubleFill size={15} className="text-blue-700" />,
-        textColor: "text-blue-700",
+        bgColor: "bg-blue-50 dark:bg-blue-900/20",
+        icon: <RiCheckDoubleFill size={15} className="text-blue-700 dark:text-blue-400" />,
+        textColor: "text-blue-700 dark:text-blue-400",
     }
 };
 
@@ -86,9 +86,9 @@ function OrdersTable() {
 
     const statusCell = (status) => {
         const config = statusConfig[status] || {
-            bgColor: "bg-gray-50",
-            icon: <RiQuestionLine size={15} className="text-gray-700" />,
-            textColor: "text-gray-700",
+            bgColor: "bg-status-bg",
+            icon: <RiQuestionLine size={15} className="text-cell-secondary" />,
+            textColor: "text-cell-secondary",
         };
 
         return (
@@ -116,10 +116,10 @@ function OrdersTable() {
                 </div>
             </div>
             <div className="flex flex-col items-start justify-start gap-0">
-                <span className="text-lg text-gray-900 dark:text-gray-50">
+                <span className="text-lg text-cell-primary">
                     {order.company}
                 </span>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-cell-secondary">
                     {order.companyUrl}
                 </span>
             </div>
@@ -132,7 +132,7 @@ function OrdersTable() {
                     <RiFlashlightLine size={25} className="rounded-full text-primary-500 stroke-[5px]" />
                 </div>
             </div>
-            <span className="text-lg text-gray-900 dark:text-gray-50">
+            <span className="text-lg text-cell-primary">
                 {order.plan}
             </span>
         </div>,
@@ -141,7 +141,7 @@ function OrdersTable() {
         <div key="date">{order.date}</div>,
 
         // Users Subscribed cell
-        <div key="amount" className="px-2 py-1 text-gray-900 text-md font-bold bg-gray-50 text-center rounded-[25px]">
+        <div key="amount" className="px-2 py-1 text-cell-primary text-md font-bold bg-status-bg text-center rounded-[25px]">
             {order.usersSubscribed}
         </div>,
 

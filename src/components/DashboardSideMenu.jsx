@@ -32,14 +32,14 @@ const SectionHeader = ({ title, isCollapsed, onToggle }) => {
     return (
         <div
             onClick={onToggle}
-            className="px-4 pt-5 pb-1 flex items-center justify-between cursor-pointer select-none group/section hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg mx-2 transition-colors"
+            className="px-4 pt-5 pb-1 flex items-center justify-between cursor-pointer select-none group/section hover:bg-status-bg rounded-lg mx-2 transition-colors"
         >
-            <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest dark:text-gray-500">
+            <p className="text-[11px] font-semibold text-cell-secondary uppercase tracking-widest">
                 {t(title)}
             </p>
             <ArrowDown2
                 size={14}
-                className={`text-gray-400 transition-transform duration-200 ${isCollapsed ? '' : 'rotate-180'}`}
+                className={`text-cell-secondary transition-transform duration-200 ${isCollapsed ? '' : 'rotate-180'}`}
             />
         </div>
     );
@@ -128,24 +128,22 @@ const Menu = React.memo(({ isSlidebarOpen, toggleSlidebarOpen }) => {
 
     return (
         <div
-            className={`fixed md:relative top-0 bottom-0 z-[60] md:z-[20] flex flex-col w-[280px] md:w-[272px] max-w-[280px] md:max-w-[272px] h-screen bg-white dark:bg-gray-800 border-e dark:border-gray-700 transition-transform duration-300 ease-in-out gap-5
-        ${i18n.language === "ar" ? "right-0" : "left-0"} 
+            className={`fixed md:relative top-0 bottom-0 z-[60] md:z-[20] flex flex-col w-[280px] md:w-[272px] max-w-[280px] md:max-w-[272px] h-screen bg-surface border-e transition-transform duration-300 ease-in-out gap-5 ${i18n.language === "ar" ? "right-0" : "left-0"} 
         ${isSlidebarOpen ? "translate-x-0" : (i18n.language === "ar" ? "translate-x-full" : "-translate-x-full")} 
         md:translate-x-0`}
         >
-            <div className={" h-32 flex p-5 gap-2 border-b-2 dark:border-gray-600 items-center"}>
+            <div className={" h-32 flex p-5 gap-2 border-b-2 items-center border-status-border"}>
                 <div className={"profile-image"}>
                     <img src="/images/logo.png" alt={t("img")}
                         className={" w-10 h-10 rounded-full m-0 p-0"} />
                 </div>
                 <div className={"flex flex-col  gap-2 justify-center  "}>
-                    <p className={"text-sm dark:text-white text-start truncate w-28 md:w-full"}>{t("Anmaat")}</p>
-                    <p className={"text-xs dark:text-white text-gray-500 truncate w-28 md:w-full"}>{t("Enterprise Management System")}</p>
+                    <p className={"text-sm text-start truncate w-28 md:w-full"}>{t("Anmaat")}</p>
+                    <p className={"text-xs text-cell-secondary truncate w-28 md:w-full"}>{t("Enterprise Management System")}</p>
                 </div>
                 {
                     isSlidebarOpen && (
-                        <button className="inline-flex h-8 w-8 items-center p-2 text-sm text-gray-500
-                            rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        <button className="inline-flex h-8 w-8 items-center p-2 text-sm text-cell-secondary rounded-lg md:hidden hover:bg-status-bg focus:outline-none focus:ring-2 focus:ring-status-border"
                             onClick={toggleSlidebarOpen}>
                             <HambergerMenu />
                         </button>
@@ -158,7 +156,7 @@ const Menu = React.memo(({ isSlidebarOpen, toggleSlidebarOpen }) => {
                     <SearchInput />
                 </div>
                 <div className={"flex  flex-col gap-2"}>
-                    <div className={"py-5 menu-list sm:py-0 flex flex-col gap-2 text-gray-500"}>
+                    <div className={"py-5 menu-list sm:py-0 flex flex-col gap-2 text-cell-secondary"}>
                         {sections.map((section) => {
                             const isCollapsed = !!collapsedSections[section.name];
                             return (

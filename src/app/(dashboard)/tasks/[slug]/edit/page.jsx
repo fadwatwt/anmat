@@ -125,7 +125,7 @@ function EditTask({ params }) {
         return (
             <Page title={t("Edit Task")} isBreadcrumbs={true} breadcrumbs={breadcrumbItems}>
                 <div className="flex items-center justify-center h-64">
-                    <p className="text-gray-500">{t("Loading task data...")}</p>
+                    <p className="text-cell-secondary">{t("Loading task data...")}</p>
                 </div>
             </Page>
         );
@@ -166,7 +166,7 @@ function EditTask({ params }) {
                                 <button
                                     type="button"
                                     onClick={() => router.back()}
-                                    className="bg-status-bg hover:bg-gray-50 border border-status-border dark:hover:bg-gray-700 text-cell-secondary font-medium min-w-[140px] p-[10px] rounded-[10px] transition-colors"
+                                    className="bg-status-bg hover:bg-status-bg border border-status-border text-cell-secondary font-medium min-w-[140px] p-[10px] rounded-[10px] transition-colors"
                                 >
                                     {t("Back")}
                                 </button>

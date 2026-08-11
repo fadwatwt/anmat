@@ -3,6 +3,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import { useTheme } from "@/app/providers";
 import KanbanTaskCard from "./KanbanTaskCard";
 import { RiCheckLine, RiTimerLine, RiPlayCircleLine, RiCloseCircleLine, RiQuestionLine, RiStopCircleLine, RiCheckboxCircleLine } from "react-icons/ri";
 
@@ -18,6 +19,8 @@ const COLUMN_ICONS = {
 
 function KanbanColumn({ column, tasks }) {
   const { t } = useTranslation();
+  const [theme] = useTheme();
+  const isDark = theme === "dark";
 
   const { setNodeRef, isOver } = useDroppable({
     id: column.id,
@@ -35,20 +38,20 @@ function KanbanColumn({ column, tasks }) {
       <div
         className="flex items-center justify-between px-4 py-3 rounded-t-2xl border-b-2"
         style={{
-          backgroundColor: column.bgColor,
-          borderBottomColor: column.color,
+          backgroundColor: isDark ? column.darkBgColor : column.bgColor,
+          borderBottomColor: isDark ? column.darkBorderColor : column.color,
         }}
       >
         <div className="flex items-center gap-2">
-          <Icon size={16} style={{ color: column.color }} />
-          <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+          <Icon size={16} style={{ color: isDark ? column.darkBorderColor : column.color }} />
+          <span className="text-sm font-semibold text-cell-secondary">
             {t(column.label)}
           </span>
         </div>
         <span
           className="flex items-center justify-center min-w-[22px] h-[22px] rounded-full text-[11px] font-bold"
           style={{
-            backgroundColor: column.color,
+            backgroundColor: isDark ? column.darkBorderColor : column.color,
             color: "#fff",
           }}
         >
@@ -62,12 +65,12 @@ function KanbanColumn({ column, tasks }) {
         className={`flex-1 flex flex-col gap-2 p-2 rounded-b-2xl min-h-[120px] transition-colors ${
           isOver
             ? "bg-primary-50/50 dark:bg-primary-900/10"
-            : "bg-gray-50 dark:bg-gray-900/50"
+            : "bg-status-bg"
         }`}
       >
         {tasks.length === 0 ? (
           <div className="flex items-center justify-center h-full min-h-[80px]">
-            <p className="text-xs text-gray-400 dark:text-gray-500 italic">
+            <p className="text-xs text-cell-secondary italic">
               {t("No tasks")}
             </p>
           </div>

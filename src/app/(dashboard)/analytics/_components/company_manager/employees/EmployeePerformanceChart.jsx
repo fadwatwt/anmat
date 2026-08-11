@@ -33,7 +33,7 @@ const EmployeePerformanceChart = ({ data = [] }) => {
                 <div className="h-64 w-full">
                     <div className="flex flex-col items-start justify-start gap-0 w-full h-full">
                         <span
-                            className='text-md text-gray-500 dark:text-gray-200 ps-4'
+                            className='text-md text-cell-secondary ps-4'
                         >
                             {t('Rating')}
                         </span>
@@ -60,7 +60,7 @@ const EmployeePerformanceChart = ({ data = [] }) => {
             footer={
                 <div className="flex gap-1 items-center justify-center">
                     <RiCircleFill size={10} className={`text-[#FCAA0B]`} />
-                    <span className="text-sm text-gray-500">{lastDelta}</span>
+                    <span className="text-sm text-cell-secondary">{lastDelta}</span>
                 </div>
             }
         />

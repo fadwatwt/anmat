@@ -15,21 +15,21 @@ const TopEmployeesList = ({ employees = [] }) => {
             main={
                 <div className="flex flex-col items-start justify-start gap-4 w-full">
                     {employees.length === 0 && (
-                        <span className="text-sm text-gray-500">{t("No data yet.")}</span>
+                        <span className="text-sm text-cell-secondary">{t("No data yet.")}</span>
                     )}
                     {employees.map((employee, index) => {
                         return (
                             <div key={index} className="flex gap-2 items-start justify-start w-full">
-                                <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-200 bg-white text-center flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-status-border bg-surface text-center flex items-center justify-center">
                                     <span className="text-xl">
                                         {index + 1}
                                     </span>
                                 </div>
                                 <div className="flex flex-col items-start justify-start gap-1">
-                                    <span className="text-md text-gray-900 dark:text-gray-300">
+                                    <span className="text-md text-cell-primary">
                                         {employee.name}
                                     </span>
-                                    <span className="text-sm text-gray-500">
+                                    <span className="text-sm text-cell-secondary">
                                         {t(employee.department || employee.desc)}
                                     </span>
                                 </div>

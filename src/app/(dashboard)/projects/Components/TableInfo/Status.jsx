@@ -13,8 +13,8 @@ function Status({ type }) {
       border: "border-green-300 dark:border-green-500",
     },
     Inactive: {
-      icon: <TbForbidFilled className="text-gray-500" />,
-      border: "border-gray-300 dark:border-gray-500",
+      icon: <TbForbidFilled className="text-cell-secondary" />,
+      border: "border-status-border",
     },
     Delayed: {
       icon: <IoTime className="text-red-500" />,

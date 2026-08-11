@@ -51,7 +51,7 @@ function Companies() {
 
     const statusConfig = {
         Customer: {
-            bgColor: "bg-green-50",
+            bgColor: "bg-green-50 dark:bg-green-900/20",
             icon: <RiCheckboxCircleFill size={15} className="text-green-success" />,
             textColor: "text-green-success",
         },
@@ -73,9 +73,9 @@ function Companies() {
 
     const statusCell = (status) => {
         const config = statusConfig[status] || {
-            bgColor: "bg-gray-50",
-            icon: <RiQuestionLine size={15} className="text-gray-700" />,
-            textColor: "text-gray-700",
+            bgColor: "bg-status-bg",
+            icon: <RiQuestionLine size={15} className="text-cell-secondary" />,
+            textColor: "text-cell-secondary",
         };
 
         return (
@@ -103,10 +103,10 @@ function Companies() {
                 </div>
             </div>
             <div className="flex flex-col items-start justify-start gap-0">
-                <span className="text-lg text-gray-900 dark:text-gray-50">
+                <span className="text-lg text-cell-primary">
                     {company.company}
                 </span>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-cell-secondary">
                     {company.companyUrl}
                 </span>
             </div>
@@ -114,7 +114,7 @@ function Companies() {
 
         // Plan Cell
         <div key="industry" className="flex items-center justify-start gap-2">
-            <span className="text-lg text-gray-900 dark:text-gray-50">
+            <span className="text-lg text-cell-primary">
                 {company.industry}
             </span>
         </div>,
@@ -123,7 +123,7 @@ function Companies() {
         <div key="subscribed_at">{company.subscribed_at}</div>,
 
         // Users Subscribed cell
-        <div key="amount" className="px-2 py-1 text-gray-900 text-md font-bold bg-gray-50 text-center rounded-[25px]">
+        <div key="amount" className="px-2 py-1 text-cell-primary text-md font-bold bg-status-bg text-center rounded-[25px]">
             {company.usersNumber}
         </div>,
 

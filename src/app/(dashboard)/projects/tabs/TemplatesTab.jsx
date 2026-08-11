@@ -111,11 +111,11 @@ function TemplatesTab() {
     ];
 
     const customActions = (index) => (
-        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10 border border-gray-200 dark:border-gray-700 p-1 flex flex-col">
+        <div className="absolute right-0 mt-2 w-48 bg-surface rounded-md shadow-lg z-10 border border-status-border p-1 flex flex-col">
             {canViewTemplate && (
                 <button
                     onClick={() => handleViewTemplate(index)}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md"
                 >
                     <RiEyeLine size={16} className="text-blue-500" /> {t("View")}
                 </button>
@@ -123,21 +123,21 @@ function TemplatesTab() {
             {canEditTemplate && (
                 <button
                     onClick={() => handleEditTemplate(index)}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md"
                 >
                     <RiPencilLine size={16} className="text-blue-500" /> {t("Edit")}
                 </button>
             )}
             <button
                 onClick={() => handleDownloadAttachments(index)}
-                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md"
+                className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md"
             >
                 <RiDownload2Line size={16} className="text-blue-500" /> {t("Download Attachs")}
             </button>
             {canDeleteTemplate && (
                 <button
                     onClick={() => handleDeleteTemplate(index)}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md"
                 >
                     <RiDeleteBinLine size={16} className="text-red-500" /> {t("Delete")}
                 </button>
@@ -145,12 +145,12 @@ function TemplatesTab() {
 
             {canCreateProject && (
                 <>
-                    <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                    <div className="border-t border-status-border my-1"></div>
 
                     <div className="px-2 py-1 mt-1">
                         <button
                             onClick={() => handlePublishProject(index)}
-                            className="w-full bg-blue-50 text-blue-600 py-1.5 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors"
+                            className="w-full bg-blue-50 text-blue-600 py-1.5 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/30"
                         >
                             {t("Publish Project")}
                         </button>
@@ -183,7 +183,7 @@ function TemplatesTab() {
             name={template.department?.name || "N/A"}
             icon={RiLayoutGridFill}
         />,
-        <span key={`cat-${template._id}`} className="text-sm text-gray-700 dark:text-gray-300">
+        <span key={`cat-${template._id}`} className="text-sm text-cell-secondary">
             {template.category || t("General")}
         </span>,
         <Assignees 
@@ -193,10 +193,10 @@ function TemplatesTab() {
                 avatar: defaultPhoto 
             })) || []} 
         />,
-        <span key={`updated-${template._id}`} className="text-xs text-gray-500">
+        <span key={`updated-${template._id}`} className="text-xs text-cell-secondary">
             {dayjs(template.updated_at).format("DD MMM, YYYY")}
         </span>,
-        <span key={`usage-${template._id}`} className="text-sm text-gray-700 dark:text-gray-300">
+        <span key={`usage-${template._id}`} className="text-sm text-cell-secondary">
             {template.usage_count || 0} {t("uses")}
         </span>,
     ]);

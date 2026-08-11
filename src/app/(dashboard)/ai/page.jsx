@@ -624,7 +624,7 @@ const AssistantPage = () => {
 
   return (
     <Page isTitle={false}>
-      <div className="relative flex h-[calc(100vh-140px)] min-h-[550px] w-full bg-white dark:bg-gray-950 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
+      <div className="relative flex h-[calc(100vh-140px)] min-h-[550px] w-full bg-surface overflow-hidden rounded-2xl border border-status-border shadow-sm">
 
         {/* Backdrop when history drawer is open */}
         {isHistoryOpen && (
@@ -638,17 +638,17 @@ const AssistantPage = () => {
 
         {/* Left Sidebar: Chat History & Token usage (hidden until toggled) */}
         <aside
-          className={`absolute md:absolute inset-y-0 left-0 z-30 w-80 max-w-[85vw] flex-shrink-0 border-r border-gray-200 dark:border-gray-800 flex flex-col bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-xl transition-transform duration-300 ease-out ${isHistoryOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
+          className={`absolute md:absolute inset-y-0 left-0 z-30 w-80 max-w-[85vw] flex-shrink-0 border-r border-status-border flex flex-col bg-status-bg backdrop-blur-sm shadow-xl transition-transform duration-300 ease-out ${isHistoryOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
             }`}
         >
 
           {/* Sidebar header */}
-          <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between gap-2">
-            <h2 className="text-sm font-bold text-gray-900 dark:text-gray-100">{t("Chat History")}</h2>
+          <div className="p-4 border-b border-status-border flex items-center justify-between gap-2">
+            <h2 className="text-sm font-bold text-cell-primary">{t("Chat History")}</h2>
             <button
               type="button"
               onClick={() => setIsHistoryOpen(false)}
-              className="p-2 rounded-lg text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors"
               title={t("Close history")}
             >
               <PanelLeftClose size={18} />
@@ -669,16 +669,16 @@ const AssistantPage = () => {
           <div className="flex-1 overflow-y-auto hide-scrollbar p-3 space-y-4">
             {loadingConversations ? (
               <div className="flex justify-center py-8">
-                <div className="w-6 h-6 border-2 border-gray-300 dark:border-gray-600 border-t-primary-500 rounded-full animate-spin"></div>
+                <div className="w-6 h-6 border-2 border-status-border border-t-primary-500 rounded-full animate-spin"></div>
               </div>
             ) : Object.keys(groupedConversations).length === 0 ? (
-              <div className="text-center text-gray-400 py-8 text-sm">
+              <div className="text-center text-cell-secondary py-8 text-sm">
                 {t("No recent conversations")}
               </div>
             ) : (
               Object.entries(groupedConversations).map(([groupName, groupConvs]) => (
                 <div key={groupName} className="space-y-1">
-                  <h3 className="px-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">
+                  <h3 className="px-3 text-xs font-semibold text-cell-secondary uppercase tracking-wider mb-2">
                     {t(groupName)}
                   </h3>
                   {groupConvs.map((conv) => {
@@ -691,7 +691,7 @@ const AssistantPage = () => {
                         onClick={() => !isEditing && handleSelectConversation(conv._id)}
                         className={`group relative flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-150 ${isActive
                           ? "bg-primary-50 dark:bg-primary-950/20 text-primary-600 dark:text-primary-400 font-medium"
-                          : "hover:bg-gray-100/70 dark:hover:bg-gray-800/40 text-gray-700 dark:text-gray-300"
+                          : "hover:bg-status-bg text-cell-secondary"
                           }`}
                       >
                         <div className="flex items-center gap-2.5 flex-1 min-w-0 pe-8">
@@ -712,7 +712,7 @@ const AssistantPage = () => {
                               }}
                               autoFocus
                               onClick={(e) => e.stopPropagation()}
-                              className="w-full text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-1.5 py-0.5 focus:outline-none focus:border-primary-500 text-gray-900 dark:text-white"
+                              className="w-full text-sm bg-surface border border-status-border rounded px-1.5 py-0.5 focus:outline-none focus:border-primary-500 text-cell-primary"
                             />
                           ) : (
                             <span className="text-sm truncate">
@@ -726,14 +726,14 @@ const AssistantPage = () => {
                           <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
                             <button
                               onClick={(e) => handleStartRename(e, conv)}
-                              className="p-1 text-gray-400 hover:text-primary-500 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                              className="p-1 text-cell-secondary hover:text-primary-500 rounded hover:bg-status-bg"
                               title={t("Rename")}
                             >
                               <Edit2 size={13} />
                             </button>
                             <button
                               onClick={(e) => handleDeleteConv(e, conv._id)}
-                              className="p-1 text-gray-400 hover:text-red-500 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                              className="p-1 text-cell-secondary hover:text-red-500 rounded hover:bg-status-bg"
                               title={t("Delete")}
                             >
                               <Trash2 size={13} />
@@ -749,35 +749,35 @@ const AssistantPage = () => {
           </div>
 
           {/* Bottom Card: Token Tracker */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-900/50">
+          <div className="p-4 border-t border-status-border bg-status-bg">
             {balanceLoading ? (
               <div className="flex items-center justify-center py-4">
-                <div className="w-5 h-5 border-2 border-gray-300 dark:border-gray-600 border-t-primary-500 rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-status-border border-t-primary-500 rounded-full animate-spin"></div>
               </div>
             ) : hasUnlimitedAiAccess ? (
-              <div className="bg-white dark:bg-gray-800 border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 flex flex-col gap-2 shadow-sm">
+              <div className="bg-surface border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 flex flex-col gap-2 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{t("AI Access")}</span>
+                  <span className="text-xs font-semibold text-cell-secondary">{t("AI Access")}</span>
                   <span className="text-xs font-bold text-primary-600 dark:text-primary-400">{t("Unlimited")}</span>
                 </div>
-                <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-status-bg rounded-full overflow-hidden">
                   <div className="bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full w-full"></div>
                 </div>
-                <p className="text-[11px] text-gray-400">
+                <p className="text-[11px] text-cell-secondary">
                   {t("Admin accounts are not limited by token balance.")}
                 </p>
               </div>
             ) : (
-              <div className="bg-white dark:bg-gray-800 border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
+              <div className="bg-surface border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{t("Free Tokens Remaining")}</span>
+                    <span className="text-xs font-semibold text-cell-secondary">{t("Free Tokens Remaining")}</span>
                     <span className="text-xs font-bold text-primary-600 dark:text-primary-400">
                       {freeTokensRemaining.toLocaleString()}
                     </span>
                   </div>
                   {/* Progress Bar */}
-                  <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-status-bg rounded-full overflow-hidden">
                     <div
                       className="bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full transition-all duration-500"
                       style={{
@@ -785,14 +785,14 @@ const AssistantPage = () => {
                       }}
                     ></div>
                   </div>
-                  <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+                  <div className="flex justify-between text-[10px] text-cell-secondary mt-1">
                     <span>0</span>
                     <span>{t("Limit: ")}{balanceData?.free_limit?.toLocaleString() || "5,000"}</span>
                   </div>
 
                   {balanceData?.balance > 0 && (
-                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100 dark:border-gray-700/60">
-                      <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{t("Paid Tokens")}</span>
+                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-status-border dark:border-gray-700/60">
+                      <span className="text-xs font-semibold text-cell-secondary">{t("Paid Tokens")}</span>
                       <span className="text-xs font-bold text-green-600 dark:text-green-400">
                         {balanceData.balance.toLocaleString()}
                       </span>
@@ -813,15 +813,15 @@ const AssistantPage = () => {
         </aside>
 
         {/* Right Chat Panel */}
-        <div className="flex-1 flex flex-col h-full bg-white dark:bg-gray-900 relative min-w-0">
+        <div className="flex-1 flex flex-col h-full bg-surface relative min-w-0">
 
           {/* Active Chat Header */}
-          <div className="px-4 sm:px-6 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between gap-3">
+          <div className="px-4 sm:px-6 py-3 border-b border-status-border flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 min-w-0">
               <button
                 type="button"
                 onClick={() => setIsHistoryOpen(true)}
-                className="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors shrink-0"
+                className="p-2 rounded-xl text-cell-secondary hover:bg-status-bg transition-colors shrink-0"
                 title={t("Chat history")}
               >
                 <History size={20} />
@@ -834,7 +834,7 @@ const AssistantPage = () => {
               >
                 <Plus size={20} />
               </button>
-              <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 truncate">
+              <h1 className="text-lg font-bold text-cell-primary truncate">
                 {conversationId
                   ? (conversations?.find((c) => c._id === conversationId)?.title || t("Active Chat"))
                   : t("AI Assistant")}
@@ -844,11 +844,11 @@ const AssistantPage = () => {
             {!isHistoryOpen && !balanceLoading && (
               <div className="flex items-center gap-2 shrink-0">
                 {hasUnlimitedAiAccess ? (
-                  <span className="hidden sm:inline text-xs font-semibold text-primary-600 dark:text-primary-400 px-2 py-1 rounded-lg bg-primary-50 dark:bg-primary-950/30">
+                  <span className="text-xs font-semibold text-primary-600 dark:text-primary-400 px-2 py-1 rounded-lg bg-primary-50 dark:bg-primary-950/30">
                     {t("Unlimited")}
                   </span>
                 ) : (
-                  <span className="hidden sm:inline text-xs font-medium text-gray-500 dark:text-gray-400 px-2 py-1 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <span className="text-xs font-medium text-cell-secondary px-2 py-1 rounded-lg bg-status-bg">
                     {freeTokensRemaining.toLocaleString()} {t("tokens")}
                   </span>
                 )}
@@ -867,17 +867,17 @@ const AssistantPage = () => {
           <div className="flex-1 overflow-y-auto hide-scrollbar p-6 space-y-6 flex flex-col" ref={chatContainerRef}>
             {loadingMessages ? (
               <div className="flex flex-col items-center justify-center h-full gap-3">
-                <div className="w-8 h-8 border-4 border-gray-200 dark:border-gray-700 border-t-primary-500 rounded-full animate-spin"></div>
-                <span className="text-sm text-gray-500">{t("Loading conversation...")}</span>
+                <div className="w-8 h-8 border-4 border-status-border border-t-primary-500 rounded-full animate-spin"></div>
+                <span className="text-sm text-cell-secondary">{t("Loading conversation...")}</span>
               </div>
             ) : !hasStarted ? (
               <div className="flex flex-col items-center justify-center h-full max-w-xl mx-auto text-center gap-6">
                 <img src="/images/AiAssistant/file.svg" alt={t("Assistant Logo")} style={{ width: '80px', height: '80px' }} className="" />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  <h2 className="text-xl font-bold text-cell-primary mb-2">
                     {t("Welcome to AI Assistant")}
                   </h2>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  <p className="text-cell-secondary text-sm">
                     {t("Ask questions, check agenda templates, summarize points, or manage your company's tasks.")}
                   </p>
                 </div>
@@ -893,7 +893,7 @@ const AssistantPage = () => {
                     return (
                       <button
                         key={i}
-                        className="inline-flex items-center gap-2 bg-gray-50 dark:bg-gray-800 hover:bg-primary-50 dark:hover:bg-primary-950/20 border border-gray-200 dark:border-gray-700 rounded-xl px-5 py-2.5 text-sm text-gray-700 dark:text-gray-300 shadow-sm transition font-medium"
+                        className="inline-flex items-center gap-2 bg-status-bg hover:bg-primary-50 dark:hover:bg-primary-950/20 border border-status-border rounded-xl px-5 py-2.5 text-sm text-cell-secondary shadow-sm transition font-medium"
                         onClick={() => handleSuggestionClick(t(s.label))}
                       >
                         {t(s.label)}
@@ -927,8 +927,8 @@ const AssistantPage = () => {
                                 rows={1}
                               />
                               <div className="flex gap-2 mt-1">
-                                <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><Copy size={18} /></button>
-                                <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><Save size={18} /></button>
+                                <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><Copy size={18} /></button>
+                                <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-cell-secondary hover:text-primary-500"><Save size={18} /></button>
                               </div>
                             </div>
                           ) : (
@@ -946,12 +946,12 @@ const AssistantPage = () => {
                                           key={fileIdx}
                                           src={file.preview}
                                           alt={file.name}
-                                          className="max-w-full rounded-xl shadow border border-gray-100 cursor-pointer"
+                                          className="max-w-full rounded-xl shadow border border-status-border cursor-pointer"
                                           style={{ maxHeight: '400px' }}
                                           onClick={() => setOpenImageUrl(file.preview)}
                                         />
                                       ) : (
-                                        <div key={fileIdx} className="rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow flex items-center w-full sm:w-[492px] h-[68px] px-5 py-4 gap-2.5">
+                                        <div key={fileIdx} className="rounded-xl bg-surface border border-status-border shadow flex items-center w-full sm:w-[492px] h-[68px] px-5 py-4 gap-2.5">
                                           {isDocument(file.type, file.name) ? (
                                             <span className="inline-flex items-center justify-center w-8 h-8 bg-primary-50 dark:bg-primary-900/30 rounded-lg shrink-0">
                                               <img src="/images/AiAssistant/document-text.svg" alt={t("Document")} className="w-6 h-6 dark:invert dark:brightness-200" />
@@ -966,7 +966,7 @@ const AssistantPage = () => {
                                             </span>
                                           )}
                                           <div className="flex-1 min-w-0">
-                                            <div className="font-semibold text-lg text-gray-900 dark:text-gray-100 truncate">{file.name}</div>
+                                            <div className="font-semibold text-lg text-cell-primary truncate">{file.name}</div>
                                           </div>
                                         </div>
                                       )
@@ -976,8 +976,8 @@ const AssistantPage = () => {
                               </div>
                               {(!msg.audio && !msg.files) && (
                                 <div className="flex gap-2 mt-1">
-                                  <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5 dark:invert dark:brightness-200" /></button>
-                                  <button onClick={() => handleCopy(idx, msg.text)} title={t("Copy")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500">
+                                  <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5 dark:invert dark:brightness-200" /></button>
+                                  <button onClick={() => handleCopy(idx, msg.text)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500">
                                     {copiedIdx === idx ? <Check size={18} className="text-emerald-500" /> : <img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5 dark:invert dark:brightness-200" />}
                                   </button>
                                 </div>
@@ -1033,13 +1033,13 @@ const AssistantPage = () => {
                           {editingIdx === idx ? (
                             <div className="flex flex-col w-full">
                               {msg.thought && (
-                                <div className="text-gray-400 text-sm mb-2 font-sans font-semibold text-start">
+                                <div className="text-cell-secondary text-sm mb-2 font-sans font-semibold text-start">
                                   {msg.thought}
                                 </div>
                               )}
-                              {msg.thought && <hr className="my-2 border-gray-200 dark:border-gray-700" />}
+                              {msg.thought && <hr className="my-2 border-status-border" />}
                               <textarea
-                                className="text-base text-gray-900 dark:text-gray-100 w-full font-sans font-semibold leading-relaxed box-border text-start outline-none border-none mb-2 resize-none bg-transparent"
+                                className="text-base text-cell-primary w-full font-sans font-semibold leading-relaxed box-border text-start outline-none border-none mb-2 resize-none bg-transparent"
                                 style={{
                                   wordBreak: 'break-word',
                                   width: editDims[idx]?.width ? editDims[idx].width + 'px' : '100%',
@@ -1053,8 +1053,8 @@ const AssistantPage = () => {
                                 rows={1}
                               />
                               <div className="flex gap-2 mt-1">
-                                <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><Copy size={18} /></button>
-                                <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><Save size={18} /></button>
+                                <button onClick={() => handleCopy(editValue)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500"><Copy size={18} /></button>
+                                <button onClick={() => handleEditSave(idx)} title={t("Save")} className="text-cell-secondary hover:text-primary-500"><Save size={18} /></button>
                               </div>
                             </div>
                           ) : (
@@ -1064,7 +1064,7 @@ const AssistantPage = () => {
                                   {msg.thought}
                                 </div>
                               )}
-                              {msg.thought && <hr className="my-2 border-gray-200 dark:border-gray-700" />}
+                              {msg.thought && <hr className="my-2 border-status-border" />}
                               <div ref={el => aiEditRefs.current[idx] = el} className="w-full text-start" style={{ wordBreak: 'break-word' }}>
                                 {msg.isStreaming && !msg.text ? (
                                   <span className="inline-flex items-center gap-1.5 text-primary-500">
@@ -1084,20 +1084,20 @@ const AssistantPage = () => {
                                   <AiCharts charts={msg.charts} />
                                 )}
                                 {msg.table && !msg.isStreaming && (
-                                  <div className="mt-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 overflow-x-auto">
-                                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                                      <thead className="bg-gray-100 dark:bg-gray-700/50">
+                                  <div className="mt-4 rounded-xl bg-status-bg border border-status-border overflow-x-auto">
+                                    <table className="min-w-full divide-y divide-status-border text-sm">
+                                      <thead className="bg-status-bg">
                                         <tr>
                                           {msg.table.headers.map((header, i) => (
-                                            <th key={i} className="px-4 py-2.5 text-start font-bold text-gray-700 dark:text-gray-300">{header}</th>
+                                            <th key={i} className="px-4 py-2.5 text-start font-bold text-cell-secondary">{header}</th>
                                           ))}
                                         </tr>
                                       </thead>
-                                      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                                      <tbody className="divide-y divide-status-border">
                                         {msg.table.rows.map((row, i) => (
                                           <tr key={i}>
                                             {row.map((cell, j) => (
-                                              <td key={j} className="px-4 py-2.5 text-gray-900 dark:text-gray-100">{cell}</td>
+                                              <td key={j} className="px-4 py-2.5 text-cell-primary">{cell}</td>
                                             ))}
                                           </tr>
                                         ))}
@@ -1115,7 +1115,7 @@ const AssistantPage = () => {
                                         <img
                                           src={assignee.avatar}
                                           alt={assignee.name}
-                                          className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                                          className="w-8 h-8 rounded-full object-cover border border-status-border"
                                         />
                                         <span className="text-cell-primary font-medium">{assignee.name}</span>
                                         <a
@@ -1145,13 +1145,13 @@ const AssistantPage = () => {
                                     ? "border-emerald-200 bg-emerald-50 dark:bg-emerald-900/20 dark:border-emerald-700"
                                     : msg.pendingAction.status === "failed"
                                     ? "border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-700"
-                                    : "border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+                                    : "border-status-border bg-status-bg"
                                 )}>
                                   <div className="flex items-start gap-3">
-                                    {msg.pendingAction.status === "confirmed" && <Check className="text-emerald-600 mt-0.5 shrink-0" size={18} />}
-                                    {msg.pendingAction.status === "failed" && <X className="text-red-600 mt-0.5 shrink-0" size={18} />}
+                                    {msg.pendingAction.status === "confirmed" && <Check className="text-emerald-600 mt-0.5 shrink-0 dark:text-emerald-400" size={18} />}
+                                    {msg.pendingAction.status === "failed" && <X className="text-red-600 mt-0.5 shrink-0 dark:text-red-400" size={18} />}
                                     <div className="flex-1">
-                                      <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                                      <div className="text-sm font-semibold text-cell-primary mb-1">
                                         {t("tool." + msg.pendingAction.tool_name, { defaultValue: msg.pendingAction.tool_name })}
                                       </div>
                                       {msg.pendingAction.status === "confirmed" && (
@@ -1160,7 +1160,7 @@ const AssistantPage = () => {
                                         </div>
                                       )}
                                       {msg.pendingAction.status === "failed" && (
-                                        <div className="text-xs text-red-600 font-medium">
+                                        <div className="text-xs text-red-600 font-medium dark:text-red-400">
                                           {t("Execution failed")}
                                         </div>
                                       )}
@@ -1170,8 +1170,8 @@ const AssistantPage = () => {
                               )}
                               {!msg.isStreaming && (
                                 <div className="flex gap-2 mt-1">
-                                  <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5 dark:invert dark:brightness-200" /></button>
-                                  <button onClick={() => handleCopy(idx, msg.text)} title={t("Copy")} className="text-gray-400 dark:text-gray-500 hover:text-primary-500">
+                                  <button onClick={() => handleEdit(idx, msg.text)} title={t("Edit")} className="text-cell-secondary hover:text-primary-500"><img src="/images/AiAssistant/edit.svg" alt={t("Edit")} className="w-5 h-5 dark:invert dark:brightness-200" /></button>
+                                  <button onClick={() => handleCopy(idx, msg.text)} title={t("Copy")} className="text-cell-secondary hover:text-primary-500">
                                     {copiedIdx === idx ? <Check size={18} className="text-emerald-500" /> : <img src="/images/AiAssistant/copy.svg" alt={t("Copy")} className="w-5 h-5 dark:invert dark:brightness-200" />}
                                   </button>
                                 </div>
@@ -1182,7 +1182,7 @@ const AssistantPage = () => {
                       </div>
                     )}
                     {msg.sender === "ai" && idx < messages.length - 1 && messages[idx + 1]?.sender === "ai" && (
-                      <hr className="my-4 border-gray-200 dark:border-gray-700" />
+                      <hr className="my-4 border-status-border" />
                     )}
                   </React.Fragment>
                 ))}
@@ -1279,10 +1279,10 @@ const AssistantPage = () => {
             <img src={openImageUrl} alt={t("Preview")} className="max-h-[80vh] max-w-[90vw] rounded-xl shadow-lg" />
             <button
               onClick={() => setOpenImageUrl(null)}
-              className="absolute top-2 right-2 bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 rounded-full p-1 hover:bg-opacity-100 dark:hover:bg-opacity-100 transition"
+              className="absolute top-2 right-2 bg-surface bg-opacity-80 dark:bg-opacity-80 rounded-full p-1 hover:bg-opacity-100 dark:hover:bg-opacity-100 transition"
               title={t("Close")}
             >
-              <X size={24} className="text-gray-700 dark:text-gray-300" />
+              <X size={24} className="text-cell-secondary" />
             </button>
           </div>
         </div>

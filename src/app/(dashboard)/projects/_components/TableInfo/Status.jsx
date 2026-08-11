@@ -16,7 +16,7 @@ function Status({ type }) {
     },
     unverified: {
       icon: <RiCloseCircleFill size={15} className="text-red-500" />,
-      border: "border-gray-300 dark:border-gray-500",
+      border: "border-status-border",
     },
     "in review": {
       icon: <IoTime className="text-yellow-500" />,
@@ -31,8 +31,8 @@ function Status({ type }) {
       border: "border-blue-300 dark:border-blue-500",
     },
     inactive: {
-      icon: <TbForbidFilled className="text-gray-500" />,
-      border: "border-gray-300 dark:border-gray-500",
+      icon: <TbForbidFilled className="text-cell-secondary" />,
+      border: "border-status-border",
     },
     delayed: {
       icon: <IoTime className="text-orange-500" />,
@@ -43,15 +43,15 @@ function Status({ type }) {
       border: "border-purple-300 dark:border-purple-500",
     },
     open: {
-      icon: <IoTime className="text-gray-500" />,
-      border: "border-gray-300 dark:border-gray-500",
+      icon: <IoTime className="text-cell-secondary" />,
+      border: "border-status-border",
     },
     completed: {
       icon: <FaCircleCheck className="text-teal-500" />,
       border: "border-teal-300 dark:border-teal-500",
     },
     done: {
-      icon: <FaCircleCheck className="text-green-600" />,
+      icon: <FaCircleCheck className="text-green-600 dark:text-green-400" />,
       border: "border-green-400 dark:border-green-600",
     },
     rejected: {
@@ -59,8 +59,8 @@ function Status({ type }) {
       border: "border-red-300 dark:border-red-500",
     },
     cancelled: {
-      icon: <RiCloseCircleLine size={15} className="text-gray-500" />,
-      border: "border-gray-300 dark:border-gray-500",
+      icon: <RiCloseCircleLine size={15} className="text-cell-secondary" />,
+      border: "border-status-border",
     },
     pending: {
       icon: <IoTime className="text-yellow-500" />,

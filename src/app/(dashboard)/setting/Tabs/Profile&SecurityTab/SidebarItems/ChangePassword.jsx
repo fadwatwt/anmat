@@ -73,8 +73,8 @@ function ChangePassword() {
     return (
         <div className="flex flex-col justify-start gap-1 items-center p-3">
             <div className="w-full flex flex-col items-start gap-2">
-                <p className="text-md text-main-100 dark:text-gray-200">{t("Change Password")}</p>
-                <p className="text-sm text-sub-500 dark:text-gray-400">{t("Update password for enhanced account security.")}</p>
+                <p className="text-md text-main-100">{t("Change Password")}</p>
+                <p className="text-sm text-sub-500">{t("Update password for enhanced account security.")}</p>
             </div>
             <WordTheMiddleAndLine />
             <div className="w-full form">
@@ -124,44 +124,44 @@ function ChangePassword() {
                             <div className="flex flex-col items-start gap-2">
                                 <div className="w-full flex justify-center items-center gap-1 h-1">
                                     <div
-                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length ? "bg-red-500" : "bg-gray-200"}`}></div>
+                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length ? "bg-red-500" : "bg-status-bg"}`}></div>
                                     <div
-                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length && passwordStrength.uppercase ? "bg-yellow-500" : "bg-gray-200"}`}></div>
+                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length && passwordStrength.uppercase ? "bg-yellow-500" : "bg-status-bg"}`}></div>
                                     <div
-                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length && passwordStrength.uppercase && passwordStrength.number ? "bg-green-500" : "bg-gray-200"}`}></div>
+                                        className={`flex-1 h-full rounded-2xl ${passwordStrength.length && passwordStrength.uppercase && passwordStrength.number ? "bg-green-500" : "bg-status-bg"}`}></div>
                                 </div>
 
-                                <p className="text-xs text-sub-500 dark:text-gray-400">{t("Weak password. Must contain at least")}</p>
+                                <p className="text-xs text-sub-500">{t("Weak password. Must contain at least")}</p>
 
                                 <div className="flex items-center gap-1">
                                     {passwordStrength.uppercase ?
-                                        <RiCheckboxCircleFill size="15" className="text-green-600" /> :
-                                        <RiCloseCircleFill size="15" className="text-gray-500" />
+                                        <RiCheckboxCircleFill size="15" className="text-green-600 dark:text-green-400" /> :
+                                        <RiCloseCircleFill size="15" className="text-cell-secondary" />
                                     }
                                     <span
-                                        className={`text-xs ${passwordStrength.uppercase ? "text-green-600" : "text-gray-500 dark:text-gray-400"}`}>
+                                        className={`text-xs ${passwordStrength.uppercase ? "text-green-600 dark:text-green-400" : "text-cell-secondary"}`}>
                                         {t("At least 1 uppercase letter")}
                                     </span>
                                 </div>
 
                                 <div className="flex items-center gap-1">
                                     {passwordStrength.number ?
-                                        <RiCheckboxCircleFill size="15" className="text-green-600" /> :
-                                        <RiCloseCircleFill size="15" className="text-gray-500" />
+                                        <RiCheckboxCircleFill size="15" className="text-green-600 dark:text-green-400" /> :
+                                        <RiCloseCircleFill size="15" className="text-cell-secondary" />
                                     }
                                     <span
-                                        className={`text-xs ${passwordStrength.number ? "text-green-600" : "text-gray-500 dark:text-gray-400"}`}>
+                                        className={`text-xs ${passwordStrength.number ? "text-green-600 dark:text-green-400" : "text-cell-secondary"}`}>
                                         {t("At least 1 number")}
                                     </span>
                                 </div>
 
                                 <div className="flex items-center gap-1">
                                     {passwordStrength.length ?
-                                        <RiCheckboxCircleFill size="15" className="text-green-600" /> :
-                                        <RiCloseCircleFill size="15" className="text-gray-500" />
+                                        <RiCheckboxCircleFill size="15" className="text-green-600 dark:text-green-400" /> :
+                                        <RiCloseCircleFill size="15" className="text-cell-secondary" />
                                     }
                                     <span
-                                        className={`text-xs ${passwordStrength.length ? "text-green-600" : "text-gray-500 dark:text-gray-400"}`}>
+                                        className={`text-xs ${passwordStrength.length ? "text-green-600 dark:text-green-400" : "text-cell-secondary"}`}>
                                         {t("At least 8 characters")}
                                     </span>
                                 </div>

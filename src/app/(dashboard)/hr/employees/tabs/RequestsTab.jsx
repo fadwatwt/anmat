@@ -239,7 +239,7 @@ function RequestsTab() {
                         <button
                             onClick={(e) => { e.stopPropagation(); handleReject(rowIndex); }}
                             disabled={isUpdating}
-                            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-bold border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 disabled:opacity-50 transition-colors"
+                            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-bold border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 disabled:opacity-50 transition-colors dark:border-red-800 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30"
                         >
                             <RiCloseCircleFill size={13} />
                             {t("Reject")}
@@ -247,7 +247,7 @@ function RequestsTab() {
                         <button
                             onClick={(e) => { e.stopPropagation(); handleApprove(rowIndex); }}
                             disabled={isUpdating}
-                            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-bold border border-green-200 bg-green-50 text-green-700 hover:bg-green-100 disabled:opacity-50 transition-colors"
+                            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-bold border border-green-200 bg-green-50 text-green-700 hover:bg-green-100 disabled:opacity-50 transition-colors dark:border-green-800 dark:bg-green-900/20 dark:text-green-400 dark:hover:bg-green-900/30"
                         >
                             <RiCheckboxCircleFill size={13} />
                             {t("Approve")}

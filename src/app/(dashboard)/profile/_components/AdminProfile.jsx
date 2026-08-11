@@ -51,9 +51,16 @@ function AdminProfile() {
                                         <RiCheckboxCircleFill size="23"
                                             className="absolute top-0 right-0 bg-surface rounded-full text-cyan-500" />
                                     </div>
-                                    <button
-                                        className={"p-1.5 rounded-lg md:hidden text-nowrap bg-none border text-sm border-status-border text-cell-primary self-start"}>{t("Edit profile")}
-                                    </button>
+                                    <div className="flex items-center gap-2 md:hidden">
+                                        <button
+                                            onClick={handelChangePasswordModal}
+                                            className={"p-1.5 rounded-lg text-nowrap bg-badge-bg text-badge-text border border-status-border text-sm self-start"}>{t("Change password")}
+                                        </button>
+                                        <button
+                                            onClick={handelEditAdminProfileModal}
+                                            className={"p-1.5 rounded-lg text-nowrap bg-none border text-sm border-status-border text-cell-primary self-start"}>{t("Edit profile")}
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className={"w-full flex md:flex-row flex-col gap-4 "}>
                                     <div className={`flex flex-col gap-4 flex-1 border-status-border ${i18n.language === "ar" ? "md:border-l-2 " : "md:border-r-2 "}`}>

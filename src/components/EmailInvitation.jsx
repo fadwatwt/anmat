@@ -24,7 +24,7 @@ const EmailInvitation = ({
 
   return (
     <div className="flex justify-center w-full">
-      <div className="flex flex-col items-center p-6 rounded-2xl bg-white dark:bg-gray-900 lg:w-[600px] md:w-[90%] sm:w-[95%] overflow-hidden shadow-lg dark:shadow-gray-800">
+      <div className="flex flex-col items-center p-6 rounded-2xl bg-surface lg:w-[600px] md:w-[90%] sm:w-[95%] overflow-hidden shadow-lg dark:shadow-gray-800">
         {/* Company Logo */}
         {/* use this  Orandis its in assets */}
 
@@ -64,7 +64,7 @@ const EmailInvitation = ({
           className={`text-left w-full mb-6 ${isRTL ? "text-right" : "text-left"
             }`}
         >
-          <p className="text-sm text-cell-primary dark:text-gray-300">
+          <p className="text-sm text-cell-primary">
             {t(
               "To complete your onboarding process, please click the button below to finalize your information and activate your account."
             )}
@@ -144,37 +144,37 @@ const EmailInvitation = ({
         <div className="flex justify-center w-full gap-4 mt-2">
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiMailFill size={21} />
           </a>
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiYoutubeFill size={21} />
           </a>
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiInstagramFill size={21} />
           </a>
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiTwitterXFill size={21} />
           </a>
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiLinkedinFill size={21} />
           </a>
           <a
             href="#"
-            className="text-cell-secondary hover:text-gray-700"
+            className="text-cell-secondary hover:text-cell-secondary"
           >
             <RiFacebookFill size={21} />
           </a>

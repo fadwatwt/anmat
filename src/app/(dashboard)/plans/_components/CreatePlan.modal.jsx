@@ -223,7 +223,7 @@ function CreatePlanModal({ isOpen, onClose }) {
         {formik.values.pricing.map((price, index) => (
           <div key={index} className="px-4 py-2 border-b border-status-border last:border-0 relative">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-[10px] text-cell-secondary">Price Option #{index + 1}</span>
+              <span className="text-[10px] text-cell-secondary">{t("Price Option #")}{index + 1}</span>
               <div className="flex items-center gap-3">
                 <SwitchWithLabel
                   title={t("Active")}
@@ -232,7 +232,7 @@ function CreatePlanModal({ isOpen, onClose }) {
                   className="!p-0 !bg-transparent !border-0 !rounded-none gap-2"
                 />
                 {formik.values.pricing.length > 1 && (
-                  <button type="button" onClick={() => removePricing(index)} className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors">
+                  <button type="button" onClick={() => removePricing(index)} className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors dark:hover:text-red-400 dark:hover:bg-red-900/20">
                     <FiTrash2 size={16} />
                   </button>
                 )}
@@ -320,9 +320,9 @@ function CreatePlanModal({ isOpen, onClose }) {
           return (
             <div key={index} className="px-4 py-3 border-b border-status-border last:border-0 bg-surface shadow-sm mx-4 rounded-xl border border-status-border mb-2">
               <div className="flex justify-between items-center mb-3">
-                <span className="text-xs font-semibold text-primary-600">Feature #{index + 1}</span>
+                <span className="text-xs font-semibold text-primary-600">{t("Feature #")}{index + 1}</span>
                 {formik.values.features.length > 1 && (
-                  <button type="button" onClick={() => removeFeature(index)} className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors">
+                  <button type="button" onClick={() => removeFeature(index)} className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors dark:hover:text-red-400 dark:hover:bg-red-900/20">
                     <FiTrash2 size={16} />
                   </button>
                 )}

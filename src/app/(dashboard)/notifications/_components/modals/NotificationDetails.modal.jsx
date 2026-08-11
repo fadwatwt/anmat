@@ -119,7 +119,7 @@ function NotificationDetailsModal({ isOpen, onClose, notification, onMarkAsRead 
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
     return new Date(dateStr).toLocaleDateString(
-      t("ar") === "ar" ? "ar-EG" : "en-US",
+      i18n.language === "ar" ? "ar-EG" : "en-US",
       {
         year: "numeric",
         month: "long",

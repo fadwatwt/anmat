@@ -52,7 +52,7 @@ const NewConversationModal = ({ isOpen, onClose, onCreate }) => {
     name: candidate.name || t("Unknown"),
     element: (
       <div className="flex items-center gap-2">
-        <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-[10px] font-bold shrink-0 bg-blue-100 text-primary">
+        <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-[10px] font-bold shrink-0 bg-blue-100 text-primary dark:bg-blue-900/30">
           {candidate.avatar ? (
             <img
               src={candidate.avatar}
@@ -153,9 +153,9 @@ const NewConversationModal = ({ isOpen, onClose, onCreate }) => {
             />
           )}
 
-          <div className="flex gap-2 items-start bg-blue-50 p-2 rounded-md dark:bg-gray-700">
+          <div className="flex gap-2 items-start bg-blue-50 p-2 rounded-md dark:bg-blue-900/20">
             <div className="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
-            <p className="text-xs text-gray-500 dark:text-gray-300">
+            <p className="text-xs text-cell-secondary">
               {t(
                 "Select one member for a direct chat or multiple members to start a group conversation.",
               )}

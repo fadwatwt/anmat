@@ -18,9 +18,9 @@ const REMINDER_OPTIONS = [
 ];
 
 const INPUT_CLASS =
-  "w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm";
+  "w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm";
 
-const LABEL_CLASS = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+const LABEL_CLASS = "block text-sm font-medium text-cell-secondary mb-1";
 
 function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
   const { t, i18n } = useTranslation();
@@ -196,21 +196,21 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black/50" onClick={handleClose} />
-      <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-surface rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
 
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{modalTitle}</h2>
+        <div className="flex items-center justify-between p-4 border-b border-status-border">
+          <h2 className="text-lg font-semibold text-cell-primary">{modalTitle}</h2>
           <button
             onClick={handleClose}
-            className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-1 text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300 hover:bg-status-bg rounded-lg transition-colors"
           >
             <RiCloseLine size={24} />
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-gray-200 dark:border-gray-700">
+        <div className="border-b border-status-border">
           <div className="flex px-4">
             {tabs.map((tab) => (
               <button
@@ -219,7 +219,7 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
                 className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === tab.id
                     ? "border-primary-500 text-primary-600 dark:text-primary-400"
-                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    : "border-transparent text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
                 }`}
               >
                 {tab.icon}
@@ -276,7 +276,7 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
                 <div>
                   <label className={LABEL_CLASS}>{t("Color")}</label>
                   <input type="color" name="color" value={taskData.color} onChange={handleTaskChange}
-                    className="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer" />
+                    className="w-full h-10 border border-status-border rounded-lg cursor-pointer" />
                 </div>
               </div>
               <div>
@@ -335,8 +335,8 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
                         onClick={() => handleReminderTypeToggle(opt.value)}
                         className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
                           active
-                            ? "bg-amber-100 dark:bg-amber-900/40 border-amber-400 text-amber-700 dark:text-amber-300"
-                            : "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
+                            ? "bg-amber-100 dark:bg-amber-900/40 border-amber-400 text-amber-700 dark:text-amber-300 dark:border-amber-800"
+                            : "bg-status-bg border-status-border text-cell-secondary hover:bg-status-bg dark:hover:bg-gray-600"
                         }`}
                       >
                         {isArabic ? opt.labelAr : opt.labelEn}
@@ -418,7 +418,7 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
                 <div>
                   <label className={LABEL_CLASS}>{t("Color")}</label>
                   <input type="color" name="color" value={formData.color} onChange={handleChange}
-                    className="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer" />
+                    className="w-full h-10 border border-status-border rounded-lg cursor-pointer" />
                 </div>
               </div>
               <div>
@@ -426,12 +426,12 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
                 <div className="flex flex-wrap gap-2">
                   {REMINDER_OPTIONS.map((opt) => (
                     <label key={opt.value}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg cursor-pointer">
+                      className="flex items-center gap-2 px-3 py-1.5 bg-status-bg rounded-lg cursor-pointer">
                       <input type="checkbox"
                         checked={formData.reminder_types.includes(opt.value)}
                         onChange={() => handleAppointmentReminderToggle(opt.value)}
                         className="rounded text-primary-500 focus:ring-primary-500" />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-sm text-cell-secondary">
                         {isArabic ? opt.labelAr : opt.labelEn}
                       </span>
                     </label>
@@ -441,19 +441,19 @@ function CreateAgendaModal({ isOpen, onClose, initialDate, initialTab }) {
               <div className="flex items-center gap-2">
                 <input type="checkbox" name="enable_reminders" checked={formData.enable_reminders}
                   onChange={handleChange} className="rounded text-primary-500 focus:ring-primary-500" />
-                <label className="text-sm text-gray-700 dark:text-gray-300">{t("Enable reminders")}</label>
+                <label className="text-sm text-cell-secondary">{t("Enable reminders")}</label>
               </div>
             </div>
           )}
 
           {/* Footer */}
-          <div className="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-status-border">
             <button type="button" onClick={handleClose}
-              className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+              className="px-4 py-2 text-sm font-medium text-cell-secondary hover:bg-status-bg rounded-lg transition-colors">
               {t("Cancel")}
             </button>
             <button type="submit" disabled={isSubmitDisabled()}
-              className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors disabled:bg-gray-300 disabled:dark:bg-gray-600 ${
+              className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors disabled:bg-status-bg disabled:dark:bg-gray-600 ${
                 activeTab === "reminder"
                   ? "bg-amber-500 hover:bg-amber-600"
                   : "bg-primary-500 hover:bg-primary-600"

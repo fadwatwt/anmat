@@ -81,6 +81,9 @@ module.exports = {
         ar: ['"Almarai"', "sans-serif"],
         default: ['"Roboto"', "sans-serif"],
       },
+      borderColor: {
+        DEFAULT: "var(--status-border)",
+      },
     },
   },
   plugins: [],

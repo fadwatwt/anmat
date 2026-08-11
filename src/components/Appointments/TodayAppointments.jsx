@@ -16,7 +16,7 @@ const TimeBadge = ({ time }) => {
   const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
 
   return (
-    <span className="text-xs text-gray-500 dark:text-gray-400">
+    <span className="text-xs text-cell-secondary">
       {displayHour}:{minutes} {period}
     </span>
   );
@@ -31,12 +31,12 @@ function TodayAppointments({ maxItems = 5 }) {
 
   if (isLoading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+      <div className="bg-surface rounded-lg border border-status-border p-4">
         <div className="animate-pulse">
-          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-4"></div>
+          <div className="h-4 bg-status-bg rounded w-1/3 mb-4"></div>
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
+              <div key={i} className="h-12 bg-status-bg rounded"></div>
             ))}
           </div>
         </div>
@@ -45,11 +45,11 @@ function TodayAppointments({ maxItems = 5 }) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-surface rounded-lg border border-status-border p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <RiCalendarLine size={20} className="text-primary-500" />
-          <h3 className="font-semibold text-gray-900 dark:text-white">
+          <h3 className="font-semibold text-cell-primary">
             {t("Today's Appointments")} ({appointments.length})
           </h3>
         </div>
@@ -66,24 +66,24 @@ function TodayAppointments({ maxItems = 5 }) {
 
       {displayAppointments.length === 0 ? (
         <div className="text-center py-6">
-          <RiCalendarLine size={40} className="mx-auto text-gray-300 dark:text-gray-600 mb-2" />
-          <p className="text-gray-500 dark:text-gray-400">{t("No appointments today")}</p>
+          <RiCalendarLine size={40} className="mx-auto text-gray-300 mb-2" />
+          <p className="text-cell-secondary">{t("No appointments today")}</p>
         </div>
       ) : (
         <div className="space-y-2">
           {displayAppointments.map((appointment) => (
             <div
               key={appointment._id}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-status-bg transition-colors cursor-pointer"
               onClick={() => router.push(`/appointments/${appointment._id}`)}
               style={{ borderRight: `3px solid ${appointment.color || "#3B82F6"}` }}
             >
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 dark:text-white truncate text-sm">
+                <p className="font-medium text-cell-primary truncate text-sm">
                   {appointment.title}
                 </p>
                 {appointment.location && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                  <p className="text-xs text-cell-secondary truncate">
                     📍 {appointment.location}
                   </p>
                 )}

@@ -52,7 +52,7 @@ const MessageActions = ({ message, isMe, onEdit, onDelete, onReply, onReact }) =
               </button>
               <button 
                 onClick={() => { onDelete(); setShowMenu(false); }}
-                className="w-full text-left px-3 py-1.5 text-xs text-red-500 hover:bg-red-50 flex items-center gap-2"
+                className="w-full text-left px-3 py-1.5 text-xs text-red-500 hover:bg-red-50 flex items-center gap-2 dark:hover:bg-red-900/20"
               >
                 <Trash2 size={12} /> {t("Delete")}
               </button>
@@ -75,7 +75,7 @@ const MessageActions = ({ message, isMe, onEdit, onDelete, onReply, onReact }) =
           ))}
           <button
               onClick={() => setShowEmojis(false)}
-              className="w-6 h-6 flex items-center justify-center hover:bg-red-50 text-red-500 rounded text-sm transition-colors ml-1 border-l border-status-border"
+              className="w-6 h-6 flex items-center justify-center hover:bg-red-50 text-red-500 rounded text-sm transition-colors ml-1 border-l border-status-border dark:hover:bg-red-900/20"
             >
               <X size={12} />
           </button>

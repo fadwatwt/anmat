@@ -55,14 +55,14 @@ function QuickAddAppointment({ onSuccess }) {
   }
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="font-semibold text-gray-900 dark:text-white">
+    <div className="fixed bottom-6 left-6 z-50 w-80 bg-surface rounded-lg shadow-2xl border border-status-border">
+      <div className="flex items-center justify-between p-3 border-b border-status-border">
+        <h3 className="font-semibold text-cell-primary">
           {t("Quick Add Appointment")}
         </h3>
         <button
           onClick={() => setIsOpen(false)}
-          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          className="text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
         >
           <RiCloseLine size={20} />
         </button>
@@ -75,7 +75,7 @@ function QuickAddAppointment({ onSuccess }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={t("Appointment title...")}
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             autoFocus
           />
         </div>
@@ -86,7 +86,7 @@ function QuickAddAppointment({ onSuccess }) {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -94,7 +94,7 @@ function QuickAddAppointment({ onSuccess }) {
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -103,7 +103,7 @@ function QuickAddAppointment({ onSuccess }) {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="meeting">🤝 {t("Meeting")}</option>
             <option value="task">📋 {t("Task")}</option>
@@ -118,7 +118,7 @@ function QuickAddAppointment({ onSuccess }) {
         <button
           type="submit"
           disabled={!title.trim() || isLoading}
-          className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
+          className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-status-bg disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
         >
           {isLoading ? t("Adding...") : t("Add Appointment")}
         </button>

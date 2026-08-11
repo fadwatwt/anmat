@@ -49,7 +49,7 @@ function CreateChatGroupModal({ isOpen, onClose, isEdit, isView, editData }) {
         id: emp.user_id || emp._id,
         element: (
             <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-600">
+                <div className="w-6 h-6 rounded-full bg-status-bg flex items-center justify-center text-[10px] font-bold text-cell-secondary">
                     {(emp.user?.name || "?").charAt(0).toUpperCase()}
                 </div>
                 <span>{emp.user?.name || t("Unknown")}</span>
@@ -199,7 +199,7 @@ function CreateChatGroupModal({ isOpen, onClose, isEdit, isView, editData }) {
 
                     {/* Participants */}
                     <div>
-                        <label className="text-gray-900 dark:text-gray-200 text-sm mb-2 block">
+                        <label className="text-cell-primary text-sm mb-2 block">
                             {t("Participants")}
                         </label>
                         <ElementsSelect
@@ -215,7 +215,7 @@ function CreateChatGroupModal({ isOpen, onClose, isEdit, isView, editData }) {
                     {/* Avatar */}
                     {!readOnly && (
                         <div>
-                            <label className="text-gray-900 dark:text-gray-200 text-sm mb-2 block">{t("Avatar")}</label>
+                            <label className="text-cell-primary text-sm mb-2 block">{t("Avatar")}</label>
                             <FileUpload
                                 title={t("Choose a file or drag & drop here")}
                                 onFileSelect={(file) => setFormData((prev) => ({ ...prev, avatar: file }))}
@@ -224,9 +224,9 @@ function CreateChatGroupModal({ isOpen, onClose, isEdit, isView, editData }) {
                     )}
 
                     {/* Note */}
-                    <div className="flex gap-2 items-start bg-blue-50 p-2 rounded-md dark:bg-gray-700">
+                    <div className="flex gap-2 items-start bg-blue-50 p-2 rounded-md dark:bg-blue-900/20">
                         <div className="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
-                        <p className="text-xs text-gray-500 dark:text-gray-300">
+                        <p className="text-xs text-cell-secondary">
                             {t("The creator becomes the group admin automatically. You can manage participants after creation.")}
                         </p>
                     </div>

@@ -245,7 +245,7 @@ function SignIn() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder={t("Enter your email")}
-                                className="w-full py-3 px-2 outline-none bg-transparent dark:bg-gray-800 text-cell-primary dark:text-gray-100 dark:placeholder-gray-400"
+                                className="w-full py-3 px-2 outline-none bg-transparent text-cell-primary dark:placeholder-gray-400"
                                 required
                                 disabled={isLoading || isSubmitting}
                             />
@@ -258,7 +258,7 @@ function SignIn() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="*"
-                                className="w-full py-3 px-2 outline-none bg-transparent dark:bg-gray-800 text-cell-primary dark:text-gray-100"
+                                className="w-full py-3 px-2 outline-none bg-transparent text-cell-primary"
                                 required
                                 disabled={isLoading || isSubmitting}
                             />
@@ -275,7 +275,7 @@ function SignIn() {
                                 <p className="text-sm text-cell-primary">{t("Remember Me")}</p>
                             </div>
                             <Link href="/forget-password"
-                                className={`text-sm text-primary-base hover:text-primary-600 underline cursor-pointer dark:text-primary-400 ${(isLoading || isSubmitting) ? 'pointer-events-none text-gray-400 dark:text-gray-500' : ''}`}>
+                                className={`text-sm text-primary-base hover:text-primary-600 underline cursor-pointer dark:text-primary-400 ${(isLoading || isSubmitting) ? 'pointer-events-none text-cell-secondary' : ''}`}>
                                 {t("Forgot Password?")}
                             </Link>
                         </div>
@@ -293,7 +293,7 @@ function SignIn() {
                         {/*Google Login Button*/}
                         {/*<button*/}
                         {/*    type="button"*/}
-                        {/*    className="w-full rounded-lg border border-gray-400 py-1.5 flex gap-2 justify-center items-center hover:bg-gray-50"*/}
+                        {/*    className="w-full rounded-lg border border-gray-400 py-1.5 flex gap-2 justify-center items-center hover:bg-status-bg"*/}
                         {/*>*/}
                         {/*    <FcGoogle/>*/}
                         {/*    <span className="text-sm">Login with Google</span>*/}
@@ -304,7 +304,7 @@ function SignIn() {
                             <span className="text-md text-cell-secondary">
                                 {t("Not have an account?")}
                             </span>
-                            <Link href="/register/subscriber/email" className={`text-primary-500 dark:text-primary-400 hover:text-primary-600 ${(isLoading || isSubmitting) ? 'pointer-events-none text-gray-400 dark:text-gray-500' : ''}`}>
+                            <Link href="/register/subscriber/email" className={`text-primary-500 dark:text-primary-400 hover:text-primary-600 ${(isLoading || isSubmitting) ? 'pointer-events-none text-cell-secondary' : ''}`}>
                                 {t("Register")}
                             </Link>
                         </div>

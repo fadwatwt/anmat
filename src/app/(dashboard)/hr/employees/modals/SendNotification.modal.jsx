@@ -77,7 +77,7 @@ function SendNotificationModal({ isOpen, onClose, employeeData, departmentData }
         id: type._id,
         element: t(type.name),
         icon: ICON_MAP[type.icon],
-        colorClass: COLOR_MAP[type.color] || "text-gray-500",
+        colorClass: COLOR_MAP[type.color] || "text-cell-secondary",
         description: t(type.description),
     }));
 
@@ -158,7 +158,7 @@ function SendNotificationModal({ isOpen, onClose, employeeData, departmentData }
 
                 {/* Notification Type */}
                 <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label className="text-sm font-medium text-cell-secondary">
                         {t("Notification Type")} <span className="text-red-500">*</span>
                     </label>
                     <div className="flex gap-2 flex-wrap">
@@ -167,10 +167,9 @@ function SendNotificationModal({ isOpen, onClose, employeeData, departmentData }
                                 key={type.id}
                                 type="button"
                                 onClick={() => setSelectedTypeId(type.id)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all
-                                    ${selectedTypeId === type.id
+                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all ${selectedTypeId === type.id
                                         ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20"
-                                        : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary-300"
+                                        : "border-status-border bg-surface hover:border-primary-300"
                                     }`}
                             >
                                 <span className={type.colorClass}>{type.icon}</span>
@@ -179,7 +178,7 @@ function SendNotificationModal({ isOpen, onClose, employeeData, departmentData }
                         ))}
                     </div>
                     {selectedTypeId && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 italic">
+                        <p className="text-xs text-cell-secondary italic">
                             {typeOptions.find((opt) => opt.id === selectedTypeId)?.description}
                         </p>
                     )}
@@ -198,16 +197,16 @@ function SendNotificationModal({ isOpen, onClose, employeeData, departmentData }
                                 {option.image && (
                                     <img
                                         src={option.image}
-                                        className="w-8 h-8 rounded-full object-cover border border-gray-100"
+                                        className="w-8 h-8 rounded-full object-cover border border-status-border"
                                         alt=""
                                     />
                                 )}
                                 <div className="flex flex-col">
-                                    <span className="text-gray-900 dark:text-white text-sm">
+                                    <span className="text-cell-primary text-sm">
                                         {option.element}
                                     </span>
                                     {option.email && (
-                                        <span className="text-xs text-gray-500">{option.email}</span>
+                                        <span className="text-xs text-cell-secondary">{option.email}</span>
                                     )}
                                 </div>
                             </div>

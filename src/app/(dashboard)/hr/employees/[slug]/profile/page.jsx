@@ -154,7 +154,7 @@ function SingleEmployeeProfile() {
                 <button
                     key={`del-${req._id}`}
                     onClick={() => handleDeleteRequest(req._id)}
-                    className="p-1 text-red-500 hover:bg-red-50 rounded"
+                    className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                 >
                     <RiDeleteBin7Line size={18} />
                 </button>
@@ -174,7 +174,7 @@ function SingleEmployeeProfile() {
                 <button
                     key={`del-${req._id}`}
                     onClick={() => handleDeleteRequest(req._id)}
-                    className="p-1 text-red-500 hover:bg-red-50 rounded"
+                    className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                 >
                     <RiDeleteBin7Line size={18} />
                 </button>
@@ -194,7 +194,7 @@ function SingleEmployeeProfile() {
                 <button
                     key={`del-${req._id}`}
                     onClick={() => handleDeleteRequest(req._id)}
-                    className="p-1 text-red-500 hover:bg-red-50 rounded"
+                    className="p-1 text-red-500 hover:bg-red-50 rounded dark:hover:bg-red-900/20"
                 >
                     <RiDeleteBin7Line size={18} />
                 </button>
@@ -205,7 +205,7 @@ function SingleEmployeeProfile() {
         return notifications.map(notif => {
             const type = notif.notification_type_id || {};
             const Icon = ICON_MAP[type.icon] || <RiInformationLine size={16} />;
-            const colorClass = COLOR_MAP[type.color] || "text-gray-500 bg-gray-50 dark:bg-gray-500/10";
+            const colorClass = COLOR_MAP[type.color] || "text-cell-secondary bg-status-bg dark:bg-gray-500/10";
 
             return [
                 notif.created_at ? translateDate(notif.created_at) : "-",
@@ -461,15 +461,15 @@ function SingleEmployeeProfile() {
                                     <DropdownMenu
                                         removeDefaultButtonStyling={true}
                                         button={
-                                            <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                                                <RiMore2Fill size={20} className="text-gray-400" />
+                                            <button className="p-1.5 hover:bg-status-bg rounded-lg transition-colors">
+                                                <RiMore2Fill size={20} className="text-cell-secondary" />
                                             </button>
                                         }
                                         content={
-                                            <div className="flex flex-col min-w-[120px] bg-white dark:bg-gray-800 rounded-lg overflow-hidden border border-status-border">
+                                            <div className="flex flex-col min-w-[120px] bg-surface rounded-lg overflow-hidden border border-status-border">
                                                 <button
                                                     onClick={() => setIsEditRatingModalOpen(true)}
-                                                    className="flex items-center gap-2 p-3 text-sm text-cell-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left w-full"
+                                                    className="flex items-center gap-2 p-3 text-sm text-cell-primary hover:bg-status-bg transition-colors text-left w-full"
                                                 >
                                                     <RiEditLine size={18} className="text-primary-base" />
                                                     {t("Edit")}
@@ -486,7 +486,7 @@ function SingleEmployeeProfile() {
                                             </div>
                                             <div className="absolute -top-2 -right-6">
                                                 {employee?.evaluation_method === 'MANUAL' && (
-                                                    <span className="px-1.5 py-0.5 bg-orange-100 text-orange-600 text-[10px] font-bold rounded uppercase">
+                                                    <span className="px-1.5 py-0.5 bg-orange-100 text-orange-600 text-[10px] font-bold rounded uppercase dark:bg-orange-900/30 dark:text-orange-400">
                                                         {t("Manual")}
                                                     </span>
                                                 )}

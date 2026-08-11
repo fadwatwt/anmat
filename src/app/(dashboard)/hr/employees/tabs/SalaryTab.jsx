@@ -76,11 +76,11 @@ export default function SalaryTab() {
         className="w-10 h-10 rounded-full object-cover"
       />
       <div className="flex flex-col">
-                <span className="text-sm text-gray-900 dark:text-gray-100">{row.employee.name}</span>
-        <span className="text-xs text-gray-500 dark:text-gray-400">{row.employee.email}</span>
+                <span className="text-sm text-cell-primary">{row.employee.name}</span>
+        <span className="text-xs text-cell-secondary">{row.employee.email}</span>
       </div>
     </div>,
-    <span key={`salary-${row.id || index}`} className="text-sm text-gray-700 dark:text-gray-300 font-bold">
+    <span key={`salary-${row.id || index}`} className="text-sm text-cell-secondary font-bold">
       {row.salary?.toLocaleString()}$
     </span>,
     <span key={`bonus-${row.id || index}`} className="text-sm text-green-600 dark:text-green-400">
@@ -89,7 +89,7 @@ export default function SalaryTab() {
     <span key={`deduction-${row.id || index}`} className="text-sm text-red-600 dark:text-red-400">
       -{row.deduction?.toLocaleString()}$
     </span>,
-    <span key={`comment-${row.id || index}`} className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[180px]" title={row.comment}>
+    <span key={`comment-${row.id || index}`} className="text-sm text-cell-secondary truncate max-w-[180px]" title={row.comment}>
       {row.comment}
     </span>,
   ]);

@@ -212,7 +212,7 @@ function TokenPackageModal({ isOpen, onClose, editPackage = null }) {
                                 <button
                                     type="button"
                                     onClick={() => removeFeature(index)}
-                                    className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors mt-1"
+                                    className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors mt-1 dark:hover:text-red-400 dark:hover:bg-red-900/20"
                                 >
                                     <FiTrash2 size={16} />
                                 </button>

@@ -92,7 +92,7 @@ function PlanCard({
                                             checked={selectedLocalIndex === index}
                                             onChange={() => handlePriceChange(index)}
                                         />
-                                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${selectedLocalIndex === index ? "border-primary-base" : "border-gray-300 dark:border-gray-600"
+                                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${selectedLocalIndex === index ? "border-primary-base" : "border-status-border"
                                             }`}>
                                             {selectedLocalIndex === index && <div className="w-2.5 h-2.5 rounded-full bg-primary-base animate-in zoom-in-50 duration-200" />}
                                         </div>
@@ -102,7 +102,7 @@ function PlanCard({
                                             {item.interval_count > 1 ? `${item.interval_count} ` : ""}{t(item.interval === 'month' ? 'Monthly' : 'Yearly')}
                                         </span>
                                         {item.discount > 0 && (
-                                            <span className="text-[10px] text-green-600 font-bold bg-green-50 px-1.5 py-0.5 rounded">
+                                            <span className="text-[10px] text-green-600 font-bold bg-green-50 px-1.5 py-0.5 rounded dark:text-green-400 dark:bg-green-900/20">
                                                 {t("Save {{discount}}%", { discount: item.discount })}
                                             </span>
                                         )}

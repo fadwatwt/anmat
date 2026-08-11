@@ -33,8 +33,7 @@ function MenuItem({ path, icon, title, children }) {
 
     const ItemContent = (
         <div className={`flex gap-1 w-11/12 items-center p-3 rounded-lg transition-all
-            ${isActive ? 'bg-menu-active-bg' : 'group-hover:bg-primary-100'} 
-            hover:text-black`}>
+            ${isActive ? 'bg-menu-active-bg' : 'group-hover:bg-primary-100'} hover:text-cell-primary`}>
             {icon && React.cloneElement(icon, {
                 size: 25,
                 color: `${isActive ? 'var(--menu-active-text)' : 'var(--menu-icon)'}`,
@@ -57,7 +56,7 @@ function MenuItem({ path, icon, title, children }) {
                 <div className={`w-1 h-6 rounded-br-lg rounded-tr-lg ${isActive ? 'bg-primary-500' : 'group-hover:bg-primary-500'}`}></div>
 
                 {children ? (
-                    <div onClick={handleToggle} className="flex-1 text-black cursor-pointer">
+                    <div onClick={handleToggle} className="flex-1 text-cell-primary cursor-pointer">
                         {ItemContent}
                     </div>
                 ) : (
@@ -77,10 +76,9 @@ function MenuItem({ path, icon, title, children }) {
                                 <Link
                                     key={index}
                                     href={child.path}
-                                    className={`block p-2 text-sm rounded-md transition-colors
-                                        ${isSubActive
+                                    className={`block p-2 text-sm rounded-md transition-colors ${isSubActive
                                             ? 'bg-surface text-primary-600 dark:text-primary-200 shadow-sm font-medium'
-                                            : 'text-gray-500 hover:bg-primary-100 dark:text-gray-100 hover:bg-white dark:hover:bg-white/10 hover:text-primary-600 dark:hover:text-primary-400'}`}
+                                            : 'text-cell-secondary hover:bg-primary-100 hover:bg-surface dark:hover:bg-white/10 hover:text-primary-600 dark:hover:text-primary-400'}`}
                                 >
                                     {t(child.title)}
                                 </Link>

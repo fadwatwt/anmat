@@ -42,14 +42,14 @@ const MODEL_TYPE_CONFIG = {
   Department: { icon: RiBuildingLine, color: "text-teal-600 dark:text-teal-400", bg: "bg-teal-100 dark:bg-teal-900/40" },
   Subscription: { icon: RiSubtractLine, color: "text-pink-600 dark:text-pink-400", bg: "bg-pink-100 dark:bg-pink-900/40" },
   SubscriptionPlan: { icon: RiSettings3Line, color: "text-pink-600 dark:text-pink-400", bg: "bg-pink-100 dark:bg-pink-900/40" },
-  User: { icon: RiUserLine, color: "text-gray-600 dark:text-gray-400", bg: "bg-gray-100 dark:bg-gray-700" },
+  User: { icon: RiUserLine, color: "text-cell-secondary", bg: "bg-status-bg" },
   EmailVerification: { icon: RiMailLine, color: "text-red-500 dark:text-red-400", bg: "bg-red-100 dark:bg-red-900/40" },
   Organization: { icon: RiBuildingLine, color: "text-sky-600 dark:text-sky-400", bg: "bg-sky-100 dark:bg-sky-900/40" },
   Appointment: { icon: RiCalendarEventLine, color: "text-orange-600 dark:text-orange-400", bg: "bg-orange-100 dark:bg-orange-900/40" },
   support_tickets: { icon: RiTicketLine, color: "text-rose-600 dark:text-rose-400", bg: "bg-rose-100 dark:bg-rose-900/40" },
   EscalationRequest: { icon: RiArrowGoForwardLine, color: "text-red-600 dark:text-red-400", bg: "bg-red-100 dark:bg-red-900/40" },
   Custom: { icon: RiNotification4Line, color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-100 dark:bg-blue-900/40" },
-  default: { icon: RiFolderLine, color: "text-gray-500 dark:text-gray-400", bg: "bg-gray-100 dark:bg-gray-700" },
+  default: { icon: RiFolderLine, color: "text-cell-secondary", bg: "bg-status-bg" },
 };
 
 const MESSAGE_PATTERNS = [
@@ -196,11 +196,11 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className={`icon-notification flex items-center h-10 ${isMenuOpen
           ? "bg-blue-100 text-blue-500 dark:bg-blue-900 dark:text-blue-300"
-          : "bg-gray-100 dark:bg-gray-900"
+          : "bg-status-bg"
           } rounded-lg py-1 px-3 text-center cursor-pointer`}
       >
         <div className="relative">
-          <RiNotification4Line className="dark:text-gray-100 text-gray-600" size={20} />
+          <RiNotification4Line className="text-cell-secondary" size={20} />
           {unreadCount > 0 && (
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full animate-pulse">
               {unreadCount > 9 ? '9+' : unreadCount}
@@ -216,16 +216,16 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`fixed sm:absolute top-[72px] sm:top-full left-0 right-0 sm:left-auto sm:right-0 sm:mt-2 w-full sm:w-[480px] max-w-[300px] mx-auto sm:mx-0 h-auto max-h-[calc(100vh-80px)] sm:max-h-[75vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-b-[20px] sm:rounded-[20px] shadow-xl z-[100] flex flex-col overflow-hidden`}
+            className={`fixed sm:absolute top-[72px] sm:top-full left-0 right-0 sm:left-auto sm:right-0 sm:mt-2 w-full sm:w-[480px] max-w-[300px] mx-auto sm:mx-0 h-auto max-h-[calc(100vh-80px)] sm:max-h-[75vh] bg-surface border border-status-border rounded-b-[20px] sm:rounded-[20px] shadow-xl z-[100] flex flex-col overflow-hidden`}
             style={{ borderWidth: "0.5px" }}
           >
-            <div className="flex justify-between items-center px-4 py-3 border-b dark:border-gray-700">
-              <h3 className="font-[Almarai] font-[400] text-[16px] leading-[24px] tracking-[-1.1%] dark:text-white">
+            <div className="flex justify-between items-center px-4 py-3 border-b">
+              <h3 className="font-[Almarai] font-[400] text-[16px] leading-[24px] tracking-[-1.1%]">
                 {t("Notifications")} {unreadCount > 0 && `(${unreadCount})`}
               </h3>
               <button 
                 onClick={handleMarkAllAsRead}
-                className="text-[#375DFB] font-[Almarai] font-[400] dark:text-primary-200 text-[14px] leading-[20px] tracking-[-0.6%] text-center hover:underline"
+                className="text-primary-base font-[Almarai] font-[400] dark:text-primary-200 text-[14px] leading-[20px] tracking-[-0.6%] text-center hover:underline"
               >
                 {t("Mark all as read")}
               </button>
@@ -233,7 +233,7 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
 
             <div className="max-h-[calc(100%-120px)] sm:max-h-[calc(70vh-120px)] overflow-y-auto custom-scroll">
               {notifications.length === 0 ? (
-                <div className="p-8 text-center text-gray-500 dark:text-gray-400 font-[Almarai]">
+                <div className="p-8 text-center text-cell-secondary font-[Almarai]">
                   {t("No new notifications")}
                 </div>
               ) : (
@@ -245,23 +245,23 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
                   <div
                     key={notification.id}
                     onClick={() => handleOpenNotification(notification)}
-                    className={`flex items-center gap-3 p-3 border-b dark:border-gray-700 last:border-0 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50 ${!notification.isRead ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''}`}
+                    className={`flex items-center gap-3 p-3 border-b last:border-0 cursor-pointer transition-colors hover:bg-status-bg ${!notification.isRead ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''}`}
                   >
                     <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${modelConfig.bg}`}>
                       <TypeIcon size={20} className={modelConfig.color} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start gap-2">
-                        <span className={`text-sm truncate ${!notification.isRead ? 'font-bold dark:text-white' : 'font-medium text-gray-700 dark:text-gray-300'}`}>
+                        <span className={`text-sm truncate ${!notification.isRead ? 'font-bold dark:text-white' : 'font-medium text-cell-secondary'}`}>
                           {notification.title_key
                             ? t(notification.title_key, notification.meta || {})
                             : t(notification.title)}
                         </span>
-                        <span className="text-[10px] text-gray-500 dark:text-gray-400 whitespace-nowrap shrink-0">
+                        <span className="text-[10px] text-cell-secondary whitespace-nowrap shrink-0">
                           {notification.time}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">
+                      <p className="text-xs text-cell-secondary truncate mt-0.5">
                         {notification.message_key
                           ? t(notification.message_key, notification.meta || {})
                           : content}
@@ -288,13 +288,13 @@ const NotificationsDropdown = ({ notifications, unreadCount }) => {
               )}
             </div>
 
-            <div className="w-full h-[56px] px-5 py-4 border-t dark:border-gray-700 flex justify-center items-center">
+            <div className="w-full h-[56px] px-5 py-4 border-t flex justify-center items-center">
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
                   router.push("/notifications");
                 }}
-                className="text-[#375DFB] font-[Almarai] font-[400] text-[14px] leading-[20px] tracking-[-0.6%] text-center hover:underline"
+                className="text-primary-base font-[Almarai] font-[400] text-[14px] leading-[20px] tracking-[-0.6%] text-center hover:underline"
               >
                 {t("View all notifications")}
               </button>

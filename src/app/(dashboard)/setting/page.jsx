@@ -58,21 +58,21 @@ function SettingPage() {
       >
         <div
           className={
-            "flex justify-between md:flex-row flex-col items-center bg-white dark:bg-gray-800 p-2 px-4"
+            "flex justify-between md:flex-row flex-col items-center bg-surface p-2 px-4"
           }
         >
-          <div className="title-page flex items-center gap-2 bg-none text-start w-full md:py-4 py-3 text-base sm:text-lg md:text-xl text-gray-600">
-            <div className={"p-2 rounded-full bg-gray-100 dark:bg-gray-900"}>
+          <div className="title-page flex items-center gap-2 bg-none text-start w-full md:py-4 py-3 text-base sm:text-lg md:text-xl text-cell-secondary">
+            <div className={"p-2 rounded-full bg-status-bg"}>
               <RiSettings3Line
                 size="20"
-                className={"group-hover:text-primary-500  dark:text-gray-100"}
+                className={"group-hover:text-primary-500"}
               />
             </div>
             <div>
-              <h3 className={"text-black dark:text-gray-200 text-lg"}>
+              <h3 className={"text-cell-primary text-lg"}>
                 {t("Settings Page")}
               </h3>
-              <p className={"dark:text-gray-400 text-sm"}>
+              <p className={"text-sm"}>
                 {t("Manage your preferences and configure various options.")}
               </p>
             </div>

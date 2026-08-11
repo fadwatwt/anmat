@@ -56,7 +56,7 @@ function NotificationsTap() {
         return notifications.map((notif) => {
             const type = notif.notification_type_id || {};
             const Icon = ICON_MAP[type.icon] || <RiInformationLine size={16} />;
-            const colorClass = COLOR_MAP[type.color] || "text-gray-500 bg-gray-50 dark:bg-gray-500/10";
+            const colorClass = COLOR_MAP[type.color] || "text-cell-secondary bg-status-bg dark:bg-gray-500/10";
             const employee = notif.notifiable_id || {};
 
             return [
@@ -97,7 +97,7 @@ function NotificationsTap() {
                     canSendNotification && (
                         <button
                             onClick={() => setIsOpenSendNotifyModal(true)}
-                            className="bg-[#EEF2FF] text-[#375DFB] px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+                            className="bg-badge-bg text-primary-base px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
                         >
                             <RiNotification4Line size={16} />
                             {t("Send Notification")}

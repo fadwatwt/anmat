@@ -32,8 +32,8 @@ const EmployeeTasksDelayChart = ({ completed = 0, total = 0 }) => {
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
-                                <div className="text-sm text-gray-500 dark:text-gray-200">{t("TASKS")}</div>
-                                <div className="text-3xl font-bold dark:text-white">
+                                <div className="text-sm text-cell-secondary">{t("TASKS")}</div>
+                                <div className="text-3xl font-bold">
                                     {total}
                                 </div>
                             </div>
@@ -46,7 +46,7 @@ const EmployeeTasksDelayChart = ({ completed = 0, total = 0 }) => {
                     {data.map((record, idx) => (
                         <div key={idx} className="flex gap-1 items-center justify-center text-center">
                             <RiCircleFill size={10} style={{ color: record.color }} />
-                            <span className="text-sm text-gray-500">
+                            <span className="text-sm text-cell-secondary">
                                 {`${record.label} (${record.value}/${total})`}
                             </span>
                         </div>

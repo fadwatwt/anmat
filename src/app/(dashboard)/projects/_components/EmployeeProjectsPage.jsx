@@ -66,11 +66,11 @@ function EmployeeProjectsPage() {
     ];
 
     const customActions = (index) => (
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10 border border-gray-200 dark:border-gray-700 p-1 flex flex-col">
-            <button onClick={() => handleView(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+        <div className="absolute right-0 mt-2 w-40 bg-surface rounded-md shadow-lg z-10 border border-status-border p-1 flex flex-col">
+            <button onClick={() => handleView(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                 <RiEyeLine size={16} className="text-blue-500" /> {t("View")}
             </button>
-            <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left rounded-md">
+            <button onClick={() => handleEdit(index)} className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg w-full text-left rounded-md">
                 <RiPencilLine size={16} className="text-blue-500" /> {t("Edit")}
             </button>
         </div>
@@ -91,15 +91,15 @@ function EmployeeProjectsPage() {
                 imageProfile: project.manager.avatar,
             }}
         />,
-        <div key={`dates-${project._id}`} className="flex flex-col text-xs text-gray-500">
+        <div key={`dates-${project._id}`} className="flex flex-col text-xs text-cell-secondary">
             <span>{project.assignedDate}</span>
             <span>{project.dueDate}</span>
         </div>,
-        <div key={`start-end-${project._id}`} className="flex flex-col text-xs text-gray-500">
+        <div key={`start-end-${project._id}`} className="flex flex-col text-xs text-cell-secondary">
             <span>{project.startDate}</span>
             <span>{project.endDate}</span>
         </div>,
-        <span key={`updated-${project._id}`} className="text-sm text-gray-700 dark:text-gray-300">
+        <span key={`updated-${project._id}`} className="text-sm text-cell-secondary">
             {project.updatedAt}
         </span>,
         <Status key={`status-${project._id}`} type={project.status.type} />,

@@ -15,17 +15,17 @@ function DeleteHolidayModal({ isOpen, onClose, onDelete, holidayName }) {
             size="sm"
         >
             <div className="flex flex-col items-center gap-4 text-center">
-                <div className="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xl">
+                <div className="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xl dark:bg-red-900/30">
                     <FaTrash />
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                    {t("Are you sure you want to delete of")} <span className="font-bold text-gray-900 dark:text-white">{holidayName}</span> {t("For Holiday?")}
+                <p className="text-cell-secondary">
+                    {t("Are you sure you want to delete of")} <span className="font-bold text-cell-primary">{holidayName}</span> {t("For Holiday?")}
                 </p>
 
                 <div className="flex justify-center gap-2 mt-4 w-full">
                     <button
                         onClick={onClose}
-                        className="flex-1 px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200"
+                        className="flex-1 px-4 py-2 text-cell-secondary bg-status-bg rounded-lg hover:bg-status-bg"
                     >
                         {t("Cancel")}
                     </button>

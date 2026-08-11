@@ -45,8 +45,8 @@ function PlanDetails() {
     const [translationsModalOpen, setTranslationsModalOpen] = useState(false);
 
     if (isLoading) return <div className="flex justify-center items-center h-screen"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </div>;
-    if (error) return <div className="flex justify-center items-center h-screen text-red-500">Error loading plan.</div>;
-    if (!plan) return <div className="flex justify-center items-center h-screen">Plan not found.</div>;
+    if (error) return <div className="flex justify-center items-center h-screen text-red-500">{t("Error loading plan.")}</div>;
+    if (!plan) return <div className="flex justify-center items-center h-screen">{t("Plan not found.")}</div>;
 
     const historyRows = history?.map(h => [
         <div key={h._id} className="flex items-center gap-2 font-bold text-primary-600 text-sm">
@@ -76,11 +76,11 @@ function PlanDetails() {
                     {f.properties?.length > 0 && (
                         <div className="flex flex-wrap gap-2 ml-3.5">
                             {f.properties.map((prop, pIdx) => (
-                                <div key={pIdx} className="bg-slate-50 border border-slate-100 rounded-md px-2 py-1 flex items-center gap-1.5 shadow-sm">
-                                    <span className="text-[11px] text-slate-400 font-medium">
+                                <div key={pIdx} className="bg-status-bg border border-status-border rounded-md px-2 py-1 flex items-center gap-1.5 shadow-sm">
+                                    <span className="text-[11px] text-cell-secondary font-medium">
                                         {prop.key}:
                                     </span>
-                                    <span className="text-[11px] font-bold text-blue-600">
+                                    <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400">
                                         {prop.value}
                                     </span>
                                 </div>
@@ -90,7 +90,7 @@ function PlanDetails() {
                 </div>
             ))}
         </div>,
-        <div key={`subscribers-${h._id}`} className="flex items-center gap-2 font-bold text-green-600 text-sm">
+        <div key={`subscribers-${h._id}`} className="flex items-center gap-2 font-bold text-green-600 text-sm dark:text-green-400">
             <RiCheckboxCircleFill size={16} />
             {h.active_subscribers_count || 0}
         </div>
@@ -151,7 +151,7 @@ function PlanDetails() {
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-[10px] uppercase font-bold text-cell-secondary tracking-tight">{t("Active Subscribers")}</span>
-                                                <div className="flex items-center gap-1 font-bold text-green-600">
+                                                <div className="flex items-center gap-1 font-bold text-green-600 dark:text-green-400">
                                                     <RiCheckboxCircleFill size={14} className="opacity-70" />
                                                     <span className="text-sm">{plan.active_subscribers_count || 0}</span>
                                                 </div>
@@ -163,7 +163,7 @@ function PlanDetails() {
                                             label={t("Status")}
                                             value={plan.is_active ? t("Active") : t("Inactive")}
                                             icon={RiCheckboxCircleLine}
-                                            colorClass={plan.is_active ? "text-green-600" : "text-red-500"}
+                                            colorClass={plan.is_active ? "text-green-600 dark:text-green-400" : "text-red-500"}
                                         />
                                         <InfoRow
                                             label={t("Created At")}
@@ -236,7 +236,7 @@ function PlanDetails() {
                                     {plan.features?.map((feature, featureIdx) => (
                                         <div key={featureIdx} className="flex flex-col gap-1 pb-3 border-b border-status-border last:border-0">
                                             <div className="flex items-center gap-2">
-                                                <RiCheckLine size={14} className="text-green-500 shadow-sm rounded-full bg-green-50" />
+                                                <RiCheckLine size={14} className="text-green-500 shadow-sm rounded-full bg-green-50 dark:bg-green-900/20" />
                                                 <h4 className="text-xs font-bold text-cell-primary">
                                                     {feature.feature_type?.title || feature.plan_feature?.title || "Feature"}
                                                 </h4>

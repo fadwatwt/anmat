@@ -82,7 +82,7 @@ function CategoryNode({ node, depth, canEdit, canDelete, onEdit, onDelete }) {
                     {canDelete && (
                         <button
                             onClick={() => onDelete(node)}
-                            className="p-1.5 rounded hover:bg-red-50 text-red-500"
+                            className="p-1.5 rounded hover:bg-red-50 text-red-500 dark:hover:bg-red-900/20"
                             type="button"
                             title="Delete"
                         >

@@ -12,14 +12,17 @@ import { fetchDepartments } from "@/redux/departments/departmentAPI";
 import { useGetLeavesQuery } from "@/redux/leaves/leavesApi";
 import { useGetHolidaysQuery } from "@/redux/holidays/holidaysApi";
 
-const OffBadge = () => (
+const OffBadge = () => {
+  const { t } = useTranslation();
+  return (
   <div className="w-full flex justify-center">
-    <div className="flex items-center justify-center gap-1 w-14 h-6 px-1 py-1 bg-weak-100 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-300 text-xs">
+    <div className="flex items-center justify-center gap-1 w-14 h-6 px-1 py-1 bg-weak-100 rounded text-cell-secondary text-xs">
       <div className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-      <span>OFF</span>
+      <span>{t("OFF")}</span>
     </div>
   </div>
-);
+  );
+};
 
 const HolidayBadge = ({ name }) => (
   <div
@@ -149,7 +152,7 @@ function RotationTap() {
         label: (
           <div className="flex flex-col items-center">
             <span className="dark:text-gray-400">{dayName}</span>
-            <span className="text-start text-sm dark:bg-gray-900 text-gray-400">
+            <span className="text-start text-sm text-cell-secondary">
               {dayNum}
             </span>
           </div>
@@ -195,7 +198,7 @@ function RotationTap() {
           <div key={dateStr} className="flex flex-col gap-1 items-center">
             {dayHolidays.map((h) => <HolidayBadge key={h._id} name={h.name} />)}
             <div className="flex flex-col text-xs dark:text-sub-300 text-center text-blue-600 dark:text-blue-400 font-medium">
-              <span>{entry.start_time} to</span>
+              <span>{entry.start_time} {t("to")}</span>
               <span>{entry.end_time || "..."}</span>
             </div>
             {leaves.filter(l => l.employee_id === employee.id && l.date === dateStr).map(l => (
@@ -221,7 +224,7 @@ function RotationTap() {
             <span className="text-sm text-sub-500 dark:text-sub-300">
               {employee.name}
             </span>
-            <span className="text-gray-500 text-sm">
+            <span className="text-cell-secondary text-sm">
               {employee.department?.name || "N/A"}
             </span>
           </div>
@@ -231,38 +234,38 @@ function RotationTap() {
     });
 
   if (loading) return <div> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </div>;
-  if (error) return <div className="text-red-500 p-4">Error: {error}</div>;
+  if (error) return <div className="text-red-500 p-4">{t("Error:")} {error}</div>;
 
   const headerActions = (
     <div className="flex flex-wrap items-center gap-4">
-      <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+      <div className="flex items-center bg-status-bg rounded-lg p-1">
         <button
           onClick={handlePrev}
-          className="p-1 hover:bg-white dark:hover:bg-gray-700 rounded-md transition-colors"
+          className="p-1 hover:bg-surface rounded-md transition-colors"
         >
           <HiChevronLeft size={20} className="dark:text-gray-300" />
         </button>
         <button
           onClick={() => setCurrentDate(new Date())}
-          className="px-3 py-1 text-xs font-medium hover:bg-white dark:hover:bg-gray-700 rounded-md transition-colors dark:text-gray-300"
+          className="px-3 py-1 text-xs font-medium hover:bg-surface rounded-md transition-colors"
         >
           {t("Today")}
         </button>
         <button
           onClick={handleNext}
-          className="p-1 hover:bg-white dark:hover:bg-gray-700 rounded-md transition-colors"
+          className="p-1 hover:bg-surface rounded-md transition-colors"
         >
           <HiChevronRight size={20} className="dark:text-gray-300" />
         </button>
       </div>
 
-      <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+      <div className="flex bg-status-bg rounded-lg p-1">
         {viewModalList?.map((viewModal, index) => (
           <button
             key={index}
-            className={`px-4 rounded-md text-xs dark:text-gray-200 text-gray-900 ${
+            className={`px-4 rounded-md text-xs text-cell-primary ${
               viewMode === viewModal.id
-                ? "bg-white text-gray-900 dark:bg-gray-700 shadow-sm"
+                ? "bg-surface text-cell-primary shadow-sm"
                 : "bg-transparent"
             } h-[28px]`}
             onClick={() => setViewMode(viewModal.id)}
@@ -279,10 +282,10 @@ function RotationTap() {
             placeholder={t("Search by name...")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-8 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg outline-none focus:border-blue-500 transition-all w-48"
+            className="pl-8 pr-4 py-2 text-sm bg-surface border border-status-border rounded-lg outline-none focus:border-blue-500 transition-all w-48 dark:focus:border-blue-800"
           />
           <svg
-            className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400"
+            className="absolute left-2.5 top-2.5 h-4 w-4 text-cell-secondary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -299,7 +302,7 @@ function RotationTap() {
         <select
           value={selectedDepartment}
           onChange={(e) => setSelectedDepartment(e.target.value)}
-          className="px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg outline-none focus:border-blue-500 transition-all"
+          className="px-3 py-2 text-sm bg-surface border border-status-border rounded-lg outline-none focus:border-blue-500 transition-all dark:focus:border-blue-800"
         >
           {departments.map((dept) => (
             <option key={dept} value={dept}>

@@ -65,7 +65,7 @@ function ProjectRatingModal({ isOpen, onClose, project, onSubmit }) {
             <span className={"dark:text-sub-300 text-md"}>
               {t("Department")}:
             </span>
-            Publishing
+            {t("Publishing")}
           </p>
           <div className="text-sm flex gap-1 items-center">
             <span className={"dark:text-sub-300"}>{t("Delivery")}: </span>{" "}

@@ -60,7 +60,7 @@ function TaskAppointmentLink({ appointment, onLinked }) {
           </div>
           <button
             onClick={handleUnlink}
-            className="p-1 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded"
+            className="p-1 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded dark:hover:text-red-400"
             title={t("Unlink Task")}
           >
             <RiUnlink size={16} />
@@ -69,7 +69,7 @@ function TaskAppointmentLink({ appointment, onLinked }) {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          className="flex items-center gap-2 px-3 py-2 text-sm text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
         >
           <RiLink size={16} />
           {t("Link to Task")}
@@ -78,14 +78,14 @@ function TaskAppointmentLink({ appointment, onLinked }) {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-96 max-w-full mx-4">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="font-semibold text-gray-900 dark:text-white">
+          <div className="bg-surface rounded-lg shadow-xl w-96 max-w-full mx-4">
+            <div className="flex items-center justify-between p-4 border-b border-status-border">
+              <h3 className="font-semibold text-cell-primary">
                 {t("Link to Task")}
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                className="text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
               >
                 <RiCloseLine size={20} />
               </button>
@@ -95,21 +95,21 @@ function TaskAppointmentLink({ appointment, onLinked }) {
               <div className="relative mb-3">
                 <RiSearchLine
                   size={16}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-cell-secondary"
                 />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t("Search tasks...")}
-                  className="w-full pl-9 pr-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="w-full pl-9 pr-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   autoFocus
                 />
               </div>
 
               <div className="max-h-64 overflow-y-auto">
                 {filteredTasks.length === 0 ? (
-                  <p className="text-center text-gray-500 dark:text-gray-400 py-4">
+                  <p className="text-center text-cell-secondary py-4">
                     {t("No tasks found")}
                   </p>
                 ) : (
@@ -117,20 +117,20 @@ function TaskAppointmentLink({ appointment, onLinked }) {
                     {filteredTasks.map((task) => (
                       <div
                         key={task._id}
-                        className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+                        className="flex items-center justify-between p-2 rounded-lg hover:bg-status-bg cursor-pointer"
                         onClick={() => handleLink(task._id)}
                       >
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-gray-900 dark:text-white truncate text-sm">
+                          <p className="font-medium text-cell-primary truncate text-sm">
                             {task.title}
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-cell-secondary">
                             {task.status} • {task.priority}
                           </p>
                         </div>
                         <RiLink
                           size={16}
-                          className="text-gray-400 flex-shrink-0"
+                          className="text-cell-secondary flex-shrink-0"
                         />
                       </div>
                     ))}
@@ -139,10 +139,10 @@ function TaskAppointmentLink({ appointment, onLinked }) {
               </div>
             </div>
 
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-t border-status-border">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="w-full px-4 py-2 text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
               >
                 {t("Cancel")}
               </button>

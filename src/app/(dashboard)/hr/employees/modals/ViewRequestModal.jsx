@@ -79,7 +79,7 @@ function ViewRequestModal({ isOpen, onClose, request }) {
                     <div className="flex flex-col gap-1">
                         <span className="text-sm text-cell-secondary">{t("Update status for")}</span>
                         <span className="font-medium text-table-title">{request.employee?.name}</span>
-                        <span className="text-xs text-cell-secondary capitalize">{request.type.replace(/_/g, ' ')} Request</span>
+                        <span className="text-xs text-cell-secondary capitalize">{request.type.replace(/_/g, ' ')} {t("Request")}</span>
                     </div>
 
                     {request.type === "SHORT_LEAVE" && (request.leave_date || request.leave_start_time || request.leave_end_time) && (

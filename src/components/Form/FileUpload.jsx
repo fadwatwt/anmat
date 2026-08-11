@@ -53,7 +53,7 @@ const FileUpload = ({ title, callBack, onFileChange, accept = "image/*", maxSize
                     )}
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-cell-primary truncate">{file.name}</p>
-                        <p className="text-xs text-cell-secondary">{(file.size / 1024).toFixed(1)} KB</p>
+                        <p className="text-xs text-cell-secondary">{(file.size / 1024).toFixed(1)} {t("KB")}</p>
                     </div>
                     <button
                         type="button"

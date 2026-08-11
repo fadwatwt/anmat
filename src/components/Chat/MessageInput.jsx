@@ -133,7 +133,7 @@ const MessageInput = ({ onSendMessage, onTyping, editMessageData, onCancelEdit, 
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-cell-primary truncate">{selectedFile.name}</p>
-            <p className="text-xs text-sub-500">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+            <p className="text-xs text-sub-500">{(selectedFile.size / 1024 / 1024).toFixed(2)} {t("MB")}</p>
           </div>
           <button 
             type="button"

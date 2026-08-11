@@ -24,7 +24,7 @@ import {
 import usePermission from "@/Hooks/usePermission";
 
 const PRIORITY_CONFIG = {
-  low:    { bg: "bg-gray-100 dark:bg-gray-700",           text: "text-gray-600 dark:text-gray-400",    dot: "bg-gray-400" },
+  low:    { bg: "bg-status-bg",           text: "text-cell-secondary",    dot: "bg-gray-400" },
   medium: { bg: "bg-blue-100 dark:bg-blue-900/30",        text: "text-blue-600 dark:text-blue-400",    dot: "bg-blue-500" },
   high:   { bg: "bg-orange-100 dark:bg-orange-900/30",    text: "text-orange-600 dark:text-orange-400",dot: "bg-orange-500" },
   urgent: { bg: "bg-red-100 dark:bg-red-900/30",          text: "text-red-600 dark:text-red-400",      dot: "bg-red-500" },
@@ -38,7 +38,7 @@ const CATEGORY_LABELS = {
   documentation: "توثيق", communication: "تواصل", other: "أخرى",
 };
 
-const INPUT_CLS = "w-full px-2 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white";
+const INPUT_CLS = "w-full px-2 py-1.5 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent";
 
 function DailyTaskCard({ task, size = "md", onUpdate }) {
   const { t, i18n } = useTranslation();
@@ -108,12 +108,12 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
   if (editing) {
     return (
       <div
-        className={`bg-white dark:bg-gray-800 rounded-lg border-2 border-primary-300 dark:border-primary-700 ${isSmall ? "p-3" : "p-4"} space-y-3`}
+        className={`bg-surface rounded-lg border-2 border-primary-300 dark:border-primary-700 ${isSmall ? "p-3" : "p-4"} space-y-3`}
         style={{ borderRight: `4px solid ${task.color || "#22C55E"}` }}
       >
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium text-primary-600 dark:text-primary-400">{t("Edit Task")}</span>
-          <button onClick={handleCancelEdit} className="p-1 text-gray-400 hover:text-gray-600 rounded">
+          <button onClick={handleCancelEdit} className="p-1 text-cell-secondary hover:text-cell-secondary rounded">
             <RiCloseLine size={16} />
           </button>
         </div>
@@ -139,7 +139,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
 
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t("Date")}</label>
+            <label className="block text-xs text-cell-secondary mb-1">{t("Date")}</label>
             <input
               type="date"
               value={editData.date}
@@ -148,7 +148,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t("Priority")}</label>
+            <label className="block text-xs text-cell-secondary mb-1">{t("Priority")}</label>
             <select
               value={editData.priority}
               onChange={(e) => setEditData((p) => ({ ...p, priority: e.target.value }))}
@@ -173,7 +173,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
           </button>
           <button
             onClick={handleCancelEdit}
-            className="px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="px-3 py-1.5 text-sm font-medium text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
           >
             {t("Cancel")}
           </button>
@@ -185,7 +185,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
   /* ── Normal mode ── */
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all hover:shadow-md group ${
+      className={`bg-surface rounded-lg border border-status-border transition-all hover:shadow-md group ${
         isSmall ? "p-3" : "p-4"
       } ${isCompleted ? "opacity-60" : ""}`}
       style={{ borderRight: `4px solid ${task.color || "#22C55E"}` }}
@@ -194,7 +194,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
         {/* complete toggle */}
         <button
           onClick={canUpdate ? handleComplete : undefined}
-          className={`mt-0.5 flex-shrink-0 ${isCompleted ? "text-green-500" : "text-gray-400 hover:text-green-500 transition-colors"} ${canUpdate ? "" : "opacity-50"}`}
+          className={`mt-0.5 flex-shrink-0 ${isCompleted ? "text-green-500" : "text-cell-secondary hover:text-green-500 transition-colors"} ${canUpdate ? "" : "opacity-50"}`}
           title={t("Complete")}
         >
           {isCompleted ? <RiCheckLine size={20} /> : <RiCheckboxCircleLine size={20} />}
@@ -203,7 +203,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
         {/* body */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className={`font-medium ${isCompleted ? "line-through text-gray-500 dark:text-gray-400" : "text-gray-900 dark:text-white"} ${isSmall ? "text-sm" : "text-base"}`}>
+            <h3 className={`font-medium ${isCompleted ? "line-through text-cell-secondary" : "text-cell-primary"} ${isSmall ? "text-sm" : "text-base"}`}>
               {task.title}
             </h3>
             <span className={`text-xs px-1.5 py-0.5 rounded ${priorityConfig.bg} ${priorityConfig.text}`}>
@@ -212,17 +212,17 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
           </div>
 
           {task.description && !isSmall && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{task.description}</p>
+            <p className="text-sm text-cell-secondary mt-1 line-clamp-2">{task.description}</p>
           )}
 
           <div className="flex items-center gap-3 mt-2 flex-wrap">
-            <span className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+            <span className="flex items-center gap-1 text-xs text-cell-secondary">
               <RiCalendarLine size={12} />
               {formatDate(task.date)}
             </span>
             {!isSmall && (
               <>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
+                <span className="text-xs text-cell-secondary">
                   {isArabic ? CATEGORY_LABELS[task.category] || task.category : task.category}
                 </span>
                 {task.is_personal && (
@@ -242,7 +242,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             {task.notes && (
               <button
                 onClick={() => setShowNotesView((v) => !v)}
-                className="p-1.5 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                className="p-1.5 text-cell-secondary hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
                 title={showNotesView ? t("Hide details") : t("View details")}
               >
                 <RiArrowDownSLine size={isSmall ? 14 : 16} className={`transition-transform ${showNotesView ? "rotate-180" : ""}`} />
@@ -251,7 +251,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             {canUpdate && (
               <button
                 onClick={() => setEditing(true)}
-                className="p-1.5 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                className="p-1.5 text-cell-secondary hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
                 title={t("Edit")}
               >
                 <RiEditLine size={isSmall ? 14 : 16} />
@@ -260,7 +260,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             {canUpdate && (
               <button
                 onClick={() => { setShowNotes(!showNotes); setEditing(false); setShowNotesView(false); }}
-                className="p-1.5 text-gray-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                className="p-1.5 text-cell-secondary hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
                 title={t("Add Note")}
               >
                 <RiStickyNoteLine size={isSmall ? 14 : 16} />
@@ -269,7 +269,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             {canDelete && (
               <button
                 onClick={handleDelete}
-                className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                className="p-1.5 text-cell-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                 title={t("Delete")}
               >
                 <RiDeleteBinLine size={isSmall ? 14 : 16} />
@@ -281,31 +281,31 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
 
       {/* Expandable details view */}
       {showNotesView && (task.description || task.notes) && (
-        <div className="mt-2 p-2 space-y-1 bg-gray-50 dark:bg-gray-700/50 rounded text-xs">
+        <div className="mt-2 p-2 space-y-1 bg-status-bg rounded text-xs">
           {task.description && (
-            <p className="text-gray-600 dark:text-gray-400">{task.description}</p>
+            <p className="text-cell-secondary">{task.description}</p>
           )}
           {task.notes && (
-            <p className="text-gray-500 dark:text-gray-500">{task.notes}</p>
+            <p className="text-cell-secondary">{task.notes}</p>
           )}
         </div>
       )}
 
       {/* Notes panel */}
       {showNotes && (
-        <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-3 pt-3 border-t border-status-border">
           <textarea
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
             rows={2}
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder={t("Add a note...")}
           />
           <div className="flex items-center gap-2 mt-2">
             <button onClick={handleSaveNotes} className="px-3 py-1 text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors">
               {t("Save")}
             </button>
-            <button onClick={() => setShowNotes(false)} className="px-3 py-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+            <button onClick={() => setShowNotes(false)} className="px-3 py-1 text-sm font-medium text-cell-secondary hover:bg-status-bg rounded-lg transition-colors">
               {t("Cancel")}
             </button>
           </div>

@@ -65,7 +65,7 @@ function PaymentMethods() {
             <div className="flex flex-col items-start justify-center gap-4">
                 {
                     cardData.length === 0 ? (
-                        <div className="p-10 text-center w-full bg-white rounded-2xl border border-gray-200">
+                        <div className="p-10 text-center w-full bg-surface rounded-2xl border border-status-border">
                             {t("No payment methods found")}
                         </div>
                     ) : (
@@ -77,21 +77,21 @@ function PaymentMethods() {
                             const country = getAttr(card.attributes, 'country');
 
                             return (
-                                <div key={card._id} className={"md:p-5 p-2 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 w-full"}>
+                                <div key={card._id} className={"md:p-5 p-2 rounded-2xl bg-surface border border-status-border w-full"}>
                                     <div className="flex flex-col gap-8 w-full">
                                         {/* header */}
                                         <div className="flex items-start gap-4 justify-between w-full">
                                             <div className="flex items-start gap-2">
-                                                <div className="rounded-full w-12 h-12 flex items-center justify-center bg-gray-50">
+                                                <div className="rounded-full w-12 h-12 flex items-center justify-center bg-status-bg">
                                                     {brand.toLowerCase().includes('master') ? <RiMastercardFill size={35} className="text-orange-500" /> :
-                                                     brand.toLowerCase().includes('visa') ? <RiVisaFill size={35} className="text-blue-600" /> :
-                                                     <RiBankCardFill size={35} className="text-gray-400" />}
+                                                     brand.toLowerCase().includes('visa') ? <RiVisaFill size={35} className="text-blue-600 dark:text-blue-400" /> :
+                                                     <RiBankCardFill size={35} className="text-cell-secondary" />}
                                                 </div>
                                                 <div className="flex flex-col items-start justify-start gap-1">
-                                                    <span className="text-lg text-gray-900 font-bold uppercase">
+                                                    <span className="text-lg text-cell-primary font-bold uppercase">
                                                         {brand}
                                                     </span>
-                                                    {card.is_default && <div className="flex items-center justify-center gap-2 px-2 py-1 bg-[#2D9F7517] text-sm text-gray-900 rounded-md">
+                                                    {card.is_default && <div className="flex items-center justify-center gap-2 px-2 py-1 bg-[#2D9F7517] text-sm text-cell-primary rounded-md">
                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M7.5 14.25C3.77198 14.25 0.75 11.228 0.75 7.5C0.75 3.77198 3.77198 0.75 7.5 0.75C11.228 0.75 14.25 3.77198 14.25 7.5C14.25 11.228 11.228 14.25 7.5 14.25ZM6.82703 10.2L11.5993 5.42707L10.6448 4.47263L6.82703 8.2911L4.91745 6.38153L3.963 7.33598L6.82703 10.2Z" fill="#2D9F75" />
                                                         </svg>
@@ -115,7 +115,7 @@ function PaymentMethods() {
                                                             <div className="flex flex-col items-start justify-start gap-2 w-44">
                                                                 <button
                                                                     onClick={() => handleSetDefault(card._id)}
-                                                                    className="w-full px-3 py-3 text-sm border-b dark:border-gray-700 dark:text-gray-200 flex gap-2 items-center text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 select-none cursor-pointer whitespace-nowrap"
+                                                                    className="w-full px-3 py-3 text-sm border-b flex gap-2 items-center text-left text-cell-secondary hover:bg-status-bg select-none cursor-pointer whitespace-nowrap"
                                                                 >
                                                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path d="M7.5 14.25C3.77198 14.25 0.75 11.228 0.75 7.5C0.75 3.77198 3.77198 0.75 7.5 0.75C11.228 0.75 14.25 3.77198 14.25 7.5C14.25 11.228 11.228 14.25 7.5 14.25ZM6.82703 10.2L11.5993 5.42707L10.6448 4.47263L6.82703 8.2911L4.91745 6.38153L3.963 7.33598L6.82703 10.2Z" fill="#2D9F75" />
@@ -132,26 +132,26 @@ function PaymentMethods() {
                                         {/* info */}
                                         <div className="flex items-start gap-8 justify-between w-full">
                                             <div className="flex flex-col items-start justify-start gap-0 min-w-0 sm:min-w-[10rem]">
-                                                <span className="text-sm text-gray-700 font-bold">
+                                                <span className="text-sm text-cell-secondary font-bold">
                                                     {t("Country")}
                                                 </span>
-                                                <span className="text-sm text-gray-900">
+                                                <span className="text-sm text-cell-primary">
                                                     {country || t("N/A")}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col items-start justify-start gap-0 min-w-0 sm:min-w-[15rem]">
-                                                <span className="text-sm text-gray-700 font-bold">
+                                                <span className="text-sm text-cell-secondary font-bold">
                                                     {t("Card Number")}
                                                 </span>
-                                                <span className="text-sm text-gray-900">
+                                                <span className="text-sm text-cell-primary">
                                                     {last4 ? `**** **** **** ${last4}` : t("N/A")}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col items-start justify-start gap-0 min-w-0 sm:min-w-[10rem]">
-                                                <span className="text-sm text-gray-700 font-bold">
+                                                <span className="text-sm text-cell-secondary font-bold">
                                                     {t("Card Expiry")}
                                                 </span>
-                                                <span className="text-sm text-gray-900">
+                                                <span className="text-sm text-cell-primary">
                                                     {expMonth && expYear ? `${expMonth}/${expYear}` : t("N/A")}
                                                 </span>
                                             </div>
@@ -162,7 +162,7 @@ function PaymentMethods() {
                                             <button
                                                 onClick={() => setDeleteAlert({ isOpen: true, card })}
                                                 disabled={isDeleting}
-                                                className="text-sm bg-white text-red-700 px-4 py-2 w-96 rounded-lg hover:bg-red-50 transition-colors border border-red-200 disabled:opacity-50"
+                                                className="text-sm bg-surface text-red-700 px-4 py-2 w-96 rounded-lg hover:bg-red-50 transition-colors border border-red-200 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-900/20 dark:border-red-800"
                                             >
                                                 {t("Delete Card")}
                                             </button>

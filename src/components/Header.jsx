@@ -33,13 +33,13 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
   return (
     <div
       className={
-        "header bg-surface max-w-full h-[72px] flex px-3 sm:px-4 md:px-8 items-center justify-between relative border-b dark:border-gray-700 z-50 " +
+        "header bg-surface max-w-full h-[72px] flex px-3 sm:px-4 md:px-8 items-center justify-between relative border-b z-50 " +
         className
       }
     >
       <button
         onClick={taggleSlidebarOpen}
-        className="inline-flex items-center p-2 text-sm h-8 text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        className="inline-flex items-center p-2 text-sm h-8 text-cell-secondary rounded-lg md:hidden hover:bg-status-bg focus:outline-none focus:ring-2 focus:ring-status-border"
       >
         <HiOutlineMenuAlt2 />
       </button>
@@ -50,14 +50,14 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
         <div className={"icons flex gap-1 sm:gap-2 items-center relative w-auto justify-end"}>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-cell-secondary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors"
             title={theme === "dark" ? t("Switch to Light Mode") : t("Switch to Dark Mode")}
           >
             {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
           </button>
           <button
             onClick={toggleLanguage}
-            className="p-2 rounded-lg text-cell-secondary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors text-sm font-medium"
             title={i18n.language === "ar" ? t("English") : t("Arabic")}
           >
             {i18n.language === "ar" ? t("EN") : t("AR")}

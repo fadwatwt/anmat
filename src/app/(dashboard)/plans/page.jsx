@@ -210,7 +210,7 @@ function SubscriptionPlansTab({ canCreate, canUpdate, canDelete, canToggleActivi
         // Trial Cell
         <div key={`${plan._id}_trial`} className="flex flex-col gap-1">
             <span className="text-sm font-medium">{plan.trial?.trial_days || 0} {t("days")}</span>
-            <span className={`text-[10px] px-2 py-0.5 rounded-full w-fit ${plan.trial?.is_active ? 'bg-green-100 text-green-700' : 'bg-badge-bg text-badge-text border border-status-border'}`}>
+            <span className={`text-[10px] px-2 py-0.5 rounded-full w-fit ${plan.trial?.is_active ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-badge-bg text-badge-text border border-status-border'}`}>
                 {plan.trial?.is_active ? t("Active") : t("Inactive")}
             </span>
         </div>,
@@ -231,11 +231,11 @@ function SubscriptionPlansTab({ canCreate, canUpdate, canDelete, canToggleActivi
                             {feature.properties?.length > 0 && (
                                 <div className="flex flex-wrap gap-2 ml-3.5">
                                     {feature.properties.map((prop, pIdx) => (
-                                        <div key={pIdx} className="bg-slate-50 border border-slate-100 rounded-md px-2 py-1 flex items-center gap-1.5 shadow-sm">
-                                            <span className="text-[11px] text-slate-400 font-medium">
+                                        <div key={pIdx} className="bg-status-bg border border-status-border rounded-md px-2 py-1 flex items-center gap-1.5 shadow-sm">
+                                            <span className="text-[11px] text-cell-secondary font-medium">
                                                 {prop.key}:
                                             </span>
-                                            <span className="text-[11px] font-bold text-blue-600">
+                                            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400">
                                                 {prop.value}
                                             </span>
                                         </div>

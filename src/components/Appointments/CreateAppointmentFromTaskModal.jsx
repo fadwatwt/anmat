@@ -82,14 +82,14 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="font-semibold text-gray-900 dark:text-white">
+      <div className="bg-surface rounded-lg shadow-xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-4 border-b border-status-border">
+          <h3 className="font-semibold text-cell-primary">
             {t("Create Appointment from Task")}
           </h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="text-cell-secondary hover:text-cell-secondary dark:hover:text-gray-300"
           >
             <RiCloseLine size={20} />
           </button>
@@ -108,7 +108,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-cell-secondary mb-1">
               {t("Title")} *
             </label>
             <input
@@ -117,12 +117,12 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-cell-secondary mb-1">
               {t("Description")}
             </label>
             <textarea
@@ -130,12 +130,12 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               value={formData.description}
               onChange={handleChange}
               rows={2}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-cell-secondary mb-1">
               {t("Location")}
             </label>
             <input
@@ -143,14 +143,14 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               placeholder={t("Enter location")}
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-cell-secondary mb-1">
                 {t("Date")} *
               </label>
               <input
@@ -159,12 +159,12 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 value={formData.date}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-cell-secondary mb-1">
                 {t("Start Time")} *
               </label>
               <input
@@ -173,14 +173,14 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 value={formData.start_time}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-cell-secondary mb-1">
                 {t("End Time")}
               </label>
               <input
@@ -188,12 +188,12 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 name="end_time"
                 value={formData.end_time}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-cell-secondary mb-1">
                 {t("Color")}
               </label>
               <input
@@ -201,13 +201,13 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 name="color"
                 value={formData.color}
                 onChange={handleChange}
-                className="w-12 h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer"
+                className="w-12 h-10 border border-status-border rounded-lg cursor-pointer"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-cell-secondary mb-2">
               {t("Reminders")}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -220,7 +220,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               ].map((reminder) => (
                 <label
                   key={reminder.value}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-status-bg rounded-lg cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -228,7 +228,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                     onChange={() => handleReminderChange(reminder.value)}
                     className="rounded text-primary-500 focus:ring-primary-500"
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="text-sm text-cell-secondary">
                     {reminder.label}
                   </span>
                 </label>
@@ -236,18 +236,18 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-3 pt-4 border-t border-status-border">
             <button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
+              className="px-6 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-status-bg disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
             >
               {isLoading ? t("Creating...") : t("Create Appointment")}
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="px-6 py-2 text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
             >
               {t("Cancel")}
             </button>

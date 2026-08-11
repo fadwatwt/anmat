@@ -198,7 +198,7 @@ function CreateMeetingModal({ isOpen, onClose, isEdit, editData, onSubmit }) {
                         placeholder={t("www.google.meet...")}
                     />
 
-                    <button className="w-full py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors font-medium">
+                    <button className="w-full py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors font-medium dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/30">
                         {t("Add to Calendar")}
                     </button>
                 </div>

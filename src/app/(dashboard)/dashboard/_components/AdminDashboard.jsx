@@ -240,8 +240,8 @@ const AdminDashboard = () => {
                                     </div>
                                 ) : organizations?.length > 0 ? (
                                     organizations.map((org, index) => (
-                                        <div key={org._id || index} className="flex gap-4 items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-2xl transition-all group border border-transparent hover:border-status-border">
-                                            <div className="w-12 h-12 rounded-2xl overflow-hidden bg-white border border-status-border flex-shrink-0 group-hover:scale-105 transition-transform">
+                                        <div key={org._id || index} className="flex gap-4 items-center p-3 hover:bg-status-bg rounded-2xl transition-all group border border-transparent hover:border-status-border">
+                                            <div className="w-12 h-12 rounded-2xl overflow-hidden bg-surface border border-status-border flex-shrink-0 group-hover:scale-105 transition-transform">
                                                 <img
                                                     src={org.logo || `https://ui-avatars.com/api/?name=${org.name}&background=random`}
                                                     alt={org.name}

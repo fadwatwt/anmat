@@ -16,18 +16,18 @@ function TimeInput({ className, id, classNameLabel, classNameInput, onChange, ti
     return (
         <div className={`${title && "flex flex-col items-start gap-2 "}${className || "w-full"}`}>
             {title && (
-                <p className="text-sm dark:text-white text-gray-900">
+                <p className="text-sm text-cell-primary">
                     {t(title)} {isRequired && <span className="text-red-500">*</span>}
                 </p>
             )}
             <label
-                className={`flex w-full items-center text-xs dark:bg-white-0 dark:border-gray-700 border-2 rounded-xl focus-within:border-blue-500 dark:text-gray-200 ${
-                    error ? "border-red-500" : ""
+                className={`flex w-full items-center text-xs border-2 rounded-xl focus-within:border-blue-500 border-status-border dark:focus-within:border-blue-800 ${
+                    error ? "border-red-500 dark:border-red-800" : ""
                 } ${classNameLabel ? classNameLabel : "pl-2 px-2"}`}
                 htmlFor={id}
             >
                 <RiTimeLine 
-                    className="cursor-pointer text-gray-500" 
+                    className="cursor-pointer text-cell-secondary" 
                     onClick={handleOpenPicker} 
                     size={20} 
                 />

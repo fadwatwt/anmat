@@ -89,7 +89,7 @@ const CreatePollModal = ({ chatId, onClose }) => {
                   <button
                     type="button"
                     onClick={() => handleRemoveOption(index)}
-                    className="p-2 text-sub-500 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+                    className="p-2 text-sub-500 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors dark:hover:bg-red-900/20"
                   >
                     <Trash2 size={18} />
                   </button>

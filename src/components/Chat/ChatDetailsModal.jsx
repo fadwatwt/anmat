@@ -309,10 +309,10 @@ const ChatDetailsModal = ({ activeChat, onClose }) => {
                                   onClick={() => handleRemoveParticipant(pid)}
                                   disabled={isRemoving}
                                   title={t("Remove member")}
-                                  className="p-1.5 text-sub-300 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
+                                  className="p-1.5 text-sub-300 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50 dark:hover:bg-red-900/20"
                                 >
                                   {isRemoving ? (
-                                    <div className="w-4 h-4 border-2 border-red-300 border-t-red-500 rounded-full animate-spin" />
+                                    <div className="w-4 h-4 border-2 border-red-300 border-t-red-500 rounded-full animate-spin dark:border-red-800" />
                                   ) : (
                                     <UserMinus size={16} />
                                   )}

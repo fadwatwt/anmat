@@ -36,7 +36,7 @@ function Desktop2Page() {
   return (
     <div
       className={
-        "flex flex-col w-full items-center max-h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900"
+        "flex flex-col w-full items-center max-h-screen overflow-y-auto bg-status-bg"
       }
     >
       <div
@@ -66,7 +66,7 @@ function Desktop2Page() {
             <div className={"flex items-center gap-3"}>
               <button
                 onClick={() => i18n.changeLanguage(i18n.language === "ar" ? "en" : "ar")}
-                className="hidden sm:inline-flex text-white text-sm md:text-base px-2 py-1 rounded-md border border-white/30 hover:bg-white/10 transition-colors"
+                className="hidden sm:inline-flex text-white text-sm md:text-base px-2 py-1 rounded-md border border-white/30 hover:bg-surface/10 transition-colors"
                 title={i18n.language === "ar" ? "English" : "العربية"}
               >
                 {i18n.language === "ar" ? "EN" : "AR"}
@@ -75,7 +75,7 @@ function Desktop2Page() {
                 {" "}
                 <Link href="sign-in"> {t("Login")}</Link>
               </p>
-              <Link href={"/register/subscriber/email"} className={"hidden sm:inline-flex bg-white dark:bg-surface dark:text-gray-100 py-1.5 px-3 rounded-md text-sm md:text-base"}>
+              <Link href={"/register/subscriber/email"} className={"hidden sm:inline-flex bg-surface dark:bg-surface py-1.5 px-3 rounded-md text-sm md:text-base"}>
                 {t("Sign up")}
               </Link>
               <button
@@ -96,12 +96,12 @@ function Desktop2Page() {
               <div className="flex gap-3 pt-2 border-t border-white/20">
                 <button
                   onClick={() => i18n.changeLanguage(i18n.language === "ar" ? "en" : "ar")}
-                  className="text-white text-sm px-2 py-1 rounded-md border border-white/30 hover:bg-white/10 transition-colors"
+                  className="text-white text-sm px-2 py-1 rounded-md border border-white/30 hover:bg-surface/10 transition-colors"
                 >
                   {i18n.language === "ar" ? "EN" : "AR"}
                 </button>
                 <Link href="sign-in" className={"text-white py-1"}>{t("Login")}</Link>
-                <Link href={"/register/subscriber/email"} className={"bg-white dark:bg-surface dark:text-gray-100 py-1.5 px-3 rounded-md text-sm"}>
+                <Link href={"/register/subscriber/email"} className={"bg-surface dark:bg-surface py-1.5 px-3 rounded-md text-sm"}>
                   {t("Sign up")}
                 </Link>
               </div>
@@ -120,7 +120,7 @@ function Desktop2Page() {
             </p>
           </div>
           <div className={"flex justify-center items-center gap-3"}>
-            <Link href={"/register/subscriber/email"} className={"bg-white dark:bg-surface dark:text-gray-100 py-2 px-4 rounded-md text-sm font-medium"}>
+            <Link href={"/register/subscriber/email"} className={"bg-surface dark:bg-surface py-2 px-4 rounded-md text-sm font-medium"}>
               {t("Get started free")}
             </Link>
           </div>
@@ -141,7 +141,7 @@ function Desktop2Page() {
       >
         <div className={"flex flex-col py-10 text-center"}>
           <p className={"text-blue-500 dark:text-blue-400 text-sm"}>{t("Why Anmaat")}</p>
-          <p className={"text-3xl sm:text-4xl font-bold text-black dark:text-white "}>{t("Everything you need to manage your business")}</p>
+          <p className={"text-3xl sm:text-4xl font-bold text-cell-primary "}>{t("Everything you need to manage your business")}</p>
         </div>
         <div className={"w-full grid grid-cols-1 md:grid-cols-2 gap-6"}>
           <div
@@ -155,10 +155,10 @@ function Desktop2Page() {
                   "pt-10 px-6 sm:px-10 pb-4 flex-col items-start gap-2 text-start"
                 }
               >
-                <p className={"text-lg font-bold text-black dark:text-white"}>
+                <p className={"text-lg font-bold text-cell-primary"}>
                   {t("Project & Task Management")}
                 </p>
-                <p className={"text-black dark:text-gray-300 text-wrap"}>
+                <p className={"text-cell-primary text-wrap"}>
                   {t("Create projects, assign tasks, track progress with multiple statuses, deadlines, and file attachments.")}
                 </p>
               </div>
@@ -191,10 +191,10 @@ function Desktop2Page() {
                   "pt-10 px-6 sm:px-10 pb-4 flex-col items-start gap-2 text-start"
                 }
               >
-                <p className={"text-lg font-bold text-black dark:text-white"}>
+                <p className={"text-lg font-bold text-cell-primary"}>
                   {t("Team Communication")}
                 </p>
-                <p className={"text-black dark:text-gray-300 text-wrap"}>
+                <p className={"text-cell-primary text-wrap"}>
                   {t("Real-time messaging, group conversations, and seamless collaboration with your team.")}
                 </p>
               </div>
@@ -222,10 +222,10 @@ function Desktop2Page() {
                   "pt-10 px-6 sm:px-10 pb-4 flex-col items-start gap-2 text-start"
                 }
               >
-                <p className={"text-lg font-bold text-black dark:text-white"}>
+                <p className={"text-lg font-bold text-cell-primary"}>
                   {t("HR & Employee Management")}
                 </p>
-                <p className={"text-black dark:text-gray-300 text-wrap"}>
+                <p className={"text-cell-primary text-wrap"}>
                   {t("Manage employees, departments, attendance, salaries, and organizational structure in one place.")}
                 </p>
               </div>
@@ -258,10 +258,10 @@ function Desktop2Page() {
                   "pt-10 px-10 pb-4 flex-col items-start gap-2 text-start"
                 }
               >
-                <p className={"text-lg font-bold text-black dark:text-white"}>
+                <p className={"text-lg font-bold text-cell-primary"}>
                   {t("Analytics & Reports")}
                 </p>
-                <p className={"text-black dark:text-gray-300 text-wrap"}>
+                <p className={"text-cell-primary text-wrap"}>
                   {t("Track performance across tasks, employees, and departments with real-time dashboards and custom reports.")}
                 </p>
               </div>
@@ -348,10 +348,10 @@ function Desktop2Page() {
         >
           <div className={"flex-1 flex flex-col gap-6 text-center md:text-start"}>
             <p className={"text-blue-500 dark:text-blue-400 text-sm font-medium"}>{t("AI-Powered")}</p>
-            <p className={"text-3xl sm:text-4xl font-bold text-black dark:text-white"}>
+            <p className={"text-3xl sm:text-4xl font-bold text-cell-primary"}>
               {t("Your intelligent management assistant")}
             </p>
-            <p className={"text-gray-600 dark:text-gray-300 text-base leading-relaxed"}>
+            <p className={"text-cell-secondary text-base leading-relaxed"}>
               {t("Let AI handle the routine — from creating tasks and scheduling meetings to generating reports. Our AI assistant understands your commands in Arabic and English, helping you manage your business faster and smarter.")}
             </p>
             <div className={"flex flex-col gap-4"}>
@@ -359,19 +359,19 @@ function Desktop2Page() {
                 <div className={"w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center shrink-0"}>
                   <RiRobot2Line size={18} className={"text-primary-600 dark:text-primary-300"} />
                 </div>
-                <p className={"text-gray-700 dark:text-gray-300 text-sm"}>{t("Natural language commands in Arabic & English")}</p>
+                <p className={"text-cell-secondary text-sm"}>{t("Natural language commands in Arabic & English")}</p>
               </div>
               <div className={"flex gap-3 items-center"}>
                 <div className={"w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center shrink-0"}>
                   <RiCheckboxCircleFill size={18} className={"text-primary-600 dark:text-primary-300"} />
                 </div>
-                <p className={"text-gray-700 dark:text-gray-300 text-sm"}>{t("Create tasks, events, and reminders instantly")}</p>
+                <p className={"text-cell-secondary text-sm"}>{t("Create tasks, events, and reminders instantly")}</p>
               </div>
               <div className={"flex gap-3 items-center"}>
                 <div className={"w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center shrink-0"}>
                   <RiFlashlightLine size={18} className={"text-primary-600 dark:text-primary-300"} />
                 </div>
-                <p className={"text-gray-700 dark:text-gray-300 text-sm"}>{t("Smart analytics and instant answers to your questions")}</p>
+                <p className={"text-cell-secondary text-sm"}>{t("Smart analytics and instant answers to your questions")}</p>
               </div>
             </div>
             <div>
@@ -386,22 +386,22 @@ function Desktop2Page() {
             </div>
           </div>
           <div className={"flex-1 flex justify-center"}>
-            <div className={"w-full max-w-[400px] bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-6"}>
-              <div className={"flex items-center gap-3 mb-4 pb-3 border-b border-gray-100 dark:border-gray-700"}>
+            <div className={"w-full max-w-[400px] bg-surface rounded-2xl shadow-xl border border-status-border p-6"}>
+              <div className={"flex items-center gap-3 mb-4 pb-3 border-b border-status-border"}>
                 <div className={"w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center"}>
                   <RiRobot2Line size={16} className={"text-white"} />
                 </div>
-                <p className={"text-sm font-semibold text-gray-800 dark:text-white"}>{t("AI Assistant")}</p>
+                <p className={"text-sm font-semibold text-cell-primary"}>{t("AI Assistant")}</p>
               </div>
               <div className={"flex flex-col gap-3"}>
-                <div className={"bg-gray-100 dark:bg-gray-700 rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[85%]"}>
-                  <p className={"text-sm text-gray-700 dark:text-gray-200"}>{t("Create a task for the marketing team to prepare the Q3 report")}</p>
+                <div className={"bg-status-bg rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[85%]"}>
+                  <p className={"text-sm text-cell-secondary"}>{t("Create a task for the marketing team to prepare the Q3 report")}</p>
                 </div>
                 <div className={"bg-primary-50 dark:bg-primary-900/30 rounded-xl rounded-tr-sm px-4 py-2.5 max-w-[85%] self-end"}>
                   <p className={"text-sm text-primary-800 dark:text-primary-200"}>{t("Done! Task created: 'Prepare Q3 Report' assigned to Marketing. Deadline: Friday. Want me to schedule a reminder?")}</p>
                 </div>
-                <div className={"bg-gray-100 dark:bg-gray-700 rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[85%]"}>
-                  <p className={"text-sm text-gray-700 dark:text-gray-200"}>{t("Yes, remind me on Thursday morning")}</p>
+                <div className={"bg-status-bg rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[85%]"}>
+                  <p className={"text-sm text-cell-secondary"}>{t("Yes, remind me on Thursday morning")}</p>
                 </div>
                 <div className={"bg-primary-50 dark:bg-primary-900/30 rounded-xl rounded-tr-sm px-4 py-2.5 max-w-[85%] self-end"}>
                   <p className={"text-sm text-primary-800 dark:text-primary-200"}>{t("Reminder set for Thursday 9:00 AM. Anything else?")}</p>
@@ -410,29 +410,29 @@ function Desktop2Page() {
             </div>
           </div>
         </div>
-        <div className={"w-full max-w-[87rem] flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 px-4 py-8 border-t border-gray-200 dark:border-gray-700"}>
+        <div className={"w-full max-w-[87rem] flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 px-4 py-8 border-t border-status-border"}>
           <div className={"flex items-center gap-2"}>
             <RiShieldCheckLine size={20} className={"text-primary-600 dark:text-primary-400"} />
-            <p className={"text-sm text-gray-600 dark:text-gray-400"}>{t("SOC 2 Compliant")}</p>
+            <p className={"text-sm text-cell-secondary"}>{t("SOC 2 Compliant")}</p>
           </div>
           <div className={"flex items-center gap-2"}>
             <RiLockLine size={20} className={"text-primary-600 dark:text-primary-400"} />
-            <p className={"text-sm text-gray-600 dark:text-gray-400"}>{t("256-bit Encryption")}</p>
+            <p className={"text-sm text-cell-secondary"}>{t("256-bit Encryption")}</p>
           </div>
           <div className={"flex items-center gap-2"}>
             <RiServerLine size={20} className={"text-primary-600 dark:text-primary-400"} />
-            <p className={"text-sm text-gray-600 dark:text-gray-400"}>{t("99.9% Uptime")}</p>
+            <p className={"text-sm text-cell-secondary"}>{t("99.9% Uptime")}</p>
           </div>
           <div className={"flex items-center gap-2"}>
             <RiCheckboxCircleFill size={20} className={"text-primary-600 dark:text-primary-400"} />
-            <p className={"text-sm text-gray-600 dark:text-gray-400"}>{t("GDPR Ready")}</p>
+            <p className={"text-sm text-cell-secondary"}>{t("GDPR Ready")}</p>
           </div>
         </div>
         <div id="pricing" className={"flex flex-col w-full "}>
           <div className={"flex flex-col py-10 gap-12"}>
             <div className={"flex flex-col items-center w-full"}>
               <p className={"text-blue-500 dark:text-blue-400 text-sm"}>{t("Pricing")}</p>
-              <p className={"text-4xl font-bold text-black dark:text-white "}>
+              <p className={"text-4xl font-bold text-cell-primary "}>
                 {t("Plans tailored for your team")}
               </p>
             </div>
@@ -443,11 +443,11 @@ function Desktop2Page() {
                 onClick={() => setIsOnSwitch(!isOnSwitch)}
                 className={`w-10 h-5 flex items-center dark:shadow-inner dark:drop-shadow shadow-gray-500 dark:border border-gray-700 rounded-full p-0.5 transition-colors ${isOnSwitch
                   ? "bg-primary-500 dark:bg-primary-200"
-                  : "bg-[#E2E4E9] dark:bg-gray-800"
+                  : "bg-[#E2E4E9]"
                   }`}
               >
                 <div
-                  className={`relative bg-white dark:bg-gray-400 dark:shadow-inner dark:shadow-gray-500 w-3.5 h-3.5 rounded-full transform transition-transform flex items-center justify-center ${isOnSwitch ? (i18n?.language === "ar" ? "-translate-x-5" : "translate-x-5") : ""}`}
+                  className={`relative bg-surface dark:bg-gray-400 dark:shadow-inner dark:shadow-gray-500 w-3.5 h-3.5 rounded-full transform transition-transform flex items-center justify-center ${isOnSwitch ? (i18n?.language === "ar" ? "-translate-x-5" : "translate-x-5") : ""}`}
                 >
                   <div
                     className={`w-1.5 h-1.5 rounded-full dark:shadow-inner drop-shadow shadow-gray-500 `}
@@ -465,23 +465,23 @@ function Desktop2Page() {
               {isLoading ? (
                 <div className="w-full flex justify-center items-center gap-6 flex-wrap px-4">
                   {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-full md:w-[45%] lg:w-[30%] xl:w-[28%] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col gap-6 py-10 px-8 bg-white dark:bg-surface">
+                    <div key={i} className="w-full md:w-[45%] lg:w-[30%] xl:w-[28%] rounded-2xl border border-status-border shadow-lg flex flex-col gap-6 py-10 px-8 bg-surface dark:bg-surface">
                       <div className="flex flex-col gap-3 justify-center items-center text-center">
-                        <div className="rounded-full w-14 h-14 bg-gray-200 dark:bg-gray-700 animate-pulse" />
-                        <div className="h-6 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-                        <div className="h-10 w-28 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-                        <div className="h-4 w-40 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mt-2" />
-                        <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                        <div className="rounded-full w-14 h-14 bg-status-bg animate-pulse" />
+                        <div className="h-6 w-24 bg-status-bg rounded animate-pulse" />
+                        <div className="h-10 w-28 bg-status-bg rounded animate-pulse" />
+                        <div className="h-4 w-40 bg-status-bg rounded animate-pulse mt-2" />
+                        <div className="h-4 w-32 bg-status-bg rounded animate-pulse" />
                       </div>
                       <div className="flex-1 w-full mt-4 flex flex-col gap-4">
                         {[1, 2, 3, 4, 5].map((j) => (
                           <div key={j} className="flex items-center gap-3">
-                            <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse shrink-0" />
-                            <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                            <div className="w-6 h-6 rounded-full bg-status-bg animate-pulse shrink-0" />
+                            <div className="h-4 w-full bg-status-bg rounded animate-pulse" />
                           </div>
                         ))}
                       </div>
-                      <div className="h-12 w-full bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse" />
+                      <div className="h-12 w-full bg-status-bg rounded-xl animate-pulse" />
                     </div>
                   ))}
                 </div>
@@ -497,9 +497,7 @@ function Desktop2Page() {
                   return (
                     <div
                       key={plan._id}
-                      className={`
-                        w-full md:w-[45%] lg:w-[30%] xl:w-[28%] rounded-2xl border shadow-lg flex flex-col gap-6 py-10 px-8 transition-all duration-300 hover:-translate-y-2
-                        ${isHighlighted ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 transform scale-105 shadow-primary-200' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-surface hover:shadow-xl'}
+                      className={` w-full md:w-[45%] lg:w-[30%] xl:w-[28%] rounded-2xl border shadow-lg flex flex-col gap-6 py-10 px-8 transition-all duration-300 hover:-translate-y-2 ${isHighlighted ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 transform scale-105 shadow-primary-200' : 'border-status-border bg-surface dark:bg-surface hover:shadow-xl'}
                       `}
                     >
                       <div className={"flex flex-col gap-3 justify-center items-center text-center"}>
@@ -510,14 +508,14 @@ function Desktop2Page() {
                         </div>
                         <h3 className={"text-primary-800 dark:text-primary-200 text-2xl font-extrabold mt-2"}>{plan.name}</h3>
                         <div className={"flex items-end justify-center gap-1"}>
-                          <span className={"text-5xl font-black text-gray-900 dark:text-gray-100"}>
+                          <span className={"text-5xl font-black text-cell-primary"}>
                             ${pricing ? pricing.price : '-'}
                           </span>
-                          <span className="text-gray-500 dark:text-gray-400 font-medium mb-1">
+                          <span className="text-cell-secondary font-medium mb-1">
                             /{currentInterval === 'month' ? t('mo') : t('yr')}
                           </span>
                         </div>
-                        <p className={"text-gray-500 dark:text-gray-400 text-sm h-12 line-clamp-2 mt-2"}>
+                        <p className={"text-cell-secondary text-sm h-12 line-clamp-2 mt-2"}>
                           {plan.description || t("Everything you need to manage your business efficiently.")}
                         </p>
                       </div>
@@ -530,10 +528,10 @@ function Desktop2Page() {
                                 <RiCheckLine size={"16"} className={isHighlighted ? "text-white" : "text-primary-700 dark:text-primary-200"} />
                               </div>
                               <div className="flex flex-col gap-1 flex-1">
-                                <p className={"text-sm font-medium text-gray-700 dark:text-gray-300"}>
+                                <p className={"text-sm font-medium text-cell-secondary"}>
                                   {getPlanFeatureTitle(feature)}
                                   {getPlanFeatureValue(feature) && (
-                                    <span className="text-gray-500 dark:text-gray-400 font-normal">: {getPlanFeatureValue(feature)}</span>
+                                    <span className="text-cell-secondary font-normal">: {getPlanFeatureValue(feature)}</span>
                                   )}
                                 </p>
                               </div>
@@ -544,10 +542,8 @@ function Desktop2Page() {
 
                       <Link
                         href={pricing ? `/register/subscriber/email?plan=${plan._id}&interval=${currentInterval}` : '#'}
-                        className={`
-                          rounded-xl w-full py-3.5 text-center font-bold text-lg transition-all
-                          ${!pricing
-                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-100 cursor-not-allowed'
+                        className={` rounded-xl w-full py-3.5 text-center font-bold text-lg transition-all ${!pricing
+                            ? 'bg-status-bg text-cell-secondary cursor-not-allowed'
                             : isHighlighted
                               ? 'bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-lg'
                               : 'bg-primary-100 dark:bg-primary-800 hover:bg-primary-200 dark:hover:bg-primary-700 text-primary-800 dark:text-primary-50'}
@@ -559,14 +555,14 @@ function Desktop2Page() {
                   );
                 })
               ) : (
-                <div className="flex justify-center py-20 w-full text-gray-500 dark:text-gray-400 text-lg">{t("No active plans available at the moment.")}</div>
+                <div className="flex justify-center py-20 w-full text-cell-secondary text-lg">{t("No active plans available at the moment.")}</div>
               )}
             </div>
 
           </div>
         </div>
         <div className={"flex flex-col gap-5 justify-center items-center w-full px-4 py-8"}>
-          <p className={"text-base sm:text-lg text-gray-400 dark:text-gray-500"}>{t("Trusted by teams worldwide")}</p>
+          <p className={"text-base sm:text-lg text-cell-secondary"}>{t("Trusted by teams worldwide")}</p>
           <div className={"flex flex-wrap items-center justify-center max-w-full px-4 sm:px-10 gap-6 sm:gap-8 opacity-60 dark:opacity-40"}>
             <img
               src="/images/LandingPage/Companys/company1.png"
@@ -597,10 +593,10 @@ function Desktop2Page() {
         </div>
         <div id="faq" className={"flex flex-col gap-5 w-full md:w-3/4 lg:w-1/2 px-4"}>
           <div className={"flex flex-col gap-5 text-center md:text-start items-center"}>
-            <p className={"text-black text-xl sm:text-2xl font-bold dark:text-white"}>
+            <p className={"text-cell-primary text-xl sm:text-2xl font-bold"}>
               {t("Frequently asked questions")}
             </p>
-            <p className={"text-gray-500 dark:text-gray-400 text-sm sm:text-base"}>
+            <p className={"text-cell-secondary text-sm sm:text-base"}>
               {t("Everything you need to know about managing your dashboard.")}
             </p>
           </div>
@@ -654,8 +650,8 @@ function Desktop2Page() {
                 </div>
               </div>
               <div className={"flex flex-col gap-2"}>
-                <p className={"text-xl text-black dark:text-white"}>{t("Connect with us")}</p>
-                <p className={"text-gray-600 dark:text-gray-400 text-sm"}>
+                <p className={"text-xl text-cell-primary"}>{t("Connect with us")}</p>
+                <p className={"text-cell-secondary text-sm"}>
                   {t("Quickly get started by exploring our product today!")}
                 </p>
               </div>
@@ -669,7 +665,7 @@ function Desktop2Page() {
           </div>
         </div>
       </div>
-      <div className={"w-full bg-gray-700 dark:bg-gray-800"}>
+      <div className={"w-full bg-gray-700"}>
         <div className={"max-w-[87rem] mx-auto px-4 sm:px-7 py-12 sm:py-16"}>
           <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"}>
             <div className={"flex flex-col gap-4"}>
@@ -711,14 +707,14 @@ function Desktop2Page() {
             </div>
           </div>
         </div>
-        <div className={"border-t border-gray-600 dark:border-gray-700"}>
+        <div className={"border-t border-gray-600"}>
           <div className={"max-w-[87rem] mx-auto px-4 sm:px-7 py-6 flex flex-col sm:flex-row justify-between items-center gap-3"}>
-            <p className={"text-gray-400 text-sm"}>
+            <p className={"text-cell-secondary text-sm"}>
               {t("© 2026 Anmaat. All rights reserved.")}
             </p>
             <div className={"flex gap-6 text-sm"}>
-              <a href="/privacy" className={"text-gray-400 hover:text-gray-200 transition-colors"}>{t("Privacy Policy")}</a>
-              <a href="/terms" className={"text-gray-400 hover:text-gray-200 transition-colors"}>{t("Terms of Service")}</a>
+              <a href="/privacy" className={"text-cell-secondary hover:text-gray-200 transition-colors"}>{t("Privacy Policy")}</a>
+              <a href="/terms" className={"text-cell-secondary hover:text-gray-200 transition-colors"}>{t("Terms of Service")}</a>
             </div>
           </div>
         </div>

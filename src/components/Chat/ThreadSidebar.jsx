@@ -91,7 +91,7 @@ const ThreadSidebar = ({ message, onClose }) => {
             const isMe = reply.sent_by?._id === currentUserId || reply.sent_by === currentUserId;
             return (
               <div key={reply._id} className="flex gap-2">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold flex-shrink-0 text-blue-500">
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold flex-shrink-0 text-blue-500 dark:bg-blue-900/20">
                   {reply.sent_by?.name?.charAt(0) || t("U")}
                 </div>
                 <div className="flex flex-col flex-1">

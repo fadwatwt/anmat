@@ -67,7 +67,7 @@ function AppointmentBlock({ apt, hourHeight, onComplete, onCancel }) {
             {apt.start_time?.substring(0, 5)} {apt.title}
           </p>
           {height >= 44 && apt.location && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-0.5 truncate">
+            <p className="text-xs text-cell-secondary flex items-center gap-0.5 truncate">
               <RiMapPinLine size={10} />
               {apt.location}
             </p>
@@ -81,7 +81,7 @@ function AppointmentBlock({ apt, hourHeight, onComplete, onCancel }) {
                 e.stopPropagation();
                 onComplete?.(apt._id);
               }}
-              className="p-0.5 text-green-600 hover:bg-green-100 dark:hover:bg-green-900/30 rounded"
+              className="p-0.5 text-green-600 hover:bg-green-100 dark:hover:bg-green-900/30 rounded dark:text-green-400"
               title={t("Complete")}
             >
               <RiCheckLine size={12} />
@@ -177,9 +177,9 @@ function HourlyTimeline({ date }) {
   const totalHeight = (END_HOUR - START_HOUR + 1) * HOUR_HEIGHT;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+    <div className="bg-surface rounded-lg border border-status-border">
+      <div className="p-4 border-b border-status-border">
+        <h3 className="font-semibold text-cell-primary text-sm">
           {t("Schedule")}
         </h3>
       </div>
@@ -190,7 +190,7 @@ function HourlyTimeline({ date }) {
         style={{ maxHeight: "520px" }}
       >
         {isLoading ? (
-          <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400 text-sm">
+          <div className="flex items-center justify-center h-48 text-cell-secondary text-sm">
             {t("Loading...")}
           </div>
         ) : (
@@ -203,7 +203,7 @@ function HourlyTimeline({ date }) {
                   className="absolute w-full flex items-start justify-end pr-2"
                   style={{ top: `${(h - START_HOUR) * HOUR_HEIGHT}px`, height: `${HOUR_HEIGHT}px` }}
                 >
-                  <span className="text-xs text-gray-400 dark:text-gray-500 leading-none">
+                  <span className="text-xs text-cell-secondary leading-none">
                     {formatHour(h)}
                   </span>
                 </div>
@@ -212,14 +212,14 @@ function HourlyTimeline({ date }) {
 
             {/* Grid + blocks */}
             <div
-              className="flex-1 relative border-l border-gray-100 dark:border-gray-700"
+              className="flex-1 relative border-l border-status-border"
               style={{ height: `${totalHeight}px` }}
             >
               {/* Hour lines */}
               {hours.map((h) => (
                 <div
                   key={h}
-                  className="absolute left-0 right-0 border-t border-gray-100 dark:border-gray-700"
+                  className="absolute left-0 right-0 border-t border-status-border"
                   style={{ top: `${(h - START_HOUR) * HOUR_HEIGHT}px` }}
                 />
               ))}
@@ -258,7 +258,7 @@ function HourlyTimeline({ date }) {
               {/* Empty state */}
               {appointments.length === 0 && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-sm text-gray-400 dark:text-gray-500">
+                  <p className="text-sm text-cell-secondary">
                     {t("No appointments today")}
                   </p>
                 </div>

@@ -91,7 +91,7 @@ function Subscribers() {
     </div>,
     // Company Name cell
     <div key={`${subscriber._id}_company`} className="flex items-center justify-start gap-2">
-      <InitialsAvatar name={subscriber.organization?.name || "C"} size="40px" fontSize="text-sm" className="bg-orange-100 text-orange-600 border-orange-200" />
+      <InitialsAvatar name={subscriber.organization?.name || "C"} size="40px" fontSize="text-sm" className="bg-orange-100 text-orange-600 border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800" />
       <div className="flex flex-col items-start justify-start gap-0 overflow-hidden">
         <span
           className="text-sm font-medium text-cell-primary truncate w-full block max-w-[200px]"
@@ -187,7 +187,7 @@ function Subscribers() {
   }
 
   if (isLoading) return <div className="flex justify-center items-center h-full p-10"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </div>;
-  if (error) return <div className="flex justify-center items-center h-full p-10 text-red-500">Error loading subscribers. Please try again later.</div>;
+  if (error) return <div className="flex justify-center items-center h-full p-10 text-red-500">{t("Error loading subscribers. Please try again later.")}</div>;
 
   return (
     <Page title="Subscribers" isBtn={false}>

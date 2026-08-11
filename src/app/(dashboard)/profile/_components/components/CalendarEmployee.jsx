@@ -48,8 +48,8 @@ function CalendarEmployee() {
             const random = Math.random();
             return random > 0.3 ? (
                 <div className="flex flex-col text-sm text-cell-secondary text-star">
-                    <span>10:00 AM to</span>
-                    <span>6:00 PM</span>
+                    <span>{t("10:00 AM to")}</span>
+                    <span>{t("6:00 PM")}</span>
                 </div>
             ) : (
                 <OffBadge />

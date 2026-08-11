@@ -63,12 +63,12 @@ const PricingPage = () => {
 
   return (
     <Page isTitle={false}>
-      <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-950 py-12 px-6 min-h-[calc(100vh-100px)]">
+      <div className="flex flex-col items-center bg-status-bg py-12 px-6 min-h-[calc(100vh-100px)]">
         <div className="text-center max-w-2xl mb-12">
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+          <h1 className="text-3xl font-extrabold text-cell-primary sm:text-4xl">
             {t("Power Up Your AI Assistant")}
           </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-lg text-cell-secondary">
             {t("Choose a token top-up pack to continue executing actions, running commands, and generating smart files.")}
           </p>
         </div>
@@ -76,7 +76,7 @@ const PricingPage = () => {
         {loadingPackages ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
             <Loader2 className="w-10 h-10 text-primary-500 animate-spin" />
-            <span className="text-gray-500 dark:text-gray-400 font-medium">{t("Loading token packages...")}</span>
+            <span className="text-cell-secondary font-medium">{t("Loading token packages...")}</span>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
@@ -90,10 +90,10 @@ const PricingPage = () => {
               return (
                 <div
                   key={pkg._id}
-                  className={`relative flex flex-col justify-between rounded-3xl bg-white dark:bg-gray-900 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border ${
+                  className={`relative flex flex-col justify-between rounded-3xl bg-surface p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border ${
                     isPro
                       ? "border-amber-400 dark:border-amber-500/50 ring-2 ring-amber-400/20"
-                      : "border-gray-200 dark:border-gray-800"
+                      : "border-status-border"
                   }`}
                 >
                   {isPro && (
@@ -104,36 +104,36 @@ const PricingPage = () => {
 
                   <div>
                     <div className="flex items-center justify-between mb-6">
-                      <div className="p-3 bg-gray-50 dark:bg-gray-800/80 rounded-2xl">
+                      <div className="p-3 bg-status-bg rounded-2xl">
                         <Icon className="w-8 h-8 text-primary-500" />
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">{t("Tokens Pack")}</p>
-                        <p className="text-2xl font-black text-gray-900 dark:text-white">
+                        <p className="text-sm font-semibold text-cell-secondary">{t("Tokens Pack")}</p>
+                        <p className="text-2xl font-black text-cell-primary">
                           {pkg.tokens?.toLocaleString()}
                         </p>
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-xl font-bold text-cell-primary mb-2">
                       {pkg.name}
                     </h3>
                     {pkg.description && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{pkg.description}</p>
+                      <p className="text-sm text-cell-secondary mb-4">{pkg.description}</p>
                     )}
 
                     <div className="my-6 flex items-baseline">
-                      <span className="text-4xl font-extrabold text-gray-900 dark:text-white">
+                      <span className="text-4xl font-extrabold text-cell-primary">
                         {pkg.price_label}
                       </span>
-                      <span className="ml-1 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                      <span className="ml-1 text-sm font-semibold text-cell-secondary">
                         {t("/ one-time")}
                       </span>
                     </div>
 
-                    <ul className="mt-8 space-y-4 border-t border-gray-100 dark:border-gray-800/80 pt-6">
+                    <ul className="mt-8 space-y-4 border-t border-status-border dark:border-gray-800/80 pt-6">
                       {(pkg.features || []).map((feature, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                        <li key={i} className="flex items-center gap-3 text-sm text-cell-secondary">
                           <Check className="text-emerald-500 w-5 h-5 shrink-0" />
                           <span>{feature}</span>
                         </li>

@@ -161,20 +161,20 @@ function CreateAppointmentPage() {
         <div className="max-w-2xl mx-auto">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white mb-4"
+            className="flex items-center gap-2 text-cell-secondary hover:text-cell-primary dark:hover:text-white mb-4"
           >
             <RiArrowLeftLine size={20} />
             {t("Back")}
           </button>
 
           <div className="mb-6">
-            <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+            <div className="flex items-center bg-status-bg rounded-lg p-1">
               <button
                 onClick={() => setItemType("appointment")}
                 className={`flex-1 py-2 text-sm font-medium rounded-md transition-colors ${
                   itemType === "appointment"
-                    ? "bg-white dark:bg-gray-600 text-primary-600 shadow-sm"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? "bg-surface dark:bg-gray-600 text-primary-600 shadow-sm"
+                    : "text-cell-secondary"
                 }`}
               >
                 {t("Appointment")}
@@ -183,8 +183,8 @@ function CreateAppointmentPage() {
                 onClick={() => setItemType("daily_task")}
                 className={`flex-1 py-2 text-sm font-medium rounded-md transition-colors ${
                   itemType === "daily_task"
-                    ? "bg-white dark:bg-gray-600 text-primary-600 shadow-sm"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? "bg-surface dark:bg-gray-600 text-primary-600 shadow-sm"
+                    : "text-cell-secondary"
                 }`}
               >
                 {t("Daily Task")}
@@ -193,8 +193,8 @@ function CreateAppointmentPage() {
                 onClick={() => setItemType("personal")}
                 className={`flex-1 py-2 text-sm font-medium rounded-md transition-colors ${
                   itemType === "personal"
-                    ? "bg-white dark:bg-gray-600 text-primary-600 shadow-sm"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? "bg-surface dark:bg-gray-600 text-primary-600 shadow-sm"
+                    : "text-cell-secondary"
                 }`}
               >
                 {t("Personal")}
@@ -204,12 +204,12 @@ function CreateAppointmentPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+            className="bg-surface rounded-lg border border-status-border p-6"
           >
             {itemType === "daily_task" || itemType === "personal" ? (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Title")} *
                   </label>
                   <input
@@ -218,13 +218,13 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.title}
                     onChange={handleDailyTaskChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Enter task title")}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Description")}
                   </label>
                   <textarea
@@ -232,14 +232,14 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.description}
                     onChange={handleDailyTaskChange}
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Enter description")}
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Date")} *
                     </label>
                     <input
@@ -248,19 +248,19 @@ function CreateAppointmentPage() {
                       value={dailyTaskData.date}
                       onChange={handleDailyTaskChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Priority")}
                     </label>
                     <select
                       name="priority"
                       value={dailyTaskData.priority}
                       onChange={handleDailyTaskChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="low">{t("Low")}</option>
                       <option value="medium">{t("Medium")}</option>
@@ -272,14 +272,14 @@ function CreateAppointmentPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Category")}
                     </label>
                     <select
                       name="category"
                       value={dailyTaskData.category}
                       onChange={handleDailyTaskChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       {DAILY_TASK_CATEGORIES.map((cat) => (
                         <option key={cat.value} value={cat.value}>
@@ -290,7 +290,7 @@ function CreateAppointmentPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Color")}
                     </label>
                     <input
@@ -298,13 +298,13 @@ function CreateAppointmentPage() {
                       name="color"
                       value={dailyTaskData.color}
                       onChange={handleDailyTaskChange}
-                      className="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer"
+                      className="w-full h-10 border border-status-border rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Notes")}
                   </label>
                   <textarea
@@ -312,7 +312,7 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.notes}
                     onChange={handleDailyTaskChange}
                     rows={2}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Add any notes...")}
                   />
                 </div>
@@ -335,7 +335,7 @@ function CreateAppointmentPage() {
             ) : (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Title")} *
                   </label>
                   <input
@@ -344,13 +344,13 @@ function CreateAppointmentPage() {
                     value={formData.title}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Enter appointment title")}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Description")}
                   </label>
                   <textarea
@@ -358,13 +358,13 @@ function CreateAppointmentPage() {
                     value={formData.description}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Enter description")}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Location")}
                   </label>
                   <input
@@ -372,14 +372,14 @@ function CreateAppointmentPage() {
                     name="location"
                     value={formData.location}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={t("Enter location")}
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Date")} *
                     </label>
                     <input
@@ -388,12 +388,12 @@ function CreateAppointmentPage() {
                       value={formData.date}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Start Time")} *
                     </label>
                     <input
@@ -402,14 +402,14 @@ function CreateAppointmentPage() {
                       value={formData.start_time}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("End Time")}
                     </label>
                     <input
@@ -417,19 +417,19 @@ function CreateAppointmentPage() {
                       name="end_time"
                       value={formData.end_time}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Category")}
                     </label>
                     <select
                       name="category"
                       value={formData.category}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="meeting">🤝 {t("Meeting")}</option>
                       <option value="task">📋 {t("Task")}</option>
@@ -444,14 +444,14 @@ function CreateAppointmentPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Priority")}
                     </label>
                     <select
                       name="priority"
                       value={formData.priority}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="low">{t("Low")}</option>
                       <option value="medium">{t("Medium")}</option>
@@ -461,7 +461,7 @@ function CreateAppointmentPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-cell-secondary mb-1">
                       {t("Color")}
                     </label>
                     <input
@@ -469,20 +469,20 @@ function CreateAppointmentPage() {
                       name="color"
                       value={formData.color}
                       onChange={handleChange}
-                      className="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer"
+                      className="w-full h-10 border border-status-border rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-cell-secondary mb-1">
                     {t("Link to Task")} ({t("Optional")})
                   </label>
                   <select
                     name="task_id"
                     value={formData.task_id}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   >
                     <option value="">{t("No task linked")}</option>
                     {tasks.map((task) => (
@@ -494,7 +494,7 @@ function CreateAppointmentPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-cell-secondary mb-2">
                     {t("Reminders")}
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -507,7 +507,7 @@ function CreateAppointmentPage() {
                     ].map((reminder) => (
                       <label
                         key={reminder.value}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg cursor-pointer"
+                        className="flex items-center gap-2 px-3 py-1.5 bg-status-bg rounded-lg cursor-pointer"
                       >
                         <input
                           type="checkbox"
@@ -515,7 +515,7 @@ function CreateAppointmentPage() {
                           onChange={() => handleReminderChange(reminder.value)}
                           className="rounded text-primary-500 focus:ring-primary-500"
                         />
-                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                        <span className="text-sm text-cell-secondary">
                           {reminder.label}
                         </span>
                       </label>
@@ -531,14 +531,14 @@ function CreateAppointmentPage() {
                     onChange={handleChange}
                     className="rounded text-primary-500 focus:ring-primary-500"
                   />
-                  <label className="text-sm text-gray-700 dark:text-gray-300">
+                  <label className="text-sm text-cell-secondary">
                     {t("Enable reminders")}
                   </label>
                 </div>
               </div>
             )}
 
-            <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mt-6 pt-4 border-t border-status-border">
               <button
                 type="submit"
                 disabled={
@@ -546,7 +546,7 @@ function CreateAppointmentPage() {
                     ? !dailyTaskData.title.trim()
                     : !formData.title.trim()) || isLoading
                 }
-                className="px-6 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
+                className="px-6 py-2 bg-primary-500 hover:bg-primary-600 disabled:bg-status-bg disabled:dark:bg-gray-600 text-white font-medium rounded-lg transition-colors"
               >
                 {isLoading
                   ? t("Creating...")
@@ -557,7 +557,7 @@ function CreateAppointmentPage() {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="px-6 py-2 text-cell-secondary hover:bg-status-bg rounded-lg transition-colors"
               >
                 {t("Cancel")}
               </button>

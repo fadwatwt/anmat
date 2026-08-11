@@ -144,7 +144,7 @@ function MoneyReceivingMethodsTab({ canCreate, canUpdate, canDelete, canToggleAc
 
         <div key={`${method._id}_default`} className="text-sm">
             {method.is_default ? (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium dark:bg-green-900/30 dark:text-green-400">
                     {t("Yes")}
                 </span>
             ) : (

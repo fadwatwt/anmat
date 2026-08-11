@@ -404,12 +404,12 @@ function Table({
 
                         {showControlBar && (
                             <div className="flex items-center gap-6">
-                                <div className="flex bg-gray-100 dark:bg-gray-900 rounded-lg p-1">
+                                <div className="flex bg-status-bg rounded-lg p-1">
                                     {viewModalList?.map((viewModal, index) => (
                                         <button
                                             key={index}
-                                            className={`px-6 rounded-md text-sm dark:text-gray-200 text-gray-900 ${viewMode === viewModal.id
-                                                ? "bg-white text-gray-200 dark:bg-gray-800 shadow-sm"
+                                            className={`px-6 rounded-md text-sm text-cell-primary ${viewMode === viewModal.id
+                                                ? "bg-surface text-gray-200 shadow-sm"
                                                 : "bg-transparent"
                                                 } w-[100px] h-[28px]`}
                                             onClick={() => onViewModeChange(viewModal.id)}
@@ -418,10 +418,10 @@ function Table({
                                         </button>
                                     ))}
                                 </div>
-                                <button disabled className="w-[64px] text-gray-200 h-[36px] rounded-[8px] border-[1px] border-gray-200 dark:border-gray-600 opacity-50 pl-[10px] pr-[8px] gap-[4px]">
+                                <button disabled className="w-[64px] text-gray-200 h-[36px] rounded-[8px] border-[1px] border-status-border opacity-50 pl-[10px] pr-[8px] gap-[4px]">
                                     {t("Today")}
                                 </button>
-                                <div className="text-gray-600 dark:text-gray-300 text-lg ">
+                                <div className="text-cell-secondary text-lg ">
                                     {currentDate.toLocaleString("default", { month: "long" })}{" "}
                                     {currentDate.getFullYear()}
                                 </div>
@@ -502,7 +502,7 @@ function Table({
                                             right: rect.right + window.scrollX,
                                         });
                                     }}
-                                    className="flex dark:text-gray-400 text-sm items-baseline p-2 gap-2 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                    className="flex text-sm items-baseline p-2 gap-2 rounded-lg border border-status-border hover:bg-status-bg transition-colors"
                                 >
                                     <TfiImport size={15} />
                                     {t("Export")}
@@ -524,30 +524,30 @@ function Table({
                                         >
                                             <button
                                                 onClick={() => { handleExport(); setExportMenuOpen(false); }}
-                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-status-bg transition-colors"
                                             >
                                                 <TfiImport size={14} />
                                                 {t("CSV")}
                                             </button>
                                             <button
                                                 onClick={() => handleServerExport("xlsx")}
-                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-status-bg transition-colors"
                                             >
-                                                <FaFileExcel size={14} className="text-green-600" />
+                                                <FaFileExcel size={14} className="text-green-600 dark:text-green-400" />
                                                 {t("Excel")}
                                             </button>
                                             <button
                                                 onClick={() => handleServerExport("pdf")}
-                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-status-bg transition-colors"
                                             >
                                                 <MdPictureAsPdf size={14} className="text-red-500" />
                                                 {t("PDF")}
                                             </button>
                                             <button
                                                 onClick={() => handleServerExport("docx")}
-                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                                className="flex items-center gap-3 w-full px-3 py-2 text-sm text-cell-primary hover:bg-status-bg transition-colors"
                                             >
-                                                <MdDescription size={14} className="text-blue-600" />
+                                                <MdDescription size={14} className="text-blue-600 dark:text-blue-400" />
                                                 {t("Word")}
                                             </button>
                                         </div>
@@ -599,7 +599,7 @@ function Table({
                                 return (
                                     <tr 
                                         key={actualRowIndex} 
-                                        className={`hover:bg-gray-50 dark:hover:bg-status-bg w-full border-b border-status-border transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
+                                        className={`hover:bg-status-bg dark:hover:bg-status-bg w-full border-b border-status-border transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
                                         onClick={(e) => {
                                             if (e.target.closest('.checkbox-custom') || e.target.closest('.dropdown-container')) {
                                                 return;
@@ -673,8 +673,8 @@ function Table({
                     </table>
                 </div>
 
-                <div className={"pagination flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t dark:border-gray-700"}>
-                    <p className={"dark:text-gray-400 text-sm order-2 sm:order-1"}>
+                <div className={"pagination flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t"}>
+                    <p className={"text-sm order-2 sm:order-1"}>
                         {t("Page")} {currentPage} {t("of")} {totalPages}
                     </p>
                     <div className={"flex flex-wrap gap-3 sm:gap-5 items-center justify-center order-1 sm:order-2"}>
@@ -686,7 +686,7 @@ function Table({
                             {Array.from({ length: totalPages }).map((_, index) => {
                                 // Only show limited page numbers on very small screens
                                 if (totalPages > 5 && Math.abs(currentPage - (index + 1)) > 1 && index !== 0 && index !== totalPages - 1) {
-                                    if (index === 1 || index === totalPages - 2) return <span key={index} className="text-gray-400">...</span>;
+                                    if (index === 1 || index === totalPages - 2) return <span key={index} className="text-cell-secondary">...</span>;
                                     return null;
                                 }
                                 return (

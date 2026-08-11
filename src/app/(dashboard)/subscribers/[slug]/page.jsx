@@ -177,7 +177,7 @@ function AdminProfile() {
     ]);
     // const employeeId = slug ? slug.split('-')[0] : null;
     if (isLoading || isSubsLoading) return <div className="flex justify-center items-center h-full p-10"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </div>;
-    if (error) return <div className="flex justify-center items-center h-full p-10 text-red-500">Error loading profile.</div>;
+    if (error) return <div className="flex justify-center items-center h-full p-10 text-red-500">{t("Error loading profile.")}</div>;
 
     return (
         <Page isTitle={false} className={"w-full"}>
@@ -242,7 +242,7 @@ function AdminProfile() {
                                     <div className={"flex justify-center items-center gap-3"}>
                                         <button
                                             onClick={handelChangePasswordModal}
-                                            className={"p-1.5 rounded-lg hidden md:block text-nowrap bg-none border border-status-border text-sm text-cell-primary self-start"}>
+                                            className={"p-1.5 rounded-lg block text-nowrap bg-none border border-status-border text-sm text-cell-primary self-start"}>
                                             {t("Change password")}
                                         </button>
                                         {/* <button
@@ -253,7 +253,7 @@ function AdminProfile() {
                                         {lastActiveSubscription && (
                                             <button
                                                 onClick={() => setIsIncreaseFeaturesModal(true)}
-                                                className={"p-1.5 rounded-lg hidden md:block text-nowrap bg-primary-500 text-white text-sm font-medium self-start shadow-sm hover:bg-primary-600 transition-colors"}>
+                                                className={"p-1.5 rounded-lg block text-nowrap bg-primary-500 text-white text-sm font-medium self-start shadow-sm hover:bg-primary-600 transition-colors"}>
                                                 {t("Increase Features")}
                                             </button>
                                         )}
@@ -262,7 +262,7 @@ function AdminProfile() {
                                     <div className={"flex justify-end items-end"}>
                                         <button
                                             onClick={handleDeleteCatalogAert}
-                                            className={"p-1.5 rounded-lg hidden md:block text-red-500 text-nowrap bg-none border border-status-border text-sm self-start"}>
+                                            className={"p-1.5 rounded-lg block text-red-500 text-nowrap bg-none border border-status-border text-sm self-start"}>
                                             {t("Delete")}
                                         </button>
                                     </div>
@@ -288,7 +288,7 @@ function AdminProfile() {
                                     <span className="text-xs text-cell-secondary uppercase tracking-wider font-semibold">{t("Storage Used")}</span>
                                     <div className="flex items-baseline gap-1">
                                         <span className="text-2xl font-bold text-primary-500">
-                                            {((subscriber?.organization?.used_storage || 0) / (1024 * 1024)).toFixed(2)} MB
+                                            {((subscriber?.organization?.used_storage || 0) / (1024 * 1024)).toFixed(2)} {t("MB")}
                                         </span>
                                         <span className="text-sm text-cell-secondary">
                                             / {subscriber?.plan_limits?.storage?.maxBytes === 'Unlimited' ? t("unlimited") :

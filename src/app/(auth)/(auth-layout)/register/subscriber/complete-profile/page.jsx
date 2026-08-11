@@ -217,8 +217,7 @@ const SetupSubscriberProfile = () => {
                     <button
                         type="submit"
                         disabled={isBusy}
-                        className="bg-primary-500 dark:bg-primary-200 text-primary-50 dark:text-black text-md w-full md:w-64 py-3 rounded-xl cursor-pointer
-                        hover:bg-primary-600 text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-primary-500 dark:bg-primary-200 text-primary-50 dark:text-black text-md w-full md:w-64 py-3 rounded-xl cursor-pointer hover:bg-primary-600 text-center disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isBusy ? t("Processing...") : t("Complete Registration")}
                     </button>

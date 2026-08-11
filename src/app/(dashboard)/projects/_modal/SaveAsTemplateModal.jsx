@@ -114,7 +114,7 @@ const SaveAsTemplateModal = ({ project, isOpen, onClose }) => {
                     <button
                         type="button"
                         onClick={onClose}
-                        className="px-4 py-2 border rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        className="px-4 py-2 border rounded-md hover:bg-status-bg transition-colors"
                     >
                         {t("Cancel")}
                     </button>

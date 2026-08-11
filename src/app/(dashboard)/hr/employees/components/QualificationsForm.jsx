@@ -33,12 +33,12 @@ function QualificationsForm() {
             {qualifications.map((qual, index) => (
                 <div
                     key={qual.id}
-                    className="relative flex flex-col gap-4 p-4 border border-dashed border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50/30 dark:bg-gray-900/30"
+                    className="relative flex flex-col gap-4 p-4 border border-dashed border-status-border rounded-xl bg-status-bg"
                 >
                     {qualifications.length > 1 && (
                         <button
                             onClick={() => removeQualification(qual.id)}
-                            className="absolute -top-3 right-0 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition-colors shadow-sm"
+                            className="absolute -top-3 right-0 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition-colors shadow-sm dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/40"
                             title={t("Delete")}
                         >
                             <HiOutlineTrash size={18} />
@@ -70,7 +70,7 @@ function QualificationsForm() {
             <button
                 type="button"
                 onClick={addQualification}
-                className="w-full py-3 border border-dashed border-blue-400 text-blue-600 bg-blue-50 rounded-xl font-medium hover:bg-blue-100 transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 border border-dashed border-blue-400 text-blue-600 bg-blue-50 rounded-xl font-medium hover:bg-blue-100 transition-all flex items-center justify-center gap-2 dark:border-blue-800 dark:text-blue-400 dark:bg-blue-900/20 dark:hover:bg-blue-900/30"
             >
                 <span>+</span> {t("Add New Qualification")}
             </button>
