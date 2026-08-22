@@ -1,5 +1,6 @@
 // src/redux/auth/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import { getToken, setToken, clearToken } from "@/utils/tokenStorage";
 
 const initialState = {
   user: null,
@@ -21,16 +22,16 @@ const authSlice = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isLoading = false;
-      const { access_token, user } = action.payload.data;
+      const { access_token, user, remember } = action.payload.data;
       state.user = user;
       state.token = access_token;
       state.isAuthenticated = true;
       state.error = null;
 
-      // Store auth data in localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("token", access_token);
-      }
+      // "Remember Me": true → localStorage (survives browser restart),
+      // false → sessionStorage only (cleared when the browser closes).
+      // Defaults to true so existing callers keep the persistent behavior.
+      setToken(access_token, remember !== false);
     },
     loginFailure: (state, action) => {
       state.isLoading = false;
@@ -44,9 +45,9 @@ const authSlice = createSlice({
       state.permissions = [];
       state.permissionsLoaded = false;
 
-      // Clear localStorage on logout
+      // Clear token from both storages on logout
+      clearToken();
       if (typeof window !== "undefined") {
-        localStorage.removeItem("token");
         localStorage.removeItem("userId");
         localStorage.removeItem("userData");
       }
@@ -57,14 +58,12 @@ const authSlice = createSlice({
     },
     // Add this to load auth state from localStorage on page refresh
     loadAuthState: (state) => {
-      if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
+      const token = getToken();
 
-        if (token) {
-          state.token = token;
-          // We don't restore user from local storage anymore
-          state.isAuthenticated = true;
-        }
+      if (token) {
+        state.token = token;
+        // We don't restore user from local storage anymore
+        state.isAuthenticated = true;
       }
     },
     setUser: (state, action) => {

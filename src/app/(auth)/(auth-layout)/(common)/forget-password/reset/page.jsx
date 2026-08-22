@@ -1,5 +1,7 @@
 "use client";
 
+import { setToken } from "@/utils/tokenStorage";
+
 import { useState } from "react";
 import { IoIosLock } from "react-icons/io";
 import { useRouter } from "next/navigation";
@@ -26,7 +28,7 @@ function ResetPasswordPage() {
             const response = await login({ email, password }).unwrap();
             dispatch(loginSuccess(response));
             if (typeof window !== 'undefined') {
-                localStorage.setItem("token", response.token);
+                setToken(response.token, true);
             }
             router.push("/dashboard");
         } catch (err) {

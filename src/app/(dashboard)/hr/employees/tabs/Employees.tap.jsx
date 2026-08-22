@@ -11,6 +11,7 @@ import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 import {
   useGetEmployeesQuery,
   useDeleteEmployeeMutation,
+  useDeleteManyEmployeesMutation,
   useToggleEmployeeActivityMutation,
 } from "@/redux/employees/employeesApi";
 import { useUnassignEmployeesFromDepartmentMutation } from "@/redux/departments/departmentsApi";
@@ -28,6 +29,7 @@ import StarRating from "@/components/StarRating";
 import { useProcessing } from "@/app/providers";
 import { RiCheckboxCircleFill, RiFileCopyLine, RiTimerLine, RiUserReceived2Line, RiCheckLine } from "@remixicon/react";
 import { usePermission } from "@/Hooks/usePermission";
+import BulkDeleteButton from "@/components/Tables/BulkDeleteButton.jsx";
 
 function EmployeesTap() {
   const { t } = useTranslation();
@@ -45,6 +47,7 @@ function EmployeesTap() {
   const { data: chatsData } = useGetChatsQuery();
   const [createChat] = useCreateChatMutation();
   const [deleteEmployee] = useDeleteEmployeeMutation();
+  const [deleteManyEmployees] = useDeleteManyEmployeesMutation();
   const [toggleActivity] = useToggleEmployeeActivityMutation();
   const [unassignEmployees, { isLoading: isUnassigning }] = useUnassignEmployeesFromDepartmentMutation();
 
@@ -59,6 +62,10 @@ function EmployeesTap() {
   const [selectedDeleteEmployee, setSelectedDeleteEmployee] = useState(null);
   const [isOpenDeleteAlert, setIsOpenDeleteAlert] = useState(false);
   const [deleteApiResponse, setDeleteApiResponse] = useState({ isOpen: false, status: "", message: "" });
+
+  // Bulk delete states
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [tableKey, setTableKey] = useState(0);
 
   // Unassign department states
   const [selectedUnassignEmployee, setSelectedUnassignEmployee] = useState(null);
@@ -276,6 +283,43 @@ function EmployeesTap() {
     }
   };
 
+  // Bulk delete handlers
+  const handleSelectionChange = (indices) => {
+    setSelectedIds(indices.map((i) => employees[i]?.user_id).filter(Boolean));
+  };
+
+  const confirmBulkDelete = async () => {
+    if (selectedIds.length === 0) return;
+    showProcessing(t("Deleting Employees..."));
+    try {
+      const result = await deleteManyEmployees(selectedIds).unwrap();
+      const failedCount = result?.data?.failed?.length || 0;
+      setDeleteApiResponse({
+        isOpen: true,
+        status: failedCount > 0 ? "warning" : "success",
+        message:
+          failedCount > 0
+            ? t("{{count}} item(s) deleted, {{failed}} failed", {
+                count: result?.data?.deleted ?? 0,
+                failed: failedCount,
+              })
+            : t("{{count}} employees deleted successfully", {
+                count: selectedIds.length,
+              }),
+      });
+      setSelectedIds([]);
+      setTableKey((k) => k + 1);
+    } catch (err) {
+      setDeleteApiResponse({
+        isOpen: true,
+        status: "error",
+        message: err?.data?.message || t("Failed to delete selected items")
+      });
+    } finally {
+      hideProcessing();
+    }
+  };
+
   // Unassign department handlers
   const handleUnassignDepartment = (employee) => {
     setSelectedUnassignEmployee(employee);
@@ -405,6 +449,7 @@ function EmployeesTap() {
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2 h-full">
           <Table
+            key={tableKey}
             title="Employees"
             headers={headers}
             isActions={false}
@@ -412,8 +457,15 @@ function EmployeesTap() {
               <EmployeeActions actualRowIndex={actualRowIndex} />
             )}
             rows={EmployeeRowTable(employees)}
+            onSelectionChange={handleSelectionChange}
             headerActions={
               <div className="flex gap-2">
+                {selectedIds.length > 0 && canDeleteEmployee && (
+                  <BulkDeleteButton
+                    count={selectedIds.length}
+                    onConfirm={confirmBulkDelete}
+                  />
+                )}
                 {canSendNotification && (
                   <button
                     onClick={() => setIsOpenSendNotifyModal(true)}

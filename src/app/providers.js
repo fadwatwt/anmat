@@ -12,6 +12,7 @@ import NavigationProgress from '@/components/Feedback/NavigationProgress';
 import CallProvider from '@/components/Call/CallProvider';
 import GroupCallProvider from '@/components/Call/GroupCallProvider';
 import { setLanguage } from "@/functions/Days";
+import { Toaster } from "react-hot-toast";
 
 const updateHtmlAttributes = (lang) => {
     const root = document.documentElement;
@@ -162,6 +163,17 @@ const Providers = ({ children }) => {
                             </GroupCallProvider>
                         </CallProvider>
                     </I18nextProvider>
+                    <Toaster
+                        position="top-center"
+                        toastOptions={{
+                            duration: 4000,
+                            style: {
+                                background: "#1f2937",
+                                color: "#f9fafb",
+                                zIndex: 99999,
+                            },
+                        }}
+                    />
                 </ProcessingProvider>
             </ThemeProvider>
         </Provider>

@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken } from "@/utils/tokenStorage";
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '@/redux/notifications/notificationsSlice';
@@ -31,7 +33,7 @@ export const useNotifications = (userId) => {
         }
 
         // Ensure user is authenticated by checking for the token
-        const token = localStorage.getItem('token');
+        const token = getToken();
         if (!token) {
             console.error('📡 [SSE] No token found in localStorage, skipping connection.');
             return;

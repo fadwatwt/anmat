@@ -1,5 +1,7 @@
 "use client";
 
+import { getToken } from "@/utils/tokenStorage";
+
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { IoClose, IoSend, IoChatbubbles, IoTimeOutline } from "react-icons/io5";
@@ -204,7 +206,7 @@ export default function FloatingAiButton() {
 
   const isAr = i18n.language === "ar";
   const knowledge = isAr ? VISITOR_KNOWLEDGE.ar : VISITOR_KNOWLEDGE.en;
-  const isLoggedIn = typeof window !== "undefined" && !!localStorage.getItem("token");
+  const isLoggedIn = typeof window !== "undefined" && !!getToken();
   const sessionKey = guestEmail || "guest";
 
   useEffect(() => {
@@ -339,7 +341,7 @@ export default function FloatingAiButton() {
     if (viewMode === "support" && ticketId) {
       const poll = async () => {
         try {
-          const token = localStorage.getItem("token");
+          const token = getToken();
           let res;
           if (token) {
             res = await fetch(`${RootRoute}/api/support-tickets/${ticketId}/messages`, {
@@ -398,7 +400,7 @@ export default function FloatingAiButton() {
 
   const createUrgentTicket = async (message) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const body = JSON.stringify({
         title: message.substring(0, 100),
         description: message,
@@ -469,7 +471,7 @@ export default function FloatingAiButton() {
       return updated;
     });
     setInput("");
-    const token = localStorage.getItem("token");
+    const token = getToken();
     try {
       if (token) {
         await fetch(`${RootRoute}/api/support-tickets/${ticketId}/messages`, {
@@ -501,7 +503,7 @@ export default function FloatingAiButton() {
       return;
     }
 
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
 
     if (token) {
       setIsLoading(true);
@@ -623,7 +625,7 @@ export default function FloatingAiButton() {
 
   const confirmPendingAction = async () => {
     if (!pendingActionId) return;
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (!token) return;
 
     setIsLoading(true);
@@ -706,7 +708,7 @@ export default function FloatingAiButton() {
       setViewingHistory(null);
       setShowHistory(false);
       setTicketClosed(false);
-      const token = localStorage.getItem("token");
+      const token = getToken();
       try {
         if (token) {
           await fetch(`${RootRoute}/api/support-tickets/${session.ticketId}/messages`, {

@@ -1,5 +1,7 @@
 "use client";
 
+import { getToken } from "@/utils/tokenStorage";
+
 import { useState, useRef, useEffect } from "react";
 import { RiUser3Line, RiLogoutBoxLine } from "@remixicon/react";
 import UserChatAvatar from "@/components/UserChatAvatar";
@@ -24,7 +26,7 @@ const HeaderUserMenu = () => {
     const user = useSelector(selectUser);
 
     const handleLogout = async () => {
-        const token = localStorage.getItem("token");
+        const token = getToken();
         const userType = user?.type;
         if (token) {
             try {

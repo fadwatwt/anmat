@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken } from "@/utils/tokenStorage";
 import { createContext, useContext, useRef, useState, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserId, selectUser } from "@/redux/auth/authSlice";
@@ -185,7 +187,7 @@ export const CallProvider = ({ children }) => {
   }, [cleanupCall, stopRing]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const socket = initSocket(token);
 
     const handleIncomingCall = ({ chat_id, caller_id, caller_name, is_video }) => {

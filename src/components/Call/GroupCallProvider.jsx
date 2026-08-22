@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken } from "@/utils/tokenStorage";
 import { createContext, useContext, useRef, useState, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserId, selectUser } from "@/redux/auth/authSlice";
@@ -158,7 +160,7 @@ const GroupCallProvider = ({ children }) => {
   }, [currentUserId]);
 
   useEffect(() => {
-    const socket = initSocket(localStorage.getItem("token"));
+    const socket = initSocket(getToken());
 
     const handleIncomingGroupCall = ({ chat_id, is_video, initiator_id, initiator_name }) => {
       console.log("[GroupCall] Received incoming_group_call from", initiator_name, "for chat", chat_id, "state:", groupCallState);

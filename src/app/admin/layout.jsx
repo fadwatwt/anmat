@@ -1,5 +1,7 @@
 "use client";
 
+import { getToken } from "@/utils/tokenStorage";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useDarkMode from "@/Hooks/useDarkMode";
@@ -17,7 +19,7 @@ const MainLayout = ({ children }) => {
 
     const isSettingsPage = router.asPath === "/settings";
     const authToken =
-        typeof window !== "undefined" ? localStorage.getItem("token") : null;
+        typeof window !== "undefined" ? getToken() : null;
 
     useDarkMode();
 

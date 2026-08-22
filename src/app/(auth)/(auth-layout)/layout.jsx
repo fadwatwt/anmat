@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken, clearToken } from "@/utils/tokenStorage";
 import { RiGlobalLine } from "@remixicon/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -18,7 +20,7 @@ function AuthLayout({ children }) {
 
     useEffect(() => {
         const verifyAuth = async () => {
-            const token = localStorage.getItem("token");
+            const token = getToken();
             if (!token) {
                 setIsLoading(false);
                 return;
@@ -36,7 +38,7 @@ function AuthLayout({ children }) {
                 dispatch(loginSuccess(payload));
                 router.push("/dashboard");
             } catch {
-                localStorage.removeItem("token");
+                clearToken();
                 setIsLoading(false);
             }
         };

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/Tables/Table";
+import BulkDeleteButton from "@/components/Tables/BulkDeleteButton.jsx";
 import { GoPlus } from "react-icons/go";
 import { useProcessing } from "@/app/providers";
 import ApprovalAlert from "@/components/Alerts/ApprovalAlert.jsx";
@@ -13,7 +14,11 @@ import Page from "@/components/Page.jsx";
 import CreatePositionModal from "./modals/CreatePositionModal.jsx";
 import EditPositionModal from "./modals/EditPositionModal.jsx";
 
-import { useGetPositionsQuery, useDeletePositionMutation } from "@/redux/positions/positionsApi";
+import {
+    useGetPositionsQuery,
+    useDeletePositionMutation,
+    useDeleteManyPositionsMutation,
+} from "@/redux/positions/positionsApi";
 import { usePermission } from "@/Hooks/usePermission";
 
 function PositionsPage() {
@@ -21,6 +26,7 @@ function PositionsPage() {
     const { showProcessing, hideProcessing } = useProcessing();
     const { data: positions = [], isLoading } = useGetPositionsQuery();
     const [deletePosition] = useDeletePositionMutation();
+    const [deleteManyPositions] = useDeleteManyPositionsMutation();
 
     const canCreatePosition = usePermission("positions.create");
     const canUpdatePosition = usePermission("positions.update");
@@ -29,6 +35,8 @@ function PositionsPage() {
     const [selectedPosition, setSelectedPosition] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [tableKey, setTableKey] = useState(0);
 
     const [apiResponse, setApiResponse] = useState({
         isOpen: false,
@@ -89,18 +97,63 @@ function PositionsPage() {
         </span>,
     ]);
 
-    const headerActions = canCreatePosition ? (
-        <button onClick={handleCreatePosition} className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-all text-sm font-semibold shadow-sm">
-            <GoPlus size={18} />
-            {t("Create a Position")}
-        </button>
-    ) : null;
+    const handleSelectionChange = (indices) => {
+        setSelectedIds(indices.map((i) => positions[i]?._id).filter(Boolean));
+    };
+
+    const confirmBulkDelete = async () => {
+        showProcessing(t("Deleting positions..."));
+        try {
+            const result = await deleteManyPositions(selectedIds).unwrap();
+            const failedCount = result?.data?.failed?.length || 0;
+            setApiResponse({
+                isOpen: true,
+                status: failedCount > 0 ? "warning" : "success",
+                message:
+                    failedCount > 0
+                        ? t("{{count}} item(s) deleted, {{failed}} failed", {
+                              count: result?.data?.deleted ?? 0,
+                              failed: failedCount,
+                          })
+                        : t("{{count}} positions deleted successfully", {
+                              count: selectedIds.length,
+                          }),
+            });
+            setSelectedIds([]);
+            setTableKey((k) => k + 1);
+        } catch (error) {
+            setApiResponse({
+                isOpen: true,
+                status: "error",
+                message: error?.data?.message || t("Failed to delete selected items"),
+            });
+        } finally {
+            hideProcessing();
+        }
+    };
+
+    const headerActions = (
+        <>
+            {canCreatePosition ? (
+                <button onClick={handleCreatePosition} className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-all text-sm font-semibold shadow-sm">
+                    <GoPlus size={18} />
+                    {t("Create a Position")}
+                </button>
+            ) : null}
+            <BulkDeleteButton
+                count={selectedIds.length}
+                onConfirm={confirmBulkDelete}
+                permission="positions.delete"
+            />
+        </>
+    );
 
     return (
         <Page title={t("HR - Positions Management")}>
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2 h-full">
                     <Table
+                        key={tableKey}
                         title={"Positions"}
                         headers={headers}
                         rows={rows}
@@ -127,6 +180,7 @@ function PositionsPage() {
                             return states.length > 0 ? <StatusActions states={states} /> : null;
                         }}
                         headerActions={headerActions}
+                        onSelectionChange={handleSelectionChange}
                         showControlBar={false}
                         hideSearchInput={false}
                     />

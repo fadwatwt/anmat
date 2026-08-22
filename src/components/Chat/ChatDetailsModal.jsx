@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken } from "@/utils/tokenStorage";
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { X, Users, Download, Archive, UserPlus, UserMinus, Search, ChevronDown, ChevronUp, Check } from "lucide-react";
@@ -101,7 +103,7 @@ const ChatDetailsModal = ({ activeChat, onClose }) => {
       setApiResponse({ isOpen: true, status: "error", message: t("You don't have permission to export chats.") });
       return;
     }
-    const token = localStorage.getItem("token");
+    const token = getToken();
     window.open(`${RootRoute}/api/chats/${activeChat._id}/export?token=${token}`, "_blank");
   };
 

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/Tables/Table.jsx";
+import BulkDeleteButton from "@/components/Tables/BulkDeleteButton.jsx";
 import Alert from "@/components/Alerts/Alert.jsx";
+import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert.jsx";
 import NameAndDescription from "@/app/(dashboard)/projects/_components/TableInfo/NameAndDescription.jsx";
 import AccountDetails from "@/app/(dashboard)/projects/_components/TableInfo/AccountDetails.jsx";
 import Department from "@/app/(dashboard)/projects/_components/TableInfo/Department.jsx";
@@ -15,10 +17,12 @@ import Modal from "@/components/Modal/Modal.jsx";
 import EditProjectModal from "@/app/(dashboard)/projects/_modal/EditProjectModal";
 import SaveAsTemplateModal from "@/app/(dashboard)/projects/_modal/SaveAsTemplateModal";
 import StarRating from "@/components/StarRating";
-import { 
-    useGetSubscriberProjectsQuery, 
+import {
+    useGetSubscriberProjectsQuery,
     useUpdateSubscriberProjectMutation,
-    useUploadSubscriberProjectAttachmentMutation
+    useUploadSubscriberProjectAttachmentMutation,
+    useDeleteSubscriberProjectMutation,
+    useDeleteManySubscriberProjectsMutation
 } from "@/redux/projects/subscriberProjectsApi";
 import { useSelector } from "react-redux";
 import { defaultPhoto } from "@/Root.Route.js";
@@ -44,6 +48,8 @@ function ProjectsTab() {
 
     const [updateProject, { isLoading: isUpdating }] = useUpdateSubscriberProjectMutation();
     const [uploadProjectAttachment] = useUploadSubscriberProjectAttachmentMutation();
+    const [deleteProject] = useDeleteSubscriberProjectMutation();
+    const [deleteManyProjects] = useDeleteManySubscriberProjectsMutation();
 
     const [pagination, setPagination] = useState({ currentPage: 1, rowsPerPage: 7, totalPages: 1 });
     const [isOpenEditModal, setIsOpenEditModal] = useState(false);
@@ -52,6 +58,9 @@ function ProjectsTab() {
     const [isOpenStatusModal, setIsOpenStatusModal] = useState(false);
     const [isOpenEvaluationModal, setIsOpenEvaluationModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [tableKey, setTableKey] = useState(0);
+    const [responseAlert, setResponseAlert] = useState({ isOpen: false, status: "", message: "" });
 
     const router = useRouter();
 
@@ -125,9 +134,57 @@ function ProjectsTab() {
         return res?.attachment || res?.data || null;
     };
 
-    const confirmDelete = () => {
+    const confirmDelete = async () => {
+        if (!selectedProject) return;
         setIsOpenDeleteAlert(false);
-        setSelectedProject(null);
+        try {
+            await deleteProject(selectedProject._id).unwrap();
+            setResponseAlert({
+                isOpen: true,
+                status: "success",
+                message: t("Project deleted successfully"),
+            });
+            setSelectedProject(null);
+        } catch (err) {
+            setResponseAlert({
+                isOpen: true,
+                status: "error",
+                message: err?.data?.message || t("Failed to delete project"),
+            });
+        }
+    };
+
+    const handleSelectionChange = (indices) => {
+        setSelectedIds(indices.map((i) => projects[i]?._id).filter(Boolean));
+    };
+
+    const confirmBulkDelete = async () => {
+        if (selectedIds.length === 0) return;
+        try {
+            const result = await deleteManyProjects(selectedIds).unwrap();
+            const failedCount = result?.data?.failed?.length || 0;
+            setResponseAlert({
+                isOpen: true,
+                status: failedCount > 0 ? "warning" : "success",
+                message:
+                    failedCount > 0
+                        ? t("{{count}} item(s) deleted, {{failed}} failed", {
+                              count: result?.data?.deleted ?? 0,
+                              failed: failedCount,
+                          })
+                        : t("{{count}} projects deleted successfully", {
+                              count: selectedIds.length,
+                          }),
+            });
+            setSelectedIds([]);
+            setTableKey((k) => k + 1);
+        } catch (err) {
+            setResponseAlert({
+                isOpen: true,
+                status: "error",
+                message: err?.data?.message || t("Failed to delete selected items"),
+            });
+        }
     };
 
     const headers = [
@@ -261,6 +318,7 @@ function ProjectsTab() {
     return (
         <div>
             <Table
+                key={tableKey}
                 title={t("All Projects")}
                 headers={headers}
                 rows={rows}
@@ -274,7 +332,16 @@ function ProjectsTab() {
                 isCheckInput={true}
                 handelEdit={canEditProject ? handleEditProject : undefined}
                 handelDelete={canDeleteProject ? handleDeleteProject : undefined}
+                onSelectionChange={handleSelectionChange}
                 className="min-w-[2000px] table-fixed"
+                headerActions={
+                    canDeleteProject ? (
+                        <BulkDeleteButton
+                            count={selectedIds.length}
+                            onConfirm={confirmBulkDelete}
+                        />
+                    ) : null
+                }
             />
 
             {selectedProject && (
@@ -312,6 +379,13 @@ function ProjectsTab() {
                     setSelectedProject(null);
                 }}
                 onSubmit={confirmDelete}
+            />
+
+            <ApiResponseAlert
+                isOpen={responseAlert.isOpen}
+                status={responseAlert.status}
+                message={responseAlert.message}
+                onClose={() => setResponseAlert((prev) => ({ ...prev, isOpen: false }))}
             />
 
             <Modal

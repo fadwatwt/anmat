@@ -76,6 +76,21 @@ export const subscriberProjectsApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { projectId }) => ["Projects", { type: "Projects", id: projectId }],
         }),
+        deleteSubscriberProject: builder.mutation({
+            query: (id) => ({
+                url: `api/subscriber/organization/projects/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Projects", "ActivityLogs"],
+        }),
+        deleteManySubscriberProjects: builder.mutation({
+            query: (ids) => ({
+                url: "api/subscriber/organization/projects/delete-many",
+                method: "POST",
+                body: { ids },
+            }),
+            invalidatesTags: ["Projects", "ActivityLogs"],
+        }),
     }),
 });
 
@@ -85,6 +100,7 @@ export const {
     useCreateSubscriberProjectMutation,
     useUpdateSubscriberProjectMutation,
     useDeleteSubscriberProjectMutation,
+    useDeleteManySubscriberProjectsMutation,
     useAddSubscriberProjectCommentMutation,
     useEditSubscriberProjectCommentMutation,
     useDeleteSubscriberProjectCommentMutation,

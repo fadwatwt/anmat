@@ -13,6 +13,7 @@ import Link from "next/link";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { getToken, clearToken } from "@/utils/tokenStorage";
 
 function SignIn() {
     const { t } = useTranslation();
@@ -31,7 +32,7 @@ function SignIn() {
     const [triggerLogout] = useLazyLogoutQuery();
 
     const performLogout = async (tokenToUse) => {
-        const token = tokenToUse || localStorage.getItem('token');
+        const token = tokenToUse || getToken();
         if (token) {
             try {
                 await triggerLogout(token);
@@ -45,7 +46,7 @@ function SignIn() {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const token = localStorage.getItem('token');
+            const token = getToken();
 
             if (token) {
                 try {
@@ -68,7 +69,7 @@ function SignIn() {
                     }
                 } catch (err) {
                     console.error("Token validation failed:", err);
-                    localStorage.removeItem('token');
+                    clearToken();
                     setIsCheckingAuth(false);
                 }
             } else {
@@ -94,7 +95,7 @@ function SignIn() {
             const userData = response.data?.user;
 
             if (userData?.type === 'Admin') {
-                dispatch(loginSuccess(response));
+                dispatch(loginSuccess({ ...response, data: { ...response.data, remember: rememberMe } }));
                 router.push("/dashboard");
             } else {
                 // Logout immediately using the new token
@@ -114,7 +115,8 @@ function SignIn() {
                         const loginPayload = {
                             data: {
                                 access_token: token,
-                                user: userData
+                                user: userData,
+                                remember: rememberMe
                             }
                         };
                         dispatch(loginSuccess(loginPayload));
@@ -178,8 +180,8 @@ function SignIn() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="*"
-                                className="w-full py-3 px-2 outline-none bg-transparent dark:bg-gray-800 text-cell-primary dark:text-gray-100"
+                                placeholder={t("Enter your password")}
+                                className="w-full py-3 px-2 outline-none bg-transparent dark:bg-gray-800 text-cell-primary dark:text-gray-100 dark:placeholder-gray-400"
                                 required
                                 disabled={isLoading || isSubmitting}
                             />

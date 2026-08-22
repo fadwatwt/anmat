@@ -10,18 +10,21 @@ import { RiEditLine, RiGroupLine, RiNotification4Line, RiChat1Line, RiDeleteBin7
 import StatusActions from "@/components/Dropdowns/StatusActions";
 import SendNotificationModal from "@/app/(dashboard)/hr/employees/modals/SendNotification.modal";
 import Alert from "@/components/Alerts/Alert";
+import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert.jsx";
+import BulkDeleteButton from "@/components/Tables/BulkDeleteButton.jsx";
 import Table from "@/components/Tables/Table"
 import Page from "@/components/Page";
 import StarRating from "@/components/StarRating";
 import ProcessingOverlay from "@/components/Feedback/ProcessingOverlay.jsx";
 
-import { useGetDepartmentsQuery, useDeleteDepartmentMutation } from "@/redux/departments/departmentsApi";
+import { useGetDepartmentsQuery, useDeleteDepartmentMutation, useDeleteManyDepartmentsMutation } from "@/redux/departments/departmentsApi";
 import { usePermission } from "@/Hooks/usePermission";
 
 function DepartmentsPage() {
     const { t } = useTranslation();
     const { data: departments = [], isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();
     const [deleteDepartment, { isLoading: isDeleting }] = useDeleteDepartmentMutation();
+    const [deleteManyDepartments] = useDeleteManyDepartmentsMutation();
 
     const canCreateDepartment = usePermission("departments.create");
     const canUpdateDepartment = usePermission("departments.update");
@@ -38,6 +41,11 @@ function DepartmentsPage() {
     const [selectedDeleteDepartment, setSelectedDeleteDepartment] = useState(null);
     const [isOpenDeleteAlert, setIsOpenDeleteAlert] = useState(false);
     const [isOpenSuccessDeleteAlert, setIsOpenSuccessDeleteAlert] = useState(false);
+
+    // Bulk delete states
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [tableKey, setTableKey] = useState(0);
+    const [responseAlert, setResponseAlert] = useState({ isOpen: false, status: "", message: "" });
 
     const headers = [
         { label: t("Departments"), width: "20%" },
@@ -162,11 +170,46 @@ function DepartmentsPage() {
         }
     };
 
+    // Bulk delete handlers
+    const handleSelectionChange = (indices) => {
+        setSelectedIds(indices.map((i) => departments[i]?._id).filter(Boolean));
+    };
+
+    const confirmBulkDelete = async () => {
+        if (selectedIds.length === 0) return;
+        try {
+            const result = await deleteManyDepartments(selectedIds).unwrap();
+            const failedCount = result?.data?.failed?.length || 0;
+            setResponseAlert({
+                isOpen: true,
+                status: failedCount > 0 ? "warning" : "success",
+                message:
+                    failedCount > 0
+                        ? t("{{count}} item(s) deleted, {{failed}} failed", {
+                              count: result?.data?.deleted ?? 0,
+                              failed: failedCount,
+                          })
+                        : t("{{count}} departments deleted successfully", {
+                              count: selectedIds.length,
+                          }),
+            });
+            setSelectedIds([]);
+            setTableKey((k) => k + 1);
+        } catch (error) {
+            setResponseAlert({
+                isOpen: true,
+                status: "error",
+                message: error?.data?.message || t("Failed to delete selected items"),
+            });
+        }
+    };
+
     return (
         <Page title={t("HR - Departments Management")}>
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2 h-full">
                     <Table
+                        key={tableKey}
                         title={t("Departments")}
                         headers={headers}
                         isActions={false}
@@ -174,8 +217,15 @@ function DepartmentsPage() {
                             <DepartmentActions actualRowIndex={actualRowIndex} />
                         )}
                         rows={DepartmentRowTable(departments)}
+                        onSelectionChange={handleSelectionChange}
                         headerActions={
                             <div className="flex gap-2">
+                                {selectedIds.length > 0 && canDeleteDepartment && (
+                                    <BulkDeleteButton
+                                        count={selectedIds.length}
+                                        onConfirm={confirmBulkDelete}
+                                    />
+                                )}
                                 {canSendNotification && (
                                     <button
                                         onClick={() => setIsOpenSendNotifyModal(true)}
@@ -253,6 +303,13 @@ function DepartmentsPage() {
                 message={t('The department "{{name}}" has been successfully deleted.', { name: selectedDeleteDepartment?.name })}
                 isOpen={isOpenSuccessDeleteAlert}
                 onClose={() => setIsOpenSuccessDeleteAlert(false)}
+            />
+
+            <ApiResponseAlert
+                isOpen={responseAlert.isOpen}
+                status={responseAlert.status}
+                message={responseAlert.message}
+                onClose={() => setResponseAlert((prev) => ({ ...prev, isOpen: false }))}
             />
         </Page>
     );

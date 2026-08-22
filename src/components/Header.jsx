@@ -2,7 +2,7 @@
 
 import SearchInput from "./Form/SearchInput.jsx";
 
-import { FiSun, FiMoon } from "react-icons/fi";
+import { FiSun, FiMoon, FiCompass } from "react-icons/fi";
 import React from "react";
 
 import PropTypes from "prop-types";
@@ -32,6 +32,7 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
 
   return (
     <div
+      data-tour="header"
       className={
         "header bg-surface max-w-full h-[72px] flex px-3 sm:px-4 md:px-8 items-center justify-between relative border-b z-50 " +
         className
@@ -64,6 +65,18 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
           </button>
           <NotificationsDropdown notifications={notifications} unreadCount={unreadCount} />
           <MessagesDropdown />
+          {/* Dashboard Tour button */}
+          <button
+            onClick={() => {
+              localStorage.removeItem("subscriber_dashboard_tour_completed");
+              window.location.reload();
+            }}
+            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors"
+            title={t("header.dashboard_tour")}
+            aria-label={t("header.dashboard_tour")}
+          >
+            <FiCompass size={18} />
+          </button>
         </div>
 
         {/* User Profile Section */}

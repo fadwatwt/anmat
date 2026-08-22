@@ -1,3 +1,5 @@
+import { getToken } from "@/utils/tokenStorage";
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootRoute } from "../../Root.Route";
@@ -7,7 +9,7 @@ export const fetchDepartments = createAsyncThunk(
   "departments/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,

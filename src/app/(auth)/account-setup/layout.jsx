@@ -1,4 +1,6 @@
 "use client";
+
+import { getToken } from "@/utils/tokenStorage";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -19,7 +21,7 @@ function AccountSetupLayout({ children }) {
 
     useEffect(() => {
         const verifyAuth = async () => {
-            const token = localStorage.getItem("token");
+            const token = getToken();
             if (!token) {
                 router.push("/sign-in");
                 return;
@@ -104,7 +106,7 @@ function AccountSetupLayout({ children }) {
     }, [dispatch, router, triggerGetUser, pathname]);
 
     const handleLogout = async () => {
-        const token = localStorage.getItem("token");
+        const token = getToken();
         try {
             if (token) {
                 await triggerLogout(token).unwrap();

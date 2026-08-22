@@ -1,6 +1,6 @@
 "use client";
 
-
+import { getToken } from "@/utils/tokenStorage";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import i18n from "i18next";
@@ -16,6 +16,7 @@ import { selectAuth, loadAuthState, logout, setUser, setPermissions } from "@/re
 import { useLazyGetUserQuery } from "@/redux/auth/authAPI";
 import { useLazyGetMyPermissionsQuery } from "@/redux/permissions/subscriberPermissionsApi";
 import useDarkMode from "@/Hooks/useDarkMode";
+import DashboardTour from "@/components/DashboardTour";
 
 const MainLayout = ({ children }) => {
     const [isSlidebarOpen, setSlidebarOpen] = useState(false);
@@ -50,7 +51,7 @@ const MainLayout = ({ children }) => {
     // Fetch user if token exists but user data is missing
     useEffect(() => {
         const fetchUser = async () => {
-            const storedToken = token || (typeof window !== "undefined" && localStorage.getItem("token"));
+            const storedToken = token || (typeof window !== "undefined" && getToken());
             if (storedToken && !user) {
                 try {
                     const result = await getUser(storedToken).unwrap();
@@ -183,7 +184,7 @@ const MainLayout = ({ children }) => {
     }
 
     if (isFetchingUser || !user || shouldRedirect) {
-        if (token || localStorage.getItem("token")) {
+        if (token || getToken()) {
             return (
                 <div className="h-screen w-screen flex items-center justify-center bg-status-bg">
                     <div className="flex flex-col items-center gap-4">
@@ -230,6 +231,8 @@ const MainLayout = ({ children }) => {
                     {children}
                 </main>
                 {isAuthenticated && user?.type !== "Admin" && pathname?.startsWith("/support-tickets") && <DashboardFloatingButton />}
+                {/* Subscriber dashboard tour — shows once on first visit */}
+                {user?.type === "Subscriber" && <DashboardTour />}
             </div>
         </div>
     );

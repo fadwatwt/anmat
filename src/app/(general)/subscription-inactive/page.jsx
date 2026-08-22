@@ -1,5 +1,7 @@
 "use client";
 
+import { clearToken } from "@/utils/tokenStorage";
+
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -17,7 +19,7 @@ function SubscriptionInactive() {
     const handleSignOut = () => {
         dispatch(logout());
         if (typeof window !== "undefined") {
-            localStorage.removeItem("token");
+            clearToken();
         }
         router.push("/sign-in");
     };

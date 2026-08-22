@@ -34,6 +34,14 @@ export const employeesApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Employees"],
         }),
+        deleteManyEmployees: builder.mutation({
+            query: (ids) => ({
+                url: "api/subscriber/organization/employees/delete-many",
+                method: "POST",
+                body: { ids },
+            }),
+            invalidatesTags: ["Employees", "Departments", "Projects"],
+        }),
         toggleEmployeeActivity: builder.mutation({
             query: (id) => ({
                 url: `api/subscriber/organization/employees/${id}/toggle-activity`,
@@ -118,6 +126,7 @@ export const {
     useCreateEmployeeMutation,
     useUpdateEmployeeMutation,
     useDeleteEmployeeMutation,
+    useDeleteManyEmployeesMutation,
     useToggleEmployeeActivityMutation,
     useInviteEmployeeMutation,
     useGetNewEmployeesQuery,

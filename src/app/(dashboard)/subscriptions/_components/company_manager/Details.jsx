@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 import { RiVipDiamondLine } from "react-icons/ri";
 import CheckAlert from "@/components/Alerts/CheckِِAlert";
 import { useGetMySubscriptionQuery, useCancelRenewalMutation, useReactivateRenewalMutation } from "@/redux/subscriptions/subscriptionsApi";
@@ -50,9 +51,27 @@ function Details({ onUpgradeClick }) {
         ? storageSizeMB >= 1024 ? `${(storageSizeMB / 1024).toFixed(1)} GB` : `${storageSizeMB} MB`
         : 'Unlimited';
 
-    // Find price (using first active pricing as fallback)
-    const activePricing = plan.pricing?.find(p => p.is_active) || plan.pricing?.[0];
-    const price = activePricing?.price || 0;
+    // Resolve billing interval: stored value, else infer from period length
+    const inferredInterval = (() => {
+        try {
+            const start = new Date(subscription.starts_at);
+            const end = new Date(subscription.expires_at);
+            if (!isNaN(start) && !isNaN(end) && end > start) {
+                return (end - start) / (1000 * 60 * 60 * 24) >= 300 ? "year" : "month";
+            }
+        } catch { /* noop */ }
+        return "month";
+    })();
+    const billingInterval = subscription.interval || inferredInterval;
+
+    // Find price matching the actual billing interval
+    const activePricing =
+        plan.pricing?.find(p => p.interval === billingInterval && p.is_active) ||
+        plan.pricing?.find(p => p.interval === billingInterval) ||
+        plan.pricing?.find(p => p.is_active) ||
+        plan.pricing?.[0];
+    const price = subscription.amount || activePricing?.price || 0;
+    const pricePeriodSuffix = billingInterval === "year" ? "/yr" : "/mth";
 
     return (
         <div className={"md:p-5 p-2 rounded-2xl bg-surface border border-status-border"}>
@@ -105,7 +124,7 @@ function Details({ onUpgradeClick }) {
                             {t("Price estimate")}
                         </span>
                         <span className="!text-table-title text-lg font-bold">
-                            ${price}
+                            ${price}<span className="!text-cell-secondary text-sm font-medium">{t(pricePeriodSuffix)}</span>
                         </span>
                     </div>
                 </div>
@@ -151,7 +170,7 @@ function Details({ onUpgradeClick }) {
                 description={
                     <p>
                         {t("Are you sure you want to")} <span className="font-bold text-cell-primary">{t("cancel renewal")}</span> {t("of the")}
-                        <span className="font-bold text-cell-primary"> {plan.name}</span> {t("with")} <span className="font-bold text-cell-primary">${price}{t("/mth")}</span>?
+                        <span className="font-bold text-cell-primary"> {plan.name}</span> {t("with")} <span className="font-bold text-cell-primary">${price}{t(pricePeriodSuffix)}</span>?
                     </p>
                 }
                 onSubmit={async () => {
@@ -190,5 +209,9 @@ function Details({ onUpgradeClick }) {
         </div>
     );
 }
+
+Details.propTypes = {
+    onUpgradeClick: PropTypes.func,
+};
 
 export default Details;

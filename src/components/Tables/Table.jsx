@@ -1,3 +1,5 @@
+import { getToken } from "@/utils/tokenStorage";
+
 import PropTypes from "prop-types";
 import { isValidElement, useState, useRef } from "react";
 import { createPortal } from "react-dom";
@@ -324,7 +326,7 @@ function Table({
                 extractText(cell, cellSeparator).trim().replace(/\s+/g, " ")
             )
         );
-        const token = typeof window !== "undefined" ? localStorage.getItem("token") : "";
+        const token = typeof window !== "undefined" ? getToken() : "";
         try {
             await downloadExport(
                 { headers: headerLabels, rows: plainRows, format, fileName: resolveFileName() },

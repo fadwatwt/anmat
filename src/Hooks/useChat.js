@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { initSocket, getSocket } from "@/services/socketService";
 import { selectUserId } from "@/redux/auth/authSlice";
 import { conversationsAPI } from "@/redux/conversations/conversationsAPI";
+import { getToken } from "@/utils/tokenStorage";
 
 export const useChat = (chatId) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const token = getToken();
 
   useEffect(() => {
     if (!token || !userId) return;

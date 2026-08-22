@@ -13,6 +13,20 @@ import Link from "next/link";
 
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { getToken, clearToken } from "@/utils/tokenStorage";
+
+// Map low-level login failures to messages a real user can act on.
+const getLoginErrorMessage = (err, t) => {
+    const status = err?.status;
+    const serverMessage = err?.data?.message || "";
+    if (status === 401 || /invalid|incorrect|wrong credential|bad credential/i.test(serverMessage)) {
+        return t("Incorrect email or password.");
+    }
+    if (status === "FETCH_ERROR" || /network/i.test(err?.error || "")) {
+        return t("Cannot reach the server. Check your connection and try again.");
+    }
+    return serverMessage || t("Login failed");
+};
 
 function SignIn() {
     const { t } = useTranslation();
@@ -58,7 +72,7 @@ function SignIn() {
     };
 
     const performLogout = async (tokenToUse) => {
-        const token = tokenToUse || localStorage.getItem('token');
+        const token = tokenToUse || getToken();
         if (token) {
             try {
                 await triggerLogout(token);
@@ -73,7 +87,7 @@ function SignIn() {
     useEffect(() => {
         // Check Redux state or localStorage
         const checkAuth = async () => {
-            const token = localStorage.getItem('token');
+            const token = getToken();
             if (token) {
                 try {
                     const userResponse = await triggerGetUser(token).unwrap();
@@ -107,7 +121,7 @@ function SignIn() {
                     }
                 } catch (err) {
                     console.error("Token validation failed:", err);
-                    localStorage.removeItem('token');
+                    clearToken();
                     setIsCheckingAuth(false);
                 }
             } else {
@@ -146,7 +160,8 @@ function SignIn() {
                 const loginPayload = {
                     data: {
                         access_token: token,
-                        user: userData
+                        user: userData,
+                        remember: rememberMe
                     }
                 };
                 dispatch(loginSuccess(loginPayload));
@@ -155,7 +170,8 @@ function SignIn() {
                 const loginPayload = {
                     data: {
                         access_token: token,
-                        user: userData
+                        user: userData,
+                        remember: rememberMe
                     }
                 };
                 dispatch(loginSuccess(loginPayload));
@@ -183,7 +199,8 @@ function SignIn() {
                         const loginPayload = {
                             data: {
                                 access_token: token,
-                                user: userData
+                                user: userData,
+                                remember: rememberMe
                             }
                         };
                         dispatch(loginSuccess(loginPayload));
@@ -193,7 +210,8 @@ function SignIn() {
                         const loginPayload = {
                             data: {
                                 access_token: token,
-                                user: userData
+                                user: userData,
+                                remember: rememberMe
                             }
                         };
                         dispatch(loginSuccess(loginPayload));
@@ -213,7 +231,7 @@ function SignIn() {
                 }
             }
             // Standard error handling
-            dispatch(loginFailure(err.data?.message || t("Login failed")));
+            dispatch(loginFailure(getLoginErrorMessage(err, t)));
             setIsSubmitting(false);
         }
     };
@@ -257,8 +275,8 @@ function SignIn() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="*"
-                                className="w-full py-3 px-2 outline-none bg-transparent text-cell-primary"
+                                placeholder={t("Enter your password")}
+                                className="w-full py-3 px-2 outline-none bg-transparent text-cell-primary dark:placeholder-gray-400"
                                 required
                                 disabled={isLoading || isSubmitting}
                             />

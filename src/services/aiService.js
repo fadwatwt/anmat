@@ -1,3 +1,5 @@
+import { getToken } from "@/utils/tokenStorage";
+
 import axios from "axios";
 import { RootRoute } from "@/Root.Route";
 
@@ -7,7 +9,7 @@ const client = axios.create({
 
 client.interceptors.request.use((config) => {
   if (typeof window !== "undefined") {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (token) config.headers.Authorization = `Bearer ${token}`;
   }
   return config;

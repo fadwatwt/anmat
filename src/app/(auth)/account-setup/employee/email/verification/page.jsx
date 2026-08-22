@@ -1,5 +1,7 @@
 "use client";
 
+import { getToken } from "@/utils/tokenStorage";
+
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -83,7 +85,7 @@ const VerifyEmail = () => {
         }
 
         // Fetch user data to update next_send_at timer from the latest API state
-        const token = localStorage.getItem("token");
+        const token = getToken();
         if (token) {
             try {
                 const userResult = await triggerGetUser(token).unwrap();

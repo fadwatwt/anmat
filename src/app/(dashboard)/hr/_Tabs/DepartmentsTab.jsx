@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/Tables/Table.jsx";
+import BulkDeleteButton from "@/components/Tables/BulkDeleteButton.jsx";
 import EditDepartmentModal from "@/app/(dashboard)/hr/_modals/EditDepartmentModal.jsx";
 import Alert from "@/components/Alerts/Alert.jsx";
+import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDepartments,
   deleteDepartment,
 } from "@/redux/departments/departmentAPI";
+import {
+  useDeleteManyDepartmentsMutation,
+} from "@/redux/departments/departmentsApi";
 
 function DepartmentsTab() {
   const dispatch = useDispatch();
@@ -15,6 +20,7 @@ function DepartmentsTab() {
   const { departments } = useSelector(
     (state) => state.departments
   );
+  const [deleteManyDepartments] = useDeleteManyDepartmentsMutation();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [selectedDeleteDepartment, setSelectedDeleteDepartment] =
@@ -22,6 +28,13 @@ function DepartmentsTab() {
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
   const [isEditSuccessAlertOpen, setIsEditSuccessAlertOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [tableKey, setTableKey] = useState(0);
+  const [responseAlert, setResponseAlert] = useState({
+    isOpen: false,
+    status: "",
+    message: "",
+  });
 
   const headers = [
     { label: t("Name"), width: "200px" },
@@ -51,11 +64,45 @@ function DepartmentsTab() {
     dispatch(fetchDepartments());
   };
 
+  const handleSelectionChange = (indices) => {
+    setSelectedIds(indices.map((i) => departments[i]?._id).filter(Boolean));
+  };
+
+  const confirmBulkDelete = async () => {
+    try {
+      const result = await deleteManyDepartments(selectedIds).unwrap();
+      const failedCount = result?.data?.failed?.length || 0;
+      setResponseAlert({
+        isOpen: true,
+        status: failedCount > 0 ? "warning" : "success",
+        message:
+          failedCount > 0
+            ? t("{{count}} item(s) deleted, {{failed}} failed", {
+                count: result?.data?.deleted ?? 0,
+                failed: failedCount,
+              })
+            : t("{{count}} departments deleted successfully", {
+                count: selectedIds.length,
+              }),
+      });
+      setSelectedIds([]);
+      setTableKey((k) => k + 1);
+      dispatch(fetchDepartments());
+    } catch (error) {
+      setResponseAlert({
+        isOpen: true,
+        status: "error",
+        message: error?.data?.message || t("Failed to delete selected items"),
+      });
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2 h-full">
           <Table
+            key={tableKey}
             title={"All Departments"}
             headers={headers}
             handelDelete={(index) => {
@@ -69,6 +116,14 @@ function DepartmentsTab() {
             isActions={true}
             rows={DepartmentRowTable()}
             isFilter={true}
+            onSelectionChange={handleSelectionChange}
+            headerActions={
+              <BulkDeleteButton
+                count={selectedIds.length}
+                onConfirm={confirmBulkDelete}
+                permission="departments.delete"
+              />
+            }
           />
         </div>
       </div>
@@ -116,6 +171,13 @@ function DepartmentsTab() {
         message={t("The department has been successfully updated.")}
         isOpen={isEditSuccessAlertOpen}
         onClose={() => setIsEditSuccessAlertOpen(false)}
+      />
+
+      <ApiResponseAlert
+        isOpen={responseAlert.isOpen}
+        status={responseAlert.status}
+        message={responseAlert.message}
+        onClose={() => setResponseAlert({ ...responseAlert, isOpen: false })}
       />
     </>
   );

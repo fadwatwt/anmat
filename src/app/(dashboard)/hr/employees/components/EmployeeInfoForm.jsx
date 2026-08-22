@@ -1,26 +1,36 @@
 import InputAndLabel from "@/components/Form/InputAndLabel";
 import ElementsSelect from "@/components/Form/ElementsSelect";
 import DateInput from "@/components/Form/DateInput";
+import { COUNTRIES } from "@/data/countriesCities";
+import PropTypes from "prop-types";
 
 import { useTranslation } from "react-i18next";
 
 function EmployeeInfoForm({ formData, updateFormData, isEdit = false }) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isArabic = i18n.language?.startsWith("ar");
 
-    const countryOptions = [
-        { id: "Egypt", element: t("Egypt") },
-        { id: "Palestine", element: t("Palestine") },
-        { id: "Jordan", element: t("Jordan") },
-        { id: "Saudi Arabia", element: t("Saudi Arabia") },
-    ];
+    const selectedCountry = COUNTRIES.find((c) => c.en === formData.employee_detail.country);
 
-    const cityOptions = [
-        { id: "Cairo", element: t("Cairo") },
-        { id: "Alexandria", element: t("Alexandria") },
-        { id: "Gaza", element: t("Gaza") },
-        { id: "Amman", element: t("Amman") },
-        { id: "Riyadh", element: t("Riyadh") },
-    ];
+    const countryOptions = COUNTRIES.map((c) => ({
+        id: c.en,
+        element: isArabic ? c.ar : c.en,
+    }));
+
+    const currentCountry = formData.employee_detail.country;
+    if (currentCountry && !countryOptions.some((opt) => opt.id === currentCountry)) {
+        countryOptions.unshift({ id: currentCountry, element: currentCountry });
+    }
+
+    const cityOptions = (selectedCountry?.cities || []).map((city) => ({
+        id: city.en,
+        element: isArabic ? city.ar : city.en,
+    }));
+
+    const currentCity = formData.employee_detail.city;
+    if (currentCity && !cityOptions.some((opt) => opt.id === currentCity)) {
+        cityOptions.unshift({ id: currentCity, element: currentCity });
+    }
 
     return (
         <div className={"flex flex-col gap-6 max-h-full pb-3"}>
@@ -88,8 +98,15 @@ function EmployeeInfoForm({ formData, updateFormData, isEdit = false }) {
                         title={t("Country")}
                         options={countryOptions}
                         defaultValue={countryOptions.find(opt => opt.id === formData.employee_detail.country)}
-                        onChange={(val) => updateFormData("country", val[0]?.id, true)}
+                        onChange={(val) => {
+                            const newCountry = val[0]?.id || "";
+                            if (newCountry !== formData.employee_detail.country) {
+                                updateFormData("city", "", true);
+                            }
+                            updateFormData("country", newCountry, true);
+                        }}
                         name="country"
+                        placeholder="Select country"
                         classNameContainer={"w-full"}
                     />
                     <ElementsSelect
@@ -98,6 +115,7 @@ function EmployeeInfoForm({ formData, updateFormData, isEdit = false }) {
                         defaultValue={cityOptions.find(opt => opt.id === formData.employee_detail.city)}
                         onChange={(val) => updateFormData("city", val[0]?.id, true)}
                         name="city"
+                        placeholder={selectedCountry ? "Select city" : "Select country first"}
                         classNameContainer={"w-full"}
                     />
                 </div>
@@ -105,5 +123,22 @@ function EmployeeInfoForm({ formData, updateFormData, isEdit = false }) {
         </div>
     );
 }
+
+EmployeeInfoForm.propTypes = {
+    formData: PropTypes.shape({
+        name: PropTypes.string,
+        email: PropTypes.string,
+        phone: PropTypes.string,
+        password: PropTypes.string,
+        password_confirmation: PropTypes.string,
+        employee_detail: PropTypes.shape({
+            country: PropTypes.string,
+            city: PropTypes.string,
+            date_of_birth: PropTypes.string,
+        }),
+    }).isRequired,
+    updateFormData: PropTypes.func.isRequired,
+    isEdit: PropTypes.bool,
+};
 
 export default EmployeeInfoForm;

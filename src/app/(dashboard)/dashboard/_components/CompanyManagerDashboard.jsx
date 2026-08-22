@@ -171,13 +171,13 @@ const AdminDashboard = () => {
       <ProcessingOverlay isOpen={isPageLoading} message={t("Loading Dashboard...")} />
       <div className="flex flex-col md:flex-row items-stretch gap-4 justify-between w-full">
         {/* Tasks Summary Card */}
-        <div className="w-full md:w-1/2">
+        <div data-tour="tasks-summary" className="w-full md:w-1/2">
           <AnalyticsCard title={t("Tasks Summary")}>
             <DynamicDoughnut data={chartData.records} centerTitle={t("TASKS")} centerValue={chartData.total} />
           </AnalyticsCard>
         </div>
 
-        <div className="w-full md:w-1/2">
+        <div data-tour="departments" className="w-full md:w-1/2">
           <AnalyticsCard title={t("Departments")} showDropdowns={true} dropdown1Label={t("Last 6 Months")}>
             <div className="w-full h-[300px]">
               <DepartmentsPerformanceChat data={departmentsData} />
@@ -189,7 +189,7 @@ const AdminDashboard = () => {
       {/* Task/Project Evaluation & Activity Logs Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Task/Project Evaluation Section (2/3 of the width) */}
-        <div className="lg:col-span-2">
+        <div data-tour="projects-table" className="lg:col-span-2">
           <Table
             title={t("Projects Overview")}
             headers={headers}
@@ -208,16 +208,18 @@ const AdminDashboard = () => {
         </div>
 
         {/* Activity Logs Section (1/3 of the width) */}
-        <ActivityLogs
-          className={"max-h-[30rem]"}
-          activityLogs={rawLogs}
-          isRawLogs={true}
-          isLoading={isLogsLoading}
-        />
+        <div data-tour="activity-logs">
+          <ActivityLogs
+            className={"max-h-[30rem]"}
+            activityLogs={rawLogs}
+            isRawLogs={true}
+            isLoading={isLogsLoading}
+          />
+        </div>
       </div>
 
       {/* Requests Section */}
-      <div className="">
+      <div data-tour="requests" className="">
         <EmployeeRequests />
       </div>
 

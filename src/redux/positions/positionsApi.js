@@ -34,6 +34,14 @@ export const positionsApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Positions"],
         }),
+        deleteManyPositions: builder.mutation({
+            query: (ids) => ({
+                url: "api/subscriber/organization/positions/delete-many",
+                method: "POST",
+                body: { ids },
+            }),
+            invalidatesTags: ["Positions", "Departments", "Employees"],
+        }),
     }),
 });
 
@@ -42,4 +50,5 @@ export const {
     useCreatePositionMutation,
     useUpdatePositionMutation,
     useDeletePositionMutation,
+    useDeleteManyPositionsMutation,
 } = positionsApi;

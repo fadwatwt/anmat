@@ -1,3 +1,5 @@
+import { getToken } from "@/utils/tokenStorage";
+
 import { RootRoute } from "@/Root.Route";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -7,7 +9,7 @@ export const conversationsAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${RootRoute}/api/chats`,
     prepareHeaders: (headers) => {
-      const token = typeof window !== "undefined" && localStorage.getItem("token");
+      const token = typeof window !== "undefined" && getToken();
 
       if (token) headers.set("Authorization", `Bearer ${token}`);
       return headers;
