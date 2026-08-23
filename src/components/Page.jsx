@@ -20,7 +20,7 @@ function Page({
   return (
     <div
       className={
-        "tab-content dark:bg-gray-900 " +
+        "tab-content bg-main " +
         (className
           ? className
           : "flex flex-col gap-4 box-border mx-auto py-5 md:px-10 px-3")

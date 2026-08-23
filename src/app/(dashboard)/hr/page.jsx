@@ -8,7 +8,6 @@ import AttendanceTab from "@/app/(dashboard)/hr/employees/tabs/AttendanceTab.jsx
 import SalaryTab from "@/app/(dashboard)/hr/employees/tabs/SalaryTab.jsx";
 import RequestsTab from "@/app/(dashboard)/hr/employees/tabs/RequestsTab.jsx";
 import LeavesTab from "@/app/(dashboard)/hr/employees/tabs/LeavesTab.jsx";
-import NotificationsTap from "@/app/(dashboard)/hr/employees/tabs/NotificationsTap.jsx";
 import CreateADepartmentModal from "@/app/(dashboard)/hr/_modals/CreateADepartmentModal.jsx";
 import InviteEmployeeModal from "@/app/(dashboard)/hr/_modals/InviteEmployeeModal";
 import { usePermission } from "@/Hooks/usePermission";
@@ -38,7 +37,6 @@ function HRPage() {
     const canTrackAllSalary = usePermission("salary_transactions.track_all");
     const canTrackDeptSalary = usePermission("salary_transactions.track_department");
     const canViewSalary = canTrackAllSalary || canTrackDeptSalary;
-    const canSendNotification = usePermission("notifications.create");
 
     const tabsData = [
         ...(canViewEmployees ? [{
@@ -61,13 +59,11 @@ function HRPage() {
             title: t("Salary"),
             content: <SalaryTab />,
         }] : []),
+        // Rotations and Notifications removed from HR — available as dedicated pages/tabs:
+        // Rotations is accessible via attendance management, Notifications via /notifications
         ...(canViewAttendances ? [{
             title: t("Rotations"),
             content: <RotationTap />,
-        }] : []),
-        ...(canSendNotification ? [{
-            title: t("Notifications"),
-            content: <NotificationsTap />,
         }] : []),
     ];
 

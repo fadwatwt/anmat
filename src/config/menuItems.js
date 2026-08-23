@@ -43,7 +43,7 @@ export const dashboardSideMenuItems = [
     {
         section: 'My Work',
         allowed_to: ['Employee'],
-        title: 'My Agenda',
+        title: 'My Appointments',
         path: '/appointments',
         icon: <CalendarTick />,
     },
@@ -98,7 +98,7 @@ export const dashboardSideMenuItems = [
     {
         section: 'Work Management',
         allowed_to: ['Subscriber'],
-        title: 'Agenda',
+        title: 'Appointments',
         path: '/appointments',
         icon: <CalendarTick />,
         permission_any_of: ['appointments.track_all', 'appointments.track_department'],
@@ -276,11 +276,12 @@ export const dashboardSideMenuItems = [
         icon: <EmptyWallet />
     },
     {
-        section: 'Subscriptions & Payments',
+        section: 'System Administration',
         allowed_to: ['Admin'],
         title: 'Translations',
         path: '/translations',
-        icon: <LanguageSquare />
+        icon: <LanguageSquare />,
+        permission: 'admin.translations.list'
     },
 
     // ═══════════════════════════════════════════

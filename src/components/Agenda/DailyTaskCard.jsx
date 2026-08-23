@@ -38,7 +38,7 @@ const CATEGORY_LABELS = {
   documentation: "توثيق", communication: "تواصل", other: "أخرى",
 };
 
-const INPUT_CLS = "w-full px-2 py-1.5 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent";
+const INPUT_CLS = "w-full px-2 py-1.5 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50";
 
 function DailyTaskCard({ task, size = "md", onUpdate }) {
   const { t, i18n } = useTranslation();
@@ -298,7 +298,7 @@ function DailyTaskCard({ task, size = "md", onUpdate }) {
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
             rows={2}
-            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
             placeholder={t("Add a note...")}
           />
           <div className="flex items-center gap-2 mt-2">

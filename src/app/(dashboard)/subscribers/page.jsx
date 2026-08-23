@@ -14,7 +14,8 @@ import StatusActions from "@/components/Dropdowns/StatusActions";
 import CheckAlert from "@/components/Alerts/CheckِِAlert";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 import { useGetSubscribersQuery, useToggleSubscriberActivationMutation } from "@/redux/subscribers/subscribersApi";
-import { useState } from "react";
+import { useGetIndustriesQuery } from "@/redux/industries/industriesApi";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { FiEye } from "react-icons/fi";
 import { format } from "date-fns";
@@ -43,14 +44,12 @@ function Subscribers() {
   const { data: subscribers, isLoading, error } = useGetSubscribersQuery();
   const [toggleActivation] = useToggleSubscriberActivationMutation();
 
-  const [isDeleteSubAert, setIsDeleteSubAert] = useState(false);
+  const { data: industriesResponse } = useGetIndustriesQuery("en");
+  const [pendingDeactivate, setPendingDeactivate] = useState(null);
+  const [isDeactivateAlert, setIsDeactivateAlert] = useState(false);
   const [apiResponse, setApiResponse] = useState({ isOpen: false, status: "", message: "" });
   const [isNotifyModalOpen, setIsNotifyModalOpen] = useState(false);
   const [notifyTarget, setNotifyTarget] = useState(null);
-
-  const handleDeleteSubAert = () => {
-    setIsDeleteSubAert(!isDeleteSubAert);
-  }
 
   const handleToggleActivation = async (id) => {
     try {
@@ -141,11 +140,20 @@ function Subscribers() {
   ]) || [];
 
 
-  const industryOptions = [
-    { name: "All", value: "All" },
-    { name: "Design", value: "design" },
-    { name: "Product Management", value: "product management" }
-  ];
+  const industryOptions = useMemo(() => {
+    const list = industriesResponse?.data || industriesResponse || [];
+    if (!Array.isArray(list) || list.length === 0) {
+        return [
+            { name: "All", value: "All" },
+            { name: "Design", value: "design" },
+            { name: "Product Management", value: "product management" }
+        ];
+    }
+    return [
+        { name: "All", value: "All" },
+        ...list.map((ind) => ({ name: ind.name, value: ind._id || ind.name }))
+    ];
+  }, [industriesResponse]);
 
   const SubscriptionActions = ({ subscriber }) => {
     const { t, i18n } = useTranslation();
@@ -156,21 +164,15 @@ function Subscribers() {
         },
       },
       {
-        text: t("Edit"), icon: <RiEditLine className="text-primary-400" />, onClick: () => {
-          console.log("Edit", subscriber._id)
-        },
-      },
-      {
         text: subscriber.is_active ? t("Deactivate") : t("Activate"),
         icon: subscriber.is_active ? <RiCloseCircleLine className="text-red-500" /> : <RiCheckboxCircleLine className="text-green-500" />,
         onClick: () => {
-          handleToggleActivation(subscriber._id)
-        },
-      },
-      {
-        text: t("Delete"), icon: <RiDeleteBin7Line className="text-red-500" />, onClick: () => {
-          handleDeleteSubAert()
-          console.log("Delete", subscriber._id)
+          if (subscriber.is_active) {
+              setPendingDeactivate(subscriber);
+              setIsDeactivateAlert(true);
+          } else {
+              handleToggleActivation(subscriber._id);
+          }
         },
       },
       {
@@ -211,15 +213,21 @@ function Subscribers() {
         }}
       />
       <CheckAlert
-        isOpen={isDeleteSubAert}
-        onClose={handleDeleteSubAert}
+        isOpen={isDeactivateAlert}
+        onClose={() => { setIsDeactivateAlert(false); setPendingDeactivate(null); }}
         type="cancel"
-        title={t("Cancel Subscription")}
-        confirmBtnText={t("Yes, Stop")}
+        title={t("Deactivate Subscriber")}
+        confirmBtnText={t("Yes, Deactivate")}
         description={
-          <p className="text-cell-secondary">{t("Are you sure you want to delete the subscription of this client?")}</p>
+          <p className="text-cell-secondary">{t("Are you sure you want to deactivate")} <b>{pendingDeactivate?.name}</b>?</p>
         }
-        onSubmit={() => { }}
+        onSubmit={async (confirmed) => {
+          if (confirmed && pendingDeactivate) {
+              await handleToggleActivation(pendingDeactivate._id);
+          }
+          setIsDeactivateAlert(false);
+          setPendingDeactivate(null);
+        }}
       />
       <ApiResponseAlert
         isOpen={apiResponse.isOpen}

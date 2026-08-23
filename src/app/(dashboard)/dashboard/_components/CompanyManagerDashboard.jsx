@@ -43,6 +43,7 @@ import EmployeeRequests from "./employee/EmployeeRequests";
 import { useGetSubscriberTaskStatisticsStatusQuery } from "@/redux/tasks/subscriberTasksApi";
 import { useGetSubscriberProjectsQuery } from "@/redux/projects/subscriberProjectsApi";
 import { useGetOrganizationLogsQuery } from "@/redux/activity-logs/activityLogsApi";
+import { useGetSubscriberAnalyticsQuery } from "@/redux/analytics/analyticsApi";
 
 const AdminDashboard = () => {
   const { t } = useTranslation();
@@ -51,6 +52,7 @@ const AdminDashboard = () => {
   const { data: statsData, isLoading: isStatsLoading } = useGetSubscriberTaskStatisticsStatusQuery();
   const { data: projects = [], isLoading: isProjectsLoading } = useGetSubscriberProjectsQuery();
   const { data: departments = [], isLoading: isDepartmentsLoading } = useGetDepartmentsQuery();
+  const { data: analyticsData, isLoading: isAnalyticsLoading } = useGetSubscriberAnalyticsQuery({});
 
   const isPageLoading = isStatsLoading || isProjectsLoading || isDepartmentsLoading;
 
@@ -93,22 +95,37 @@ const AdminDashboard = () => {
     return labelMap[key] || t(status.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
   };
 
-  const chartData = statsData?.data ? {
-    total: statsData.data.total,
-    records: Object.entries(statsData.data.status_counts).map(([status, count], index) => ({
-      title: getStatusLabel(status),
-      name: getStatusLabel(status),
-      value: count,
-      color: getStatusColor(status, index),
-    })),
-  } : {
-    total: 0,
-    records: []
-  };
+  // المهام: مصدر أساسي stats/status، مع fallback إلى analytics tasksSummary لضمان الظهور حتى لو تأخر أحدهما
+  const analyticsTasksSummary = analyticsData?.data?.tasksSummary || [];
+  const chartData = (() => {
+    if (statsData?.data?.status_counts) {
+      return {
+        total: statsData.data.total,
+        records: Object.entries(statsData.data.status_counts).map(([status, count], index) => ({
+          title: getStatusLabel(status),
+          name: getStatusLabel(status),
+          value: count,
+          color: getStatusColor(status, index),
+        })),
+      };
+    }
+    if (analyticsTasksSummary.length) {
+      return {
+        total: analyticsTasksSummary.reduce((s, x) => s + (x.value || 0), 0),
+        records: analyticsTasksSummary.map((item, index) => ({
+          title: getStatusLabel(item.name),
+          name: getStatusLabel(item.name),
+          value: item.value,
+          color: getStatusColor(item.name, index),
+        })),
+      };
+    }
+    return { total: 0, records: [] };
+  })();
 
   const departmentsData = departments.map(dept => ({
     name: dept.name,
-    rate: parseFloat(((dept.overall_rating || dept.rate || 0)).toFixed(2))
+    rate: parseFloat(((dept.overall_rating ?? dept.rate ?? 0)).toFixed(2))
   }));
 
   useEffect(() => {
@@ -173,14 +190,30 @@ const AdminDashboard = () => {
         {/* Tasks Summary Card */}
         <div data-tour="tasks-summary" className="w-full md:w-1/2">
           <AnalyticsCard title={t("Tasks Summary")}>
-            <DynamicDoughnut data={chartData.records} centerTitle={t("TASKS")} centerValue={chartData.total} />
+            {chartData.records.length === 0 ? (
+              <div className="h-[220px] flex flex-col items-center justify-center text-cell-secondary gap-2">
+                <span className="text-sm">{isStatsLoading || isAnalyticsLoading ? t("Loading...") : t("No tasks yet")}</span>
+                <span className="text-xs opacity-60">{t("Create your first task to see statistics")}</span>
+              </div>
+            ) : (
+              <DynamicDoughnut data={chartData.records} centerTitle={t("TASKS")} centerValue={chartData.total} />
+            )}
           </AnalyticsCard>
         </div>
 
         <div data-tour="departments" className="w-full md:w-1/2">
           <AnalyticsCard title={t("Departments")} showDropdowns={true} dropdown1Label={t("Last 6 Months")}>
             <div className="w-full h-[300px]">
-              <DepartmentsPerformanceChat data={departmentsData} />
+              {departmentsData.length === 0 ? (
+                <div className="h-full flex items-center justify-center text-cell-secondary text-sm">{t("No departments found")}</div>
+              ) : departmentsData.every(d => d.rate === 0) ? (
+                <div className="h-full flex flex-col items-center justify-center text-cell-secondary gap-2 py-8">
+                  <DepartmentsPerformanceChat data={departmentsData} />
+                  <span className="text-xs opacity-60 -mt-4">{t("Departments have not been rated yet")}</span>
+                </div>
+              ) : (
+                <DepartmentsPerformanceChat data={departmentsData} />
+              )}
             </div>
           </AnalyticsCard>
         </div>

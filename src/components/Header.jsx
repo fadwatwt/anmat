@@ -8,6 +8,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { useSelector } from "react-redux";
+import { useRouter, usePathname } from "next/navigation";
 import { selectNotifications, selectUnreadCount } from "@/redux/notifications/notificationsSlice";
 import NotificationsDropdown from "./Dropdowns/NotificationsDropdown.jsx";
 import MessagesDropdown from "./Dropdowns/MessagesDropdown.jsx";
@@ -20,6 +21,8 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
   const notifications = useSelector(selectNotifications);
   const unreadCount = useSelector(selectUnreadCount);
   const [theme, setTheme] = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -30,48 +33,60 @@ const Header = React.memo(({ taggleSlidebarOpen, className }) => {
     i18n.changeLanguage(newLang);
   };
 
+  const handleTourRestart = () => {
+    const confirmed = window.confirm(t("Restart the guided tour? The page will reload."));
+    if (!confirmed) return;
+    localStorage.removeItem("subscriber_dashboard_tour_completed");
+    // يجب الانتقال للصفحة الرئيسية قبل بدء الشرح — عناصر الجولة موجودة فقط في /dashboard
+    if (pathname !== "/dashboard") {
+      window.location.href = "/dashboard";
+    } else {
+      window.location.reload();
+    }
+  };
+
   return (
     <div
       data-tour="header"
       className={
-        "header bg-surface max-w-full h-[72px] flex px-3 sm:px-4 md:px-8 items-center justify-between relative border-b z-50 " +
+        "header bg-surface max-w-full h-[72px] flex px-3 sm:px-4 md:px-8 items-center justify-between relative border-b border-status-border z-50 " +
         className
       }
     >
       <button
         onClick={taggleSlidebarOpen}
-        className="inline-flex items-center p-2 text-sm h-8 text-cell-secondary rounded-lg md:hidden hover:bg-status-bg focus:outline-none focus:ring-2 focus:ring-status-border"
+        className="inline-flex items-center justify-center p-2.5 h-9 w-9 text-cell-secondary rounded-xl md:hidden hover:bg-status-bg focus:outline-none focus:ring-2 focus:ring-primary-base"
+        aria-label={t("Open menu")}
       >
-        <HiOutlineMenuAlt2 />
+        <HiOutlineMenuAlt2 size={20} />
       </button>
       <div className="hidden md:block">
         <SearchInput />
       </div>
-      <div className={"flex gap-2 sm:gap-5"}>
-        <div className={"icons flex gap-1 sm:gap-2 items-center relative w-auto justify-end"}>
+      <div className={"flex gap-2 sm:gap-4 items-center"}>
+        <div className={"icons flex gap-1.5 sm:gap-2 items-center relative w-auto justify-end"}>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors"
+            className="p-2.5 rounded-xl text-cell-secondary hover:bg-status-bg transition-colors border border-transparent hover:border-status-border"
             title={theme === "dark" ? t("Switch to Light Mode") : t("Switch to Dark Mode")}
+            aria-label={theme === "dark" ? t("Switch to Light Mode") : t("Switch to Dark Mode")}
           >
             {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
           </button>
           <button
             onClick={toggleLanguage}
-            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors text-sm font-medium"
-            title={i18n.language === "ar" ? t("English") : t("Arabic")}
+            className="px-3 py-2 rounded-xl text-cell-secondary hover:bg-status-bg transition-colors text-sm font-semibold border border-status-border min-w-[64px]"
+            title={i18n.language === "ar" ? t("Switch to English") : t("التبديل إلى العربية")}
+            aria-label={i18n.language === "ar" ? t("Switch to English") : t("التبديل إلى العربية")}
           >
-            {i18n.language === "ar" ? t("EN") : t("AR")}
+            {i18n.language === "ar" ? t("English") : t("العربية")}
           </button>
           <NotificationsDropdown notifications={notifications} unreadCount={unreadCount} />
           <MessagesDropdown />
           {/* Dashboard Tour button */}
           <button
-            onClick={() => {
-              localStorage.removeItem("subscriber_dashboard_tour_completed");
-              window.location.reload();
-            }}
-            className="p-2 rounded-lg text-cell-secondary hover:bg-status-bg transition-colors"
+            onClick={handleTourRestart}
+            className="p-2.5 rounded-xl text-cell-secondary hover:bg-status-bg transition-colors border border-transparent hover:border-status-border"
             title={t("header.dashboard_tour")}
             aria-label={t("header.dashboard_tour")}
           >

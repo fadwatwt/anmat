@@ -32,16 +32,16 @@ const StatusBadge = ({ status }) => {
             colors = "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800";
             break;
         case "Late":
-            Icon = <BsClockFill size={14} className="text-[#C2540A]" />;
-            colors = "bg-[#FFF9F5] text-[#C2540A] border-[#FFD9C2]";
+            Icon = <BsClockFill size={14} className="text-[#C2540A] dark:text-orange-400" />;
+            colors = "bg-[#FFF9F5] text-[#C2540A] border-[#FFD9C2] dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800";
             break;
         case "Absent":
             Icon = <BsSlashCircleFill size={14} className="text-cell-secondary" />;
             colors = "bg-status-bg text-cell-secondary border-status-border";
             break;
         default:
-            Icon = <BsClockFill size={14} className="text-[#C2540A]" />;
-            colors = "bg-status-bg text-cell-secondary border-status-border";
+            Icon = <BsClockFill size={14} className="text-[#C2540A] dark:text-orange-400" />;
+            colors = "bg-status-bg text-cell-secondary border-status-border dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700";
     }
 
     return (
@@ -109,6 +109,11 @@ const AttendanceActionCard = ({ hasCheckedIn, checkOutDone, isCheckingIn, isChec
                         {isCheckingIn ? t("Checking In…") : t("Check In")}
                     </button>
                 )}
+                {!hasCheckedIn && !canCheckIn && (
+                    <span className="text-xs text-cell-secondary bg-status-bg border border-status-border px-3 py-2 rounded-xl">
+                        {t("You don't have permission to check in. Contact your administrator.")}
+                    </span>
+                )}
 
                 {/* Check-Out — visible after check-in, hidden immediately on success */}
                 {hasCheckedIn && !checkOutDone && canCheckOut && (
@@ -125,6 +130,11 @@ const AttendanceActionCard = ({ hasCheckedIn, checkOutDone, isCheckingIn, isChec
                         <LuLogOut size={17} />
                         {isCheckingOut ? t("Checking Out…") : t("Check Out")}
                     </button>
+                )}
+                {hasCheckedIn && !checkOutDone && !canCheckOut && (
+                    <span className="text-xs text-cell-secondary bg-status-bg border border-status-border px-3 py-2 rounded-xl">
+                        {t("You don't have permission to check out. Contact your administrator.")}
+                    </span>
                 )}
             </div>
         </div>
@@ -275,8 +285,8 @@ export default function EmployeeAttendancePage() {
                 {record.end_time ? (
                     record.end_time
                 ) : (
-                    <span className="inline-flex items-center gap-1.5 text-[#C2540A] text-xs font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C2540A] animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 text-[#C2540A] dark:text-orange-300 text-xs font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#C2540A] dark:bg-orange-400 animate-pulse" />
                         {t("In Progress")}
                     </span>
                 )}
@@ -286,7 +296,14 @@ export default function EmployeeAttendancePage() {
 
     /* ── Render ── */
     return (
-        <Page title={t("My Attendance")}>
+        <Page
+            title={t("My Attendance")}
+            isBreadcrumbs={true}
+            breadcrumbs={[
+                { title: "Dashboard", path: "/dashboard" },
+                { title: "My Attendance", path: "/attendance" },
+            ]}
+        >
             <div className="flex flex-col gap-6">
 
                 {/* ── Check-In / Check-Out card ── */}

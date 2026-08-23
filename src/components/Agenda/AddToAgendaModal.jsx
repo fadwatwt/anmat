@@ -89,7 +89,7 @@ function AddToAgendaModal({ isOpen, onClose, task }) {
               value={selectedDate}
               min={today}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+              className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary"
             />
           </div>
 
@@ -101,7 +101,7 @@ function AddToAgendaModal({ isOpen, onClose, task }) {
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+              className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary"
             >
               <option value="low">{t("Low")}</option>
               <option value="medium">{t("Medium")}</option>

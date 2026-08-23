@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { RiCloseLine } from "react-icons/ri";
 
 const INPUT_CLASS =
-  "w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm";
+  "w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50";
 
 const LABEL_CLASS = "block text-sm font-medium text-cell-secondary mb-1";
 

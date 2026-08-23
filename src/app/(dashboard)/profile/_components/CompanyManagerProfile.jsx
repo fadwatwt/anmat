@@ -71,6 +71,13 @@ function CompanyManagerProfile() {
                                             <span className={"text-cell-secondary text-sm"}>{t("Name")}:</span>
                                             <p className={"text-cell-primary text-sm font-medium"}>{user?.name || "N/A"}</p>
                                         </div>
+                                        {organization?.name && (
+                                            <div className={"flex items-center gap-2"}>
+                                                <RiBuilding2Line size={18} className={"text-cell-secondary"} />
+                                                <span className={"text-cell-secondary text-sm"}>{t("Organization")}:</span>
+                                                <p className={"text-cell-primary text-sm font-medium truncate"} title={organization.name}>{organization.name}</p>
+                                            </div>
+                                        )}
                                         {false && <div className={"flex items-center gap-2"}>
                                             <RiCake2Line size={18} className={"text-cell-secondary"} />
                                             <span className={"text-cell-secondary text-sm"}>{t("Age")}:</span>

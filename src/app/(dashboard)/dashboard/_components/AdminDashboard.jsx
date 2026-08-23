@@ -27,25 +27,28 @@ import {
     RiLockLine
 } from "@remixicon/react";
 
-const SummaryCard = ({ title, value, icon: Icon, color, trend }) => (
-    <div className="bg-surface p-6 rounded-[24px] shadow-sm border border-status-border flex items-center justify-between hover:shadow-md transition-shadow group">
-        <div className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-cell-secondary">{title}</span>
-            <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-table-title">{value}</span>
-                {trend && (
-                    <span className={`text-xs flex items-center ${trend > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {trend > 0 ? <RiArrowRightUpLine size={14} /> : <RiArrowRightDownLine size={14} />}
-                        {Math.abs(trend)}%
-                    </span>
-                )}
+const SummaryCard = ({ title, value, icon: Icon, color, trend }) => {
+    const trendVal = typeof trend === "number" ? trend : null;
+    return (
+        <div className="bg-surface p-6 rounded-[24px] shadow-sm border border-status-border flex items-center justify-between hover:shadow-md transition-shadow group">
+            <div className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-cell-secondary">{title}</span>
+                <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-table-title">{value}</span>
+                    {trendVal !== null && trendVal !== 0 && (
+                        <span className={`text-xs flex items-center ${trendVal > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                            {trendVal > 0 ? <RiArrowRightUpLine size={14} /> : <RiArrowRightDownLine size={14} />}
+                            {Math.abs(trendVal)}%
+                        </span>
+                    )}
+                </div>
+            </div>
+            <div className={`p-3 rounded-2xl ${color} bg-opacity-10 dark:bg-opacity-20 group-hover:scale-110 transition-transform border border-transparent dark:border-white/10`}>
+                <Icon size={24} className={color.replace('bg-', 'text-')} />
             </div>
         </div>
-        <div className={`p-3 rounded-2xl ${color} bg-opacity-10 group-hover:scale-110 transition-transform`}>
-            <Icon size={24} className={color.replace('bg-', 'text-')} />
-        </div>
-    </div>
-);
+    );
+};
 
 const SectionSkeleton = () => (
     <div className="animate-pulse bg-surface rounded-[24px] border border-status-border h-48" />
@@ -155,28 +158,28 @@ const AdminDashboard = () => {
                                 value={stats.totalCompanies || 0}
                                 icon={RiBuilding2Line}
                                 color="bg-blue-500"
-                                trend={12}
+                                trend={stats.companiesTrend}
                             />
                             <SummaryCard
                                 title={t("Active Projects")}
                                 value={stats.totalProjects || 0}
                                 icon={RiProjector2Line}
                                 color="bg-purple-500"
-                                trend={8}
+                                trend={stats.projectsTrend}
                             />
                             <SummaryCard
                                 title={t("Total Tasks")}
                                 value={stats.totalTasks || 0}
                                 icon={RiTaskLine}
                                 color="bg-orange-500"
-                                trend={-3}
+                                trend={stats.tasksTrend}
                             />
                             <SummaryCard
                                 title={t("System Users")}
                                 value={stats.totalUsers || 0}
                                 icon={RiUser3Line}
                                 color="bg-green-500"
-                                trend={5}
+                                trend={stats.usersTrend}
                             />
                         </div>
                     )}

@@ -75,7 +75,7 @@ function QuickAddAppointment({ onSuccess }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={t("Appointment title...")}
-            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
             autoFocus
           />
         </div>
@@ -86,7 +86,7 @@ function QuickAddAppointment({ onSuccess }) {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
             />
           </div>
           <div>
@@ -94,7 +94,7 @@ function QuickAddAppointment({ onSuccess }) {
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
             />
           </div>
         </div>
@@ -103,7 +103,7 @@ function QuickAddAppointment({ onSuccess }) {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
           >
             <option value="meeting">🤝 {t("Meeting")}</option>
             <option value="task">📋 {t("Task")}</option>

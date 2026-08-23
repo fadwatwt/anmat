@@ -40,14 +40,6 @@ function ProjectPage() {
 
   if (isEmployee && !employeeAuthorized) return null;
 
-  const handleCreateBtn = () => {
-    if (activeTab === 0) {
-      router.push("/projects/create");
-    } else {
-      router.push("/projects/templates/create");
-    }
-  };
-
   const tabsData = [
     ...(canListProjects ? [{
       title: t("Projects"),
@@ -59,17 +51,48 @@ function ProjectPage() {
     }] : []),
   ];
 
-  const currentTab = tabsData[activeTab];
-  const isProjectsTab = currentTab?.title === t("Projects");
-  const showCreateBtn = isProjectsTab ? canCreateProject : canCreateTemplate;
-  const btnTitle = isProjectsTab ? t("Create a Project") : t("Create a Template");
+  const showProjectBtn = canCreateProject;
+  const showTemplateBtn = canCreateTemplate;
+  const bothCreatable = showProjectBtn && showTemplateBtn;
+
+  const CreateActions = () => {
+    if (!showProjectBtn && !showTemplateBtn) return null;
+    // لا يوجد dropdown — إذا كان يملك الصلاحيتين يظهر زرّان مباشران، وإلا زر واحد
+    if (bothCreatable) {
+      return (
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => router.push("/projects/create")}
+            className="bg-primary-base dark:bg-primary-200 flex gap-1.5 items-center px-4 py-2.5 rounded-xl text-white dark:text-black font-medium shadow-sm hover:opacity-90 transition-opacity"
+          >
+            <span className="text-sm whitespace-nowrap">{t("Create a Project")}</span>
+          </button>
+          <button
+            onClick={() => router.push("/projects/templates/create")}
+            className="bg-surface border border-status-border flex gap-1.5 items-center px-4 py-2.5 rounded-xl text-cell-primary font-medium shadow-sm hover:bg-status-bg transition-colors"
+          >
+            <span className="text-sm whitespace-nowrap">{t("Create a Template")}</span>
+          </button>
+        </div>
+      );
+    }
+    const singlePath = showProjectBtn ? "/projects/create" : "/projects/templates/create";
+    const singleTitle = showProjectBtn ? t("Create a Project") : t("Create a Template");
+    return (
+      <button
+        onClick={() => router.push(singlePath)}
+        className="bg-primary-base dark:bg-primary-200 flex gap-1.5 items-center px-4 py-2.5 rounded-xl text-white dark:text-black font-medium shadow-sm hover:opacity-90 transition-opacity"
+      >
+        <span className="text-sm whitespace-nowrap">{singleTitle}</span>
+      </button>
+    );
+  };
 
   return (
     <Page
       title={t("Projects")}
-      isBtn={showCreateBtn}
-      btnOnClick={handleCreateBtn}
-      btnTitle={btnTitle}
+      isTitle={true}
+      otherHeaderActions={<CreateActions />}
     >
       <div className="flex flex-col gap-4">
         <Tabs tabs={tabsData} activeTab={activeTab} onTabChange={setActiveTab} />

@@ -26,11 +26,21 @@ const saveCollapsedSections = (state) => {
     } catch (e) { /* empty */ } // eslint-disable-line no-unused-vars
 };
 
+const sectionTourMap = {
+    'Overview': 'menu-overview',
+    'Work Management': 'menu-work',
+    'Team Management': 'menu-team',
+    'Reports & Analytics': 'menu-analytics',
+    'Smart Tools': 'menu-ai',
+};
+
 const SectionHeader = ({ title, isCollapsed, onToggle }) => {
     const { t } = useTranslation();
     if (!title) return null;
+    const tourAttr = sectionTourMap[title] ? { 'data-tour': sectionTourMap[title] } : {};
     return (
         <div
+            {...tourAttr}
             onClick={onToggle}
             className="px-4 pt-5 pb-1 flex items-center justify-between cursor-pointer select-none group/section hover:bg-status-bg rounded-lg mx-2 transition-colors"
         >

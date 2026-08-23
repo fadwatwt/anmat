@@ -36,6 +36,13 @@ function authHeaders(token) {
 test.describe('Subscriber operations', () => {
   test.describe.configure({ mode: 'serial' });
 
+  // تعطيل الجولة الترحيبية (DashboardTour) حتى لا تحجب النقر خلف طبقتها
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('subscriber_dashboard_tour_completed', 'true');
+    });
+  });
+
   const createdTicketTitles = [];
   const createdDepartmentIds = [];
 

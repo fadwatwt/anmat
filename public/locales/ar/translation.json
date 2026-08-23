@@ -2234,7 +2234,6 @@
   "Yes, Create": "نعم، إنشاء",
   "Yes, Delete": "نعم، حذف",
   "Delete Selected": "حذف المحدد",
-  "Delete Selected ({{count}})": "حذف المحدد ({{count}})",
   "Are you sure you want to delete {{count}} selected items?": "هل أنت متأكد من حذف {{count}} عنصر محدد؟",
   "{{count}} item(s) deleted, {{failed}} failed": "تم حذف {{count}} عنصر، فشل حذف {{failed}}",
   "Failed to delete selected items": "فشل حذف العناصر المحددة",
@@ -3136,5 +3135,13 @@
   "Select country": "اختر الدولة",
   "Select city": "اختر المدينة",
   "Select country first": "اختر الدولة أولاً",
-  "/yr": "/ سنوياً"
+  "/yr": "/ سنوياً",
+  "tour.menu.overview.title": "القائمة الرئيسية",
+  "tour.menu.overview.desc": "من هنا تتنقل بين كل أقسام النظام. ابدأ من الرئيسية ثم استكشف إدارة العمل والفريق والتقارير.",
+  "tour.menu.work.title": "إدارة العمل",
+  "tour.menu.work.desc": "المشاريع والمهام والمواعيد — تابع تقدم العمل، أنشئ مشاريع جديدة وجدول مواعيدك اليومية.",
+  "tour.menu.team.title": "إدارة الفريق",
+  "tour.menu.team.desc": "الموارد البشرية: الموظفون، الأقسام، الفرق، المناصب، الاجتماعات والعطل.",
+  "tour.menu.analytics.title": "التقارير والتحليلات",
+  "tour.menu.analytics.desc": "التحليلات وذكاء الأعمال والمساعد الذكي — اعرض أداء المشاريع والمهام والحضور."
 }

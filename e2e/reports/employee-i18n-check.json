@@ -4,8 +4,10 @@
       "path": "/dashboard",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 17,
+      "totalLatin": 20,
       "flagged": [
+        "My Appointments",
+        "English",
         "Task Test-2",
         "Department Test-2",
         "test",
@@ -13,13 +15,15 @@
         "Test Task 5",
         "Tset",
         "Admin سجل الدخول.",
-        "Admin سجل الخروج.",
         "Employee سجل الدخول.",
         "Subscriber سجل الدخول.",
         "Subscriber أنشأ جديد اشتراك.",
-        "Subscriber تم التنفيذ user.registered في Bulk Tester.",
-        "[title] English",
-        "[title] test"
+        "Subscriber أنشأ جديد Anmat 7.",
+        "Subscriber تم التنفيذ user.registered في Belal Alnajjar.",
+        "created by full employee test",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
+        "[title] created by full employee test"
       ],
       "error": null
     },
@@ -27,8 +31,10 @@
       "path": "/employee/projects",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 22,
+      "totalLatin": 24,
       "flagged": [
+        "My Appointments",
+        "English",
         "Anmat",
         "Web app. test",
         "Sample Project Name Updated",
@@ -39,7 +45,8 @@
         "Standard template for website redesign projects",
         "Test Template 6",
         "Test desciption",
-        "[title] English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
         "[title] Belal Test",
         "[title] Test"
       ],
@@ -49,8 +56,10 @@
       "path": "/employee/tasks",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 17,
+      "totalLatin": 19,
       "flagged": [
+        "My Appointments",
+        "English",
         "Task Test-2",
         "Description task test-2",
         "test",
@@ -58,7 +67,8 @@
         "Test Task 5",
         "Description test",
         "Tset",
-        "[title] English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
         "[title] Task Test-2",
         "[title] Description task test-2",
         "[title] test",
@@ -73,9 +83,12 @@
       "path": "/appointments",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 3,
+      "totalLatin": 5,
       "flagged": [
-        "[title] English"
+        "My Appointments",
+        "English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -83,9 +96,12 @@
       "path": "/attendance",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 3,
+      "totalLatin": 5,
       "flagged": [
-        "[title] English"
+        "My Appointments",
+        "English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -93,10 +109,13 @@
       "path": "/salary",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 6,
+      "totalLatin": 8,
       "flagged": [
+        "My Appointments",
+        "English",
         "test",
-        "[title] English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
         "[title] test"
       ],
       "error": null
@@ -105,9 +124,12 @@
       "path": "/leaves",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 13,
+      "totalLatin": 15,
       "flagged": [
-        "[title] English"
+        "My Appointments",
+        "English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -115,10 +137,13 @@
       "path": "/requests",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 4,
+      "totalLatin": 6,
       "flagged": [
-        "test",
-        "[title] English"
+        "My Appointments",
+        "English",
+        "created by full employee test",
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -126,13 +151,17 @@
       "path": "/conversations",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 9,
+      "totalLatin": 13,
       "flagged": [
+        "My Appointments",
+        "English",
+        "Belal Test, Emp 1 Org 1, Test, Belal",
+        "Group call",
         "Subscriber 4",
         "Voice call",
         "Test Team Group",
-        "Group call",
-        "[title] English"
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -140,10 +169,13 @@
       "path": "/ai",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 4,
+      "totalLatin": 6,
       "flagged": [
+        "My Appointments",
+        "English",
         "What should I work on next ?",
-        "[title] English"
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -151,8 +183,10 @@
       "path": "/notifications",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 12,
+      "totalLatin": 14,
       "flagged": [
+        "My Appointments",
+        "English",
         "تم تحديث حالة طلبك SHORT_LEAVE إلى \"accepted\".",
         "تم تحديث مهمتك \"test tt\".",
         "تم تحديث مهمتك \"test\".",
@@ -162,7 +196,8 @@
         "تم تقييم مهمتك \"test\" بدرجة 3.7/5.",
         "تم تحديث مهمتك \"Test Task 5\".",
         "تم تحديث مهمتك \"Tset\".",
-        "[title] English"
+        "[aria-label] Switch to English",
+        "[title] Switch to English"
       ],
       "error": null
     },
@@ -170,8 +205,9 @@
       "path": "/setting",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 1,
+      "totalLatin": 2,
       "flagged": [
+        "My Appointments",
         "English"
       ],
       "error": null
@@ -180,8 +216,10 @@
       "path": "/profile",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 24,
+      "totalLatin": 26,
       "flagged": [
+        "My Appointments",
+        "English",
         "Cairo, Egypt",
         "Friday",
         "test notification",
@@ -193,7 +231,8 @@
         "Project: Sample Project Name Updated",
         "Task: Test Program",
         "Task: Test Task 5",
-        "[title] English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
         "[title] test notification",
         "[title] test",
         "[title] message",
@@ -282,8 +321,10 @@
       "path": "/profile → notifications",
       "lang": "ar",
       "dir": "rtl",
-      "totalLatin": 24,
+      "totalLatin": 26,
       "flagged": [
+        "My Appointments",
+        "English",
         "Cairo, Egypt",
         "Friday",
         "test notification",
@@ -295,7 +336,8 @@
         "Project: Sample Project Name Updated",
         "Task: Test Program",
         "Task: Test Task 5",
-        "[title] English",
+        "[aria-label] Switch to English",
+        "[title] Switch to English",
         "[title] test notification",
         "[title] test",
         "[title] message",

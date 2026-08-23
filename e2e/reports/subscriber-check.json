@@ -1,27 +1,366 @@
 {
-  "pages": [],
+  "pages": [
+    {
+      "route": "/dashboard",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "dashboard.png"
+    },
+    {
+      "route": "/projects",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "projects.png"
+    },
+    {
+      "route": "/tasks",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "tasks.png"
+    },
+    {
+      "route": "/appointments",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "agenda_appointments.png"
+    },
+    {
+      "route": "/hr/employees",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_employees.png"
+    },
+    {
+      "route": "/hr/departments",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_departments.png"
+    },
+    {
+      "route": "/hr/teams",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_teams.png"
+    },
+    {
+      "route": "/hr/positions",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_positions.png"
+    },
+    {
+      "route": "/hr/meetings",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_meetings.png"
+    },
+    {
+      "route": "/hr/holidays",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "hr_holidays.png"
+    },
+    {
+      "route": "/conversations",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "conversations.png"
+    },
+    {
+      "route": "/social-media",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "social_media.png"
+    },
+    {
+      "route": "/analytics",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "analytics.png"
+    },
+    {
+      "route": "/ai",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "ai.png"
+    },
+    {
+      "route": "/roles/employees",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "roles_employees.png"
+    },
+    {
+      "route": "/permissions",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "permissions.png"
+    },
+    {
+      "route": "/notifications",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "notifications.png"
+    },
+    {
+      "route": "/support-tickets",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "support_tickets.png"
+    },
+    {
+      "route": "/subscriptions",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [],
+      "horizontalOverflow": false,
+      "screenshot": "subscriptions.png"
+    },
+    {
+      "route": "/setting",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        },
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "user-profile-image"
+        },
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "user-profile-image"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "setting.png"
+    },
+    {
+      "route": "/profile",
+      "ok": true,
+      "jsErrors": [],
+      "brokenImages": [
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "Subscriber 4"
+        },
+        {
+          "src": "https://api.anmaat.com/uploads/User/69d3c8def2653225906863dd/1785153752577.png",
+          "alt": "image-user"
+        }
+      ],
+      "horizontalOverflow": false,
+      "screenshot": "profile.png"
+    }
+  ],
   "modals": [
+    {
+      "route": "/hr/meetings",
+      "opened": true,
+      "screenshot": "modal__hr_meetings.png",
+      "jsErrors": [],
+      "modalContentCount": 11
+    },
+    {
+      "route": "/hr/positions",
+      "opened": true,
+      "screenshot": "modal__hr_positions.png",
+      "jsErrors": [],
+      "modalContentCount": 11
+    },
+    {
+      "route": "/hr/departments",
+      "opened": true,
+      "screenshot": "modal__hr_departments.png",
+      "jsErrors": [],
+      "modalContentCount": 11
+    },
     {
       "route": "/hr/holidays",
       "opened": true,
       "screenshot": "modal__hr_holidays.png",
       "jsErrors": [],
-      "modalContentCount": 9
+      "modalContentCount": 11
     },
     {
       "route": "/hr/teams",
       "opened": true,
       "screenshot": "modal__hr_teams.png",
       "jsErrors": [],
-      "modalContentCount": 8
+      "modalContentCount": 11
+    },
+    {
+      "route": "/hr/employees",
+      "opened": true,
+      "screenshot": "modal__hr_employees.png",
+      "jsErrors": [],
+      "modalContentCount": 11
+    },
+    {
+      "route": "/permissions",
+      "opened": false,
+      "screenshot": null,
+      "jsErrors": []
     },
     {
       "route": "/support-tickets",
       "opened": false,
       "screenshot": null,
       "jsErrors": []
+    },
+    {
+      "route": "/notifications",
+      "opened": false,
+      "screenshot": null,
+      "jsErrors": []
+    },
+    {
+      "route": "/conversations",
+      "opened": true,
+      "screenshot": "modal__conversations.png",
+      "jsErrors": [],
+      "modalContentCount": 11
+    },
+    {
+      "route": "/setting",
+      "opened": false,
+      "screenshot": null,
+      "jsErrors": []
     }
   ],
-  "shell": {},
+  "shell": {
+    "header": true,
+    "sidebar": false,
+    "floatingBtn": false,
+    "menuCount": 4
+  },
   "errors": []
 }

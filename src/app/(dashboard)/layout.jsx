@@ -174,10 +174,11 @@ const MainLayout = ({ children }) => {
     // Show loading while fetching user or if state is being initialized or redirection is pending
     if (!mounted) {
         return (
-            <div className="h-screen w-screen flex items-center justify-center bg-status-bg">
-                <div className="flex flex-col items-center gap-4">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-base"></div>
-                    <p className="text-cell-secondary font-medium">{t("Initializing session...")}</p>
+            <div className="h-screen w-screen flex items-center justify-center bg-main">
+                <div className="flex flex-col items-center gap-4 w-full max-w-sm px-6">
+                    <div className="w-full h-32 bg-surface border border-status-border rounded-2xl animate-pulse" aria-hidden="true" />
+                    <div className="w-full h-20 bg-surface border border-status-border rounded-2xl animate-pulse delay-75" aria-hidden="true" />
+                    <p className="text-cell-secondary font-medium mt-2">{t("Initializing session...")}</p>
                 </div>
             </div>
         );
@@ -186,10 +187,11 @@ const MainLayout = ({ children }) => {
     if (isFetchingUser || !user || shouldRedirect) {
         if (token || getToken()) {
             return (
-                <div className="h-screen w-screen flex items-center justify-center bg-status-bg">
-                    <div className="flex flex-col items-center gap-4">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-base"></div>
-                        <p className="text-cell-secondary font-medium">
+                <div className="h-screen w-screen flex items-center justify-center bg-main">
+                    <div className="flex flex-col items-center gap-4 w-full max-w-sm px-6">
+                        <div className="w-full h-32 bg-surface border border-status-border rounded-2xl animate-pulse" aria-hidden="true" />
+                        <div className="w-full h-20 bg-surface border border-status-border rounded-2xl animate-pulse delay-100" aria-hidden="true" />
+                        <p className="text-cell-secondary font-medium mt-2">
                             {shouldRedirect ? t("Redirecting to setup...") : t("Loading session...")}
                         </p>
                     </div>
@@ -211,8 +213,9 @@ const MainLayout = ({ children }) => {
             {/* Overlay for mobile when sidebar is open */}
             {isSlidebarOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-[55] md:hidden"
+                    className="fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm z-[55] md:hidden"
                     onClick={toggleSlidebarOpen}
+                    aria-hidden="true"
                 />
             )}
             <div className="flex flex-col flex-1 h-full min-w-0 overflow-hidden ">

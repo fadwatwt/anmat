@@ -1,0 +1,156 @@
+{
+  "login": {
+    "ok": true,
+    "email": "nextsub1@anmat.test"
+  },
+  "shell": {
+    "header": true,
+    "sidebar": true
+  },
+  "parts": [
+    {
+      "part": "departments.create",
+      "method": "API-fallback",
+      "ok": true,
+      "id": "6a8b24f3a643e16035616729"
+    },
+    {
+      "part": "departments.edit",
+      "ok": true,
+      "id": "6a8b24f3a643e16035616729",
+      "status": 200
+    },
+    {
+      "part": "positions.create",
+      "ok": true,
+      "id": "6a8b2511a643e1603561673f"
+    },
+    {
+      "part": "positions.delete",
+      "ok": true
+    },
+    {
+      "part": "teams.create",
+      "ok": true,
+      "id": "6a8b252ca643e16035616752"
+    },
+    {
+      "part": "teams.delete",
+      "ok": true
+    },
+    {
+      "part": "holidays.create",
+      "ok": true,
+      "id": "6a8b2547a643e16035616761"
+    },
+    {
+      "part": "holidays.delete",
+      "ok": true
+    },
+    {
+      "part": "meetings.create",
+      "ok": true,
+      "id": "6a8b2561a643e16035616770"
+    },
+    {
+      "part": "meetings.delete",
+      "ok": true
+    },
+    {
+      "part": "projects.ui-buttons",
+      "hasProjectBtn": true,
+      "hasTemplateBtn": true,
+      "noDropdown": true
+    },
+    {
+      "part": "projects.dropdown-removed",
+      "hasDropdown": false,
+      "ok": true
+    },
+    {
+      "part": "projects.create",
+      "ok": true,
+      "id": "6a8b257ca643e16035616785"
+    },
+    {
+      "part": "projects.delete",
+      "ok": true
+    },
+    {
+      "part": "tasks.create",
+      "ok": true,
+      "id": "6a8b25d0a643e160356167b7"
+    },
+    {
+      "part": "tasks.edit",
+      "ok": true
+    },
+    {
+      "part": "tasks.delete",
+      "ok": true
+    },
+    {
+      "part": "appointments.modal-opened",
+      "ok": true
+    },
+    {
+      "part": "appointments.create",
+      "ok": true,
+      "id": "6a8b25efa643e160356167d9"
+    },
+    {
+      "part": "appointments.delete",
+      "ok": true
+    },
+    {
+      "part": "conversations.list",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "part": "conversations.ui",
+      "hasContent": true,
+      "ok": true
+    },
+    {
+      "part": "support-ticket.create-ui",
+      "ok": true,
+      "title": "Human Ticket 1787504142284"
+    },
+    {
+      "part": "support-ticket.cleanup",
+      "ok": true
+    },
+    {
+      "part": "dashboard.doughnut",
+      "hasDoughnut": true
+    },
+    {
+      "part": "dashboard.departments",
+      "hasDeptChart": true
+    },
+    {
+      "part": "dashboard.doughnut-center",
+      "hasContent": true
+    },
+    {
+      "part": "tour.auto-start",
+      "tourVisible": true,
+      "tourHasKeys": false,
+      "ok": true,
+      "sample": "SidebarFind all system sections here: Projects, Tasks, Human Resources, Settings and more. Expand an"
+    },
+    {
+      "part": "tour.english",
+      "enVisible": true,
+      "enHasKeys": false,
+      "ok": true,
+      "sample": "SidebarFind all system sections here: Projects, Tasks, Human Resources, Settings and more. Expand an"
+    }
+  ],
+  "errors": [],
+  "created": {},
+  "screenshots": [
+    "01-dashboard-shell.png"
+  ]
+}

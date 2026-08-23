@@ -100,7 +100,7 @@
     {
       "op": "admin.roles.create",
       "ok": true,
-      "id": "6a79ca7ab5fcb03e35dd3574"
+      "id": "6a8affe5a643e1603561635b"
     },
     {
       "op": "admin.roles.delete",
@@ -109,7 +109,7 @@
     {
       "op": "admin.industries.create",
       "ok": true,
-      "id": "6a79ca7cb5fcb03e35dd3582"
+      "id": "6a8affe8a643e16035616369"
     },
     {
       "op": "admin.industries.delete",
@@ -118,7 +118,7 @@
     {
       "op": "admin.subscribers.list",
       "ok": true,
-      "count": 18
+      "count": 19
     },
     {
       "op": "admin.plans.list",

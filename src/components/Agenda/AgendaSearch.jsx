@@ -62,7 +62,7 @@ function AgendaSearch() {
           }}
           onFocus={() => setIsOpen(true)}
           placeholder={t("Search agenda...")}
-          className="w-full pl-10 pr-10 py-2.5 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full pl-10 pr-10 py-2.5 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
         />
         {query && (
           <button

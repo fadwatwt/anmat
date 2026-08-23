@@ -117,7 +117,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
             />
           </div>
 
@@ -130,7 +130,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               value={formData.description}
               onChange={handleChange}
               rows={2}
-              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
             />
           </div>
 
@@ -143,7 +143,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
               placeholder={t("Enter location")}
             />
           </div>
@@ -159,7 +159,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 value={formData.date}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
               />
             </div>
 
@@ -173,7 +173,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 value={formData.start_time}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
               />
             </div>
           </div>
@@ -188,7 +188,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 name="end_time"
                 value={formData.end_time}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
               />
             </div>
 
@@ -201,7 +201,7 @@ function CreateAppointmentFromTaskModal({ isOpen, onClose, task, onCreated }) {
                 name="color"
                 value={formData.color}
                 onChange={handleChange}
-                className="w-12 h-10 border border-status-border rounded-lg cursor-pointer"
+                className="w-12 h-10 bg-surface border border-status-border rounded-lg cursor-pointer"
               />
             </div>
           </div>

@@ -66,7 +66,17 @@ function DepartmentProfile() {
     ]) || [];
 
     return (
-        <Page isTitle={false} className={"w-full"}>
+        <Page
+            isTitle={false}
+            isBreadcrumbs={true}
+            breadcrumbs={[
+                { title: "Dashboard", path: "/dashboard" },
+                { title: "Human Resources", path: "/hr" },
+                { title: "Departments", path: "/hr/departments" },
+                { title: department.name },
+            ]}
+            className={"w-full"}
+        >
             <div className={"w-full flex flex-col gap-6"}>
                 {/* Header Section */}
                 <div className={"bg-surface rounded-2xl p-6 border border-status-border shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6"}>

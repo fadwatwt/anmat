@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LiaUser } from "react-icons/lia";
 import { GoMail } from "react-icons/go";
 import { IoIosLock } from "react-icons/io";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { useAdminLoginMutation, useLazyGetUserQuery, useLazyLogoutQuery } from "@/redux/auth/authAPI";
@@ -20,6 +21,7 @@ function SignIn() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [adminLogin, { isLoading }] = useAdminLoginMutation();
     const { error, isAuthenticated } = useSelector((state) => state.auth);
@@ -177,14 +179,24 @@ function SignIn() {
                         <label className={`flex bg-surface border-status-border pl-2 px-2 w-full items-center border-2 rounded-xl ${(isLoading || isSubmitting) ? 'opacity-70' : ''}`}>
                             <IoIosLock className="text-cell-secondary w-10" size={18} />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder={t("Enter your password")}
                                 className="w-full py-3 px-2 outline-none bg-transparent dark:bg-gray-800 text-cell-primary dark:text-gray-100 dark:placeholder-gray-400"
                                 required
                                 disabled={isLoading || isSubmitting}
+                                aria-label={t("Password")}
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((v) => !v)}
+                                className="p-2 text-cell-secondary hover:text-cell-primary transition-colors"
+                                aria-label={showPassword ? t("Hide password") : t("Show password")}
+                                tabIndex={-1}
+                            >
+                                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                            </button>
                         </label>
 
                         <div className="flex justify-between items-center">

@@ -9,11 +9,13 @@ import EmployeeRequests from "@/app/(dashboard)/dashboard/_components/employee/E
 import { useGetEmployeeTaskStatisticsStatusQuery, useGetEmployeeTasksQuery } from "@/redux/tasks/employeeTasksApi";
 import { useGetEmployeeDashboardLogsQuery } from "@/redux/activity-logs/activityLogsApi";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { getDateLocale } from "@/lib/dateLocale";
 
 const EmployeeDashboard = () => {
     const { t } = useTranslation();
+    const router = useRouter();
     const { data: statsData } = useGetEmployeeTaskStatisticsStatusQuery();
     const { data: tasks = [], isLoading: isTasksLoading } = useGetEmployeeTasksQuery();
     const { data: logsData, isLoading: isLogsLoading } = useGetEmployeeDashboardLogsQuery({ limit: 10 });
@@ -97,7 +99,10 @@ const EmployeeDashboard = () => {
                         classContainer={"w-full md:w-2/3"}
                         isLoading={isTasksLoading}
                         toolbarCustomContent={
-                            <button className="bg-status-bg text-cell-secondary hover:bg-gray-50 px-4 py-2flex dark:text-gray-400 text-sm items-baseline p-2 gap-2 rounded-lg border border-status-border dark:border-gray-600">
+                            <button
+                                onClick={() => router.push("/employee/tasks")}
+                                className="bg-surface text-cell-secondary hover:bg-status-bg px-4 py-2 text-sm font-medium flex items-center gap-2 rounded-xl border border-status-border transition-colors"
+                            >
                                 {t("See All")}
                             </button>
                         }

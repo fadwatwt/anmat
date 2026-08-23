@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { usePathname } from "next/navigation";
 import { selectUserType } from "@/redux/auth/authSlice";
 import { FiChevronLeft, FiChevronRight, FiX, FiHelpCircle } from "react-icons/fi";
 
@@ -16,6 +17,34 @@ const tourSteps = [
     selector: "[data-tour='sidebar']",
     titleKey: "tour.step1.title",
     descKey: "tour.step1.desc",
+    position: "right",
+  },
+  {
+    id: "menu-overview",
+    selector: "[data-tour='menu-overview']",
+    titleKey: "tour.menu.overview.title",
+    descKey: "tour.menu.overview.desc",
+    position: "right",
+  },
+  {
+    id: "menu-work",
+    selector: "[data-tour='menu-work']",
+    titleKey: "tour.menu.work.title",
+    descKey: "tour.menu.work.desc",
+    position: "right",
+  },
+  {
+    id: "menu-team",
+    selector: "[data-tour='menu-team']",
+    titleKey: "tour.menu.team.title",
+    descKey: "tour.menu.team.desc",
+    position: "right",
+  },
+  {
+    id: "menu-analytics",
+    selector: "[data-tour='menu-analytics']",
+    titleKey: "tour.menu.analytics.title",
+    descKey: "tour.menu.analytics.desc",
     position: "right",
   },
   {
@@ -69,6 +98,7 @@ function clearHighlights() {
 export default function DashboardTour() {
   const { t } = useTranslation();
   const userType = useSelector(selectUserType);
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -147,17 +177,17 @@ export default function DashboardTour() {
     setTargetRect({ top: rect.top, left: rect.left, width: rect.width, height: rect.height });
   }, [currentStep, isOpen]);
 
-  // Initialize tour for new subscribers
+  // Initialize tour for new subscribers — فقط على /dashboard حتى لا يشرح لوحة أخرى
   useEffect(() => {
     setMounted(true);
-    if (userType === "Subscriber" && !localStorage.getItem(TOUR_KEY)) {
+    if (userType === "Subscriber" && pathname === "/dashboard" && !localStorage.getItem(TOUR_KEY)) {
       const timer = setTimeout(() => {
         setIsOpen(true);
         setCurrentStepIndex(0);
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [userType]);
+  }, [userType, pathname]);
 
   // On step change: highlight target, scroll into view, then measure & place tooltip
   useEffect(() => {

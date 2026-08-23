@@ -1,0 +1,56 @@
+{
+  "login": {},
+  "table": {
+    "headersOk": true,
+    "domRows": 32,
+    "apiCount": 8,
+    "bulkCheckboxes": 27
+  },
+  "actions": [
+    {
+      "action": "pagination-combobox",
+      "ok": true
+    },
+    {
+      "part": "row-actions",
+      "hasDropdown": true,
+      "actionsVisible": [
+        "Edit",
+        "Send Notification",
+        "Assign Department",
+        "Deactivate/Activate",
+        "Chat",
+        "Delete"
+      ],
+      "rowCount": 32
+    },
+    {
+      "action": "Bulk delete button after select",
+      "bulkVisible": true
+    }
+  ],
+  "modals": [
+    {
+      "action": "Invite Employee",
+      "opened": true
+    },
+    {
+      "action": "Add New Employee",
+      "opened": true
+    },
+    {
+      "action": "Send Notification (header)",
+      "opened": true
+    }
+  ],
+  "errors": [],
+  "counts": {
+    "employees": 8,
+    "badges": {
+      "hasPending": false,
+      "hasComplete": true,
+      "hasRegistered": false
+    },
+    "hasNoRating": false
+  }
+}

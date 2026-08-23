@@ -4,9 +4,11 @@
       "C:\\Program Files\\nodejs\\node.exe",
       "H:\\Company\\anmaat-system\\anmat_front-main\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "e2e/employee-i18n-check.spec.js",
       "--config=playwright.employee.config.js",
-      "--project=employee-i18n"
+      "--project=employee-setup",
+      "--project=employee-check",
+      "--grep",
+      "modal on /salary"
     ],
     "configFile": "H:\\Company\\anmaat-system\\anmat_front-main\\playwright.employee.config.js",
     "rootDir": "H:/Company/anmaat-system/anmat_front-main/e2e",
@@ -121,12 +123,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2895,
+                  "duration": 3287,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-06T14:32:08.628Z",
+                  "startTime": "2026-08-23T14:06:02.390Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -142,44 +144,40 @@
       ]
     },
     {
-      "title": "employee-i18n-check.spec.js",
-      "file": "employee-i18n-check.spec.js",
+      "title": "employee-check.spec.js",
+      "file": "employee-check.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Arabic text audit (employee dashboard)",
-          "file": "employee-i18n-check.spec.js",
-          "line": 257,
+          "title": "Employee dashboard check",
+          "file": "employee-check.spec.js",
+          "line": 148,
           "column": 6,
           "specs": [
             {
-              "title": "scan all employee pages for Latin text in Arabic mode",
+              "title": "modal on /salary opens and renders content",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 1500000,
+                  "timeout": 240000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "employee-i18n",
-                  "projectName": "employee-i18n",
+                  "projectId": "employee-check",
+                  "projectName": "employee-check",
                   "results": [
                     {
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 438915,
+                      "duration": 18018,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "\nEmployee i18n report: H:\\Company\\anmaat-system\\anmat_front-main\\e2e\\reports\\employee-i18n-check.txt\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-06T14:32:15.447Z",
+                      "startTime": "2026-08-23T14:06:07.203Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -187,10 +185,10 @@
                   "status": "expected"
                 }
               ],
-              "id": "c8428732b54bae502bf1-7147dd88b9f5aaab9a70",
-              "file": "employee-i18n-check.spec.js",
-              "line": 260,
-              "column": 3
+              "id": "631745fc933c8cfb4f21-65a1f5eba1aafc1726e4",
+              "file": "employee-check.spec.js",
+              "line": 223,
+              "column": 5
             }
           ]
         }
@@ -199,8 +197,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-06T14:32:07.546Z",
-    "duration": 448815.367,
+    "startTime": "2026-08-23T14:06:01.550Z",
+    "duration": 24893.372,
     "expected": 2,
     "skipped": 0,
     "unexpected": 0,

@@ -108,6 +108,9 @@ function Table({
         "aria-label",
     ];
 
+    // Nested object props that contain display text (e.g. AccountDetails account={{name}} )
+    const NESTED_TEXT_KEYS = ["account", "employee", "user", "data", "item"];
+
     // Tailwind classes that mean an element is never visible on screen
     // (hover panels, sr-only labels, etc.). Responsive `hidden` classes are
     // NOT included here because they can still be visible at some breakpoint.
@@ -145,14 +148,35 @@ function Table({
             }
             // No rendered children text (e.g. lazy component, icon-only badge,
             // star rating): fall back to descriptive text props.
-            const propTexts = TEXT_PROPS.map((key) => {
+            // Also handle nested objects like account={{name: "HR"}} where AccountDetails is used.
+            const propTexts = [];
+            for (const key of TEXT_PROPS) {
                 const value = nodeProps[key];
-                return typeof value === "string" || typeof value === "number"
-                    ? String(value)
-                    : "";
-            }).filter(Boolean);
+                if (typeof value === "string" || typeof value === "number") {
+                    propTexts.push(String(value));
+                }
+            }
+            // Check nested objects for inner text (account.name, etc.)
+            for (const nestedKey of NESTED_TEXT_KEYS) {
+                const nested = nodeProps[nestedKey];
+                if (nested && typeof nested === "object") {
+                    for (const propKey of TEXT_PROPS) {
+                        const v = nested[propKey];
+                        if (typeof v === "string" || typeof v === "number") {
+                            propTexts.push(String(v));
+                        }
+                    }
+                    // also title-case fallback: account -> accountTitle
+                    if (typeof nested.name === "string") propTexts.push(nested.name);
+                }
+            }
+            // Also check generic title prop as tooltip
+            if (nodeProps.title && typeof nodeProps.title === "string") {
+                propTexts.push(nodeProps.title);
+            }
+            const filtered = propTexts.filter(Boolean);
             // De-duplicate (title often mirrors a visible label).
-            return [...new Set(propTexts)].join(" ");
+            return [...new Set(filtered)].join(" ");
         }
         return "";
     };
@@ -410,9 +434,9 @@ function Table({
                                     {viewModalList?.map((viewModal, index) => (
                                         <button
                                             key={index}
-                                            className={`px-6 rounded-md text-sm text-cell-primary ${viewMode === viewModal.id
-                                                ? "bg-surface text-gray-200 shadow-sm"
-                                                : "bg-transparent"
+                                            className={`px-6 rounded-md text-sm ${viewMode === viewModal.id
+                                                ? "bg-surface text-cell-primary shadow-sm border border-status-border"
+                                                : "bg-transparent text-cell-secondary"
                                                 } w-[100px] h-[28px]`}
                                             onClick={() => onViewModeChange(viewModal.id)}
                                         >
@@ -420,7 +444,7 @@ function Table({
                                         </button>
                                     ))}
                                 </div>
-                                <button disabled className="w-[64px] text-gray-200 h-[36px] rounded-[8px] border-[1px] border-status-border opacity-50 pl-[10px] pr-[8px] gap-[4px]">
+                                <button disabled className="w-[64px] text-cell-secondary h-[36px] rounded-[8px] border border-status-border opacity-50 pl-[10px] pr-[8px] gap-[4px] bg-surface">
                                     {t("Today")}
                                 </button>
                                 <div className="text-cell-secondary text-lg ">

@@ -102,7 +102,7 @@ function TaskAppointmentLink({ appointment, onLinked }) {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t("Search tasks...")}
-                  className="w-full pl-9 pr-3 py-2 text-sm border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full pl-9 pr-3 py-2 text-sm bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-cell-primary placeholder:text-cell-secondary/50"
                   autoFocus
                 />
               </div>

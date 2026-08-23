@@ -218,7 +218,7 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.title}
                     onChange={handleDailyTaskChange}
                     required
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Enter task title")}
                   />
                 </div>
@@ -232,7 +232,7 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.description}
                     onChange={handleDailyTaskChange}
                     rows={3}
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Enter description")}
                   />
                 </div>
@@ -248,7 +248,7 @@ function CreateAppointmentPage() {
                       value={dailyTaskData.date}
                       onChange={handleDailyTaskChange}
                       required
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     />
                   </div>
 
@@ -260,7 +260,7 @@ function CreateAppointmentPage() {
                       name="priority"
                       value={dailyTaskData.priority}
                       onChange={handleDailyTaskChange}
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     >
                       <option value="low">{t("Low")}</option>
                       <option value="medium">{t("Medium")}</option>
@@ -279,7 +279,7 @@ function CreateAppointmentPage() {
                       name="category"
                       value={dailyTaskData.category}
                       onChange={handleDailyTaskChange}
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     >
                       {DAILY_TASK_CATEGORIES.map((cat) => (
                         <option key={cat.value} value={cat.value}>
@@ -298,7 +298,7 @@ function CreateAppointmentPage() {
                       name="color"
                       value={dailyTaskData.color}
                       onChange={handleDailyTaskChange}
-                      className="w-full h-10 border border-status-border rounded-lg cursor-pointer"
+                      className="w-full h-10 bg-surface border border-status-border rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
@@ -312,7 +312,7 @@ function CreateAppointmentPage() {
                     value={dailyTaskData.notes}
                     onChange={handleDailyTaskChange}
                     rows={2}
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Add any notes...")}
                   />
                 </div>
@@ -344,7 +344,7 @@ function CreateAppointmentPage() {
                     value={formData.title}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Enter appointment title")}
                   />
                 </div>
@@ -358,7 +358,7 @@ function CreateAppointmentPage() {
                     value={formData.description}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Enter description")}
                   />
                 </div>
@@ -372,7 +372,7 @@ function CreateAppointmentPage() {
                     name="location"
                     value={formData.location}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     placeholder={t("Enter location")}
                   />
                 </div>
@@ -388,7 +388,7 @@ function CreateAppointmentPage() {
                       value={formData.date}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     />
                   </div>
 
@@ -402,7 +402,7 @@ function CreateAppointmentPage() {
                       value={formData.start_time}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     />
                   </div>
                 </div>
@@ -417,7 +417,7 @@ function CreateAppointmentPage() {
                       name="end_time"
                       value={formData.end_time}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     />
                   </div>
 
@@ -429,7 +429,7 @@ function CreateAppointmentPage() {
                       name="category"
                       value={formData.category}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     >
                       <option value="meeting">🤝 {t("Meeting")}</option>
                       <option value="task">📋 {t("Task")}</option>
@@ -451,7 +451,7 @@ function CreateAppointmentPage() {
                       name="priority"
                       value={formData.priority}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                     >
                       <option value="low">{t("Low")}</option>
                       <option value="medium">{t("Medium")}</option>
@@ -469,7 +469,7 @@ function CreateAppointmentPage() {
                       name="color"
                       value={formData.color}
                       onChange={handleChange}
-                      className="w-full h-10 border border-status-border rounded-lg cursor-pointer"
+                      className="w-full h-10 bg-surface border border-status-border rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
@@ -482,7 +482,7 @@ function CreateAppointmentPage() {
                     name="task_id"
                     value={formData.task_id}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-surface border border-status-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm text-cell-primary placeholder:text-cell-secondary/50"
                   >
                     <option value="">{t("No task linked")}</option>
                     {tasks.map((task) => (
