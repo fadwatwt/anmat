@@ -229,7 +229,7 @@ function TweeterTab() {
 
                     {/* Action bar — each button gated by its specific permission */}
                     <div className="flex gap-2 flex-wrap">
-                        <PermissionGuard permission="social_media_actions.post" fallback={null}>
+                        <PermissionGuard permission="twitter_actions.post" fallback={null}>
                             <button
                                 onClick={() => setIsPostOpen(true)}
                                 className="flex gap-1 items-center bg-primary-100 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 dark:text-primary-200 text-sm hover:bg-primary-200 transition-colors"
@@ -238,7 +238,7 @@ function TweeterTab() {
                                 {t("Post")}
                             </button>
                         </PermissionGuard>
-                        <PermissionGuard permission="social_media_actions.follow" fallback={null}>
+                        <PermissionGuard permission="twitter_actions.follow" fallback={null}>
                             <button
                                 onClick={() => setIsFollowOpen(true)}
                                 className="flex gap-1 items-center bg-primary-100 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 dark:text-primary-200 text-sm hover:bg-primary-200 transition-colors"
@@ -247,7 +247,7 @@ function TweeterTab() {
                                 {t("Follow")}
                             </button>
                         </PermissionGuard>
-                        <PermissionGuard permission="social_media_actions.like" fallback={null}>
+                        <PermissionGuard permission="twitter_actions.like" fallback={null}>
                             <button
                                 onClick={() => setIsLikeOpen(true)}
                                 className="flex gap-1 items-center bg-primary-100 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 dark:text-primary-200 text-sm hover:bg-primary-200 transition-colors"
@@ -256,7 +256,7 @@ function TweeterTab() {
                                 {t("Like")}
                             </button>
                         </PermissionGuard>
-                        <PermissionGuard permission="social_media_actions.reply" fallback={null}>
+                        <PermissionGuard permission="twitter_actions.reply" fallback={null}>
                             <button
                                 onClick={() => setIsReplyOpen(true)}
                                 className="flex gap-1 items-center bg-primary-100 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 dark:text-primary-200 text-sm hover:bg-primary-200 transition-colors"
@@ -265,7 +265,7 @@ function TweeterTab() {
                                 {t("Reply")}
                             </button>
                         </PermissionGuard>
-                        <PermissionGuard permission="social_media_accounts.update" fallback={null}>
+                        <PermissionGuard permission="twitter_accounts.update" fallback={null}>
                             <button
                                 onClick={() => setIsLoginOpen(true)}
                                 className="flex gap-1 items-center bg-primary-100 dark:bg-primary-700 px-3 py-2 rounded-lg text-primary-500 dark:text-primary-200 text-sm hover:bg-primary-200 transition-colors"
@@ -275,7 +275,7 @@ function TweeterTab() {
                             </button>
                         </PermissionGuard>
                         {selectedAccountIds.length > 0 && (
-                            <PermissionGuard permission="social_media_accounts.delete" fallback={null}>
+                            <PermissionGuard permission="twitter_accounts.delete" fallback={null}>
                                 <button
                                     onClick={openBulkDelete}
                                     className="flex gap-1 items-center bg-rose-100 dark:bg-rose-950 px-3 py-2 rounded-lg text-rose-600 dark:text-rose-300 text-sm hover:bg-rose-200 transition-colors"
@@ -301,8 +301,8 @@ function TweeterTab() {
                             headers={headers}
                             rows={rows}
                             isActions={
-                                HAS_PERMISSION(permissions, "social_media_accounts.update") ||
-                                HAS_PERMISSION(permissions, "social_media_accounts.delete")
+                                HAS_PERMISSION(permissions, "twitter_accounts.update") ||
+                                HAS_PERMISSION(permissions, "twitter_accounts.delete")
                             }
                             handelEdit={handleEdit}
                             handelDelete={handleDelete}
@@ -323,7 +323,7 @@ function TweeterTab() {
                         <h3 className="text-cell-primary text-sm font-semibold">{t("Quick Actions")}</h3>
 
                         <PermissionGuard
-                            permission="social_media_accounts.create"
+                            permission="twitter_accounts.create"
                             fallback={
                                 <button
                                     disabled
@@ -350,7 +350,7 @@ function TweeterTab() {
                             </button>
                         </PermissionGuard>
 
-                        <PermissionGuard permission="social_media_accounts.import" fallback={null}>
+                        <PermissionGuard permission="twitter_accounts.import" fallback={null}>
                             <button
                                 onClick={() => setIsImportOpen(true)}
                                 disabled={isQuotaFull}
@@ -366,7 +366,7 @@ function TweeterTab() {
                             </button>
                         </PermissionGuard>
 
-                        <PermissionGuard permission="social_media_categories.list" fallback={null}>
+                        <PermissionGuard permission="twitter_categories.list" fallback={null}>
                             <Link
                                 href="/social-media/categories"
                                 className="w-full flex gap-2 items-center justify-center px-3 py-2 rounded-lg text-sm border-2 border-status-border text-cell-primary hover:bg-status-bg transition-colors"

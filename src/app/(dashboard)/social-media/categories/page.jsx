@@ -123,9 +123,9 @@ function SocialMediaCategoriesPage() {
     const [pendingDelete, setPendingDelete] = useState(null);
     const [apiResponse, setApiResponse] = useState({ isOpen: false, status: null, message: "" });
 
-    const canCreate = HAS_PERMISSION(permissions, "social_media_categories.create");
-    const canEdit = HAS_PERMISSION(permissions, "social_media_categories.update");
-    const canDelete = HAS_PERMISSION(permissions, "social_media_categories.delete");
+    const canCreate = HAS_PERMISSION(permissions, "twitter_categories.create");
+    const canEdit = HAS_PERMISSION(permissions, "twitter_categories.update");
+    const canDelete = HAS_PERMISSION(permissions, "twitter_categories.delete");
 
     const tree = useMemo(() => buildTree(categories), [categories]);
 
@@ -156,7 +156,7 @@ function SocialMediaCategoriesPage() {
         <Page
             title={t("Account Categories")}
             otherHeaderActions={
-                <PermissionGuard permission="social_media_categories.create" fallback={null}>
+                <PermissionGuard permission="twitter_categories.create" fallback={null}>
                     <button
                         onClick={() => setIsCreateOpen(true)}
                         className="bg-primary-500 hover:bg-primary-600 text-white flex gap-1 items-center px-3 py-2 rounded-lg text-sm transition-colors whitespace-nowrap"

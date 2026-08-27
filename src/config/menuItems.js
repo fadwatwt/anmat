@@ -175,7 +175,7 @@ export const dashboardSideMenuItems = [
         title: 'Social Media Management',
         path: '/social-media',
         icon: <Share />,
-        permission_any_of: ['social_media_accounts.list'],
+        permission_any_of: ['twitter_accounts.list'],
     },
 
     // ═══════════════════════════════════════════

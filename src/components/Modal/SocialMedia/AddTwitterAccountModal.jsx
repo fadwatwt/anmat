@@ -27,7 +27,7 @@ const HAS_PERMISSION = (perms, key) =>
 function AddTwitterAccountModal({ isOpen, onClose }) {
     const { t } = useTranslation();
     const permissions = useSelector(selectPermissions);
-    const canCreateCategory = HAS_PERMISSION(permissions, "social_media_categories.create");
+    const canCreateCategory = HAS_PERMISSION(permissions, "twitter_categories.create");
     const [createAccount, { isLoading }] = useCreateTwitterAccountMutation();
     const { data: categories = [], isLoading: catsLoading } = useGetAccountCategoriesQuery(
         undefined,
