@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import Modal from "@/components/Modal/Modal.jsx";
 import TagInput from "@/components/Form/TagInput";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
@@ -14,9 +15,16 @@ import { useSyncSubscriberRolePermissionsMutation } from "@/redux/roles/subscrib
 import { useProcessing } from "@/app/providers";
 import { useTranslation } from "react-i18next";
 import { getPermissionLabel } from "@/config/permissionTranslations";
+import { selectSocialMediaGrants } from "@/redux/auth/authSlice";
+
+// Twitter is the only implemented platform; subscribers without the grant
+// cannot manage social media, so we hide social_media_* permissions here.
+const hasSocialMediaAccess = (grants) =>
+    Array.isArray(grants) && grants.includes("twitter");
 
 function SyncSubscriberPermissionsModal({ isOpen, onClose, roleId, roleName, currentPermissions = [] }) {
     const { t } = useTranslation();
+    const socialMediaGrants = useSelector(selectSocialMediaGrants);
     const [updatePermissions, { isLoading }] = useSyncSubscriberRolePermissionsMutation();
     const { showProcessing, hideProcessing } = useProcessing();
     const [isApprovalOpen, setIsApprovalOpen] = useState(false);
@@ -31,14 +39,22 @@ function SyncSubscriberPermissionsModal({ isOpen, onClose, roleId, roleName, cur
             skip: !isOpen,
         });
 
+    const socialAllowed = hasSocialMediaAccess(socialMediaGrants);
+
     const permissionsSuggestions = useMemo(
         () =>
-            permissionsResponse?.map((permission) => ({
-                id: permission._id,
-                name: permission.name,
-                title: permission.title,
-            })) || [],
-        [permissionsResponse]
+            permissionsResponse
+                ?.filter(
+                    (permission) =>
+                        socialAllowed ||
+                        !String(permission.name || "").startsWith("social_media_"),
+                )
+                .map((permission) => ({
+                    id: permission._id,
+                    name: permission.name,
+                    title: permission.title,
+                })) || [],
+        [permissionsResponse, socialAllowed]
     );
 
     const currentPermissionsTags = useMemo(() => {

@@ -8,7 +8,7 @@ import React, { useState, useMemo } from "react"
 import { HambergerMenu, ArrowDown2 } from 'iconsax-react';
 import { dashboardSideMenuItems } from '@/config/menuItems.js';
 import { useSelector } from 'react-redux';
-import { selectUserType, selectPermissions, selectPermissionsLoaded } from '@/redux/auth/authSlice';
+import { selectUserType, selectPermissions, selectPermissionsLoaded, selectSocialMediaGrants } from '@/redux/auth/authSlice';
 
 const STORAGE_KEY = 'sidebar-collapsed-sections';
 
@@ -66,6 +66,7 @@ const Menu = React.memo(({ isSlidebarOpen, toggleSlidebarOpen }) => {
     const authUserType = useSelector(selectUserType);
     const userPermissions = useSelector(selectPermissions);
     const permissionsLoaded = useSelector(selectPermissionsLoaded);
+    const socialMediaGrants = useSelector(selectSocialMediaGrants);
     const hasWildcard = Array.isArray(userPermissions) && userPermissions.includes('*');
 
     const [collapsedSections, setCollapsedSections] = useState(loadCollapsedSections);
@@ -73,8 +74,23 @@ const Menu = React.memo(({ isSlidebarOpen, toggleSlidebarOpen }) => {
     const userHasPermission = (perm) =>
         Array.isArray(userPermissions) && userPermissions.includes(perm);
 
+    // A menu item targets social media management when it declares any
+    // social_media_* permission.
+    const isSocialMediaItem = (item) =>
+        (Array.isArray(item.permission_any_of) &&
+            item.permission_any_of.some((p) => String(p).startsWith('social_media_'))) ||
+        (item.permission && String(item.permission).startsWith('social_media_'));
+
+    // Twitter is the only platform currently implemented; subscribers are
+    // blocked from social media features until an admin grants them access.
+    const hasSocialMediaGrant = () => {
+        if (authUserType !== 'Subscriber' && authUserType !== 'Employee') return true;
+        return Array.isArray(socialMediaGrants) && socialMediaGrants.includes('twitter');
+    };
+
     const isItemAllowed = (item) => {
         if (!item.allowed_to || !item.allowed_to.includes(authUserType)) return false;
+        if (isSocialMediaItem(item) && !hasSocialMediaGrant()) return false;
         if (hasWildcard) return true;
 
         const hasSingle = item.permission ? userHasPermission(item.permission) : null;
@@ -132,7 +148,7 @@ const Menu = React.memo(({ isSlidebarOpen, toggleSlidebarOpen }) => {
         }
 
         return grouped;
-    }, [permissionsLoaded, authUserType, userPermissions]);
+    }, [permissionsLoaded, authUserType, userPermissions, socialMediaGrants]);
 
     const { t, i18n } = useTranslation()
 

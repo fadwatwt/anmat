@@ -39,6 +39,12 @@ const normalizeStatus = (status) => {
     if (lowerStatus === "expired") {
         return "expired";
     }
+    if (["past_due", "past due", "past-due"].includes(lowerStatus)) {
+        return "past_due";
+    }
+    if (lowerStatus === "unpaid") {
+        return "unpaid";
+    }
 
     return lowerStatus;
 };
@@ -115,6 +121,16 @@ const statusConfig = {
         textColor: "text-orange-700 dark:text-orange-400",
     },
     "inactive": {
+        bgColor: "bg-red-50 dark:bg-red-900/20",
+        icon: <RiCloseCircleFill size={15} className="text-red-700 dark:text-red-400" />,
+        textColor: "text-red-700 dark:text-red-400",
+    },
+    "past_due": {
+        bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
+        icon: <RiErrorWarningFill size={15} className="text-yellow-700 dark:text-yellow-400" />,
+        textColor: "text-yellow-700 dark:text-yellow-400",
+    },
+    "unpaid": {
         bgColor: "bg-red-50 dark:bg-red-900/20",
         icon: <RiCloseCircleFill size={15} className="text-red-700 dark:text-red-400" />,
         textColor: "text-red-700 dark:text-red-400",

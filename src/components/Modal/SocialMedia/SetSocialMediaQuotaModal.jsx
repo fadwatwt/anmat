@@ -8,6 +8,14 @@ import InputAndLabel from "@/components/Form/InputAndLabel";
 import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 import { useProcessing } from "@/app/providers";
 import { useUpdateSubscriberSocialMediaQuotaMutation } from "@/redux/socialMedia/socialMediaQuotaApi";
+import {
+    useGetSubscriberSocialMediaAccessQuery,
+    useUpdateSubscriberSocialMediaAccessMutation,
+} from "@/redux/socialMedia/socialMediaAccessApi";
+
+// Access to a subscriber's social media platform must be granted by an admin
+// first. Twitter is the only implemented platform today.
+const TWITTER = "twitter";
 
 // Three modes the admin can set:
 //   1. specific  — override with a fixed numeric limit
@@ -22,7 +30,22 @@ const MODES = {
 function SetSocialMediaQuotaModal({ isOpen, onClose, subscriberId, currentQuota }) {
     const { t } = useTranslation();
     const [updateQuota, { isLoading }] = useUpdateSubscriberSocialMediaQuotaMutation();
+    const [grantAccess, { isLoading: isGrantingAccess }] =
+        useUpdateSubscriberSocialMediaAccessMutation();
     const { showProcessing, hideProcessing } = useProcessing();
+
+    const {
+        data: accessData,
+        isLoading: isLoadingAccess,
+    } = useGetSubscriberSocialMediaAccessQuery(subscriberId, {
+        skip: !isOpen || !subscriberId,
+        refetchOnMountOrArgChange: true,
+    });
+
+    const grantedPlatforms = Array.isArray(accessData?.platforms)
+        ? accessData.platforms
+        : [];
+    const twitterGranted = grantedPlatforms.includes(TWITTER);
 
     const [mode, setMode] = useState(MODES.SPECIFIC);
     const [limit, setLimit] = useState("");
@@ -93,6 +116,47 @@ function SetSocialMediaQuotaModal({ isOpen, onClose, subscriberId, currentQuota 
         setApiResponse({ isOpen: false, status: null, message: "" });
     };
 
+    const handleGrantAccess = async () => {
+        if (!subscriberId) return;
+        showProcessing(t("Granting Twitter access..."));
+        try {
+            await grantAccess({
+                subscriberId,
+                platforms: [TWITTER],
+                granted: true,
+            }).unwrap();
+        } catch (error) {
+            setApiResponse({
+                isOpen: true,
+                status: "error",
+                message:
+                    error?.data?.message ||
+                    error?.error ||
+                    t("Failed to grant Twitter access."),
+            });
+        } finally {
+            hideProcessing();
+        }
+    };
+
+    const renderAccessGate = () => (
+        <div className="flex flex-col gap-4 px-1">
+            <p className="text-cell-secondary text-xs">
+                {t(
+                    "This subscriber has not been granted Twitter platform access yet. Grant access first before setting a social media quota.",
+                )}
+            </p>
+            <button
+                type="button"
+                onClick={handleGrantAccess}
+                disabled={isGrantingAccess || isLoadingAccess}
+                className="px-4 py-2 rounded-lg bg-primary-500 text-white text-sm font-medium hover:bg-primary-600 transition-colors disabled:opacity-60 self-start"
+            >
+                {isGrantingAccess ? t("Granting...") : t("Grant Twitter Access")}
+            </button>
+        </div>
+    );
+
     return (
         <>
             <Modal
@@ -105,6 +169,11 @@ function SetSocialMediaQuotaModal({ isOpen, onClose, subscriberId, currentQuota 
                 onClick={handleSubmit}
                 className="lg:w-4/12 md:w-7/12 sm:w-7/12 w-11/12 p-4"
             >
+                {isLoadingAccess ? (
+                    <p className="text-cell-secondary text-xs py-4 text-center">{t("Loading...")}</p>
+                ) : !twitterGranted ? (
+                    renderAccessGate()
+                ) : (
                 <div className="flex flex-col gap-4 px-1">
                     <p className="text-cell-secondary text-xs">
                         {t(
@@ -120,7 +189,7 @@ function SetSocialMediaQuotaModal({ isOpen, onClose, subscriberId, currentQuota 
                                 {" / "}
                                 {currentQuota.unlimited ? "∞" : (currentQuota.limit ?? 0)}
                                 <span className="text-cell-secondary text-xs ms-2">
-                                    ({t("source")}: {currentQuota.source || "—"})
+                                    ({t("source")}: {currentQuota.source ? t(currentQuota.source) : "—"})
                                 </span>
                             </p>
                         </div>
@@ -179,6 +248,7 @@ function SetSocialMediaQuotaModal({ isOpen, onClose, subscriberId, currentQuota 
                         </label>
                     </div>
                 </div>
+                )}
             </Modal>
 
             <ApiResponseAlert

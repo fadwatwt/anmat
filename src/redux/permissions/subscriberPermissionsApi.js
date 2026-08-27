@@ -10,7 +10,8 @@ export const subscriberPermissionsApi = apiSlice.injectEndpoints({
             providesTags: ["Permissions"],
             transformResponse: (response) => response.data || response,
         }),
-        // Returns the list of permission names for the authenticated user.
+        // Returns the permission names for the authenticated user, along with
+        // the social media platforms granted to this subscriber (account types).
         // ['*'] means full access (Subscriber/owner or super-admin).
         getMyPermissions: builder.query({
             query: () => ({
@@ -18,7 +19,7 @@ export const subscriberPermissionsApi = apiSlice.injectEndpoints({
                 method: "GET",
             }),
             providesTags: ["Permissions"],
-            transformResponse: (response) => response?.data?.permissions ?? [],
+            transformResponse: (response) => response?.data || response,
         }),
     }),
 });

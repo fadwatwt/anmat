@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
 import Status from "@/app/(dashboard)/projects/_components/TableInfo/Status";
 import EditAdminProfileModal from "@/app/(dashboard)/profile/_components/modals/admin/EditAdminProfile.modal";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ChangePasswordModal from "@/app/(dashboard)/profile/_components/modals/ChangePassword.modal";
 import Table from "@/components/Tables/Table";
 import { statusCell } from "@/components/StatusCell";
@@ -39,6 +39,10 @@ import ApiResponseAlert from "@/components/Alerts/ApiResponseAlert";
 import IncreaseFeaturesModal from "@/components/Modal/IncreaseFeaturesModal";
 import { useUpdateExtraFeaturesMutation } from "@/redux/subscriptions/subscriptionsApi";
 import { useGetSubscriberSocialMediaQuotaQuery } from "@/redux/socialMedia/socialMediaQuotaApi";
+import {
+    useGetSubscriberSocialMediaAccessQuery,
+    useUpdateSubscriberSocialMediaAccessMutation,
+} from "@/redux/socialMedia/socialMediaAccessApi";
 import SetSocialMediaQuotaModal from "@/components/Modal/SocialMedia/SetSocialMediaQuotaModal";
 import PermissionGuard from "@/components/PermissionGuard";
 import { Share } from "iconsax-react";
@@ -59,6 +63,46 @@ function AdminProfile() {
 
     const { data: socialQuota, isLoading: isSocialQuotaLoading } =
         useGetSubscriberSocialMediaQuotaQuery(slug, { skip: !slug });
+
+    const { data: socialMediaAccess } =
+        useGetSubscriberSocialMediaAccessQuery(slug, { skip: !slug });
+    const [updateSocialMediaAccess] =
+        useUpdateSubscriberSocialMediaAccessMutation();
+    const [isSocialMediaRevokeOpen, setIsSocialMediaRevokeOpen] = useState(false);
+
+    const grantedPlatforms = Array.isArray(socialMediaAccess?.platforms)
+        ? socialMediaAccess.platforms
+        : [];
+    const twitterGranted = grantedPlatforms.includes("twitter");
+
+    const handleToggleSocialMediaAccess = (granted) => {
+        if (granted) {
+            updateSocialMediaAccess({
+                subscriberId: slug,
+                platforms: ["twitter"],
+                granted: true,
+            }).unwrap().catch(() => { });
+            return;
+        }
+        setIsSocialMediaRevokeOpen(true);
+    };
+
+    const confirmRevokeSocialMediaAccess = async () => {
+        setIsSocialMediaRevokeOpen(false);
+        try {
+            await updateSocialMediaAccess({
+                subscriberId: slug,
+                platforms: ["twitter"],
+                granted: false,
+            }).unwrap();
+        } catch (err) {
+            setApiResponse({
+                status: "error",
+                message: err.data?.message || t("Failed to revoke social media access")
+            });
+            setIsResponseOpen(true);
+        }
+    };
 
 
     // Status update states
@@ -142,17 +186,39 @@ function AdminProfile() {
     }
 
 
+    // كما يفعل المنافسون: ترتيب حسب الحالة (النشط أولاً) ثم حسب تاريخ الانتهاء الأحدث أولاً
+    const statusPriority = { active: 0, trialing: 1, past_due: 2, incomplete: 3, expired: 4, cancelled: 5, inactive: 6, terminated: 7 };
+    const sortedSubscriptions = useMemo(() => {
+        if (!subscriptions) return [];
+        return [...subscriptions].sort((a, b) => {
+            const pa = statusPriority[a.status] ?? 99;
+            const pb = statusPriority[b.status] ?? 99;
+            if (pa !== pb) return pa - pb;
+            const ea = a.expires_at ? new Date(a.expires_at).getTime() : 0;
+            const eb = b.expires_at ? new Date(b.expires_at).getTime() : 0;
+            return eb - ea;
+        });
+    }, [subscriptions]);
+
     const headers = [
-        { label: t("Plan Name"), width: "300px" },
-        { label: t("Subscription Date"), width: "150px" },
-        { label: t("Status"), width: "125px" },
-        { label: "", width: "50px" }
+        { label: t("Plan Name"), width: "200px" },
+        { label: t("Billing Cycle"), width: "110px" },
+        { label: t("Starts At"), width: "125px" },
+        { label: t("Expires At"), width: "125px" },
+        { label: t("Amount"), width: "90px" },
+        { label: t("Auto Renew"), width: "95px" },
+        { label: t("Status"), width: "135px" },
+        { label: "", width: "40px" }
     ];
 
-    const lastActiveSubscription = subscriptions?.find(sub => sub.status === 'active') || subscriptions?.[0];
+    const lastActiveSubscription = sortedSubscriptions.find(sub => sub.status === 'active') || sortedSubscriptions[0];
 
-    const rows = (subscriptions || []).map(subscription => [
-
+    const rows = sortedSubscriptions.map(subscription => {
+        const intervalLabel = subscription.interval
+            ? t(subscription.interval === 'year' ? "Yearly" : subscription.interval === 'month' ? "Monthly" : subscription.interval)
+            : "—";
+        const amountLabel = typeof subscription.amount === 'number' ? `$${Number(subscription.amount).toFixed(2)}` : (subscription.plan_id?.pricing?.[0]?.price ? `$${subscription.plan_id.pricing[0].price}` : "—");
+        return [
         // Plan Cell
         <div key={`${subscription._id}_plan`} className="flex items-center justify-start gap-2">
             <div className="rounded-full p-2 bg-primary-100">
@@ -160,21 +226,47 @@ function AdminProfile() {
                     <RiFlashlightLine size={25} className="rounded-full text-primary-500 stroke-[5px]" />
                 </div>
             </div>
-            <span className="text-md text-cell-primary">
-                {subscription.plan_id?.name || "N/A"}
-            </span>
+            <div className="flex flex-col">
+                <span className="text-sm font-medium text-cell-primary">
+                    {subscription.plan_id?.name || "N/A"}
+                </span>
+                <span className="text-[11px] text-cell-secondary">{intervalLabel}</span>
+            </div>
         </div>,
 
-
-        // Created at cell
-        <div key={`${subscription._id}_created_at`}>
-            {subscription.createdAt ? format(new Date(subscription.createdAt), "MMM dd, yyyy", { locale: getDateLocale() }) : "N/A"}
+        // Billing Cycle
+        <div key={`${subscription._id}_interval`} className="text-xs">
+            <span className="px-2 py-1 rounded-full bg-badge-bg border border-status-border text-badge-text text-[11px] capitalize">{intervalLabel}</span>
         </div>,
 
+        // Starts At - تاريخ البداية الفعلي
+        <div key={`${subscription._id}_starts_at`} className="text-xs text-cell-secondary">
+            {subscription.starts_at ? format(new Date(subscription.starts_at), "MMM dd, yyyy", { locale: getDateLocale() }) : "—"}
+        </div>,
+
+        // Expires At - تاريخ الانتهاء الفعلي (وليس createdAt)
+        <div key={`${subscription._id}_expires_at`} className="text-xs font-medium">
+            {subscription.expires_at ? (
+                <span className={new Date(subscription.expires_at) < new Date() && ['active','past_due','trialing'].includes(subscription.status) ? "text-orange-500" : "text-cell-primary"}>
+                    {format(new Date(subscription.expires_at), "MMM dd, yyyy", { locale: getDateLocale() })}
+                </span>
+            ) : "—"}
+        </div>,
+
+        // Amount
+        <div key={`${subscription._id}_amount`} className="text-xs text-cell-primary font-medium">
+            {amountLabel}
+        </div>,
+
+        // Auto Renew
+        <div key={`${subscription._id}_auto`} className="text-xs">
+            {subscription.auto_renew ? <span className="text-green-600">{t("Yes")}</span> : <span className="text-cell-secondary">{t("No")}</span>}
+        </div>,
 
         // Status cell
         statusCell(subscription.status, subscription._id)
-    ]);
+        ];
+    });
     // const employeeId = slug ? slug.split('-')[0] : null;
     if (isLoading || isSubsLoading) return <div className="flex justify-center items-center h-full p-10"> <div className="flex items-center justify-center w-full p-4"><ImSpinner2 className="animate-spin text-primary-base dark:text-primary-200" size={30} /></div> </div>;
     if (error) return <div className="flex justify-center items-center h-full p-10 text-red-500">{t("Error loading profile.")}</div>;
@@ -303,11 +395,21 @@ function AdminProfile() {
                                                 <Share size={12} className="text-primary-500" />
                                                 {t("Twitter Accounts")}
                                             </span>
-                                            {socialQuota?.source && (
-                                                <span className="text-[10px] text-cell-secondary uppercase">
-                                                    {t("source")}: {socialQuota.source}
-                                                </span>
-                                            )}
+                                            <div className="flex items-center gap-2">
+                                                <PermissionGuard permission="admin.social_media_access.grant" fallback={null}>
+                                                    <div className="flex items-center gap-1.5">
+                                                        <span className="text-[10px] text-cell-secondary uppercase">
+                                                            {t("Access")}
+                                                        </span>
+                                                        <Switch2
+                                                            isOn={twitterGranted}
+                                                            handleToggle={() =>
+                                                                handleToggleSocialMediaAccess(!twitterGranted)
+                                                            }
+                                                        />
+                                                    </div>
+                                                </PermissionGuard>
+                                            </div>
                                         </div>
                                         <div className="flex items-baseline gap-1">
                                             <span className="text-2xl font-bold text-primary-500">
@@ -515,6 +617,16 @@ function AdminProfile() {
                     title={t("Change Subscription Status")}
                     message={t("Are you sure you want to change the subscription status to {{status}}?", { status: t(targetStatus.charAt(0).toUpperCase() + targetStatus.slice(1)) })}
                     confirmBtnText={t("Confirm")}
+                    type="warning"
+                />
+
+                <ApprovalAlert
+                    isOpen={isSocialMediaRevokeOpen}
+                    onClose={() => setIsSocialMediaRevokeOpen(false)}
+                    onConfirm={confirmRevokeSocialMediaAccess}
+                    title={t("Revoke Social Media Access")}
+                    message={t("Are you sure you want to revoke Twitter platform access for this subscriber?")}
+                    confirmBtnText={t("Yes, Revoke")}
                     type="warning"
                 />
 

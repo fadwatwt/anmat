@@ -1,3 +1,14 @@
 {
-  "Dashboard": "Dashboard"
+  "Dashboard": "Dashboard",
+  "Billing Cycle": "دورة الفوترة",
+  "Starts At": "تاريخ البداية",
+  "Expires At": "تاريخ الانتهاء",
+  "Amount": "المبلغ",
+  "Auto Renew": "التجديد التلقائي",
+  "Plan Name": "اسم الخطة",
+  "Status": "الحالة",
+  "Yearly": "سنوي",
+  "Monthly": "شهري",
+  "Yes": "نعم",
+  "No": "لا"
 }

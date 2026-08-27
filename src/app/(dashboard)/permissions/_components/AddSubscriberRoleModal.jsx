@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import Modal from "@/components/Modal/Modal.jsx";
 import InputAndLabel from "@/components/Form/InputAndLabel.jsx";
 import TagInput from "@/components/Form/TagInput";
@@ -15,9 +16,17 @@ import { useCreateSubscriberRoleMutation } from "@/redux/roles/subscriberRolesAp
 import { useProcessing } from "@/app/providers";
 import { useTranslation } from "react-i18next";
 import { getPermissionLabel } from "@/config/permissionTranslations";
+import { selectSocialMediaGrants } from "@/redux/auth/authSlice";
+
+// Subscribers cannot manage social media unless an admin has granted them the
+// platform. Twitter is the only implemented platform, so when it is not
+// granted we hide social_media_* permissions from the role permission picker.
+const hasSocialMediaAccess = (grants) =>
+    Array.isArray(grants) && grants.includes("twitter");
 
 function AddSubscriberRoleModal({ isOpen, onClose }) {
     const { t } = useTranslation();
+    const socialMediaGrants = useSelector(selectSocialMediaGrants);
     const [createRole, { isLoading }] = useCreateSubscriberRoleMutation();
     const [isApprovalOpen, setIsApprovalOpen] = useState(false);
     const [apiResponse, setApiResponse] = useState({
@@ -32,11 +41,19 @@ function AddSubscriberRoleModal({ isOpen, onClose }) {
             skip: !isOpen,
         });
 
+    const socialAllowed = hasSocialMediaAccess(socialMediaGrants);
+
     const permissionsSuggestions =
-        permissionsResponse?.map((permission) => ({
-            id: permission._id,
-            name: permission.name,
-        })) || [];
+        permissionsResponse
+            ?.filter(
+                (permission) =>
+                    socialAllowed ||
+                    !String(permission.name || "").startsWith("social_media_"),
+            )
+            .map((permission) => ({
+                id: permission._id,
+                name: permission.name,
+            })) || [];
 
     const formik = useFormik({
         initialValues: {

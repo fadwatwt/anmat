@@ -10,6 +10,7 @@ const initialState = {
   isAuthenticated: false, // Added authentication flag
   permissions: [], // Permission names for current user; ['*'] = full access
   permissionsLoaded: false,
+  socialMediaGrants: [], // Platforms (account types) granted to this subscriber
 };
 
 const authSlice = createSlice({
@@ -44,6 +45,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.permissions = [];
       state.permissionsLoaded = false;
+      state.socialMediaGrants = [];
 
       // Clear token from both storages on logout
       clearToken();
@@ -55,6 +57,9 @@ const authSlice = createSlice({
     setPermissions: (state, action) => {
       state.permissions = action.payload || [];
       state.permissionsLoaded = true;
+    },
+    setSocialMediaGrants: (state, action) => {
+      state.socialMediaGrants = action.payload || [];
     },
     // Add this to load auth state from localStorage on page refresh
     loadAuthState: (state) => {
@@ -84,6 +89,7 @@ export const {
   loadAuthState,
   setUser,
   setPermissions,
+  setSocialMediaGrants,
   clearError,
 } = authSlice.actions;
 
@@ -95,5 +101,6 @@ export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export const selectAuth = (state) => state.auth;
 export const selectPermissions = (state) => state.auth.permissions;
 export const selectPermissionsLoaded = (state) => state.auth.permissionsLoaded;
+export const selectSocialMediaGrants = (state) => state.auth.socialMediaGrants;
 
 export default authSlice.reducer;
